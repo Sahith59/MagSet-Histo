@@ -8,6 +8,6 @@
 set -euo pipefail
 : "${MAGSET_ROOT:?Set MAGSET_ROOT}"
 cd "$MAGSET_ROOT/repo"
-"$MAGSET_ROOT/envs/magset/bin/python" -m magset.collect \
+"$MAGSET_ROOT/envs/magset/bin/python" -m magset.collect --manifest "$MAGSET_ROOT/data/processed/manifest.csv" --protocol "$MAGSET_ROOT/data/processed/protocol.json" \
   --runs "$MAGSET_ROOT/runs/validation-v1" \
   --output "$MAGSET_ROOT/runs/validation-v1/verified-summary.json"

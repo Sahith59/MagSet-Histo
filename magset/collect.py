@@ -4,12 +4,48 @@ from collections import defaultdict
 from itertools import combinations
 import json
 import math
+import random
 from pathlib import Path
-from .data import CLASS_NAMES, MAGNIFICATIONS, file_hash
+from .data import CLASS_NAMES, MAGNIFICATIONS, cases_from_rows, file_hash, read_manifest
 
 SUBSETS = tuple(tuple(c) for n in range(1,5) for c in combinations(MAGNIFICATIONS,n))
 ENCODERS = ('phikon-v2','resnet50')
 METHODS = ('mean','concat','late')
+
+
+def load_trusted_context(manifest, protocol):
+    if manifest is None or protocol is None:
+        raise ValueError('Trusted verification requires both manifest and protocol')
+    mh=file_hash(manifest);source=json.loads(Path(protocol).read_text())
+    if source['manifest_sha256']!=mh:
+        raise ValueError('Trusted protocol and manifest disagree')
+    cases=sorted(cases_from_rows(read_manifest(manifest)).values(),key=lambda c:c['case_id'])
+    ids={c['case_id'] for c in cases}
+    for trial in source['trials'].values():
+        roles=trial['case_roles']
+        if set(roles)!=ids or not set(roles.values()).issubset({'train','test'}):
+            raise ValueError('Trusted protocol does not assign every known case')
+    return {'manifest_sha256':mh,'protocol_sha256':file_hash(protocol),'unit':source['unit'],
+            'cases':cases,'trials':source['trials'],'labels':{c['case_id']:c['label'] for c in cases}}
+
+
+def verify_trusted_report(report, truths, trusted):
+    for field in ('manifest_sha256','protocol_sha256','unit'):
+        if report[field]!=trusted[field]:
+            raise ValueError('Report differs from trusted metadata: '+field)
+    roles=trusted['trials'][str(report['trial'])]['case_roles']
+    rng=random.Random(report['seed']);validation=set()
+    for label in range(8):
+        eligible=sorted(c['case_id'] for c in trusted['cases'] if c['label']==label and roles[c['case_id']]=='train')
+        if len(eligible)<2:
+            raise ValueError('Trusted trial cannot support the declared inner split')
+        validation.add(rng.choice(eligible))
+    expected={'validation':validation,'train':{c for c,r in roles.items() if r=='train'}-validation,
+              'test':{c for c,r in roles.items() if r=='test'}}
+    if set(report['case_ids'])!=set(expected) or any(set(report['case_ids'][r])!=ids for r,ids in expected.items()):
+        raise ValueError('Reported case assignments differ from trusted protocol/seed')
+    if set(truths)!=validation or any(truths[c]!=trusted['labels'][c] for c in truths):
+        raise ValueError('Prediction truth labels differ from trusted manifest')
 
 
 def metrics_from_scores(records):
@@ -35,7 +71,7 @@ def metrics_from_scores(records):
             'balanced_accuracy':sum(recall)/len(recall)}
 
 
-def verify_run(path):
+def verify_run(path, trusted=None):
     path = Path(path); report = json.loads(path.read_text())
     if report['status'] != 'validation-only pilot' or 'test' in report:
         raise ValueError('Collector accepts validation-only pilot runs')
@@ -43,7 +79,8 @@ def verify_run(path):
         raise ValueError('Class order differs from the benchmark')
     ids = report['case_ids']
     groups = [set(ids[role]) for role in ['train','validation','test']]
-    if [len(g) for g in groups] != [46,8,28] or any(groups[i]&groups[j] for i in range(3) for j in range(i)):
+    if (any(len(ids[r])!=len(set(ids[r])) for r in ('train','validation','test'))
+            or [len(g) for g in groups] != [46,8,28] or any(groups[i]&groups[j] for i in range(3) for j in range(i))):
         raise ValueError('Case partition counts/overlap differ from the pilot')
     buckets = defaultdict(list);seen = set();truths = {}
     score_path = path.parent/'predictions.jsonl'
@@ -57,6 +94,8 @@ def verify_run(path):
         truths[row['case_id']] = row['truth'];buckets[subset].append(row)
     if set(buckets)!=set(SUBSETS) or any(len(v)!=8 for v in buckets.values()):
         raise ValueError('Expected eight validation cases for every subset')
+    if trusted is not None:
+        verify_trusted_report(report,truths,trusted)
     recomputed={}
     for subset,records in buckets.items():
         name='+'.join(map(str,subset));value=metrics_from_scores(records)
@@ -71,13 +110,14 @@ def verify_run(path):
     return report, {'metrics_sha256':file_hash(path),'predictions_sha256':file_hash(score_path)}
 
 
-def collect(root, seed=812, allow_incomplete=False, encoders=ENCODERS, methods=METHODS, trials=(1,2,3,4,5)):
+def collect(root, seed=812, allow_incomplete=False, encoders=ENCODERS, methods=METHODS, trials=(1,2,3,4,5), manifest=None, protocol=None):
+    trusted=load_trusted_context(manifest,protocol) if manifest is not None or protocol is not None else None
     if any(not values or len(set(values)) != len(values) for values in (encoders,methods,trials)):
         raise ValueError('Matrix dimensions must be nonempty and unique')
     expected={(e,m,t,seed) for e in encoders for m in methods for t in trials}
     records={};provenance=[]
     for path in sorted(Path(root).glob('*/metrics.json')):
-        report,hashes=verify_run(path)
+        report,hashes=verify_run(path,trusted=trusted)
         key=(report['encoder'],report['method'],report['trial'],report['seed'])
         if key not in expected or key in records:
             raise ValueError('Unexpected or duplicate benchmark configuration')
@@ -108,6 +148,8 @@ def collect(root, seed=812, allow_incomplete=False, encoders=ENCODERS, methods=M
             'verified_runs':len(records),'expected_runs':len(expected),'seed':seed,'missing':missing,
             'matrix':{'encoders':encoders,'methods':methods,'trials':trials},
             'collector_code_sha256':file_hash(__file__),
+            'verification_level':'trusted labels and regenerated split plus score arithmetic' if trusted else 'reported membership and score arithmetic only',
+            'trusted_metadata':{k:trusted[k] for k in ('manifest_sha256','protocol_sha256')} if trusted else None,
             'summary':summaries,'artifact_hashes':provenance,
             'interpretation':'Inner-validation results from repeated holdouts; not outer-test evidence, independent-fold confidence intervals, or a clinical performance claim.'}
 
@@ -119,7 +161,9 @@ def main():
     p.add_argument('--encoders',nargs='+',choices=ENCODERS,default=ENCODERS)
     p.add_argument('--methods',nargs='+',default=METHODS)
     p.add_argument('--trials',nargs='+',type=int,choices=range(1,6),default=(1,2,3,4,5))
-    a=p.parse_args();report=collect(a.runs,a.seed,a.allow_incomplete,a.encoders,a.methods,a.trials)
+    p.add_argument('--manifest',type=Path,required=True,help='Trusted manifest for label/split verification')
+    p.add_argument('--protocol',type=Path,required=True,help='Trusted provider protocol')
+    a=p.parse_args();report=collect(a.runs,a.seed,a.allow_incomplete,a.encoders,a.methods,a.trials,a.manifest,a.protocol)
     a.output.parent.mkdir(parents=True,exist_ok=True)
     a.output.write_text(json.dumps(report,indent=2,allow_nan=False)+'\n')
     print(json.dumps({k:report[k] for k in ['status','verified_runs','expected_runs','summary']},indent=2))

@@ -10,12 +10,12 @@ set -euo pipefail
 cd "$MAGSET_ROOT/repo"
 case "${1:-}" in
   field)
-    "$MAGSET_ROOT/envs/magset/bin/python" -m magset.collect \
+    "$MAGSET_ROOT/envs/magset/bin/python" -m magset.collect --manifest "$MAGSET_ROOT/data/processed/manifest.csv" --protocol "$MAGSET_ROOT/data/processed/protocol.json" \
       --runs "$MAGSET_ROOT/runs/field-linear-v1" --methods field-late field-early-late \
       --output "$MAGSET_ROOT/runs/field-linear-v1/verified-summary.json"
     ;;
   fusion)
-    "$MAGSET_ROOT/envs/magset/bin/python" -m magset.collect \
+    "$MAGSET_ROOT/envs/magset/bin/python" -m magset.collect --manifest "$MAGSET_ROOT/data/processed/manifest.csv" --protocol "$MAGSET_ROOT/data/processed/protocol.json" \
       --runs "$MAGSET_ROOT/runs/fusion-v1" --encoders phikon-v2 \
       --methods field-mean-view-mean field-mean-view-gated field-mean-view-attention \
         field-attention-view-mean field-attention-view-gated field-attention-view-attention \

@@ -8,12 +8,14 @@ from .round2_report import METHODS
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--results-root',type=Path,required=True);p.add_argument('--output',type=Path,required=True)
+    p.add_argument('--manifest',type=Path,required=True);p.add_argument('--protocol',type=Path,required=True)
     a=p.parse_args();root=a.results_root
-    original=collect(root/'validation-v1')
-    base=collect(root/'fusion-v1',encoders=('phikon-v2',),methods=METHODS)
-    split=collect(root/'fusion-sensitivity-v1/split813-train812',seed=813,encoders=('phikon-v2',),methods=METHODS)
-    training=collect(root/'fusion-sensitivity-v1/split812-train813',encoders=('phikon-v2',),methods=('field-mean-view-mean','field-attention-view-attention'))
-    linear=collect(root/'linear-sensitivity-v1',seed=813,encoders=('phikon-v2',),methods=('mean',))
+    context={'manifest':a.manifest,'protocol':a.protocol}
+    original=collect(root/'validation-v1',**context)
+    base=collect(root/'fusion-v1',encoders=('phikon-v2',),methods=METHODS,**context)
+    split=collect(root/'fusion-sensitivity-v1/split813-train812',seed=813,encoders=('phikon-v2',),methods=METHODS,**context)
+    training=collect(root/'fusion-sensitivity-v1/split812-train813',encoders=('phikon-v2',),methods=('field-mean-view-mean','field-attention-view-attention'),**context)
+    linear=collect(root/'linear-sensitivity-v1',seed=813,encoders=('phikon-v2',),methods=('mean',),**context)
     b={r['method']:r['mean_validation_subset_macro_f1'] for r in base['summary']}
     s={r['method']:r['mean_validation_subset_macro_f1'] for r in split['summary']}
     t={r['method']:r['mean_validation_subset_macro_f1'] for r in training['summary']}
@@ -42,7 +44,7 @@ def main():
               'and account for repeated cases in later uncertainty analyses. The new split/training-seed runs '
               'used source `ae647d02426d2119e29865f199cbe2031198bd8a`; model/optimizer settings were unchanged.', '',
               'Reproduce with `python -m magset.sensitivity_report --results-root /path/to/runs '
-              '--output docs/SENSITIVITY_RESULTS.md`.', '']
+              '--manifest /path/to/manifest.csv --protocol /path/to/protocol.json --output docs/SENSITIVITY_RESULTS.md`.', '']
     a.output.parent.mkdir(parents=True,exist_ok=True);a.output.write_text('\n'.join(lines))
     print('Verified 45 follow-up runs and all referenced initial matrices.')
 

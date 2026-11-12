@@ -21,4 +21,4 @@ The linear control remains higher than the neural rows on the primary average fo
 
 Do not choose the favorable split for the paper. Preserve all rows, freeze a final protocol, and account for repeated cases in later uncertainty analyses. The new split/training-seed runs used source `ae647d02426d2119e29865f199cbe2031198bd8a`; model/optimizer settings were unchanged.
 
-Reproduce with `python -m magset.sensitivity_report --results-root /path/to/runs --output docs/SENSITIVITY_RESULTS.md`.
+Reproduce with `python -m magset.sensitivity_report --results-root /path/to/runs --manifest /path/to/manifest.csv --protocol /path/to/protocol.json --output docs/SENSITIVITY_RESULTS.md`.

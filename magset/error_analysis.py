@@ -3,15 +3,16 @@ import argparse
 from collections import Counter, defaultdict
 import json
 from pathlib import Path
-from .collect import collect, verify_run
+from .collect import collect, verify_run, load_trusted_context
 from .data import CLASS_NAMES
 
 
 def analyze(root, **matrix):
     verified = collect(root,**matrix)
+    trusted=load_trusted_context(matrix['manifest'],matrix['protocol']) if matrix.get('manifest') is not None else None
     groups = defaultdict(list)
     for path in sorted(Path(root).glob('*/metrics.json')):
-        report, _ = verify_run(path)
+        report, _ = verify_run(path,trusted=trusted)
         rows = [json.loads(line) for line in (path.parent/'predictions.jsonl').read_text().splitlines()]
         groups[(report['encoder'], report['method'])].append((report, rows))
     result = []
@@ -118,7 +119,8 @@ def main():
     p.add_argument('--runs', type=Path, required=True)
     p.add_argument('--output', type=Path, required=True)
     p.add_argument('--markdown', type=Path, required=True)
-    a = p.parse_args(); report = analyze(a.runs)
+    p.add_argument('--manifest',type=Path,required=True);p.add_argument('--protocol',type=Path,required=True)
+    a = p.parse_args(); report = analyze(a.runs,manifest=a.manifest,protocol=a.protocol)
     a.output.parent.mkdir(parents=True, exist_ok=True)
     a.output.write_text(json.dumps(report, indent=2, allow_nan=False)+'\n')
     a.markdown.parent.mkdir(parents=True, exist_ok=True)

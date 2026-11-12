@@ -9,6 +9,6 @@ set -euo pipefail
 : "${MAGSET_ROOT:?Set MAGSET_ROOT}"
 export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
 cd "$MAGSET_ROOT/repo"
-"$MAGSET_ROOT/envs/magset/bin/python" -m magset.capacity_report \
+"$MAGSET_ROOT/envs/magset/bin/python" -m magset.capacity_report --manifest "$MAGSET_ROOT/data/processed/manifest.csv" --protocol "$MAGSET_ROOT/data/processed/protocol.json" \
   --runs-root "$MAGSET_ROOT/runs" --output "$MAGSET_ROOT/runs/capacity-v1/verified-comparison.json" \
   --markdown "$MAGSET_ROOT/runs/capacity-v1/report.md"

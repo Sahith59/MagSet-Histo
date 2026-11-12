@@ -51,4 +51,4 @@ Recall below counts repeated validation predictions across subsets/trials; disti
 
 Source revision for this round: `1b2a0dd917495c4d2e70e2bd3fc805f43141a087`. See [the protocol](FUSION_PILOT.md), [initial error analysis](ERROR_ANALYSIS.md), and [contribution gates](RESEARCH_DIRECTION.md).
 
-Reproduce with `python -m magset.round2_report --initial-runs /path/to/validation-v1 --field-runs /path/to/field-linear-v1 --fusion-runs /path/to/fusion-v1 --output docs/FUSION_RESULTS.md`.
+Reproduce with `python -m magset.round2_report --initial-runs /path/to/validation-v1 --field-runs /path/to/field-linear-v1 --fusion-runs /path/to/fusion-v1 --manifest /path/to/manifest.csv --protocol /path/to/protocol.json --output docs/FUSION_RESULTS.md`.

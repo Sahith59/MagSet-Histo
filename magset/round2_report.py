@@ -56,19 +56,20 @@ def render(initial, field, fusion, diagnostics):
               'See [the protocol](FUSION_PILOT.md), [initial error analysis](ERROR_ANALYSIS.md), and '
               '[contribution gates](RESEARCH_DIRECTION.md).', '',
               'Reproduce with `python -m magset.round2_report --initial-runs /path/to/validation-v1 '
-              '--field-runs /path/to/field-linear-v1 --fusion-runs /path/to/fusion-v1 --output docs/FUSION_RESULTS.md`.', '']
+              '--field-runs /path/to/field-linear-v1 --fusion-runs /path/to/fusion-v1 --manifest /path/to/manifest.csv --protocol /path/to/protocol.json --output docs/FUSION_RESULTS.md`.', '']
     return '\n'.join(lines)
 
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
-    for name in ('initial-runs','field-runs','fusion-runs','output'):
+    for name in ('initial-runs','field-runs','fusion-runs','output','manifest','protocol'):
         p.add_argument('--'+name,type=Path,required=True)
     a = p.parse_args()
-    initial = collect(a.initial_runs)
-    field = collect(a.field_runs,methods=('field-late','field-early-late'))
-    fusion = collect(a.fusion_runs,encoders=('phikon-v2',),methods=METHODS)
-    diagnostics = analyze(a.fusion_runs,encoders=('phikon-v2',),methods=METHODS)
+    context={'manifest':a.manifest,'protocol':a.protocol}
+    initial = collect(a.initial_runs,**context)
+    field = collect(a.field_runs,methods=('field-late','field-early-late'),**context)
+    fusion = collect(a.fusion_runs,encoders=('phikon-v2',),methods=METHODS,**context)
+    diagnostics = analyze(a.fusion_runs,encoders=('phikon-v2',),methods=METHODS,**context)
     a.output.parent.mkdir(parents=True,exist_ok=True)
     a.output.write_text(render(initial,field,fusion,diagnostics))
     print(json.dumps({'verified_initial':initial['verified_runs'],'verified_field':field['verified_runs'],

@@ -34,4 +34,4 @@ The matched linear mean remains higher than the tested neural controls on both i
 
 Retain these results as an exploratory baseline reference. The next research work is to settle native second-dataset eligibility/metrics and pretraining overlap, complete compatible published-method comparisons, and specify a defensible candidate mechanism. More architecture trials alone do not establish a contribution. No outer-test evaluation or second-dataset model result is reported here.
 
-Experimental source revision: `ed8db0f49294cb3a19b4ee4e45f8e1a4c6064b08`. Regenerate using `python -m magset.capacity_report --runs-root /path/to/runs --output /path/to/verified-comparison.json --markdown docs/CAPACITY_RESULTS.md`.
+Experimental source revision: `ed8db0f49294cb3a19b4ee4e45f8e1a4c6064b08`. Regenerate using `python -m magset.capacity_report --runs-root /path/to/runs --manifest /path/to/manifest.csv --protocol /path/to/protocol.json --output /path/to/verified-comparison.json --markdown docs/CAPACITY_RESULTS.md`.

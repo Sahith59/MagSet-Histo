@@ -23,7 +23,7 @@ for TASK_FIELD in mean attention; do
       --output "$MAGSET_ROOT/runs/fusion-smoke-v1/field-$TASK_FIELD-view-$TASK_VIEW"
   done
 done
-"$MAGSET_ROOT/envs/magset/bin/python" -m magset.collect \
+"$MAGSET_ROOT/envs/magset/bin/python" -m magset.collect --manifest "$MAGSET_ROOT/data/processed/manifest.csv" --protocol "$MAGSET_ROOT/data/processed/protocol.json" \
   --runs "$MAGSET_ROOT/runs/fusion-smoke-v1" --encoders phikon-v2 \
   --methods field-mean-view-mean field-mean-view-gated field-mean-view-attention \
     field-attention-view-mean field-attention-view-gated field-attention-view-attention \
