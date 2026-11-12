@@ -166,8 +166,8 @@ Completion gate: data tables and grouping rules are reproducible, no patient ove
 
 ### M2: baseline pipeline
 
-- [ ] Create an isolated pinned PyTorch environment on shared storage.
-- [ ] Record a GPU framework/precision smoke test and environment lock.
+- [x] Create an isolated pinned PyTorch environment on shared storage.
+- [x] Record a GPU framework/precision smoke test and environment lock. CUDA gradient and both real-image encoder pilots passed.
 - [ ] Fetch a permitted encoder at a fixed revision; cache train/evaluation features without cohort fitting.
 - [ ] Implement B0–B6 and image-level Track I with saved predictions/class mapping.
 - [ ] Run small training-only pilots; test save/reload and split/mask invariants.
@@ -227,3 +227,13 @@ The official archive is downloaded and indexed. Its provider trial files establi
 Implemented tools: provider-protocol audit; full image-decode shards; pinned Phikon-v2/ResNet-50 frozen extraction; mean, masked concatenation, and late-fusion logistic baselines; model selection across a fixed four-value regularization grid on eight inner-validation cases; explicit outer-evaluation opt-in; score/model/provenance records. Existing labels and images are never used to adapt the frozen pretrained encoder.
 
 Execution dependency: isolated CPU runtime/bootstrap and pinned checkpoint download; one-GPU real-feature pilot; up to four GPU feature workers over eight encoder/magnification shards; up to six CPU workers for 30 validation-only configurations (two encoders, three fusion methods, five provider trials, seed 812). Each run records source/manifest/model revisions. Final statistical analysis and learned fusion/candidate mechanisms remain unfinished.
+
+## Work that proceeds alongside cluster experiments
+
+- Automatically verify saved validation probabilities against reported metrics and collect the complete 30-run matrix; incomplete runs must not produce a misleading partial ranking.
+- Implement and test the required learned gating/set-attention baselines independently of the running linear jobs.
+- Complete the close-method mechanism comparison before defining the candidate's novelty claim.
+- Draft the manuscript structure, data/methods specification, and contribution/evidence map without inventing results; the scaffold is in `paper/outline.md`.
+- Select a compatible second dataset based on actual access and reproducible protocols.
+
+At the latest check the environment, full image decoding, and GPU pilot succeeded. Seven of eight feature shards succeeded; one process could not access CUDA. Only that missing shard was resubmitted on an A40, and the existing validation array dependency was updated to the retry. Completed caches were preserved.
