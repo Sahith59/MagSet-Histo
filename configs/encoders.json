@@ -1,0 +1,16 @@
+{
+  "phikon-v2": {
+    "repository": "owkin/phikon-v2",
+    "revision": "2ae989a9c40cffaa27f0a6cb29cc94d1d6f9a5fd",
+    "features": "CLS token from last_hidden_state",
+    "dimension": 1024,
+    "transform": "official AutoImageProcessor configuration at the pinned revision"
+  },
+  "resnet50": {
+    "repository": "torchvision.models.resnet50",
+    "revision": "torchvision-0.21.0:ResNet50_Weights.IMAGENET1K_V2",
+    "features": "global average pooling before the fully connected layer",
+    "dimension": 2048,
+    "transform": "ResNet50_Weights.IMAGENET1K_V2.transforms()"
+  }
+}
