@@ -180,6 +180,26 @@ class NativePilotTests(unittest.TestCase):
             for value in result['class_training_weight'].values(): self.assertAlmostEqual(value,5)
             self.assertEqual(result['arms']['mean']['stored_coefficient_count'],32848)
             self.assertEqual(result['arms']['affinity']['stored_coefficient_count'],33360)
+            from scripts.report_native_pilot import build
+            public = build(root/'run',protocol,file_hash(protocol),root/'results.md',root/'ledger.json')
+            self.assertEqual(public['verified_prediction_records'],960)
+            self.assertNotIn('patient_id',(root/'ledger.json').read_text())
+            original_report = (root/'run/pilot.json').read_text()
+            tampered = json.loads(original_report)
+            tampered['arms']['mean']['development']['mean_subset_macro_f1'] += .01
+            (root/'run/pilot.json').write_text(json.dumps(tampered))
+            with self.assertRaisesRegex(ValueError,'Recomputed'): build(root/'run',protocol,file_hash(protocol),root/'r.md',root/'l.json')
+            tampered = json.loads(original_report); del tampered['artifacts']['mean.npz']
+            (root/'run/pilot.json').write_text(json.dumps(tampered))
+            with self.assertRaisesRegex(ValueError,'artifact set'): build(root/'run',protocol,file_hash(protocol),root/'r.md',root/'l.json')
+            tampered = json.loads(original_report); tampered['manifest_sha256'] = 'wrong'
+            (root/'run/pilot.json').write_text(json.dumps(tampered))
+            with self.assertRaisesRegex(ValueError,'manifest'): build(root/'run',protocol,file_hash(protocol),root/'r.md',root/'l.json')
+            (root/'run/pilot.json').write_text(original_report)
+            model_path = root/'run/mean.npz'; original_model = model_path.read_bytes()
+            model_path.write_bytes(original_model+b'tampering')
+            with self.assertRaisesRegex(ValueError,'hash'): build(root/'run',protocol,file_hash(protocol),root/'r.md',root/'l.json')
+            model_path.write_bytes(original_model)
             with self.assertRaisesRegex(ValueError,'exists'):
                 run(manifest,protocol,cache,file_hash(protocol),audit,file_hash(audit),root/'run','synthetic-test')
 

@@ -33,7 +33,9 @@ Use LBFGS with tolerance1e-4 and max_iter1000. All four models must converge bef
 
 ## Required correctness checks before execution
 
-Verify labels and per-patient roles against registered metadata; refuse sealed scoring in the development CLI. Test field/view permutation, missing-content invariance, one-view zero contrast, finite probabilities, case-balanced subset weights, save/reload, and conservation of matched/unmatched branches. Equal added dimensions do not alone establish matched capacity; report coefficient counts and fit/feature compute.
+Verify labels and per-patient roles against registered metadata; refuse sealed scoring in the development CLI. Test field/view permutation, missing-content invariance, one-view zero contrast, finite probabilities, case-balanced subset weights, save/reload, baseline-block equality, and signed-contrast reconstruction. Equal added dimensions do not alone establish matched capacity; report coefficient counts and fit/feature compute.
+
+Editorial clarification after the first pilot: “signed-contrast reconstruction” replaces the earlier imprecise phrase “conservation of matched/unmatched branches.” No model settings or experimental outcomes were changed. The experiment's immutable source/specification hashes preserve its original wording.
 
 ## Development outcomes and decision
 
