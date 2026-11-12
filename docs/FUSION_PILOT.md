@@ -48,3 +48,7 @@ Twenty CPU field-linear jobs (two encoders × two aggregation policies × five t
 - Repeat the screen under prespecified alternate inner splits and training seeds; report instability.
 - Reconcile strict identifier grouping and add the image-level benchmark track before final reporting.
 - Audit close methods and secure a compatible second dataset before claiming a broadly novel mechanism.
+
+## Prespecified stability follow-up
+
+After the first complete matrix showed no neural improvement over the initial mean baseline, fix the follow-up before launching it: all six neural methods × five trials at split seed 813/training seed 812; the mean/mean and attention/attention controls × five trials at split seed 812/training seed 813; and the original Phikon mean linear control × five trials at split seed 813. Keep the original four-setting grids and fixed final epochs. Save each split/training-seed combination in a distinct matrix and do not merge different seeds into one five-trial ranking. Report unfavorable outcomes as well as favorable ones. A second split/training seed diagnoses sensitivity; it does not resolve limited case counts or justify independent-fold confidence intervals.

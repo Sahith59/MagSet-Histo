@@ -158,7 +158,8 @@ Store best/last checkpoints within a retention budget and keep caches/TMPDIR off
 
 - [x] Download the official archive on a compute node; record source URL, bytes, and SHA-256.
 - [x] Safely extract it; index all four magnifications; count every subtype/group. Identifier conflicts require further reconciliation.
-- [ ] Verify representative image decoding, duplicates, identifiers, case/patient relationships, and magnification coverage.
+- [x] Fully decode all 7,909 images; verify magnification coverage and byte-level duplicates.
+- [ ] Independently reconcile clinical patient relationships and identifier sensitivity.
 - [ ] Reconcile the original patient-group protocol and freeze the split manifest.
 - [ ] Complete the closest-method novelty matrix and an explicit claim proposal.
 
@@ -168,9 +169,9 @@ Completion gate: data tables and grouping rules are reproducible, no patient ove
 
 - [x] Create an isolated pinned PyTorch environment on shared storage.
 - [x] Record a GPU framework/precision smoke test and environment lock. CUDA gradient and both real-image encoder pilots passed.
-- [ ] Fetch a permitted encoder at a fixed revision; cache train/evaluation features without cohort fitting.
+- [x] Fetch permitted pinned encoders; complete all eight full frozen-feature caches without cohort fitting.
 - [ ] Implement B0–B6 and image-level Track I with saved predictions/class mapping.
-- [ ] Run small training-only pilots; test save/reload and split/mask invariants.
+- [x] Run real-data execution pilots; test save/reload, split/mask/permutation invariants and finite gradients. These checks are not final performance evidence.
 
 Completion gate: one full patient-separated baseline finishes cleanly, predictions reproduce its reported metrics, and cost estimates determine the sweep budget.
 
@@ -195,7 +196,8 @@ Completion gate: all main tables trace to manifests, code revisions, configurati
 
 ### M5: manuscript and submission
 
-- [ ] Draft introduction/related work and method specification while experiments run.
+- [x] Draft the implemented baseline methods and contribution/evidence gates while experiments run.
+- [ ] Complete introduction, full related work, and final candidate method specification.
 - [ ] Generate plots/tables directly from frozen result files.
 - [ ] Write limitations, data/model provenance, compute, ethics/access, and reproducibility statements.
 - [ ] Professor Dong reviews the contribution, authorship, venue, and final claims.
@@ -243,3 +245,13 @@ At the latest check the environment, full image decoding, and GPU pilot succeede
 The runtime, full PNG validation, real GPU pilot, and all eight frozen-feature shards are complete. One CUDA-unavailable process was retried successfully without changing the encoder/preprocessing. All 30 linear baseline configurations completed, and saved probabilities independently reproduce their reported metrics. No convergence or numerical warnings were found in the validation logs. Outer-test scoring remains disabled.
 
 The initial scores are in `docs/VALIDATION_PILOT.md`. Before adding the candidate mechanism, prioritize error analysis and controlled comparisons of image-level heads/case aggregation, learned within-scale pooling, gating, and set attention. The small validation samples make score stability and rare-class behavior important unresolved questions. A manuscript scaffold and score-verification collector were developed alongside the cluster work.
+
+## Controlled fusion round and current decision
+
+Completed the error analysis, 20 field-linear controls, six real-data GPU execution paths, and 30 full hierarchical neural configurations. Every final probability set independently reproduces its metrics; all saved selected models passed reload checks. The predeclared protocol is `docs/FUSION_PILOT.md`, and generated results are in `docs/FUSION_RESULTS.md`.
+
+The original Phikon mean baseline remains higher on the primary exploratory average (0.3868 versus 0.3562 for the highest neural row). Phikon's matched early/late field controls have similar averages; early averaging is not established as the main failure cause. Neural fitting losses approach zero while validation varies widely. The immediate priority is split/training-seed stability and lower-capacity/regularization controls, not an unsupported claim that more complexity helps. The candidate matching method remains pending.
+
+Prespecified next sensitivity round: repeat all six neural methods across five provider trials using inner split seed 813 and training seed 812 (30 new runs). Separately repeat the simplest mean/mean and attention/attention neural controls at split seed 812 with training seed 813 (10 runs). Repeat the original Phikon mean linear control on split seed 813 (five CPU runs). Keep every other training/grid parameter fixed, preserve all outcomes, and collect each seed matrix separately. These are exploratory stability checks with overlapping cases, not independent clinical replications or final test performance. No additional completed run is resubmitted.
+
+In parallel, a pinned public TCGA-MS archive is being downloaded/inventoried through SLURM. This does not establish dataset compatibility: labels, groups, correspondence, and encoder-pretraining overlap remain to audit before any second-dataset fitting. BRACS access requires an account. Primary sources and the remaining novelty questions are recorded in `docs/RESEARCH_DIRECTION.md`; baseline methods are drafted in `paper/methods-draft.md`.

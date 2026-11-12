@@ -26,7 +26,7 @@ Describe the verified archive, all four magnifications, raw/provisional identifi
 
 ## Methods
 
-First document the implemented frozen-feature baselines from `docs/BENCHMARK_PROTOCOL.md`. Add learned gating/set attention and the candidate only after implementation, invariance checks, and comparison design. Separate common method components from the hypothesized contribution.
+The implemented frozen-feature, field, and learned fusion controls are drafted in [methods-draft.md](methods-draft.md), with protocols in `docs/BENCHMARK_PROTOCOL.md` and `docs/FUSION_PILOT.md`. The candidate matching mechanism remains unimplemented. Separate common method components from the hypothesized contribution.
 
 ## Experiments and results
 
