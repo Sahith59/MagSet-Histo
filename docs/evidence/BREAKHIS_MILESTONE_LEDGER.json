@@ -1,0 +1,313 @@
+{
+  "schema": "magset.breakhis-milestone.v1",
+  "dataset": "BreakHis",
+  "priority": "quick baseline deliverable before novelty/paper; TCGA follow-up deferred",
+  "manifest_sha256": "958893f923a745220fac66f19656bcdbfb38996f70ef8044e1349619f4102e31",
+  "protocol_sha256": "dca9a93bb570fd7cfec9fe72e5cad9ac76f838725b03c7a7a593824fecd51134",
+  "verified_configurations": 10,
+  "verified_validation_records": 1200,
+  "distinct_validation_cases_union": 31,
+  "summary": [
+    {
+      "seed": 812,
+      "trials": 5,
+      "unique_validation_cases": 22,
+      "validation_records": 600,
+      "mean_subset_macro_f1": 0.38427777777777783,
+      "mean_subset_accuracy": 0.4566666666666667,
+      "full_view_macro_f1": 0.4083333333333333,
+      "full_view_accuracy": 0.475,
+      "class_recall": {
+        "adenosis": {
+          "recall": 0.6,
+          "record_count": 75,
+          "distinct_validation_cases": 2
+        },
+        "ductal_carcinoma": {
+          "recall": 0.8,
+          "record_count": 75,
+          "distinct_validation_cases": 4
+        },
+        "fibroadenoma": {
+          "recall": 0.3466666666666667,
+          "record_count": 75,
+          "distinct_validation_cases": 3
+        },
+        "lobular_carcinoma": {
+          "recall": 0.5866666666666667,
+          "record_count": 75,
+          "distinct_validation_cases": 3
+        },
+        "mucinous_carcinoma": {
+          "recall": 0.76,
+          "record_count": 75,
+          "distinct_validation_cases": 2
+        },
+        "papillary_carcinoma": {
+          "recall": 0.13333333333333333,
+          "record_count": 75,
+          "distinct_validation_cases": 3
+        },
+        "phyllodes_tumor": {
+          "recall": 0.0,
+          "record_count": 75,
+          "distinct_validation_cases": 2
+        },
+        "tubular_adenoma": {
+          "recall": 0.4266666666666667,
+          "record_count": 75,
+          "distinct_validation_cases": 3
+        }
+      }
+    },
+    {
+      "seed": 813,
+      "trials": 5,
+      "unique_validation_cases": 20,
+      "validation_records": 600,
+      "mean_subset_macro_f1": 0.3168888888888889,
+      "mean_subset_accuracy": 0.3833333333333333,
+      "full_view_macro_f1": 0.30833333333333324,
+      "full_view_accuracy": 0.375,
+      "class_recall": {
+        "adenosis": {
+          "recall": 0.6,
+          "record_count": 75,
+          "distinct_validation_cases": 2
+        },
+        "ductal_carcinoma": {
+          "recall": 0.8933333333333333,
+          "record_count": 75,
+          "distinct_validation_cases": 2
+        },
+        "fibroadenoma": {
+          "recall": 0.30666666666666664,
+          "record_count": 75,
+          "distinct_validation_cases": 2
+        },
+        "lobular_carcinoma": {
+          "recall": 0.5866666666666667,
+          "record_count": 75,
+          "distinct_validation_cases": 3
+        },
+        "mucinous_carcinoma": {
+          "recall": 0.4666666666666667,
+          "record_count": 75,
+          "distinct_validation_cases": 2
+        },
+        "papillary_carcinoma": {
+          "recall": 0.04,
+          "record_count": 75,
+          "distinct_validation_cases": 3
+        },
+        "phyllodes_tumor": {
+          "recall": 0.0,
+          "record_count": 75,
+          "distinct_validation_cases": 2
+        },
+        "tubular_adenoma": {
+          "recall": 0.17333333333333334,
+          "record_count": 75,
+          "distinct_validation_cases": 4
+        }
+      }
+    }
+  ],
+  "trials": [
+    {
+      "seed": 812,
+      "trial": 1,
+      "C": 0.01,
+      "mean_subset_macro_f1": 0.6041666666666666,
+      "mean_subset_accuracy": 0.6666666666666666,
+      "full_view_macro_f1": 0.7083333333333333,
+      "full_view_accuracy": 0.75,
+      "worst_subset_macro_f1": 0.37499999999999994
+    },
+    {
+      "seed": 812,
+      "trial": 2,
+      "C": 1.0,
+      "mean_subset_macro_f1": 0.25666666666666665,
+      "mean_subset_accuracy": 0.26666666666666666,
+      "full_view_macro_f1": 0.25,
+      "full_view_accuracy": 0.25,
+      "worst_subset_macro_f1": 0.25
+    },
+    {
+      "seed": 812,
+      "trial": 3,
+      "C": 10.0,
+      "mean_subset_macro_f1": 0.30916666666666665,
+      "mean_subset_accuracy": 0.4166666666666667,
+      "full_view_macro_f1": 0.25,
+      "full_view_accuracy": 0.375,
+      "worst_subset_macro_f1": 0.25
+    },
+    {
+      "seed": 812,
+      "trial": 4,
+      "C": 0.01,
+      "mean_subset_macro_f1": 0.2597222222222222,
+      "mean_subset_accuracy": 0.35,
+      "full_view_macro_f1": 0.29166666666666663,
+      "full_view_accuracy": 0.375,
+      "worst_subset_macro_f1": 0.14583333333333331
+    },
+    {
+      "seed": 812,
+      "trial": 5,
+      "C": 10.0,
+      "mean_subset_macro_f1": 0.4916666666666668,
+      "mean_subset_accuracy": 0.5833333333333334,
+      "full_view_macro_f1": 0.5416666666666666,
+      "full_view_accuracy": 0.625,
+      "worst_subset_macro_f1": 0.2708333333333333
+    },
+    {
+      "seed": 813,
+      "trial": 1,
+      "C": 0.01,
+      "mean_subset_macro_f1": 0.3444444444444444,
+      "mean_subset_accuracy": 0.4083333333333333,
+      "full_view_macro_f1": 0.3333333333333333,
+      "full_view_accuracy": 0.375,
+      "worst_subset_macro_f1": 0.2583333333333333
+    },
+    {
+      "seed": 813,
+      "trial": 2,
+      "C": 0.1,
+      "mean_subset_macro_f1": 0.32555555555555554,
+      "mean_subset_accuracy": 0.36666666666666664,
+      "full_view_macro_f1": 0.3333333333333333,
+      "full_view_accuracy": 0.375,
+      "worst_subset_macro_f1": 0.25
+    },
+    {
+      "seed": 813,
+      "trial": 3,
+      "C": 0.1,
+      "mean_subset_macro_f1": 0.4075,
+      "mean_subset_accuracy": 0.48333333333333334,
+      "full_view_macro_f1": 0.375,
+      "full_view_accuracy": 0.5,
+      "worst_subset_macro_f1": 0.3333333333333333
+    },
+    {
+      "seed": 813,
+      "trial": 4,
+      "C": 0.01,
+      "mean_subset_macro_f1": 0.29583333333333334,
+      "mean_subset_accuracy": 0.4,
+      "full_view_macro_f1": 0.29166666666666663,
+      "full_view_accuracy": 0.375,
+      "worst_subset_macro_f1": 0.2708333333333333
+    },
+    {
+      "seed": 813,
+      "trial": 5,
+      "C": 10.0,
+      "mean_subset_macro_f1": 0.21111111111111114,
+      "mean_subset_accuracy": 0.25833333333333336,
+      "full_view_macro_f1": 0.20833333333333331,
+      "full_view_accuracy": 0.25,
+      "worst_subset_macro_f1": 0.125
+    }
+  ],
+  "source_proof": [
+    {
+      "seed": 812,
+      "trial": 1,
+      "metrics_sha256": "2c2fe0c1ba8179d74b13bf02571fda5c56d5e418e40ad7637c6591251065fad3",
+      "predictions_sha256": "825b1f0591d6af0977963c1c447e4538599cb08b97cf9f3f0c44ec1810d2e5ed",
+      "code_sha": "ed8db0f49294cb3a19b4ee4e45f8e1a4c6064b08"
+    },
+    {
+      "seed": 812,
+      "trial": 2,
+      "metrics_sha256": "459244a855296be706698a71a20792315723fc4670b9b96a1687c70a294a4be3",
+      "predictions_sha256": "ef1132706904a34661a4b2310e9658390ea9aceb90525e7223fd64477d5b4ef8",
+      "code_sha": "ed8db0f49294cb3a19b4ee4e45f8e1a4c6064b08"
+    },
+    {
+      "seed": 812,
+      "trial": 3,
+      "metrics_sha256": "e4c00f73a04ebb75a6ed57589c193707bc9d38bce05357a95c648ca48455dfcf",
+      "predictions_sha256": "872bad68568e2f2f197f68466b1e158e88034f83cb2b0feca815d36f97690a29",
+      "code_sha": "ed8db0f49294cb3a19b4ee4e45f8e1a4c6064b08"
+    },
+    {
+      "seed": 812,
+      "trial": 4,
+      "metrics_sha256": "69f1d05f34de93be669c55a384ba0b3a3e2d8acfe658d9470c966c0a11eaa0df",
+      "predictions_sha256": "2d57d3a83f758494b3a655506929a051a79605bb243778271d837270dcc62c55",
+      "code_sha": "ed8db0f49294cb3a19b4ee4e45f8e1a4c6064b08"
+    },
+    {
+      "seed": 812,
+      "trial": 5,
+      "metrics_sha256": "ccc70deeec165038de80865fe48f187592f9093bb662f722a057f4bfb1e4fbf1",
+      "predictions_sha256": "fd2a6d351afd5bdaf8e939c8d86f56220f3dc182dd0534dc7273bd60997a554a",
+      "code_sha": "ed8db0f49294cb3a19b4ee4e45f8e1a4c6064b08"
+    },
+    {
+      "seed": 813,
+      "trial": 1,
+      "metrics_sha256": "9c5172c8bf360f7884995eb9a392b185728d0f03b351611209495298ecc6ea0d",
+      "predictions_sha256": "4ed6c54470775fe69e0489361528ec5897dd24194fa1e83d4998c5e73f72caa1",
+      "code_sha": "ed8db0f49294cb3a19b4ee4e45f8e1a4c6064b08"
+    },
+    {
+      "seed": 813,
+      "trial": 2,
+      "metrics_sha256": "d7509faa4233ad6526dc7dce85844c0351a3985c0162877e950e88c78f578c87",
+      "predictions_sha256": "93ec9c2204d4026bccb2f5bc559fbbb5301e418fd41433a2598ee91bf5e636b3",
+      "code_sha": "ed8db0f49294cb3a19b4ee4e45f8e1a4c6064b08"
+    },
+    {
+      "seed": 813,
+      "trial": 3,
+      "metrics_sha256": "f3201792ba7e2911f0eca49ffc833ca895197ab1a3e4032d4932735366867164",
+      "predictions_sha256": "d5546246d3dc864686111dea7c9277d2cb8077ac0f51ecaa934215291b44ab0b",
+      "code_sha": "ed8db0f49294cb3a19b4ee4e45f8e1a4c6064b08"
+    },
+    {
+      "seed": 813,
+      "trial": 4,
+      "metrics_sha256": "5b0d35cf285a4e955122d18ab2b1d2c813e3331080fc26b2588403050e0bf796",
+      "predictions_sha256": "1019120301d691ccd6515da08e63d877639cfa927ae2e45d031d222810be82c0",
+      "code_sha": "ed8db0f49294cb3a19b4ee4e45f8e1a4c6064b08"
+    },
+    {
+      "seed": 813,
+      "trial": 5,
+      "metrics_sha256": "0bb40d62d04bdba9bf2e94833d0a79940ff3c4b07a0c5378d28c71e2a124a7f1",
+      "predictions_sha256": "4e08f64fe8e02b7e816b27252841ea084d2c5794056f91965a600a8279d3ce88",
+      "code_sha": "ed8db0f49294cb3a19b4ee4e45f8e1a4c6064b08"
+    }
+  ],
+  "demo": {
+    "status": "raw-image validation replay verified",
+    "image_count": 121,
+    "fields_by_view": {
+      "40": 29,
+      "100": 30,
+      "200": 32,
+      "400": 30
+    },
+    "cached_validation_records_replayed": 120,
+    "cached_replay_max_probability_difference": 4.440892098500626e-16,
+    "raw_replay_max_probability_difference": 5.517742757144006e-08,
+    "model_sha256": "318a38488b84845b0731be38fe7d8d55e46739526f0ef196a4ba480152db8f21",
+    "demo_code_sha": "9448a7e319167b7417670a882552edb372603fd3",
+    "demo_code_sha256": "fb4eeea8cb9f6bcaddf3e7e5e3a67c6b154851377015942f9e8a1b96876638e1",
+    "slurm_job_id": "4959781",
+    "elapsed_seconds": 26.109517903998494,
+    "new_classifier_fits": 0,
+    "outer_predictions_computed": 0,
+    "private_demo_sha256": "e5d3f445282b421910f246adcc1683951f0115cbab3954700d9dd5de4f9b136b"
+  },
+  "report_builder_sha256": "53bc4f5eed7fcc90790d4cbd47719905dee47d89db4403af4d544742ddf83979",
+  "interpretation": "Exploratory eight-class provider-case validation; no globally pristine BreakHis confirmation cohort or verified clinical-patient claim; no novel method claim"
+}

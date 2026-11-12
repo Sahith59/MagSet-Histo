@@ -103,18 +103,18 @@ def build(root, manifest, protocol, markdown, ledger, demo=None, head=None, expe
             'interpretation':'Exploratory eight-class provider-case validation; no globally pristine BreakHis confirmation cohort or verified clinical-patient claim; no novel method claim'}
     Path(ledger).write_text(json.dumps(report,indent=2)+'\n')
     lines=['# BreakHis: first checked baseline deliverable','',
-           'Updated November12,2026. **BreakHis is the main dataset. TCGA follow-up is deferred.** This milestone packages existing baseline work; it does not require a novel method or a completed paper.','',
+           'Updated November 12, 2026. **BreakHis is the main dataset. TCGA follow-up is deferred.** This milestone packages existing baseline work; it does not require a novel method or a completed paper.','',
            '## What the model does','',
            'Give it the images of one provider case at available microscope zooms. A fixed Phikon-v2 image reader creates numerical descriptions. '
            'The saved mean-pooling and logistic classifier produce eight subtype probabilities. No exact cross-zoom field pairing is assumed.','',
            '## First numbers: available now','',
-           '| Validation split | Mean F1 over15 view settings | Mean case accuracy over15 settings | All-view F1 | All-view case accuracy | Distinct validation cases |',
+           '| Validation split | Mean F1 over 15 view settings | Mean case accuracy over 15 settings | All-view F1 | All-view case accuracy | Distinct validation cases |',
            '| --- | ---: | ---: | ---: | ---: | ---: |']
     for r in summaries:
         lines.append('| %d | %.4f | %.1f%% | %.4f | %.1f%% | %d |'%(r['seed'],r['mean_subset_macro_f1'],100*r['mean_subset_accuracy'],
                     r['full_view_macro_f1'],100*r['full_view_accuracy'],r['unique_validation_cases']))
-    lines+=['','These are modest exploratory results. F1 is not accuracy. Every number averages five repeated provider trials; each trial has46 fitting,8 validation and28 excluded outer-role cases. '
-            'Each view setting has40 case evaluations across trials, with repeated cases. Across both splits there are31 distinct validation cases, not1,200 independent patients.','',
+    lines+=['','These are modest exploratory results. F1 is not accuracy. Every number averages five repeated provider trials; each trial has 46 fitting, 8 validation and 28 excluded outer-role cases. '
+            'Each view setting has 40 case evaluations across trials, with repeated cases. Across both splits there are 31 distinct validation cases, not 1,200 independent patients.','',
             'A second split is shown to expose sensitivity, not to select the better split. The full table below prevents one favorable trial or demonstration from standing in for overall performance.','',
             '## Every trial','',
             '| Split | Trial | Selected C | Mean-subset F1 | Mean-subset accuracy | All-view F1 | All-view accuracy |',
@@ -124,7 +124,7 @@ def build(root, manifest, protocol, markdown, ledger, demo=None, head=None, expe
                       100*r['mean_subset_accuracy'],r['full_view_macro_f1'],100*r['full_view_accuracy']))
     lines+=['','## Class weaknesses','',
             'Recall below uses all saved case/subset records within each split; cases recur. These are descriptive counts, not independent clinical estimates.','',
-            '| Subtype | Split812 recall | Distinct cases | Split813 recall | Distinct cases |',
+            '| Subtype | Split 812 recall | Distinct cases | Split 813 recall | Distinct cases |',
             '| --- | ---: | ---: | ---: | ---: |']
     for name in CLASS_NAMES:
         a,b=[r['class_recall'][name] for r in summaries]
@@ -133,16 +133,16 @@ def build(root, manifest, protocol, markdown, ledger, demo=None, head=None, expe
     if demo is None:
         lines.append('The saved raw-image prediction path is being checked. No execution-success claim is made yet.')
     else:
-        lines.append('Verified the existing trial1/seed812 saved head against all120 archived validation records, then re-encoded every original image of the first sorted validation case and replayed all15 view settings. '
+        lines.append('Verified the existing trial1/seed812 saved head against all 120 archived validation records, then re-encoded every original image of the first sorted validation case and replayed all 15 view settings. '
                      'The case was chosen by metadata order, not by correctness. This demonstrates execution and parity, not new accuracy or a successful diagnosis.')
         lines.append('')
         lines.append('Images checked: **%d**. Maximum archived-probability difference: **%.3g** from cached replay and **%.3g** from raw images. '
                      'SLURM job `%s`; source `%s`. No new fitting or outer-role scoring.'%(demo_summary['image_count'],demo_summary['cached_replay_max_probability_difference'],
                      demo_summary['raw_replay_max_probability_difference'],demo_summary['slurm_job_id'],demo_summary['demo_code_sha']))
     lines+=['','## What is complete and what is not','',
-            '- Verified ten baseline run reports and all1,200 saved validation records against trusted labels, splits and metric arithmetic.',
-            '- Data comprise7,909 images at40×/100×/200×/400× and eight subtypes. The primary input is a whole provider-case bag, not one independent patient per image.',
-            '- All82 provider cases have entered development somewhere. Clinical identifier relationships remain unresolved; no globally fresh BreakHis confirmation cohort remains.',
+            '- Verified ten baseline run reports and all 1,200 saved validation records against trusted labels, splits and metric arithmetic.',
+            '- Data comprise 7,909 images at 40×/100×/200×/400× and eight subtypes. The primary input is a whole provider-case bag, not one independent patient per image.',
+            '- All 82 provider cases have entered development somewhere. Clinical identifier relationships remain unresolved; no globally fresh BreakHis confirmation cohort remains.',
             '- These numbers do not establish a solved task, clinical readiness, a novel method or a completed research paper. The historical notebook image accuracies are from a different split/selection procedure and are not comparable targets.',
             '- Next: package this baseline, then run one registered BreakHis improvement comparison. Further TCGA work is off the immediate path.','',
             '[Focused plan](BREAKHIS_MILESTONE_PLAN.md) · [Training strategy](TRAINING_STRATEGY.md) · [Registered evaluation](BENCHMARK_PROTOCOL.md)','']
@@ -153,6 +153,33 @@ if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     for name in ('runs','manifest','protocol','markdown','ledger'):p.add_argument('--'+name,type=Path,required=True)
     p.add_argument('--demo',type=Path);p.add_argument('--head',type=Path)
+    p.add_argument('--professor-brief',type=Path)
     p.add_argument('--expected-demo-code-sha');a=p.parse_args()
     r=build(a.runs,a.manifest,a.protocol,a.markdown,a.ledger,a.demo,a.head,a.expected_demo_code_sha)
+    if a.professor_brief:
+        lines=['# BreakHis project: first baseline for Professor Dong','',
+               '**Current priority: finish the BreakHis project deliverable first. TCGA follow-up and novel-paper work are deferred.**','',
+               'The model reads the available microscope images of one provider case and predicts one of eight breast-tumor subtypes. '
+               'It uses a frozen Phikon-v2 picture reader and a trained mean-pooling/logistic decision maker. This is an established baseline, not a novel mechanism.','',
+               '| Validation split | Mean-subset macro F1 | Mean-subset case accuracy | All-view case accuracy |',
+               '| --- | ---: | ---: | ---: |']
+        for row in r['summary']:
+            lines.append('| %d | %.4f | %.1f%% | %.1f%% |'%(row['seed'],row['mean_subset_macro_f1'],
+                         100*row['mean_subset_accuracy'],100*row['full_view_accuracy']))
+        lines+=['','Ten saved baseline runs and 1,200 validation records passed trusted label/split/metric checks. '
+                'The same cases recur across five provider holdouts and 15 view settings; there are 31 distinct validation cases across both splits. '
+                'Each trial has 46 fit/8 validation/28 excluded cases. These are modest exploratory scores, not final test performance.','']
+        if a.demo:
+            d=r['demo'];lines.append('The raw-image replay passed on %d original images, covering all 15 view settings of the first sorted validation case. '
+                'Maximum archived-probability difference: %.3g. The demonstration verifies execution/parity rather than improved accuracy. '
+                'No new model fitting or outer-role scoring occurred.'%(d['image_count'],d['raw_replay_max_probability_difference']))
+        else:lines.append('Raw-image validation replay is pending its cluster check. No claim that the prediction demonstration has passed is made yet.')
+        lines+=['','**Next:** package the baseline, then register one bounded standard BreakHis improvement comparison. '
+                'Working estimate: the next one or two work sessions for the new experiment and initial results, subject to implementation/queue. '
+                'No positive gain or completion date is guaranteed.','',
+                '**Open limits:** clinical relationships between some provider IDs remain unverified; all 82 cases entered development somewhere, '
+                'so there is no globally fresh BreakHis confirmation cohort. Reliable final evaluation, method novelty and a submission-ready paper remain unfinished.','',
+                '[Complete first results](../BREAKHIS_FIRST_RESULTS.md) · [Focused plan](../BREAKHIS_MILESTONE_PLAN.md) · '
+                '[Training explanation](../TRAINING_STRATEGY.md).','']
+        a.professor_brief.write_text('\n'.join(lines))
     print(json.dumps({'summary':r['summary'],'demo':r['demo']},indent=2))
