@@ -1,0 +1,37 @@
+# Local operations and private memory
+.local/
+.ecc/memory/project/
+.env
+.env.*
+!.env.example
+.DS_Store
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+envs/
+# Data, caches, checkpoints and generated experiment artifacts
+data/
+cache/
+artifacts/
+runs/
+logs/
+*.pt
+*.pth
+*.keras
+*.h5
+*.safetensors
+*.tar.gz
+# Original supplied materials remain local until their release is reviewed
+/Breast Cancer_ppt.pptx
+/Breast_Cancer_SPIE_final.pdf
+/Lang_2021SPIE_Poster.pdf
+/Project Proposal (1).docx
+/non-localattention-breakhis.ipynb
+/spatialsequenceattention-breakhis.ipynb
+# Private cluster operations and internal conversation context
+memory/
+AGENTS.private.md
+docs/CLUSTER.md
+docs/PROJECT_REVIEW.md
+docs/NOTEBOOK_WALKTHROUGH.md
