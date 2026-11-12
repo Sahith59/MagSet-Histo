@@ -22,6 +22,8 @@ The first 30 validation-only baseline runs are complete; see [the pilot results]
 
 The next 50 controlled comparisons are also complete and verified; see [field and neural results](docs/FUSION_RESULTS.md). Learned attention has not improved the initial Phikon mean baseline in this exploratory screen. Split/training-seed stability, grouping sensitivity, and external validation remain important next steps. The proposed matching mechanism is still unimplemented and unproven.
 
+All 45 prespecified [seed sensitivity checks](docs/SENSITIVITY_RESULTS.md) are complete. Validation-case selection changes scores substantially, and the linear control remains higher than neural controls for both checked splits. We are prioritizing data/protocol readiness and regularization before a complex matching model.
+
 ## Getting started
 
 The download/indexing tools use Python 3.9 or newer and the standard library. The baseline checks additionally need NumPy, SciPy, scikit-learn, and Pillow:
@@ -48,6 +50,7 @@ Neural checks additionally require `torch==2.6.0`; without it those checks are e
 - [Controlled fusion protocol](docs/FUSION_PILOT.md) and [results](docs/FUSION_RESULTS.md)
 - [Research direction and contribution gates](docs/RESEARCH_DIRECTION.md)
 - [Second-dataset archive and metadata audit](docs/TCGA_MS_AUDIT.md)
+- [Split and training-seed sensitivity](docs/SENSITIVITY_RESULTS.md)
 - [Implemented methods draft](paper/methods-draft.md)
 
 The historical reference is [Lang et al., SPIE Medical Imaging 2021](https://doi.org/10.1117/12.2582299). The closest task and mechanism comparisons currently include [MagViT](https://arxiv.org/abs/2608.16959) and [M2OTCA](https://doi.org/10.1016/j.media.2026.104082). See the related-work document for distinctions between their tasks and our intended evaluation.
