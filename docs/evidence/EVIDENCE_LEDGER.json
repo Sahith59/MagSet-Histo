@@ -9,6 +9,8 @@
   "interpretation": "trusted labels/declared protocol verified; clinical identity and globally independent confirmation are not established",
   "native_manifest_sha256": "a668cf85151f29a163628210851c007faaf8c9679b7c9f5eaadc8c031f06e27b",
   "native_protocol_sha256": "f1baf1ac21f5f7e117768951619dc6f94a96ba63c72ad810f31fc103fe100c69",
-  "base_commit_at_render": "da76a38b560bdbcfb634dab24e3d8fcc1fc02375",
-  "artifact_builder_sha256": "d00972aa3f5d078adac55c4667111cf6059ef2de6a9a5045283392de33ce6d80"
+  "native_feature_cache_audit_sha256": "3fd26c7cd4b73356873ac7f6cb110bbd6a7ff2765d8d8344e40ceeb3ab1c1110",
+  "native_feature_images_verified": 37024,
+  "base_commit_at_render": "441d1a07c1e4c3bbe19072ea9ca733bd0ca4bcfa",
+  "artifact_builder_sha256": "90a7737d1284e9d9f6ad26300a396eb49194a49d9356d614cc0c59f17a475613"
 }

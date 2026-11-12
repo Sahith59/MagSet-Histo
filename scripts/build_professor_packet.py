@@ -71,6 +71,7 @@ def main():
     p.add_argument('--protocol',type=Path,required=True);p.add_argument('--native-protocol',type=Path,required=True)
     p.add_argument('--output',type=Path,default=Path('docs/evidence'))
     p.add_argument('--audit-output',type=Path,required=True)
+    p.add_argument('--native-cache-audit',type=Path)
     a=p.parse_args();audit=audit_results(a.results_root,a.manifest,a.protocol)
     native=json.loads(a.native_protocol.read_text());a.output.mkdir(parents=True,exist_ok=True)
     if native['role_counts']!={'fit':80,'development':16,'sealed_test':32}:raise ValueError('Native role counts differ')
@@ -170,6 +171,13 @@ Trusted result-ledger SHA256:`{audit['result_ledger_sha256']}`. Native manifest 
     (a.output/'PROFESSOR_DECK.html').write_text(page)
     public={k:v for k,v in audit.items() if k!='records'}
     public['native_manifest_sha256']=native['manifest_sha256'];public['native_protocol_sha256']=file_hash(a.native_protocol)
+    if a.native_cache_audit:
+        cached=json.loads(a.native_cache_audit.read_text())
+        if (cached['images']!=native['fields'] or cached['manifest_sha256']!=native['manifest_sha256']
+                or cached['protocol_sha256']!=file_hash(a.native_protocol) or cached['classifier_predictions_computed']!=0):
+            raise ValueError('Native cache attestation differs from registered protocol')
+        public['native_feature_cache_audit_sha256']=file_hash(a.native_cache_audit)
+        public['native_feature_images_verified']=cached['images']
     public['base_commit_at_render']=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
     public['artifact_builder_sha256']=file_hash(__file__)
     (a.output/'EVIDENCE_LEDGER.json').write_text(json.dumps(public,indent=2)+'\n')
