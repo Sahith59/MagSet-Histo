@@ -184,6 +184,13 @@ class NativePilotTests(unittest.TestCase):
             public = build(root/'run',protocol,file_hash(protocol),root/'results.md',root/'ledger.json')
             self.assertEqual(public['verified_prediction_records'],960)
             self.assertNotIn('patient_id',(root/'ledger.json').read_text())
+            from magset.view_audit import build as audit_views
+            views=audit_views(root/'run',protocol,file_hash(protocol),file_hash(root/'run/pilot.json'),root/'views.json',root/'views.md')
+            self.assertEqual(views['classifier_fits_performed'],0)
+            self.assertTrue(all(a['patient_edge_comparisons']==448 for a in views['arms'].values()))
+            self.assertNotIn('patient_id',(root/'views.json').read_text())
+            with self.assertRaisesRegex(ValueError,'report differs'):
+                audit_views(root/'run',protocol,file_hash(protocol),'wrong',root/'views.json',root/'views.md')
             original_report = (root/'run/pilot.json').read_text()
             tampered = json.loads(original_report)
             tampered['arms']['mean']['development']['mean_subset_macro_f1'] += .01

@@ -1,0 +1,384 @@
+{
+  "schema": "magset.tcga-label-lineage.v1",
+  "source_labels_sha256": "2d97bbfec20d69edb7fcaf15c2a8068d6d4fe2e2f6161884a07a2ff3fd12ace1",
+  "author_code_revision": "83f05d8eed96e805b737b9ea935efa1c4bedb8a1",
+  "author_loader_sha256": "645f45fd26de8fd59b130d6f198b5abad42be95942766466e08fc9df1a8a12ec",
+  "author_loader_url": "https://github.com/bifold-pathomics/continuous-magnification-sampling/blob/83f05d8eed96e805b737b9ea935efa1c4bedb8a1/dataloaders.py",
+  "confirmed_loader_columns": [
+    "slide_uuid",
+    "label_id"
+  ],
+  "patients": 128,
+  "source_classes": 16,
+  "numeric_target_columns_are_bijective": true,
+  "classes_with_multiple_descriptions": 6,
+  "cases_with_blank_description": 2,
+  "classes": [
+    {
+      "canonical_id": 0,
+      "source_label_id": "12",
+      "original_label_code": "16",
+      "cases": 8,
+      "histology_descriptions": {
+        "Fibromyxosarcoma": 8
+      },
+      "histology_codes": {
+        "8811/3": 8
+      },
+      "tissue_groups": {
+        "Connective, subcutaneous and other soft tissues": 8
+      }
+    },
+    {
+      "canonical_id": 1,
+      "source_label_id": "13",
+      "original_label_code": "17",
+      "cases": 8,
+      "histology_descriptions": {
+        "Fibrous histiocytoma, malignant": 8
+      },
+      "histology_codes": {
+        "8830/3": 8
+      },
+      "tissue_groups": {
+        "Connective, subcutaneous and other soft tissues": 8
+      }
+    },
+    {
+      "canonical_id": 2,
+      "source_label_id": "14",
+      "original_label_code": "19",
+      "cases": 8,
+      "histology_descriptions": {
+        "Leiomyosarcoma, NOS": 8
+      },
+      "histology_codes": {
+        "8890/3": 8
+      },
+      "tissue_groups": {
+        "Connective, subcutaneous and other soft tissues": 7,
+        "Stomach": 1
+      }
+    },
+    {
+      "canonical_id": 3,
+      "source_label_id": "15",
+      "original_label_code": "23",
+      "cases": 8,
+      "histology_descriptions": {
+        "Synovial sarcoma, NOS": 1,
+        "Synovial sarcoma, biphasic": 2,
+        "Synovial sarcoma, spindle cell": 5
+      },
+      "histology_codes": {
+        "9040/3": 1,
+        "9041/3": 5,
+        "9043/3": 2
+      },
+      "tissue_groups": {
+        "Connective, subcutaneous and other soft tissues": 7,
+        "Kidney": 1
+      }
+    },
+    {
+      "canonical_id": 4,
+      "source_label_id": "16",
+      "original_label_code": "27",
+      "cases": 8,
+      "histology_descriptions": {
+        "Clear cell adenocarcinoma, NOS": 8
+      },
+      "histology_codes": {
+        "8310/3": 8
+      },
+      "tissue_groups": {
+        "Kidney": 8
+      }
+    },
+    {
+      "canonical_id": 5,
+      "source_label_id": "18",
+      "original_label_code": "29",
+      "cases": 8,
+      "histology_descriptions": {
+        "Adenocarcinoma, NOS": 3,
+        "Medullary carcinoma, NOS": 5
+      },
+      "histology_codes": {
+        "8140/3": 3,
+        "8510/3": 5
+      },
+      "tissue_groups": {
+        "Breast": 5,
+        "Stomach": 3
+      }
+    },
+    {
+      "canonical_id": 6,
+      "source_label_id": "22",
+      "original_label_code": "38",
+      "cases": 8,
+      "histology_descriptions": {
+        "Invasive carcinoma of no special type": 8
+      },
+      "histology_codes": {
+        "8500/3": 8
+      },
+      "tissue_groups": {
+        "Breast": 8
+      }
+    },
+    {
+      "canonical_id": 7,
+      "source_label_id": "24",
+      "original_label_code": "40",
+      "cases": 8,
+      "histology_descriptions": {
+        "Lobular carcinoma, NOS": 8
+      },
+      "histology_codes": {
+        "8520/3": 8
+      },
+      "tissue_groups": {
+        "Breast": 8
+      }
+    },
+    {
+      "canonical_id": 8,
+      "source_label_id": "25",
+      "original_label_code": "41",
+      "cases": 8,
+      "histology_descriptions": {
+        "Adenocarcinoma, NOS": 4,
+        "Mucinous adenocarcinoma": 4
+      },
+      "histology_codes": {
+        "8140/3": 4,
+        "8480/3": 4
+      },
+      "tissue_groups": {
+        "Breast": 3,
+        "Stomach": 5
+      }
+    },
+    {
+      "canonical_id": 9,
+      "source_label_id": "27",
+      "original_label_code": "43",
+      "cases": 8,
+      "histology_descriptions": {
+        "Adenocarcinoma, NOS": 1,
+        "Papillary adenocarcinoma, NOS": 7
+      },
+      "histology_codes": {
+        "8140/3": 1,
+        "8260/3": 7
+      },
+      "tissue_groups": {
+        "Kidney": 4,
+        "Stomach": 4
+      }
+    },
+    {
+      "canonical_id": 10,
+      "source_label_id": "28",
+      "original_label_code": "44",
+      "cases": 8,
+      "histology_descriptions": {
+        "Adenocarcinoma, NOS": 3,
+        "Signet ring cell carcinoma": 5
+      },
+      "histology_codes": {
+        "8140/3": 3,
+        "8490/3": 5
+      },
+      "tissue_groups": {
+        "Stomach": 8
+      }
+    },
+    {
+      "canonical_id": 11,
+      "source_label_id": "32",
+      "original_label_code": "48",
+      "cases": 8,
+      "histology_descriptions": {
+        "Adenocarcinoma, NOS": 8
+      },
+      "histology_codes": {
+        "8140/3": 8
+      },
+      "tissue_groups": {
+        "Stomach": 8
+      }
+    },
+    {
+      "canonical_id": 12,
+      "source_label_id": "33",
+      "original_label_code": "49",
+      "cases": 8,
+      "histology_descriptions": {
+        "(blank)": 2,
+        "Metaplastic carcinoma, NOS": 6
+      },
+      "histology_codes": {
+        "(blank)": 2,
+        "8575/3": 6
+      },
+      "tissue_groups": {
+        "Breast": 8
+      }
+    },
+    {
+      "canonical_id": 13,
+      "source_label_id": "38",
+      "original_label_code": "57",
+      "cases": 8,
+      "histology_descriptions": {
+        "Renal cell carcinoma, chromophobe type": 8
+      },
+      "histology_codes": {
+        "8317/3": 8
+      },
+      "tissue_groups": {
+        "Kidney": 8
+      }
+    },
+    {
+      "canonical_id": 14,
+      "source_label_id": "41",
+      "original_label_code": "61",
+      "cases": 8,
+      "histology_descriptions": {
+        "Undifferentiated sarcoma": 8
+      },
+      "histology_codes": {
+        "8805/3": 8
+      },
+      "tissue_groups": {
+        "Connective, subcutaneous and other soft tissues": 8
+      }
+    },
+    {
+      "canonical_id": 15,
+      "source_label_id": "44",
+      "original_label_code": "66",
+      "cases": 8,
+      "histology_descriptions": {
+        "Carcinoma, diffuse type": 8
+      },
+      "histology_codes": {
+        "8145/3": 8
+      },
+      "tissue_groups": {
+        "Stomach": 8
+      }
+    }
+  ],
+  "source_folds": {
+    "0": {
+      "train": {
+        "patients": 75,
+        "missing_source_classes": []
+      },
+      "dev": {
+        "patients": 25,
+        "missing_source_classes": [
+          "22"
+        ]
+      },
+      "test": {
+        "patients": 28,
+        "missing_source_classes": [
+          "27",
+          "44"
+        ]
+      }
+    },
+    "1": {
+      "train": {
+        "patients": 77,
+        "missing_source_classes": []
+      },
+      "dev": {
+        "patients": 26,
+        "missing_source_classes": [
+          "32",
+          "33"
+        ]
+      },
+      "test": {
+        "patients": 25,
+        "missing_source_classes": [
+          "22"
+        ]
+      }
+    },
+    "2": {
+      "train": {
+        "patients": 73,
+        "missing_source_classes": []
+      },
+      "dev": {
+        "patients": 29,
+        "missing_source_classes": [
+          "12",
+          "24",
+          "28"
+        ]
+      },
+      "test": {
+        "patients": 26,
+        "missing_source_classes": [
+          "32",
+          "33"
+        ]
+      }
+    },
+    "3": {
+      "train": {
+        "patients": 79,
+        "missing_source_classes": []
+      },
+      "dev": {
+        "patients": 20,
+        "missing_source_classes": [
+          "24",
+          "25",
+          "38"
+        ]
+      },
+      "test": {
+        "patients": 29,
+        "missing_source_classes": [
+          "12",
+          "24",
+          "28"
+        ]
+      }
+    },
+    "4": {
+      "train": {
+        "patients": 80,
+        "missing_source_classes": []
+      },
+      "dev": {
+        "patients": 28,
+        "missing_source_classes": [
+          "27",
+          "44"
+        ]
+      },
+      "test": {
+        "patients": 20,
+        "missing_source_classes": [
+          "24",
+          "25",
+          "38"
+        ]
+      }
+    }
+  },
+  "classifier_fits_performed": 0,
+  "classifier_predictions_computed": 0,
+  "interpretation": "Numeric target lineage is confirmed. Text-description variation is not proof of label error; manual curation and exact source-ID/name crosswalk remain incompletely documented."
+}

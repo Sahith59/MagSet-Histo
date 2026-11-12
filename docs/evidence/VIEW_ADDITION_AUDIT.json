@@ -1,0 +1,2145 @@
+{
+  "schema": "magset.view-addition-audit.v1",
+  "protocol_sha256": "f1baf1ac21f5f7e117768951619dc6f94a96ba63c72ad810f31fc103fe100c69",
+  "pilot_report_sha256": "7972dae0ab004fb98c52dc56747a778c627ba81a074c497ed8356aab29377612",
+  "predictions_sha256": "043d993caf37475b5413c23476cf63f64f3921ac2f9e77cd888c2764c0e21ad6",
+  "analysis_code_sha256": "4d1e485b40713204042d7d81a5d7d422e457b0fcf11cc74aaeadb2161b029c1b",
+  "classifier_fits_performed": 0,
+  "sealed_predictions_computed": 0,
+  "independent_development_patients": 16,
+  "arms": {
+    "mean": {
+      "patients": 16,
+      "view_addition_edges": 28,
+      "patient_edge_comparisons": 448,
+      "distinct_patients_harmed_at_least_once": 5,
+      "distinct_patients_helped_at_least_once": 6,
+      "totals": {
+        "helped": 26,
+        "harmed": 22,
+        "both_correct": 167,
+        "both_wrong": 233,
+        "changed_class": 101,
+        "harmed_with_increased_max_probability": 8
+      },
+      "edges": [
+        {
+          "from": [
+            0
+          ],
+          "to": [
+            0,
+            1
+          ],
+          "helped": 0,
+          "harmed": 0,
+          "both_correct": 5,
+          "both_wrong": 11,
+          "changed_class": 3,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.024523928861596513,
+          "mean_brier_change": -0.04692016790725162
+        },
+        {
+          "from": [
+            0
+          ],
+          "to": [
+            0,
+            2
+          ],
+          "helped": 2,
+          "harmed": 0,
+          "both_correct": 5,
+          "both_wrong": 9,
+          "changed_class": 5,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.03669958476125882,
+          "mean_brier_change": -0.08472604740272369
+        },
+        {
+          "from": [
+            0
+          ],
+          "to": [
+            0,
+            3
+          ],
+          "helped": 3,
+          "harmed": 0,
+          "both_correct": 5,
+          "both_wrong": 8,
+          "changed_class": 7,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.03108536913509326,
+          "mean_brier_change": -0.09568349945946918
+        },
+        {
+          "from": [
+            1
+          ],
+          "to": [
+            0,
+            1
+          ],
+          "helped": 0,
+          "harmed": 0,
+          "both_correct": 5,
+          "both_wrong": 11,
+          "changed_class": 3,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": -0.020875121087384884,
+          "mean_brier_change": 0.010824052814749829
+        },
+        {
+          "from": [
+            1
+          ],
+          "to": [
+            1,
+            2
+          ],
+          "helped": 2,
+          "harmed": 1,
+          "both_correct": 4,
+          "both_wrong": 9,
+          "changed_class": 4,
+          "harmed_with_increased_max_probability": 1,
+          "mean_true_class_probability_change": 0.016788303829685023,
+          "mean_brier_change": -0.04568389896732203
+        },
+        {
+          "from": [
+            1
+          ],
+          "to": [
+            1,
+            3
+          ],
+          "helped": 3,
+          "harmed": 1,
+          "both_correct": 4,
+          "both_wrong": 8,
+          "changed_class": 6,
+          "harmed_with_increased_max_probability": 1,
+          "mean_true_class_probability_change": 0.011065378011090261,
+          "mean_brier_change": -0.05574428020227696
+        },
+        {
+          "from": [
+            2
+          ],
+          "to": [
+            0,
+            2
+          ],
+          "helped": 1,
+          "harmed": 1,
+          "both_correct": 6,
+          "both_wrong": 8,
+          "changed_class": 7,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": -0.04350000817320884,
+          "mean_brier_change": 0.041890783664222914
+        },
+        {
+          "from": [
+            2
+          ],
+          "to": [
+            1,
+            2
+          ],
+          "helped": 0,
+          "harmed": 1,
+          "both_correct": 6,
+          "both_wrong": 9,
+          "changed_class": 3,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": -0.018012239155801243,
+          "mean_brier_change": 0.023188711377623124
+        },
+        {
+          "from": [
+            2
+          ],
+          "to": [
+            2,
+            3
+          ],
+          "helped": 2,
+          "harmed": 0,
+          "both_correct": 7,
+          "both_wrong": 7,
+          "changed_class": 3,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": -0.007867433361198758,
+          "mean_brier_change": 0.001421890098183897
+        },
+        {
+          "from": [
+            3
+          ],
+          "to": [
+            0,
+            3
+          ],
+          "helped": 1,
+          "harmed": 2,
+          "both_correct": 7,
+          "both_wrong": 6,
+          "changed_class": 6,
+          "harmed_with_increased_max_probability": 1,
+          "mean_true_class_probability_change": -0.0270988718400919,
+          "mean_brier_change": 0.00768213583444962
+        },
+        {
+          "from": [
+            3
+          ],
+          "to": [
+            1,
+            3
+          ],
+          "helped": 0,
+          "harmed": 2,
+          "both_correct": 7,
+          "both_wrong": 7,
+          "changed_class": 4,
+          "harmed_with_increased_max_probability": 1,
+          "mean_true_class_probability_change": -0.0017198130151134979,
+          "mean_brier_change": -0.010122865630359607
+        },
+        {
+          "from": [
+            3
+          ],
+          "to": [
+            2,
+            3
+          ],
+          "helped": 0,
+          "harmed": 0,
+          "both_correct": 9,
+          "both_wrong": 7,
+          "changed_class": 1,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.014147918598083748,
+          "mean_brier_change": -0.021829305674843903
+        },
+        {
+          "from": [
+            0,
+            1
+          ],
+          "to": [
+            0,
+            1,
+            2
+          ],
+          "helped": 2,
+          "harmed": 0,
+          "both_correct": 5,
+          "both_wrong": 9,
+          "changed_class": 4,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.015798670606083677,
+          "mean_brier_change": -0.03469488875282324
+        },
+        {
+          "from": [
+            0,
+            1
+          ],
+          "to": [
+            0,
+            1,
+            3
+          ],
+          "helped": 1,
+          "harmed": 0,
+          "both_correct": 5,
+          "both_wrong": 10,
+          "changed_class": 4,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.01112262623110765,
+          "mean_brier_change": -0.044548073465817656
+        },
+        {
+          "from": [
+            0,
+            2
+          ],
+          "to": [
+            0,
+            1,
+            2
+          ],
+          "helped": 0,
+          "harmed": 0,
+          "both_correct": 7,
+          "both_wrong": 9,
+          "changed_class": 2,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.003623014706421372,
+          "mean_brier_change": 0.003110990742648813
+        },
+        {
+          "from": [
+            0,
+            2
+          ],
+          "to": [
+            0,
+            2,
+            3
+          ],
+          "helped": 1,
+          "harmed": 1,
+          "both_correct": 6,
+          "both_wrong": 8,
+          "changed_class": 4,
+          "harmed_with_increased_max_probability": 1,
+          "mean_true_class_probability_change": 0.012167301027804783,
+          "mean_brier_change": -0.031171172136247982
+        },
+        {
+          "from": [
+            0,
+            3
+          ],
+          "to": [
+            0,
+            1,
+            3
+          ],
+          "helped": 0,
+          "harmed": 2,
+          "both_correct": 6,
+          "both_wrong": 8,
+          "changed_class": 5,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.004561185957610903,
+          "mean_brier_change": 0.004215258086399904
+        },
+        {
+          "from": [
+            0,
+            3
+          ],
+          "to": [
+            0,
+            2,
+            3
+          ],
+          "helped": 0,
+          "harmed": 1,
+          "both_correct": 7,
+          "both_wrong": 8,
+          "changed_class": 4,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.01778151665397034,
+          "mean_brier_change": -0.02021372007950248
+        },
+        {
+          "from": [
+            1,
+            2
+          ],
+          "to": [
+            0,
+            1,
+            2
+          ],
+          "helped": 2,
+          "harmed": 1,
+          "both_correct": 5,
+          "both_wrong": 8,
+          "changed_class": 4,
+          "harmed_with_increased_max_probability": 1,
+          "mean_true_class_probability_change": -0.02186475431098623,
+          "mean_brier_change": 0.02181306302924861
+        },
+        {
+          "from": [
+            1,
+            2
+          ],
+          "to": [
+            1,
+            2,
+            3
+          ],
+          "helped": 1,
+          "harmed": 0,
+          "both_correct": 6,
+          "both_wrong": 9,
+          "changed_class": 3,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.003172935021780711,
+          "mean_brier_change": -0.018604757111705148
+        },
+        {
+          "from": [
+            1,
+            3
+          ],
+          "to": [
+            0,
+            1,
+            3
+          ],
+          "helped": 1,
+          "harmed": 2,
+          "both_correct": 5,
+          "both_wrong": 8,
+          "changed_class": 4,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": -0.020817872867367502,
+          "mean_brier_change": 0.02202025955120913
+        },
+        {
+          "from": [
+            1,
+            3
+          ],
+          "to": [
+            1,
+            2,
+            3
+          ],
+          "helped": 1,
+          "harmed": 1,
+          "both_correct": 6,
+          "both_wrong": 8,
+          "changed_class": 3,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.008895860840375469,
+          "mean_brier_change": -0.008544375876750223
+        },
+        {
+          "from": [
+            2,
+            3
+          ],
+          "to": [
+            0,
+            2,
+            3
+          ],
+          "helped": 0,
+          "harmed": 2,
+          "both_correct": 7,
+          "both_wrong": 7,
+          "changed_class": 3,
+          "harmed_with_increased_max_probability": 1,
+          "mean_true_class_probability_change": -0.02346527378420531,
+          "mean_brier_change": 0.009297721429791045
+        },
+        {
+          "from": [
+            2,
+            3
+          ],
+          "to": [
+            1,
+            2,
+            3
+          ],
+          "helped": 0,
+          "harmed": 2,
+          "both_correct": 7,
+          "both_wrong": 7,
+          "changed_class": 2,
+          "harmed_with_increased_max_probability": 1,
+          "mean_true_class_probability_change": -0.006971870772821777,
+          "mean_brier_change": 0.0031620641677340758
+        },
+        {
+          "from": [
+            0,
+            1,
+            2
+          ],
+          "to": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "helped": 1,
+          "harmed": 1,
+          "both_correct": 6,
+          "both_wrong": 8,
+          "changed_class": 2,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.0073208045789884026,
+          "mean_brier_change": -0.025966774369373696
+        },
+        {
+          "from": [
+            0,
+            1,
+            3
+          ],
+          "to": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "helped": 2,
+          "harmed": 1,
+          "both_correct": 5,
+          "both_wrong": 8,
+          "changed_class": 4,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.01199684895396443,
+          "mean_brier_change": -0.016113589656379282
+        },
+        {
+          "from": [
+            0,
+            2,
+            3
+          ],
+          "to": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "helped": 0,
+          "harmed": 0,
+          "both_correct": 7,
+          "both_wrong": 9,
+          "changed_class": 0,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": -0.0012234817423950068,
+          "mean_brier_change": 0.0083153885095231
+        },
+        {
+          "from": [
+            1,
+            2,
+            3
+          ],
+          "to": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "helped": 0,
+          "harmed": 0,
+          "both_correct": 7,
+          "both_wrong": 9,
+          "changed_class": 1,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": -0.017716884753778542,
+          "mean_brier_change": 0.014451045771580066
+        }
+      ]
+    },
+    "duplicate": {
+      "patients": 16,
+      "view_addition_edges": 28,
+      "patient_edge_comparisons": 448,
+      "distinct_patients_harmed_at_least_once": 5,
+      "distinct_patients_helped_at_least_once": 6,
+      "totals": {
+        "helped": 25,
+        "harmed": 21,
+        "both_correct": 170,
+        "both_wrong": 232,
+        "changed_class": 98,
+        "harmed_with_increased_max_probability": 9
+      },
+      "edges": [
+        {
+          "from": [
+            0
+          ],
+          "to": [
+            0,
+            1
+          ],
+          "helped": 0,
+          "harmed": 0,
+          "both_correct": 5,
+          "both_wrong": 11,
+          "changed_class": 3,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.024890645626334536,
+          "mean_brier_change": -0.04660733177815701
+        },
+        {
+          "from": [
+            0
+          ],
+          "to": [
+            0,
+            2
+          ],
+          "helped": 2,
+          "harmed": 0,
+          "both_correct": 5,
+          "both_wrong": 9,
+          "changed_class": 5,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.036734012099689614,
+          "mean_brier_change": -0.08414755321003704
+        },
+        {
+          "from": [
+            0
+          ],
+          "to": [
+            0,
+            3
+          ],
+          "helped": 3,
+          "harmed": 0,
+          "both_correct": 5,
+          "both_wrong": 8,
+          "changed_class": 7,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.03078818624783761,
+          "mean_brier_change": -0.09477009039355488
+        },
+        {
+          "from": [
+            1
+          ],
+          "to": [
+            0,
+            1
+          ],
+          "helped": 0,
+          "harmed": 0,
+          "both_correct": 5,
+          "both_wrong": 11,
+          "changed_class": 3,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": -0.02088023681425021,
+          "mean_brier_change": 0.009831726169847612
+        },
+        {
+          "from": [
+            1
+          ],
+          "to": [
+            1,
+            2
+          ],
+          "helped": 3,
+          "harmed": 1,
+          "both_correct": 4,
+          "both_wrong": 8,
+          "changed_class": 5,
+          "harmed_with_increased_max_probability": 1,
+          "mean_true_class_probability_change": 0.016572508988277578,
+          "mean_brier_change": -0.04578442508104927
+        },
+        {
+          "from": [
+            1
+          ],
+          "to": [
+            1,
+            3
+          ],
+          "helped": 3,
+          "harmed": 1,
+          "both_correct": 4,
+          "both_wrong": 8,
+          "changed_class": 6,
+          "harmed_with_increased_max_probability": 1,
+          "mean_true_class_probability_change": 0.010624732565385923,
+          "mean_brier_change": -0.056055008764697184
+        },
+        {
+          "from": [
+            2
+          ],
+          "to": [
+            0,
+            2
+          ],
+          "helped": 1,
+          "harmed": 1,
+          "both_correct": 6,
+          "both_wrong": 8,
+          "changed_class": 6,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": -0.04346164446323218,
+          "mean_brier_change": 0.04111414417748109
+        },
+        {
+          "from": [
+            2
+          ],
+          "to": [
+            1,
+            2
+          ],
+          "helped": 0,
+          "harmed": 0,
+          "both_correct": 7,
+          "both_wrong": 9,
+          "changed_class": 2,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": -0.017852265134059467,
+          "mean_brier_change": 0.023038214358464235
+        },
+        {
+          "from": [
+            2
+          ],
+          "to": [
+            2,
+            3
+          ],
+          "helped": 2,
+          "harmed": 0,
+          "both_correct": 7,
+          "both_wrong": 7,
+          "changed_class": 3,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": -0.008213959626358477,
+          "mean_brier_change": 0.0015362362526824616
+        },
+        {
+          "from": [
+            3
+          ],
+          "to": [
+            0,
+            3
+          ],
+          "helped": 1,
+          "harmed": 2,
+          "both_correct": 7,
+          "both_wrong": 6,
+          "changed_class": 6,
+          "harmed_with_increased_max_probability": 1,
+          "mean_true_class_probability_change": -0.026608343495264763,
+          "mean_brier_change": 0.006544709550841049
+        },
+        {
+          "from": [
+            3
+          ],
+          "to": [
+            1,
+            3
+          ],
+          "helped": 0,
+          "harmed": 2,
+          "both_correct": 7,
+          "both_wrong": 7,
+          "changed_class": 4,
+          "harmed_with_increased_max_probability": 1,
+          "mean_true_class_probability_change": -0.0010009147371317015,
+          "mean_brier_change": -0.011179266768305884
+        },
+        {
+          "from": [
+            3
+          ],
+          "to": [
+            2,
+            3
+          ],
+          "helped": 0,
+          "harmed": 0,
+          "both_correct": 9,
+          "both_wrong": 7,
+          "changed_class": 1,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.014585167193460936,
+          "mean_brier_change": -0.022410661190439732
+        },
+        {
+          "from": [
+            0,
+            1
+          ],
+          "to": [
+            0,
+            1,
+            2
+          ],
+          "helped": 2,
+          "harmed": 0,
+          "both_correct": 5,
+          "both_wrong": 9,
+          "changed_class": 5,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.01561840162996131,
+          "mean_brier_change": -0.03424204573374383
+        },
+        {
+          "from": [
+            0,
+            1
+          ],
+          "to": [
+            0,
+            1,
+            3
+          ],
+          "helped": 1,
+          "harmed": 0,
+          "both_correct": 5,
+          "both_wrong": 10,
+          "changed_class": 4,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.010779461304685836,
+          "mean_brier_change": -0.04410286361722273
+        },
+        {
+          "from": [
+            0,
+            2
+          ],
+          "to": [
+            0,
+            1,
+            2
+          ],
+          "helped": 0,
+          "harmed": 0,
+          "both_correct": 7,
+          "both_wrong": 9,
+          "changed_class": 2,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.003775035156606236,
+          "mean_brier_change": 0.0032981756981361986
+        },
+        {
+          "from": [
+            0,
+            2
+          ],
+          "to": [
+            0,
+            2,
+            3
+          ],
+          "helped": 1,
+          "harmed": 1,
+          "both_correct": 6,
+          "both_wrong": 8,
+          "changed_class": 3,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.011990318923726914,
+          "mean_brier_change": -0.030913417421181567
+        },
+        {
+          "from": [
+            0,
+            3
+          ],
+          "to": [
+            0,
+            1,
+            3
+          ],
+          "helped": 0,
+          "harmed": 2,
+          "both_correct": 6,
+          "both_wrong": 8,
+          "changed_class": 5,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.00488192068318276,
+          "mean_brier_change": 0.004059894998175141
+        },
+        {
+          "from": [
+            0,
+            3
+          ],
+          "to": [
+            0,
+            2,
+            3
+          ],
+          "helped": 0,
+          "harmed": 1,
+          "both_correct": 7,
+          "both_wrong": 8,
+          "changed_class": 4,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.017936144775578915,
+          "mean_brier_change": -0.020290880237663723
+        },
+        {
+          "from": [
+            1,
+            2
+          ],
+          "to": [
+            0,
+            1,
+            2
+          ],
+          "helped": 1,
+          "harmed": 1,
+          "both_correct": 6,
+          "both_wrong": 8,
+          "changed_class": 2,
+          "harmed_with_increased_max_probability": 1,
+          "mean_true_class_probability_change": -0.021834344172566477,
+          "mean_brier_change": 0.021374105517153054
+        },
+        {
+          "from": [
+            1,
+            2
+          ],
+          "to": [
+            1,
+            2,
+            3
+          ],
+          "helped": 0,
+          "harmed": 0,
+          "both_correct": 7,
+          "both_wrong": 9,
+          "changed_class": 2,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.003005344929722589,
+          "mean_brier_change": -0.01878427414203691
+        },
+        {
+          "from": [
+            1,
+            3
+          ],
+          "to": [
+            0,
+            1,
+            3
+          ],
+          "helped": 1,
+          "harmed": 2,
+          "both_correct": 5,
+          "both_wrong": 8,
+          "changed_class": 4,
+          "harmed_with_increased_max_probability": 1,
+          "mean_true_class_probability_change": -0.0207255080749503,
+          "mean_brier_change": 0.021783871317322075
+        },
+        {
+          "from": [
+            1,
+            3
+          ],
+          "to": [
+            1,
+            2,
+            3
+          ],
+          "helped": 1,
+          "harmed": 1,
+          "both_correct": 6,
+          "both_wrong": 8,
+          "changed_class": 3,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.008953121352614238,
+          "mean_brier_change": -0.008513690458388982
+        },
+        {
+          "from": [
+            2,
+            3
+          ],
+          "to": [
+            0,
+            2,
+            3
+          ],
+          "helped": 0,
+          "harmed": 2,
+          "both_correct": 7,
+          "both_wrong": 7,
+          "changed_class": 3,
+          "harmed_with_increased_max_probability": 2,
+          "mean_true_class_probability_change": -0.023257365913146786,
+          "mean_brier_change": 0.008664490503617065
+        },
+        {
+          "from": [
+            2,
+            3
+          ],
+          "to": [
+            1,
+            2,
+            3
+          ],
+          "helped": 0,
+          "harmed": 2,
+          "both_correct": 7,
+          "both_wrong": 7,
+          "changed_class": 2,
+          "harmed_with_increased_max_probability": 1,
+          "mean_true_class_probability_change": -0.0066329605779784015,
+          "mean_brier_change": 0.002717703963744867
+        },
+        {
+          "from": [
+            0,
+            1,
+            2
+          ],
+          "to": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "helped": 1,
+          "harmed": 1,
+          "both_correct": 6,
+          "both_wrong": 8,
+          "changed_class": 3,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.007168181744688073,
+          "mean_brier_change": -0.025939608785497607
+        },
+        {
+          "from": [
+            0,
+            1,
+            3
+          ],
+          "to": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "helped": 2,
+          "harmed": 1,
+          "both_correct": 5,
+          "both_wrong": 8,
+          "changed_class": 4,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.012007122069963549,
+          "mean_brier_change": -0.016078790902018712
+        },
+        {
+          "from": [
+            0,
+            2,
+            3
+          ],
+          "to": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "helped": 0,
+          "harmed": 0,
+          "both_correct": 7,
+          "both_wrong": 9,
+          "changed_class": 0,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": -0.0010471020224326055,
+          "mean_brier_change": 0.008271984333820153
+        },
+        {
+          "from": [
+            1,
+            2,
+            3
+          ],
+          "to": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "helped": 0,
+          "harmed": 0,
+          "both_correct": 7,
+          "both_wrong": 9,
+          "changed_class": 1,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": -0.017671507357600993,
+          "mean_brier_change": 0.01421877087369235
+        }
+      ]
+    },
+    "random": {
+      "patients": 16,
+      "view_addition_edges": 28,
+      "patient_edge_comparisons": 448,
+      "distinct_patients_harmed_at_least_once": 5,
+      "distinct_patients_helped_at_least_once": 6,
+      "totals": {
+        "helped": 26,
+        "harmed": 22,
+        "both_correct": 167,
+        "both_wrong": 233,
+        "changed_class": 101,
+        "harmed_with_increased_max_probability": 8
+      },
+      "edges": [
+        {
+          "from": [
+            0
+          ],
+          "to": [
+            0,
+            1
+          ],
+          "helped": 0,
+          "harmed": 0,
+          "both_correct": 5,
+          "both_wrong": 11,
+          "changed_class": 3,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.024647415842138122,
+          "mean_brier_change": -0.04711988119804758
+        },
+        {
+          "from": [
+            0
+          ],
+          "to": [
+            0,
+            2
+          ],
+          "helped": 2,
+          "harmed": 0,
+          "both_correct": 5,
+          "both_wrong": 9,
+          "changed_class": 5,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.036779183653943115,
+          "mean_brier_change": -0.0848672241141313
+        },
+        {
+          "from": [
+            0
+          ],
+          "to": [
+            0,
+            3
+          ],
+          "helped": 3,
+          "harmed": 0,
+          "both_correct": 5,
+          "both_wrong": 8,
+          "changed_class": 7,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.031188331553246792,
+          "mean_brier_change": -0.09580230012589844
+        },
+        {
+          "from": [
+            1
+          ],
+          "to": [
+            0,
+            1
+          ],
+          "helped": 0,
+          "harmed": 0,
+          "both_correct": 5,
+          "both_wrong": 11,
+          "changed_class": 3,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": -0.02076045790355757,
+          "mean_brier_change": 0.010619477071902222
+        },
+        {
+          "from": [
+            1
+          ],
+          "to": [
+            1,
+            2
+          ],
+          "helped": 2,
+          "harmed": 1,
+          "both_correct": 4,
+          "both_wrong": 9,
+          "changed_class": 4,
+          "harmed_with_increased_max_probability": 1,
+          "mean_true_class_probability_change": 0.016846500105162483,
+          "mean_brier_change": -0.04575136792794141
+        },
+        {
+          "from": [
+            1
+          ],
+          "to": [
+            1,
+            3
+          ],
+          "helped": 3,
+          "harmed": 1,
+          "both_correct": 4,
+          "both_wrong": 8,
+          "changed_class": 6,
+          "harmed_with_increased_max_probability": 1,
+          "mean_true_class_probability_change": 0.011147794253534123,
+          "mean_brier_change": -0.0558550037776759
+        },
+        {
+          "from": [
+            2
+          ],
+          "to": [
+            0,
+            2
+          ],
+          "helped": 1,
+          "harmed": 1,
+          "both_correct": 6,
+          "both_wrong": 8,
+          "changed_class": 7,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": -0.04336314801341096,
+          "mean_brier_change": 0.04159952434700365
+        },
+        {
+          "from": [
+            2
+          ],
+          "to": [
+            1,
+            2
+          ],
+          "helped": 0,
+          "harmed": 1,
+          "both_correct": 6,
+          "both_wrong": 9,
+          "changed_class": 3,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": -0.017887957816495898,
+          "mean_brier_change": 0.022976022263243752
+        },
+        {
+          "from": [
+            2
+          ],
+          "to": [
+            2,
+            3
+          ],
+          "helped": 2,
+          "harmed": 0,
+          "both_correct": 7,
+          "both_wrong": 7,
+          "changed_class": 3,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": -0.007782776146620197,
+          "mean_brier_change": 0.0012809343940450718
+        },
+        {
+          "from": [
+            3
+          ],
+          "to": [
+            0,
+            3
+          ],
+          "helped": 1,
+          "harmed": 2,
+          "both_correct": 7,
+          "both_wrong": 6,
+          "changed_class": 6,
+          "harmed_with_increased_max_probability": 1,
+          "mean_true_class_probability_change": -0.026943231618322974,
+          "mean_brier_change": 0.007407094270593793
+        },
+        {
+          "from": [
+            3
+          ],
+          "to": [
+            1,
+            3
+          ],
+          "helped": 0,
+          "harmed": 2,
+          "both_correct": 7,
+          "both_wrong": 7,
+          "changed_class": 4,
+          "harmed_with_increased_max_probability": 1,
+          "mean_true_class_probability_change": -0.0015758951723399556,
+          "mean_brier_change": -0.010384967651133482
+        },
+        {
+          "from": [
+            3
+          ],
+          "to": [
+            2,
+            3
+          ],
+          "helped": 0,
+          "harmed": 0,
+          "both_correct": 9,
+          "both_wrong": 7,
+          "changed_class": 1,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.014227992349164116,
+          "mean_brier_change": -0.021976419670597665
+        },
+        {
+          "from": [
+            0,
+            1
+          ],
+          "to": [
+            0,
+            1,
+            2
+          ],
+          "helped": 2,
+          "harmed": 0,
+          "both_correct": 5,
+          "both_wrong": 9,
+          "changed_class": 4,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.015776324491174304,
+          "mean_brier_change": -0.03465023268648115
+        },
+        {
+          "from": [
+            0,
+            1
+          ],
+          "to": [
+            0,
+            1,
+            3
+          ],
+          "helped": 1,
+          "harmed": 0,
+          "both_correct": 5,
+          "both_wrong": 10,
+          "changed_class": 4,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.011116547951644707,
+          "mean_brier_change": -0.04450711368940345
+        },
+        {
+          "from": [
+            0,
+            2
+          ],
+          "to": [
+            0,
+            1,
+            2
+          ],
+          "helped": 0,
+          "harmed": 0,
+          "both_correct": 7,
+          "both_wrong": 9,
+          "changed_class": 2,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.003644556679369306,
+          "mean_brier_change": 0.003097110229602582
+        },
+        {
+          "from": [
+            0,
+            2
+          ],
+          "to": [
+            0,
+            2,
+            3
+          ],
+          "helped": 1,
+          "harmed": 1,
+          "both_correct": 6,
+          "both_wrong": 8,
+          "changed_class": 4,
+          "harmed_with_increased_max_probability": 1,
+          "mean_true_class_probability_change": 0.012158627334839717,
+          "mean_brier_change": -0.031086006227154548
+        },
+        {
+          "from": [
+            0,
+            3
+          ],
+          "to": [
+            0,
+            1,
+            3
+          ],
+          "helped": 0,
+          "harmed": 2,
+          "both_correct": 6,
+          "both_wrong": 8,
+          "changed_class": 5,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.004575632240536035,
+          "mean_brier_change": 0.004175305238447401
+        },
+        {
+          "from": [
+            0,
+            3
+          ],
+          "to": [
+            0,
+            2,
+            3
+          ],
+          "helped": 0,
+          "harmed": 1,
+          "both_correct": 7,
+          "both_wrong": 8,
+          "changed_class": 4,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.017749479435536043,
+          "mean_brier_change": -0.02015093021538742
+        },
+        {
+          "from": [
+            1,
+            2
+          ],
+          "to": [
+            0,
+            1,
+            2
+          ],
+          "helped": 2,
+          "harmed": 1,
+          "both_correct": 5,
+          "both_wrong": 8,
+          "changed_class": 4,
+          "harmed_with_increased_max_probability": 1,
+          "mean_true_class_probability_change": -0.02183063351754575,
+          "mean_brier_change": 0.021720612313362486
+        },
+        {
+          "from": [
+            1,
+            2
+          ],
+          "to": [
+            1,
+            2,
+            3
+          ],
+          "helped": 1,
+          "harmed": 0,
+          "both_correct": 6,
+          "both_wrong": 9,
+          "changed_class": 3,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.003165352738275522,
+          "mean_brier_change": -0.01858427620435646
+        },
+        {
+          "from": [
+            1,
+            3
+          ],
+          "to": [
+            0,
+            1,
+            3
+          ],
+          "helped": 1,
+          "harmed": 2,
+          "both_correct": 5,
+          "both_wrong": 8,
+          "changed_class": 4,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": -0.020791704205446987,
+          "mean_brier_change": 0.021967367160174677
+        },
+        {
+          "from": [
+            1,
+            3
+          ],
+          "to": [
+            1,
+            2,
+            3
+          ],
+          "helped": 1,
+          "harmed": 1,
+          "both_correct": 6,
+          "both_wrong": 8,
+          "changed_class": 3,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.008864058589903887,
+          "mean_brier_change": -0.008480640354621961
+        },
+        {
+          "from": [
+            2,
+            3
+          ],
+          "to": [
+            0,
+            2,
+            3
+          ],
+          "helped": 0,
+          "harmed": 2,
+          "both_correct": 7,
+          "both_wrong": 7,
+          "changed_class": 3,
+          "harmed_with_increased_max_probability": 1,
+          "mean_true_class_probability_change": -0.02342174453195104,
+          "mean_brier_change": 0.009232583725804041
+        },
+        {
+          "from": [
+            2,
+            3
+          ],
+          "to": [
+            1,
+            2,
+            3
+          ],
+          "helped": 0,
+          "harmed": 2,
+          "both_correct": 7,
+          "both_wrong": 7,
+          "changed_class": 2,
+          "harmed_with_increased_max_probability": 1,
+          "mean_true_class_probability_change": -0.006939828931600176,
+          "mean_brier_change": 0.003110811664842221
+        },
+        {
+          "from": [
+            0,
+            1,
+            2
+          ],
+          "to": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "helped": 1,
+          "harmed": 1,
+          "both_correct": 6,
+          "both_wrong": 8,
+          "changed_class": 2,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.007312317979555035,
+          "mean_brier_change": -0.025913583189431634
+        },
+        {
+          "from": [
+            0,
+            1,
+            3
+          ],
+          "to": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "helped": 2,
+          "harmed": 1,
+          "both_correct": 5,
+          "both_wrong": 8,
+          "changed_class": 4,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.011972094519084634,
+          "mean_brier_change": -0.01605670218650933
+        },
+        {
+          "from": [
+            0,
+            2,
+            3
+          ],
+          "to": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "helped": 0,
+          "harmed": 0,
+          "both_correct": 7,
+          "both_wrong": 9,
+          "changed_class": 0,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": -0.0012017526759153761,
+          "mean_brier_change": 0.00826953326732549
+        },
+        {
+          "from": [
+            1,
+            2,
+            3
+          ],
+          "to": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "helped": 0,
+          "harmed": 0,
+          "both_correct": 7,
+          "both_wrong": 9,
+          "changed_class": 1,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": -0.01768366827626624,
+          "mean_brier_change": 0.014391305328287309
+        }
+      ]
+    },
+    "affinity": {
+      "patients": 16,
+      "view_addition_edges": 28,
+      "patient_edge_comparisons": 448,
+      "distinct_patients_harmed_at_least_once": 5,
+      "distinct_patients_helped_at_least_once": 6,
+      "totals": {
+        "helped": 25,
+        "harmed": 21,
+        "both_correct": 170,
+        "both_wrong": 232,
+        "changed_class": 99,
+        "harmed_with_increased_max_probability": 8
+      },
+      "edges": [
+        {
+          "from": [
+            0
+          ],
+          "to": [
+            0,
+            1
+          ],
+          "helped": 0,
+          "harmed": 0,
+          "both_correct": 5,
+          "both_wrong": 11,
+          "changed_class": 3,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.02457905860785116,
+          "mean_brier_change": -0.046961958811060245
+        },
+        {
+          "from": [
+            0
+          ],
+          "to": [
+            0,
+            2
+          ],
+          "helped": 2,
+          "harmed": 0,
+          "both_correct": 5,
+          "both_wrong": 9,
+          "changed_class": 5,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.036759600494576244,
+          "mean_brier_change": -0.0847656964497488
+        },
+        {
+          "from": [
+            0
+          ],
+          "to": [
+            0,
+            3
+          ],
+          "helped": 3,
+          "harmed": 0,
+          "both_correct": 5,
+          "both_wrong": 8,
+          "changed_class": 7,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.031116601145685412,
+          "mean_brier_change": -0.09567001130856408
+        },
+        {
+          "from": [
+            1
+          ],
+          "to": [
+            0,
+            1
+          ],
+          "helped": 0,
+          "harmed": 0,
+          "both_correct": 5,
+          "both_wrong": 11,
+          "changed_class": 3,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": -0.02081629644209271,
+          "mean_brier_change": 0.010830105890595847
+        },
+        {
+          "from": [
+            1
+          ],
+          "to": [
+            1,
+            2
+          ],
+          "helped": 3,
+          "harmed": 1,
+          "both_correct": 4,
+          "both_wrong": 8,
+          "changed_class": 5,
+          "harmed_with_increased_max_probability": 1,
+          "mean_true_class_probability_change": 0.01689849647386828,
+          "mean_brier_change": -0.045733382570150506
+        },
+        {
+          "from": [
+            1
+          ],
+          "to": [
+            1,
+            3
+          ],
+          "helped": 3,
+          "harmed": 1,
+          "both_correct": 4,
+          "both_wrong": 8,
+          "changed_class": 6,
+          "harmed_with_increased_max_probability": 1,
+          "mean_true_class_probability_change": 0.011138642803707653,
+          "mean_brier_change": -0.055772465835584796
+        },
+        {
+          "from": [
+            2
+          ],
+          "to": [
+            0,
+            2
+          ],
+          "helped": 1,
+          "harmed": 1,
+          "both_correct": 6,
+          "both_wrong": 8,
+          "changed_class": 7,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": -0.04341750620235073,
+          "mean_brier_change": 0.04187336967573812
+        },
+        {
+          "from": [
+            2
+          ],
+          "to": [
+            1,
+            2
+          ],
+          "helped": 0,
+          "harmed": 0,
+          "both_correct": 7,
+          "both_wrong": 9,
+          "changed_class": 2,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": -0.01788325517311483,
+          "mean_brier_change": 0.023113618853680316
+        },
+        {
+          "from": [
+            2
+          ],
+          "to": [
+            2,
+            3
+          ],
+          "helped": 2,
+          "harmed": 0,
+          "both_correct": 7,
+          "both_wrong": 7,
+          "changed_class": 3,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": -0.0077103573308844285,
+          "mean_brier_change": 0.0012713198715835622
+        },
+        {
+          "from": [
+            3
+          ],
+          "to": [
+            0,
+            3
+          ],
+          "helped": 1,
+          "harmed": 2,
+          "both_correct": 7,
+          "both_wrong": 6,
+          "changed_class": 6,
+          "harmed_with_increased_max_probability": 1,
+          "mean_true_class_probability_change": -0.027077502004645388,
+          "mean_brier_change": 0.007727163831170621
+        },
+        {
+          "from": [
+            3
+          ],
+          "to": [
+            1,
+            3
+          ],
+          "helped": 0,
+          "harmed": 2,
+          "both_correct": 7,
+          "both_wrong": 7,
+          "changed_class": 4,
+          "harmed_with_increased_max_probability": 1,
+          "mean_true_class_probability_change": -0.0016601052966792665,
+          "mean_brier_change": -0.010167355397506184
+        },
+        {
+          "from": [
+            3
+          ],
+          "to": [
+            2,
+            3
+          ],
+          "helped": 0,
+          "harmed": 0,
+          "both_correct": 9,
+          "both_wrong": 7,
+          "changed_class": 1,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.014272646215711749,
+          "mean_brier_change": -0.021970571114168645
+        },
+        {
+          "from": [
+            0,
+            1
+          ],
+          "to": [
+            0,
+            1,
+            2
+          ],
+          "helped": 2,
+          "harmed": 0,
+          "both_correct": 5,
+          "both_wrong": 9,
+          "changed_class": 4,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.015815168157577643,
+          "mean_brier_change": -0.034713599364684614
+        },
+        {
+          "from": [
+            0,
+            1
+          ],
+          "to": [
+            0,
+            1,
+            3
+          ],
+          "helped": 1,
+          "harmed": 0,
+          "both_correct": 5,
+          "both_wrong": 10,
+          "changed_class": 4,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.011116722180095483,
+          "mean_brier_change": -0.04453313890359718
+        },
+        {
+          "from": [
+            0,
+            2
+          ],
+          "to": [
+            0,
+            1,
+            2
+          ],
+          "helped": 0,
+          "harmed": 0,
+          "both_correct": 7,
+          "both_wrong": 9,
+          "changed_class": 2,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.0036346262708525524,
+          "mean_brier_change": 0.003090138274003935
+        },
+        {
+          "from": [
+            0,
+            2
+          ],
+          "to": [
+            0,
+            2,
+            3
+          ],
+          "helped": 1,
+          "harmed": 1,
+          "both_correct": 6,
+          "both_wrong": 8,
+          "changed_class": 4,
+          "harmed_with_increased_max_probability": 1,
+          "mean_true_class_probability_change": 0.012168882283277789,
+          "mean_brier_change": -0.031190374138433404
+        },
+        {
+          "from": [
+            0,
+            3
+          ],
+          "to": [
+            0,
+            1,
+            3
+          ],
+          "helped": 0,
+          "harmed": 2,
+          "both_correct": 6,
+          "both_wrong": 8,
+          "changed_class": 5,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.0045791796422612295,
+          "mean_brier_change": 0.004174913593906662
+        },
+        {
+          "from": [
+            0,
+            3
+          ],
+          "to": [
+            0,
+            2,
+            3
+          ],
+          "helped": 0,
+          "harmed": 1,
+          "both_correct": 7,
+          "both_wrong": 8,
+          "changed_class": 4,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.01781188163216863,
+          "mean_brier_change": -0.02028605927961811
+        },
+        {
+          "from": [
+            1,
+            2
+          ],
+          "to": [
+            0,
+            1,
+            2
+          ],
+          "helped": 1,
+          "harmed": 1,
+          "both_correct": 6,
+          "both_wrong": 8,
+          "changed_class": 3,
+          "harmed_with_increased_max_probability": 1,
+          "mean_true_class_probability_change": -0.02189962475838335,
+          "mean_brier_change": 0.02184988909606174
+        },
+        {
+          "from": [
+            1,
+            2
+          ],
+          "to": [
+            1,
+            2,
+            3
+          ],
+          "helped": 0,
+          "harmed": 0,
+          "both_correct": 7,
+          "both_wrong": 9,
+          "changed_class": 2,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.003173533335158664,
+          "mean_brier_change": -0.01863802418714113
+        },
+        {
+          "from": [
+            1,
+            3
+          ],
+          "to": [
+            0,
+            1,
+            3
+          ],
+          "helped": 1,
+          "harmed": 2,
+          "both_correct": 5,
+          "both_wrong": 8,
+          "changed_class": 4,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": -0.020838217065704885,
+          "mean_brier_change": 0.022069432822583463
+        },
+        {
+          "from": [
+            1,
+            3
+          ],
+          "to": [
+            1,
+            2,
+            3
+          ],
+          "helped": 1,
+          "harmed": 1,
+          "both_correct": 6,
+          "both_wrong": 8,
+          "changed_class": 3,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.008933387005319293,
+          "mean_brier_change": -0.008598940921706833
+        },
+        {
+          "from": [
+            2,
+            3
+          ],
+          "to": [
+            0,
+            2,
+            3
+          ],
+          "helped": 0,
+          "harmed": 2,
+          "both_correct": 7,
+          "both_wrong": 7,
+          "changed_class": 3,
+          "harmed_with_increased_max_probability": 1,
+          "mean_true_class_probability_change": -0.0235382665881885,
+          "mean_brier_change": 0.009411675665721153
+        },
+        {
+          "from": [
+            2,
+            3
+          ],
+          "to": [
+            1,
+            2,
+            3
+          ],
+          "helped": 0,
+          "harmed": 2,
+          "both_correct": 7,
+          "both_wrong": 7,
+          "changed_class": 2,
+          "harmed_with_increased_max_probability": 1,
+          "mean_true_class_probability_change": -0.006999364507071726,
+          "mean_brier_change": 0.003204274794955629
+        },
+        {
+          "from": [
+            0,
+            1,
+            2
+          ],
+          "to": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "helped": 1,
+          "harmed": 1,
+          "both_correct": 6,
+          "both_wrong": 8,
+          "changed_class": 2,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.007319219871712243,
+          "mean_brier_change": -0.02597384135592283
+        },
+        {
+          "from": [
+            0,
+            1,
+            3
+          ],
+          "to": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "helped": 2,
+          "harmed": 1,
+          "both_correct": 5,
+          "both_wrong": 8,
+          "changed_class": 4,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": 0.012017665849194406,
+          "mean_brier_change": -0.01615430181701026
+        },
+        {
+          "from": [
+            0,
+            2,
+            3
+          ],
+          "to": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "helped": 0,
+          "harmed": 0,
+          "both_correct": 7,
+          "both_wrong": 9,
+          "changed_class": 0,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": -0.001215036140712996,
+          "mean_brier_change": 0.008306671056514508
+        },
+        {
+          "from": [
+            1,
+            2,
+            3
+          ],
+          "to": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "helped": 0,
+          "harmed": 0,
+          "both_correct": 7,
+          "both_wrong": 9,
+          "changed_class": 1,
+          "harmed_with_increased_max_probability": 0,
+          "mean_true_class_probability_change": -0.017753938221829774,
+          "mean_brier_change": 0.014514071927280034
+        }
+      ]
+    }
+  },
+  "interpretation": "Posthoc descriptive development analysis; repeated masks/edges do not increase independent sample size or establish a new mechanism"
+}
