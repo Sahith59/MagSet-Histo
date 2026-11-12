@@ -1,8 +1,10 @@
 import csv
+import json
 from pathlib import Path
 import tempfile
 import unittest
-from magset.tcga_audit import audit
+from magset.tcga_audit import audit, verify_decoding
+from magset.data import file_hash
 
 
 def fixture(root, shared_patient=False):
@@ -20,6 +22,19 @@ def fixture(root, shared_patient=False):
 
 
 class TcgaAuditTests(unittest.TestCase):
+    def test_decode_evidence_requires_exact_counts_provenance_and_no_errors(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            fixture(tmp);report=audit(tmp);root=Path(tmp)
+            decoded=root/'decoded';decoded.mkdir()
+            r={'resolution_mpp':'0.5','images':2,'modes':{'RGB':2},'dimensions':{'(224, 224)':2},
+               'errors':[],'inventory_sha256':file_hash(root/'members.csv'),'archive_sha256':'expected','code_sha':'fixture'}
+            path=decoded/'mpp-0.5.json';path.write_text(json.dumps(r))
+            self.assertEqual(verify_decoding(report,root,decoded,'expected')['images'],2)
+            r['errors']=[{'error':'failed image'}];path.write_text(json.dumps(r))
+            with self.assertRaises(ValueError):verify_decoding(report,root,decoded,'expected')
+            r['errors']=[];r['images']=3;path.write_text(json.dumps(r))
+            with self.assertRaises(ValueError):verify_decoding(report,root,decoded,'expected')
+
     def test_resource_sidecars_do_not_become_unlabeled_patients(self):
         with tempfile.TemporaryDirectory() as tmp:
             fixture(tmp);report=audit(tmp)

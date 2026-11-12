@@ -91,22 +91,57 @@ def markdown(report):
         lines.append('| %s | %d | %d | %d | %d |'%(fold,counts['train'],counts['dev'],counts['test'],
                      sum(len(v) for v in row['missing_classes'].values())))
     lines += ['', '## Consequences for the next experiment', '',
-              '- Restrict fitting eligibility to explicitly labeled slides and exclude resource sidecars; preserve an exclusion ledger. Full PNG decoding remains pending.',
+              '- Restrict fitting eligibility to explicitly labeled slides and exclude resource sidecars; preserve an exclusion ledger. '+
+              ('Full PNG decoding is verified below.' if 'decoding' in report else 'Full PNG decoding remains pending.'),
               '- Keep patient IDs, all slide fields, and all resolutions together using the supplied patient/split metadata. Remap the 16 label IDs explicitly.',
               '- Treat each slide/resolution as an unpaired field bag. Equal coordinate strings do not establish physical alignment; no coordinate key spans all seven resolutions in this archive.',
               '- Define four-native-resolution and/or seven-resolution availability protocols in advance. BreakHis objective magnifications and TCGA microns per pixel are different units.',
               '- Audit encoder-pretraining overlap before treating this cohort as independent external evidence. No encoder adaptation or TCGA scoring has run.', '',
+              'Portable data-readiness jobs are `slurm/extract_tcga.sbatch` followed by `slurm/decode_tcga.sbatch`. '
+              'They verify the pinned archive, safely extract, exclude sidecar-named entries from decoding, '
+              'and record every error. Seven decode shards run with at most four workers.', '',
               'Source revision/checksum: `configs/tcga-ms-source.json`. '
               'Reproduce with `python -m magset.tcga_audit --inventory /path/to/inventory-v1 '
               '--output /path/to/private-audit.json --markdown docs/TCGA_MS_AUDIT.md`.', '']
+    if 'decoding' in report:
+        d=report['decoding']
+        lines += ['## Full decoding verified November 12, 2026', '',
+                  'All %d resolution reports were verified against the inventory and pinned archive checksum. '
+                  'All %d images passed CRC/structure verification and full loading, with zero errors. '
+                  'Every decoded image is RGB and224×224. Extraction and all seven scheduler tasks completed successfully. '
+                  'This establishes image readiness, not a trained second-dataset benchmark.'%(d['shards'],d['images']), '',
+                  'Decode source revision: `%s`. Regenerate this section by adding '
+                  '`--decode-reports /path/to/decode-v1` to the command above.'%d['code_sha'], '']
     return '\n'.join(lines)
+
+
+def verify_decoding(report, inventory, decode_reports, archive_sha256):
+    reports=[json.loads(p.read_text()) for p in sorted(Path(decode_reports).glob('mpp-*.json'))]
+    expected=report['images_by_resolution'];seen=set();total=0;codes=set()
+    for item in reports:
+        scale='mpp_'+item['resolution_mpp']
+        if scale in seen or scale not in expected or item['images']!=expected[scale]:
+            raise ValueError('Decode resolution/count coverage differs from inventory')
+        if (item['errors'] or item['inventory_sha256']!=file_hash(Path(inventory)/'members.csv')
+                or item['archive_sha256']!=archive_sha256):
+            raise ValueError('Decode error or provenance mismatch')
+        if item['modes']!={'RGB':item['images']} or item['dimensions']!={'(224, 224)':item['images']}:
+            raise ValueError('Decoded modes/dimensions differ from expected dataset patches')
+        seen.add(scale);total+=item['images'];codes.add(item['code_sha'])
+    if seen!=set(expected) or total!=report['image_files'] or len(codes)!=1:
+        raise ValueError('Decode report matrix incomplete or source inconsistent')
+    return {'shards':len(reports),'images':total,'errors':0,'code_sha':codes.pop()}
 
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--inventory',type=Path,required=True);p.add_argument('--output',type=Path,required=True)
     p.add_argument('--markdown',type=Path,required=True)
+    p.add_argument('--decode-reports',type=Path)
+    p.add_argument('--source',type=Path,default=Path('configs/tcga-ms-source.json'))
     a = p.parse_args(); report = audit(a.inventory)
+    if a.decode_reports:
+        report['decoding']=verify_decoding(report,a.inventory,a.decode_reports,json.loads(a.source.read_text())['sha256'])
     a.output.parent.mkdir(parents=True,exist_ok=True);a.output.write_text(json.dumps(report,indent=2)+'\n')
     a.markdown.parent.mkdir(parents=True,exist_ok=True);a.markdown.write_text(markdown(report))
     print(json.dumps({k:report[k] for k in ['image_files','labeled_image_files','labeled_slides','labeled_patients','labeled_slides_with_all_resolutions']}))

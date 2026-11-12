@@ -40,12 +40,18 @@ The supplied table contains 16 noncontiguous label IDs, with eight labeled slide
 
 ## Consequences for the next experiment
 
-- Restrict fitting eligibility to explicitly labeled slides and exclude resource sidecars; preserve an exclusion ledger. Full PNG decoding remains pending.
+- Restrict fitting eligibility to explicitly labeled slides and exclude resource sidecars; preserve an exclusion ledger. Full PNG decoding is verified below.
 - Keep patient IDs, all slide fields, and all resolutions together using the supplied patient/split metadata. Remap the 16 label IDs explicitly.
 - Treat each slide/resolution as an unpaired field bag. Equal coordinate strings do not establish physical alignment; no coordinate key spans all seven resolutions in this archive.
 - Define four-native-resolution and/or seven-resolution availability protocols in advance. BreakHis objective magnifications and TCGA microns per pixel are different units.
 - Audit encoder-pretraining overlap before treating this cohort as independent external evidence. No encoder adaptation or TCGA scoring has run.
 
-Portable data-readiness jobs are `slurm/extract_tcga.sbatch` followed by `slurm/decode_tcga.sbatch`. They verify the pinned archive before safe extraction, exclude sidecar-named entries from decoding, and record every image error without silently skipping files. Seven decode shards run with at most four workers. Their completion is separate from this metadata audit.
+Portable data-readiness jobs are `slurm/extract_tcga.sbatch` followed by `slurm/decode_tcga.sbatch`. They verify the pinned archive, safely extract, exclude sidecar-named entries from decoding, and record every error. Seven decode shards run with at most four workers.
 
 Source revision/checksum: `configs/tcga-ms-source.json`. Reproduce with `python -m magset.tcga_audit --inventory /path/to/inventory-v1 --output /path/to/private-audit.json --markdown docs/TCGA_MS_AUDIT.md`.
+
+## Full decoding verified November 12, 2026
+
+All 7 resolution reports were verified against the inventory and pinned archive checksum. All 65312 images passed CRC/structure verification and full loading, with zero errors. Every decoded image is RGB and224×224. Extraction and all seven scheduler tasks completed successfully. This establishes image readiness, not a trained second-dataset benchmark.
+
+Decode source revision: `328473a508c4a93f89a9ddafd9aabf9882f9a7d5`. Regenerate this section by adding `--decode-reports /path/to/decode-v1` to the command above.
