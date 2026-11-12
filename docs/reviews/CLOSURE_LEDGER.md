@@ -22,3 +22,9 @@ The generated brief, eight-slide offline deck, result figure, trusted ledger, re
 ## What remains unproven
 
 Novelty, candidate benefit beyond equal-dimension controls, independent clinical generalization, compatible published-method reproduction/adaptation, final held-out performance, and a submission-ready paper. The next step is a small defensible experiment, not a claim that reviewers or more GPU time have resolved these questions.
+
+## Native pilot follow-through
+
+The fixed four-fit development pilot completed from immutable source c1364c6. Independent result audit verified960 development-only records, all16 labels, all15 subsets per arm, seven saved artifact hashes, preprocessing, and classifier dimensions. Zero reserved predictions were produced. All50 tests pass, including the synthetic full pipeline and reporter tampering checks. Source/reporter review is recorded in `NATIVE_PILOT_REVIEW.md`.
+
+Affinity mean macro F1 of0.338194 does not exceed the duplicate control's0.339583. The prespecified agreement-specific improvement gate fails for this version. The public results retain every arm/subset and distinguish the secondary16-class task from breast confirmation. No extra search or sealed evaluation follows automatically. The old “matched/unmatched conservation” wording is clarified as signed-contrast reconstruction, and block RMS is explicitly labeled an unweighted expanded-row diagnostic.

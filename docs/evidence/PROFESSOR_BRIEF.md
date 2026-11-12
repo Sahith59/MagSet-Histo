@@ -1,5 +1,11 @@
 # MagSet-Histo: evidence for Professor Dong
 
+## Later November 12 update: fixed native pilot completed
+
+The four-fit secondary 16-class development pilot is complete. Mean / duplicate / random / affinity mean-subset macro F1: 0.334028 / 0.339583 / 0.334028 / 0.338194. Affinity does not beat the duplicate-feature control; this version does not support an agreement-specific improvement claim. All 960 prediction records were checked, and the 32 reserved patients remain unscored. [Full native results](../NATIVE_DEVELOPMENT_RESULTS.md) · [Plain-language project guide](../PROJECT_EXPLAINED.md).
+
+The following sections and eight-slide deck retain the earlier pre-native-pilot snapshot; the update above supersedes its pending-experiment wording.
+
 Prepared November 12, 2026. Working preparation target: November 18; the meeting date is not confirmed. This is a progress and decision package, not a claim of a completed novel paper.
 
 ## The project in plain language

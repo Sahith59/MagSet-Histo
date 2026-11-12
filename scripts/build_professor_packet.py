@@ -74,6 +74,11 @@ def main():
     p.add_argument('--native-cache-audit',type=Path)
     a=p.parse_args();audit=audit_results(a.results_root,a.manifest,a.protocol)
     native=json.loads(a.native_protocol.read_text());a.output.mkdir(parents=True,exist_ok=True)
+    addendum_path=a.output/'NATIVE_PILOT_LEDGER.json'
+    addendum=json.loads(addendum_path.read_text()) if addendum_path.exists() else None
+    if addendum and (addendum['protocol_sha256']!=file_hash(a.native_protocol)
+                     or addendum['verified_prediction_records']!=960 or addendum['sealed_predictions_computed']!=0):
+        raise ValueError('Native development addendum differs from the registered protocol')
     if native['role_counts']!={'fit':80,'development':16,'sealed_test':32}:raise ValueError('Native role counts differ')
     a.audit_output.parent.mkdir(parents=True,exist_ok=True);a.audit_output.write_text(json.dumps(audit,indent=2)+'\n')
     plot_results(a.results_root,a.output)
@@ -152,6 +157,16 @@ This is a working sequence, not a booked meeting or guarantee of a positive resu
 Trusted result-ledger SHA256:`{audit['result_ledger_sha256']}`. Native manifest SHA256:`{native['manifest_sha256']}`. Test scoring, independent clinical generalization, and a submission-ready novel paper remain unfinished. Review agents are diagnostic aids, not scientific certification.
 '''
     for old,new in [('checked7','checked 7'),('at40','at 40'),('Completed175','Completed 175'),('all175','all 175'),('decoded65','decoded 65'),('secondary16','secondary 16'),('with80','with 80'),(',16',', 16'),(',32',', 32'),('only31','only 31'),('values average15','values average 15'),('fixed32','fixed 32'),('November18','November 18'),('Trusted175','Trusted 175'),('registered80','registered 80'),('for37','for 37')]:brief=brief.replace(old,new)
+    if addendum:
+        values={a:addendum['arms'][a]['development']['mean_subset_macro_f1'] for a in ('mean','duplicate','random','affinity')}
+        update=('## Later November 12 update: fixed native pilot completed\n\n'
+                'The four-fit secondary 16-class development pilot is complete. Mean / duplicate / random / affinity mean-subset macro F1: '
+                + ' / '.join('%.6f'%values[a] for a in ('mean','duplicate','random','affinity')) + '. '
+                'Affinity does not beat the duplicate-feature control; this version does not support an agreement-specific improvement claim. '
+                'All 960 prediction records were checked, and the 32 reserved patients remain unscored. '
+                '[Full native results](../NATIVE_DEVELOPMENT_RESULTS.md) · [Plain-language project guide](../PROJECT_EXPLAINED.md).\n\n'
+                'The following sections and eight-slide deck retain the earlier pre-native-pilot snapshot; the update above supersedes its pending-experiment wording.\n\n')
+        title,body=brief.split('\n',1);brief=title+'\n\n'+update+body.lstrip()
     (a.output/'PROFESSOR_BRIEF.md').write_text(brief)
     slides=[
       ('A reliable prediction from incomplete microscope views','<p class="lead">Can a model combine the available views and classify tissue when some zoom levels are missing?</p><div class="flow"><b>40x</b><b>100x</b><b>200x</b><b>400x</b><span>→</span><b>8 subtype scores</b></div><p>MagSet-Histo · Evidence and next decision · Prepared November12,2026</p><p class="notice">Progress package for Professor Dong. November18 is an internal preparation target; meeting unconfirmed. No completed novel-method claim.</p>'),
@@ -171,6 +186,7 @@ Trusted result-ledger SHA256:`{audit['result_ledger_sha256']}`. Native manifest 
     (a.output/'PROFESSOR_DECK.html').write_text(page)
     public={k:v for k,v in audit.items() if k!='records'}
     public['native_manifest_sha256']=native['manifest_sha256'];public['native_protocol_sha256']=file_hash(a.native_protocol)
+    if addendum:public['native_development_addendum_sha256']=file_hash(addendum_path)
     if a.native_cache_audit:
         cached=json.loads(a.native_cache_audit.read_text())
         if (cached['images']!=native['fields'] or cached['manifest_sha256']!=native['manifest_sha256']

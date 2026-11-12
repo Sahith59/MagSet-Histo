@@ -30,6 +30,8 @@ That 50-configuration comparison is now complete: all saved normalization and in
 
 Three critique agents completed two review rounds. Trusted metadata checks now confirm all 175 saved label/split records, but repeated BreakHis trials have used all 82 provider cases in development somewhere. No outer-role scores have been computed; there is no globally pristine BreakHis confirmation cohort. A new [TCGA supervised quarantine](docs/TCGA_QUARANTINE_PROTOCOL.md) reserves 32 patients before any classifier fitting. Phikon has known TCGA-source pretraining, so frozen ImageNet ResNet is the first provenance control for this secondary task.
 
+The [fixed native four-fit pilot](docs/NATIVE_DEVELOPMENT_RESULTS.md) is now complete: mean/duplicate/random/affinity mean-subset macro F1 is 0.334028/0.339583/0.334028/0.338194. Affinity does not beat the duplicate-feature control, so this pilot does not support an agreement-specific improvement claim. These are secondary 16-class development results on 16 patients; the 32 reserved patients remain unscored. The original transport candidate remains unimplemented.
+
 ## Getting started
 
 The download/indexing tools use Python 3.9 or newer and the standard library. The baseline checks additionally need NumPy, SciPy, scikit-learn, and Pillow:
@@ -46,6 +48,7 @@ Neural checks additionally require `torch==2.6.0`; without it those checks are e
 
 ## Project documents
 
+- [Plain-language guide: problem, data, splits, models, training, and metrics](docs/PROJECT_EXPLAINED.md)
 - [Research and execution plan](plan.md)
 - [One-page project brief](docs/PROJECT_BRIEF.md)
 - [Related work and comparison rules](docs/RELATED_WORK.md)
