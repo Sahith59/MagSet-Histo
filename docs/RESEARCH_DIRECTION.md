@@ -36,6 +36,8 @@ Continue only if the effect survives different inner splits/training seeds and h
 
 [BRACS details](https://www.bracs.icar.cnr.it/details/) describe seven original categories and provide patient/split metadata. Its [download page](https://www.bracs.icar.cnr.it/download/) currently requires an account, and its [rules](https://www.bracs.icar.cnr.it/rules/) require accurate registration and citation. No registration, author contact, or terms acceptance has been performed. TCGA-MS offers an immediately inspectable secondary route while BRACS access remains an optional later step.
 
+The TCGA-MS download and checksum/metadata audit are now complete; see [the audit](TCGA_MS_AUDIT.md). After excluding 19 `._` sidecar-named entries, there are 65,312 candidate images covering 128 labeled slides/patients; 122 have all seven resolutions. The count differs from the paper, some fold roles omit classes, and filename coordinates do not establish seven-scale pairing. Image decoding and the native evaluation protocol remain prerequisites to training.
+
 ## Remaining paper gates
 
 1. Strong baseline and split/training-seed stability evidence.

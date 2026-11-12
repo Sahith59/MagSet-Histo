@@ -47,6 +47,7 @@ Neural checks additionally require `torch==2.6.0`; without it those checks are e
 - [Computed error analysis](docs/ERROR_ANALYSIS.md)
 - [Controlled fusion protocol](docs/FUSION_PILOT.md) and [results](docs/FUSION_RESULTS.md)
 - [Research direction and contribution gates](docs/RESEARCH_DIRECTION.md)
+- [Second-dataset archive and metadata audit](docs/TCGA_MS_AUDIT.md)
 - [Implemented methods draft](paper/methods-draft.md)
 
 The historical reference is [Lang et al., SPIE Medical Imaging 2021](https://doi.org/10.1117/12.2582299). The closest task and mechanism comparisons currently include [MagViT](https://arxiv.org/abs/2608.16959) and [M2OTCA](https://doi.org/10.1016/j.media.2026.104082). See the related-work document for distinctions between their tasks and our intended evaluation.
