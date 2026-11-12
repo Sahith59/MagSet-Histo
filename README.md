@@ -26,6 +26,8 @@ All 45 prespecified [seed sensitivity checks](docs/SENSITIVITY_RESULTS.md) are c
 
 All 65,312 TCGA-MS images have also passed full decoding. The next comparison aligns linear/neural normalization and varies capacity or dropout one factor at a time; see [the apples-to-apples contract](docs/COMPARISON_PLAN.md). Full published-method reproductions and the candidate mechanism remain unfinished.
 
+That 50-configuration comparison is now complete: all saved normalization and input-context checks passed. The [matched results](docs/CAPACITY_RESULTS.md) still favor linear mean fusion on both inner splits. There are now 175 completed validation configurations in total; these are exploratory development runs, not independent clinical samples or final test results.
+
 ## Getting started
 
 The download/indexing tools use Python 3.9 or newer and the standard library. The baseline checks additionally need NumPy, SciPy, scikit-learn, and Pillow:
@@ -54,6 +56,7 @@ Neural checks additionally require `torch==2.6.0`; without it those checks are e
 - [Second-dataset archive and metadata audit](docs/TCGA_MS_AUDIT.md)
 - [Split and training-seed sensitivity](docs/SENSITIVITY_RESULTS.md)
 - [Baseline and fair-comparison contract](docs/COMPARISON_PLAN.md)
+- [Normalization-matched capacity results](docs/CAPACITY_RESULTS.md)
 - [Implemented methods draft](paper/methods-draft.md)
 
 The historical reference is [Lang et al., SPIE Medical Imaging 2021](https://doi.org/10.1117/12.2582299). The closest task and mechanism comparisons currently include [MagViT](https://arxiv.org/abs/2608.16959) and [M2OTCA](https://doi.org/10.1016/j.media.2026.104082). See the related-work document for distinctions between their tasks and our intended evaluation.

@@ -11,8 +11,9 @@ Updated November 12, 2026. This is an exploratory development benchmark, not a c
 | Field aggregation | Classify fields then average probabilities; normalization-matched early-mean control | 20 configurations |
 | Hierarchical learned fusion | Mean or gated-attention field pooling crossed with mean, contextual gating, or self-attention view fusion | 30 configurations |
 | Stability checks | Alternate inner split; alternate training seed; repeated linear control | 45 configurations |
+| Matched-input capacity controls | Field-normalized linear mean; smaller hidden width; stronger dropout | 50 additional configurations, complete |
 
-The 125 configurations include repeated trials/seeds, not 125 independent datasets or patients. The highest initial descriptive Phikon mean score is 0.3868 mean validation macro F1; the best initial neural row is 0.3562. Both use only eight validation cases per trial. The linear and neural rounds used different normalization, so their headline difference does not isolate architecture. [Saved results](FUSION_RESULTS.md) and [stability evidence](SENSITIVITY_RESULTS.md) remain unchanged.
+The first 125 configurations include repeated trials/seeds, not 125 independent datasets or patients. The highest initial descriptive Phikon mean score is 0.3868 mean validation macro F1; the best initial neural row is 0.3562. Both use only eight validation cases per trial. The initial linear and neural rounds used different normalization, so their headline difference does not isolate architecture. [Saved results](FUSION_RESULTS.md) and [stability evidence](SENSITIVITY_RESULTS.md) remain unchanged. The additional 50 matched-input controls bring the total to 175; their [verified results](CAPACITY_RESULTS.md) close the normalization gap and retain the linear lead on both checked splits.
 
 ## What a fair mechanism comparison must hold fixed
 
@@ -26,9 +27,9 @@ The 125 configurations include repeated trials/seeds, not 125 independent datase
 
 Linear versus neural methods necessarily have different fitting algorithms. Four configurations each is a matched selection-count budget, not proof of equal compute or equal capacity. Within-neural causal ablations require tighter controls.
 
-## Next registered comparison: normalization, capacity, and regularization
+## Registered comparison: normalization, capacity, and regularization (complete)
 
-Before submission, fix this matrix: Phikon-v2, both existing inner split seeds 812/813, training seed 812, five provider trials, all fields, all 15 subsets. Do not repeat completed original neural runs.
+The matrix was fixed before submission: Phikon-v2, both existing inner split seeds 812/813, training seed 812, five provider trials, all fields, all 15 subsets. Completed original neural runs were referenced rather than repeated.
 
 1. Ten new CPU mean-linear fits use `--normalization field-moments-v2`, exactly the training-case-balanced field moments used by hierarchical models. Historical `case-mean-v1` remains the default so old results reproduce.
 2. Forty new GPU configurations compare mean/mean and attention/attention controls under two separate changes. Small-capacity changes only hidden width 128→32. Stronger dropout changes only 0.2→0.5. All other settings, including 100 final epochs and four optimizer settings, stay fixed.

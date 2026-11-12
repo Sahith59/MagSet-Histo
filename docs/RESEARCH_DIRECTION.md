@@ -40,6 +40,8 @@ The TCGA-MS download, checksum/metadata audit, and full image decoding are compl
 
 The [fair-comparison contract](COMPARISON_PLAN.md) distinguishes measured internal controls from unfinished published-method adaptations. The next small round aligns actual linear/neural normalization and tests capacity or dropout individually. Its scores must not be selected using outer-test outcomes.
 
+That round is now complete. [Matched results](CAPACITY_RESULTS.md) verify identical saved normalization and case/cache inputs across the comparisons. The linear mean remains higher than the checked neural controls on both inner splits; smaller width or stronger dropout did not close the gap. This supports consolidating the benchmark and second-dataset protocol rather than treating another generic architecture as a novel contribution. Candidate matching remains unimplemented and unproven.
+
 ## Remaining paper gates
 
 1. Strong baseline and split/training-seed stability evidence.

@@ -78,11 +78,29 @@ def markdown(report):
     for row in report['summary']:
         lines.append('| %s / %s | %d | %s | %.4f | %.4f |'%(row['policy'],row['method'],row['split_seed'],
             str(row.get('parameters','—')),row['mean_validation_subset_macro_f1'],row['mean_validation_full_view_macro_f1']))
-    lines += ['', 'The small policy changes only hidden width128→32. The dropout policy changes only '
-              'dropout0.2→0.5. Other optimization/input settings remain fixed. Neural parameter counts '
+    lines += ['', 'The small policy changes only hidden width 128→32. The dropout policy changes only '
+              'dropout 0.2→0.5. Other optimization/input settings remain fixed. Neural parameter counts '
               'differ intentionally; a proposed-mechanism comparison will additionally require matched-capacity controls.', '',
               'These remain noisy exploratory results: eight validation cases per trial, overlapping provider '
               'holdouts, and selected hyperparameters. A numerical lead does not establish generalization or novelty.', '']
+    lines += ['## What this round establishes', '',
+              '| Inner split seed | Matched linear mean | Highest tested neural average |',
+              '| --- | ---: | ---: |']
+    for seed in (812,813):
+        subset=[r for r in report['summary'] if r['split_seed']==seed]
+        linear=next(r for r in subset if r['policy']=='matched-linear')
+        best=max((r for r in subset if r['policy']!='matched-linear'),key=lambda r:r['mean_validation_subset_macro_f1'])
+        lines.append('| %d | %.4f | %.4f |'%(seed,linear['mean_validation_subset_macro_f1'],best['mean_validation_subset_macro_f1']))
+    lines += ['', 'The matched linear mean remains higher than the tested neural controls on both inner splits. '
+              'Reducing hidden width or increasing dropout did not close that descriptive gap. '
+              'The normalization difference between earlier rounds no longer explains this comparison.', '',
+              'Retain these results as an exploratory baseline reference. The next research work is to settle '
+              'native second-dataset eligibility/metrics and pretraining overlap, complete compatible published-method '
+              'comparisons, and specify a defensible candidate mechanism. More architecture trials alone do not '
+              'establish a contribution. No outer-test evaluation or second-dataset model result is reported here.', '',
+              'Experimental source revision: `ed8db0f49294cb3a19b4ee4e45f8e1a4c6064b08`. '
+              'Regenerate using `python -m magset.capacity_report --runs-root /path/to/runs '
+              '--output /path/to/verified-comparison.json --markdown docs/CAPACITY_RESULTS.md`.', '']
     return '\n'.join(lines)
 
 
