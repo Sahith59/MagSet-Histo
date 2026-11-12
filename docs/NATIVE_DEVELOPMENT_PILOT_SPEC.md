@@ -21,6 +21,16 @@ For affinity, standardize fields with fitting-only moments, project and L2-norma
 
 These are fixed design choices for a falsifiable feasibility check, not proven optimal hyperparameters or a novel mathematical formulation. Ordinary attention/shared-specific modelling and partial OT already have prior art. No OT solver is needed in this first pilot.
 
+### Implementation choices fixed before native scores
+
+The implementation is `magset/native_pilot.py`. The projection is Gaussian QR with NumPy seed812 and deterministic column signs; it is shared across arms and never fitted to labels. Standardization is per resolution, using the average first/second field moments of fitting patients who possess that view. Near-zero standard deviations become one. Projected field values retain their original standardized magnitude; only copies used for cosine scores are L2-normalized.
+
+The random partition selects fields whose first SHA256 byte has its low bit set, using `magset-native-random-v1|<immutable relative path>`. Average that selected group and subtract the ordinary projected mean. If the selected group is empty use the ordinary mean, giving zero contrast. Both random and affinity contrast are zero for a single-view input. This is a signed feature contrast, not a nonnegative matched/unmatched mass or an OT plan. The extra feature block preserves the baseline input block, not its jointly fitted coefficients or predictions.
+
+Use `class_weight=None`: inverse-subset sample weights already give every patient unit mass and each of the16 classes mass5. Balancing the expanded rows by their row counts would undo this policy because incomplete patients have fewer subsets. The fixed fitting matrix has1152 rows, total weight80; development produces240 records per arm and960 overall. Baseline and extra-block classifier coefficient counts, including intercepts, are32848 and33360. Fixed projection entries are not trained parameters.
+
+Use LBFGS with tolerance1e-4 and max_iter1000. All four models must converge before any development score is emitted. Brier is the patient-average **sum** of16 squared probability errors (no division by16). Save coefficients, preprocessing, projection, predictions, hashes, fixed settings, solver iterations, and timing. An independent record audit checks exact trusted development memberships/truths and recomputes all scores. A pre-existing output directory is an error; no automatic reruns or budget increases.
+
 ## Required correctness checks before execution
 
 Verify labels and per-patient roles against registered metadata; refuse sealed scoring in the development CLI. Test field/view permutation, missing-content invariance, one-view zero contrast, finite probabilities, case-balanced subset weights, save/reload, and conservation of matched/unmatched branches. Equal added dimensions do not alone establish matched capacity; report coefficient counts and fit/feature compute.
