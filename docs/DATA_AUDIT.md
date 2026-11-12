@@ -30,3 +30,15 @@ One bare raw identifier occurs under two subtypes. Numeric-stem grouping also co
 The filename-derived phyllodes/tubular counts differ from the labels on a table in the supplied manuscript. Final tables will come from the audited manifest, with discrepancies explained rather than copied.
 
 Source: [official BreakHis provider](https://web.inf.ufpr.br/vri/databases/breast-cancer-histopathological-database-BreakHis/). The download script records the archive URL/hash and every image hash under the selected data root. Image files and detailed working manifests are not bundled here.
+
+## Provider protocol reconciliation
+
+The provider's `mkfold.tar.gz` was inspected as data; its Python 2 script was not executed. Each of its five trial files covers all 7,909 images exactly once and assigns each of the 82 subtype-qualified cases entirely to train or test. Each trial has 54 training cases and 28 test cases, with all eight subtypes represented on both sides.
+
+The five test image counts are 2,904, 2,403, 2,577, 2,698, and 3,083. These are five repeated holdouts, not five disjoint cross-validation folds. Numeric stems cross train/test in 8, 6, 7, 7, and 6 groups respectively. The stem relationship is not clinically verified; we will report the provider-defined case protocol and a stricter stem-group sensitivity analysis separately.
+
+Filename-derived case counts are A=4, F=10, PT=3, TA=7, DC=38, LC=5, MC=9, and PC=6. Stripping suffix letters leaves only two adenosis stem groups, so a conventional three-fold class-covered stem protocol is infeasible. The earlier provisional three-fold plan must not be applied blindly.
+
+The initial validation baselines retain the provider's outer test cases, then select one validation case per subtype from outer training only. This leaves 46 fitting cases and eight validation cases per trial. Outer scoring is disabled by default. A large fraction of the dataset is correlated within cases, and eight validation cases give noisy model selection; these pilots establish pipeline behavior, not final publication evidence.
+
+Archive SHA-256: `d118014cf8a58f6d1fc4571e55efb523c932c85cfba2fb05627e455fc40bd640`. This is our recorded hash of the downloaded archive; no independent provider checksum was verified.
