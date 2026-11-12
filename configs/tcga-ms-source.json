@@ -5,6 +5,8 @@
   "url": "https://huggingface.co/datasets/bifold-pathomics/TCGA-MS/resolve/11315f247e30d48f7933ae6a4ea76b4f64ccf0e6/tcga_ms.tar.gz",
   "bytes": 6579294465,
   "sha256": "1d767f70f00b9e73430fe7d0a502e5e0feee8a2f8321b12658c2cc6755caec5a",
+  "labels_sha256": "2d97bbfec20d69edb7fcaf15c2a8068d6d4fe2e2f6161884a07a2ff3fd12ace1",
+  "inventory_sha256": "5a8106b268597bf86fa07fc9710992964baf0e8f94b2dce13d177938d94fe574",
   "checksum_source": "Provider repository LFS object ID, verified through its public API",
   "paper": "https://arxiv.org/abs/2601.02198",
   "official_code": "https://github.com/bifold-pathomics/continuous-magnification-sampling"
