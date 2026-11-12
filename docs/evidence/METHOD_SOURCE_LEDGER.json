@@ -1,0 +1,89 @@
+{
+  "schema": "magset.method-source-audit.v1",
+  "date": "2026-11-12",
+  "scope": "targeted primary-source audit, not systematic review",
+  "primary_urls": [
+    "https://arxiv.org/html/2608.16959v1",
+    "https://arxiv.org/html/2601.02198v1",
+    "https://pubmed.ncbi.nlm.nih.gov/42001680/",
+    "https://www.sciencedirect.com/science/article/pii/S1361841526001519",
+    "https://huggingface.co/datasets/bifold-pathomics/TCGA-MS",
+    "https://github.com/bifold-pathomics/continuous-magnification-sampling"
+  ],
+  "author_code": {
+    "repository": "https://github.com/bifold-pathomics/continuous-magnification-sampling",
+    "revision": "83f05d8eed96e805b737b9ea935efa1c4bedb8a1",
+    "commit_tree_sha": "63fb884eabbbdae1db7da08f5ae6c67272a10efc",
+    "files": [
+      {
+        "path": "README.md",
+        "url": "https://github.com/bifold-pathomics/continuous-magnification-sampling/blob/83f05d8eed96e805b737b9ea935efa1c4bedb8a1/README.md",
+        "git_blob": "51a97a7363d2f3c7abf1076e15afd2f13d746c11",
+        "sha256": "7c1818ca360fe0f51754503f4e7c51bf8d554707dda138ba8c9f54119a92b743",
+        "bytes": 2821
+      },
+      {
+        "path": "dataloaders.py",
+        "url": "https://github.com/bifold-pathomics/continuous-magnification-sampling/blob/83f05d8eed96e805b737b9ea935efa1c4bedb8a1/dataloaders.py",
+        "git_blob": "f2bf543c63f238c9b890fc9057ed08e5489e4dbc",
+        "sha256": "645f45fd26de8fd59b130d6f198b5abad42be95942766466e08fc9df1a8a12ec",
+        "bytes": 7865
+      },
+      {
+        "path": "evaluate_benchmarks.py",
+        "url": "https://github.com/bifold-pathomics/continuous-magnification-sampling/blob/83f05d8eed96e805b737b9ea935efa1c4bedb8a1/evaluate_benchmarks.py",
+        "git_blob": "6ab63d7a738fab04bc6f4f058c0c9eaafb8d27d9",
+        "sha256": "a1c62c5bdf42e03630eba64fce22aa4219713b108282d98f10b525505f74fa15",
+        "bytes": 21250
+      },
+      {
+        "path": "run_tcga_eval.sh",
+        "url": "https://github.com/bifold-pathomics/continuous-magnification-sampling/blob/83f05d8eed96e805b737b9ea935efa1c4bedb8a1/run_tcga_eval.sh",
+        "git_blob": "3bc258e5aa8c7e14e4d4028d19b40d0953b15121",
+        "sha256": "f9a082f846a725853a82d99cd8f84192aef2a660f1dee335c5b1564d3d31f234",
+        "bytes": 296
+      },
+      {
+        "path": "model_loading/load_models.py",
+        "url": "https://github.com/bifold-pathomics/continuous-magnification-sampling/blob/83f05d8eed96e805b737b9ea935efa1c4bedb8a1/model_loading/load_models.py",
+        "git_blob": "81f1389abb4ac5356771a2b9af60a21e02d12a4e",
+        "sha256": "43e33ffb7f712cdd175159379c5220e84456fb03252a16c959e3691c11686935",
+        "bytes": 9166
+      },
+      {
+        "path": "model_loading/utils.py",
+        "url": "https://github.com/bifold-pathomics/continuous-magnification-sampling/blob/83f05d8eed96e805b737b9ea935efa1c4bedb8a1/model_loading/utils.py",
+        "git_blob": "91561c736bc26e2e007c4e2fc9e975a9261744c0",
+        "sha256": "1c3c786984bf40b27ac8b492aa78495568daf42e27cc4062cf710fd1a8d8ac87",
+        "bytes": 2256
+      },
+      {
+        "path": "tests/test_functions.py",
+        "url": "https://github.com/bifold-pathomics/continuous-magnification-sampling/blob/83f05d8eed96e805b737b9ea935efa1c4bedb8a1/tests/test_functions.py",
+        "git_blob": "05f648c9b3c934ec4804916c278afeb4622049e9",
+        "sha256": "a9b4bb84767f3cfaf23045859bf6379fcac00d8cc7bf14420e42083d61958b34",
+        "bytes": 8967
+      },
+      {
+        "path": "pyproject.toml",
+        "url": "https://github.com/bifold-pathomics/continuous-magnification-sampling/blob/83f05d8eed96e805b737b9ea935efa1c4bedb8a1/pyproject.toml",
+        "git_blob": "4c6555e72962f57fe8ab3b661bd51e5964250035",
+        "sha256": "14a491f1e3abc05b128934017ce9a4361e8c6bf3adfe2b1f0c6677bdeec48543",
+        "bytes": 1717
+      }
+    ],
+    "policy": "Read-only primary author code. No third-party code executed or redistributed."
+  },
+  "limits": [
+    "M2OTCA publisher page returned403; public abstract retrieved",
+    "No verified official MagViT/M2OTCA implementation in targeted search",
+    "Clinical curation and numeric-name crosswalk incomplete"
+  ],
+  "classifier_fits_performed": 0,
+  "sealed_predictions_computed": 0,
+  "search_protocol_sha256": "f3bb19284a69fa49c762454b39a3467744f845b06e3374f8cc5312af1c2b68ab",
+  "public_findings_sha256": {
+    "docs/METHOD_COMPARISON_AUDIT.md": "17483a5c3446afd1dd0873f5aac37f6382877209185f6e03a3567e2aceaf98ea",
+    "docs/TCGA_LABEL_LINEAGE_AUDIT.md": "87c8494623fdf46563b39957d6864a6d458f1fcdbeaba4d04347c9e565c8c451"
+  }
+}

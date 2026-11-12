@@ -1,6 +1,18 @@
 # Research direction and evidence gates
 
-Updated November 12, 2026. The implemented neural models are baselines. The candidate partial-matching method remains an untested hypothesis.
+Updated November 12, 2026. The implemented neural models are baselines. The original partial-transport candidate remains unimplemented. The smaller affinity-contrast candidate was implemented and tested; it did not beat duplicate features.
+
+## Current decision after the fixed native pilot
+
+Native mean /duplicate /random /affinity mean-subset F1 is 0.334028 /0.339583 /0.334028 /0.338194. The agreement-specific improvement gate fails for this version. Do not resume it as an adaptive temperature/width/seed search or infer that a transport solver will fix it.
+
+The [saved-prediction audit](VIEW_ADDITION_AUDIT.md) finds that five of 16 development patients have at least one correct-to-wrong transition when an extra view is supplied. This is descriptive failure evidence from the same small cohort, not proof of a remedy. The [targeted methods audit](METHOD_COMPARISON_AUDIT.md) distinguishes verified source details from unresolved exact reproductions. The [label audit](TCGA_LABEL_LINEAGE_AUDIT.md) confirms numerical targets without independently validating clinical curation.
+
+Next define one narrow hypothesis and a control excluding a simpler explanation, then register a small fixed experiment. Existing gates/attention/transport are prior art. BreakHis identity limits, native sample size and independent breast evidence remain open. No reserved scoring, novel advantage or submission-ready paper is established. The work order is [NEXT_STEPS.md](NEXT_STEPS.md).
+
+## Earlier pre-pilot rationale
+
+The following records the original motivation and unimplemented transport hypothesis. The current measured decision above supersedes its earlier next-experiment language.
 
 ## What current evidence supports
 

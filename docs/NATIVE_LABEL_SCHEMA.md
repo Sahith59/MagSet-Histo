@@ -23,4 +23,6 @@ The classifier uses the release `label_id` column, remapped in sorted numeric or
 
 These are descriptive observations from pinned metadata, not an independently validated clinical taxonomy. Some groups contain multiple histology descriptions or blank text. Labels were not merged, reassigned, or inferred from descriptions. The grouping rationale still needs author-method review before a clinical or pathology-taxonomy claim. NOS in the source descriptions means “not otherwise specified.”
 
+The subsequent [label-lineage audit](TCGA_LABEL_LINEAGE_AUDIT.md) confirms our numerical target choice against the author's loader. It distinguishes the paper's intended names from variable raw metadata descriptions; this table intentionally retains the latter.
+
 Pinned source CSV SHA256: `2d97bbfec20d69edb7fcaf15c2a8068d6d4fe2e2f6161884a07a2ff3fd12ace1`. See [the registered protocol](TCGA_QUARANTINE_PROTOCOL.md) and [the plain-language guide](PROJECT_EXPLAINED.md).

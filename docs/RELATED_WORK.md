@@ -1,5 +1,7 @@
 # Papers, benchmark tracks, and the novelty audit
 
+November 12 source-audit update: see [the implementation/compatibility audit](METHOD_COMPARISON_AUDIT.md) and [native target-label lineage](TCGA_LABEL_LINEAGE_AUDIT.md). They record pinned author code, obtained-release differences, reproduction limits and unresolved artifacts. Historical author scores below remain contextual numbers rather than our benchmark targets.
+
 Verified or inspected November 11, 2026. This is a targeted starting list, not a completed systematic review. Numbers below are author-reported and are not directly comparable across tasks or protocols.
 
 ## What base paper and target paper mean here

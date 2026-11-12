@@ -48,6 +48,9 @@ Neural checks additionally require `torch==2.6.0`; without it those checks are e
 
 ## Project documents
 
+- [Next tasks and current status](docs/NEXT_STEPS.md)
+- [Training strategy in plain language](docs/TRAINING_STRATEGY.md)
+- [Closest-method audit](docs/METHOD_COMPARISON_AUDIT.md), [TCGA label lineage](docs/TCGA_LABEL_LINEAGE_AUDIT.md), and [view-addition failures](docs/VIEW_ADDITION_AUDIT.md)
 - [Plain-language guide: problem, data, splits, models, training, and metrics](docs/PROJECT_EXPLAINED.md)
 - [Research and execution plan](plan.md)
 - [One-page project brief](docs/PROJECT_BRIEF.md)
