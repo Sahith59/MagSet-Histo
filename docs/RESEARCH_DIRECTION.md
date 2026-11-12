@@ -49,3 +49,9 @@ That round is now complete. [Matched results](CAPACITY_RESULTS.md) verify identi
 3. Identifier sensitivity and a frozen final evaluation protocol.
 4. Independent outer evaluation, calibration/intervals, and a compatible second dataset.
 5. Professor Dong's review of claims, authorship, and venue.
+
+## Critique-driven revision
+
+Three agents completed validity, novelty, and provenance reviews, followed by repair/claim checks; see the [closure ledger](reviews/CLOSURE_LEDGER.md). Generic shared/specific preservation also overlaps ShaSpec and DRIM; partial/matched residuals conserve the original mean, so an extra-feature benefit can be a reparameterization or capacity effect. The narrowed proposal is mean plus a small fixed-dimensional agreement contrast with decisive duplicate/random/heterogeneity controls. This remains an unimplemented, unproven method hypothesis.
+
+The [new native quarantine](TCGA_QUARANTINE_PROTOCOL.md) reserves 32 TCGA patients before classifier fitting and begins with frozen ImageNet ResNet. Phikon TCGA-source exposure is confirmed, exact slide overlap unknown. The [Professor brief](evidence/PROFESSOR_BRIEF.md) now states the global BreakHis reuse and all provenance limitations explicitly. Case identity, native-task interpretation, and contribution choice are decisions for the discussion rather than claims to hide in a footnote.

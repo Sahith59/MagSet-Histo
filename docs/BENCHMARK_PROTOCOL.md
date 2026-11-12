@@ -6,9 +6,9 @@ This document describes the implemented initial pilot. It does not assert a fina
 
 Use the official 7,909-image archive and the recorded image manifest. A prediction case is the provider-defined subtype-qualified identifier, reconstructed from the filename prefix and raw identifier. There are 82 such cases. Preserve the distinction from 81 unqualified identifiers and 70 stripped numeric stems.
 
-The original five trial lists are repeated holdouts. Each trial assigns 54 cases to training and 28 to testing, with no provider-case overlap. The original test assignments are retained and unused by the pilot. Shared numeric stems can cross these assignments; a stricter stem protocol is a separately reported sensitivity analysis, not silently substituted for the provider's protocol.
+The original five trial lists are repeated holdouts. Each trial assigns 54 cases to training and 28 to testing, with no provider-case overlap within that trial. Outer-role predictions have not been scored. The same case can fit or validate another trial: all 82 cases have entered development somewhere. These runs do not retain a globally pristine confirmation cohort. Shared numeric stems can cross assignments; their clinical meaning is unresolved, and a stricter stem protocol is a separate sensitivity question.
 
-For each trial, choose one inner-validation case per subtype from outer training using seed 812 and sorted case lists. This gives 46 fit cases, eight validation cases, and 28 untouched outer cases. No test case enters fitting, normalization, or hyperparameter selection. The validation set is very small, especially for rare classes; pilot scores must not be interpreted as precise generalization estimates.
+For each trial, choose one inner-validation case per subtype from outer training using seed 812 and sorted case lists. This gives 46 fit cases, eight validation cases, and 28 own-trial outer cases. A case in that trial's test role does not enter its fitting, normalization, or hyperparameter selection. This exclusion is per trial, not global across development. The eight-case validation set is very small; pilot scores are exploratory rather than precise generalization estimates.
 
 ## Frozen encoders and transforms
 

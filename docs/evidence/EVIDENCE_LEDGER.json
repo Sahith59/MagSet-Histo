@@ -1,0 +1,14 @@
+{
+  "verified_runs": 175,
+  "unique_validation_provider_cases": 31,
+  "provider_cases_ever_used_for_fit_or_validation": 82,
+  "validation_cases_also_outer_in_another_trial": 27,
+  "manifest_sha256": "958893f923a745220fac66f19656bcdbfb38996f70ef8044e1349619f4102e31",
+  "protocol_sha256": "dca9a93bb570fd7cfec9fe72e5cad9ac76f838725b03c7a7a593824fecd51134",
+  "result_ledger_sha256": "c8c757097118d572a106ddbf4ff5d3f5747737c7db36c0b374a4c4a292e5cadb",
+  "interpretation": "trusted labels/declared protocol verified; clinical identity and globally independent confirmation are not established",
+  "native_manifest_sha256": "a668cf85151f29a163628210851c007faaf8c9679b7c9f5eaadc8c031f06e27b",
+  "native_protocol_sha256": "f1baf1ac21f5f7e117768951619dc6f94a96ba63c72ad810f31fc103fe100c69",
+  "base_commit_at_render": "da76a38b560bdbcfb634dab24e3d8fcc1fc02375",
+  "artifact_builder_sha256": "d00972aa3f5d078adac55c4667111cf6059ef2de6a9a5045283392de33ce6d80"
+}

@@ -28,6 +28,8 @@ All 65,312 TCGA-MS images have also passed full decoding. The next comparison al
 
 That 50-configuration comparison is now complete: all saved normalization and input-context checks passed. The [matched results](docs/CAPACITY_RESULTS.md) still favor linear mean fusion on both inner splits. There are now 175 completed validation configurations in total; these are exploratory development runs, not independent clinical samples or final test results.
 
+Three critique agents completed two review rounds. Trusted metadata checks now confirm all 175 saved label/split records, but repeated BreakHis trials have used all 82 provider cases in development somewhere. No outer-role scores have been computed; there is no globally pristine BreakHis confirmation cohort. A new [TCGA supervised quarantine](docs/TCGA_QUARANTINE_PROTOCOL.md) reserves 32 patients before any classifier fitting. Phikon has known TCGA-source pretraining, so frozen ImageNet ResNet is the first provenance control for this secondary task.
+
 ## Getting started
 
 The download/indexing tools use Python 3.9 or newer and the standard library. The baseline checks additionally need NumPy, SciPy, scikit-learn, and Pillow:
@@ -57,6 +59,8 @@ Neural checks additionally require `torch==2.6.0`; without it those checks are e
 - [Split and training-seed sensitivity](docs/SENSITIVITY_RESULTS.md)
 - [Baseline and fair-comparison contract](docs/COMPARISON_PLAN.md)
 - [Normalization-matched capacity results](docs/CAPACITY_RESULTS.md)
+- [Professor Dong evidence brief](docs/evidence/PROFESSOR_BRIEF.md) and [offline presentation](docs/evidence/PROFESSOR_DECK.html)
+- [Critique findings and closure ledger](docs/reviews/CLOSURE_LEDGER.md)
 - [Implemented methods draft](paper/methods-draft.md)
 
 The historical reference is [Lang et al., SPIE Medical Imaging 2021](https://doi.org/10.1117/12.2582299). The closest task and mechanism comparisons currently include [MagViT](https://arxiv.org/abs/2608.16959) and [M2OTCA](https://doi.org/10.1016/j.media.2026.104082). See the related-work document for distinctions between their tasks and our intended evaluation.
