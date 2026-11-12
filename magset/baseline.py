@@ -109,18 +109,30 @@ def main():
     p.add_argument('--method',choices=['mean','concat','late'],required=True)
     p.add_argument('--trial',type=int,choices=range(1,6),required=True);p.add_argument('--seed',type=int,default=812)
     p.add_argument('--output',type=Path,required=True);p.add_argument('--code-sha',required=True)
+    p.add_argument('--normalization',choices=['case-mean-v1','field-moments-v2'],default='case-mean-v1',
+                   help='Use field-moments-v2 to match hierarchical field models')
     p.add_argument('--evaluate-test',action='store_true',help='Explicitly enable outer evaluation after protocol freeze')
     a=p.parse_args()
     if a.output.exists():raise ValueError('Run output already exists; refusing to overwrite')
     rows=read_manifest(a.manifest);protocol=json.loads(a.protocol.read_text());mh=file_hash(a.manifest)
     if protocol['manifest_sha256']!=mh:raise ValueError('Protocol and manifest differ')
-    cases,z,metadata=load_case_features(rows,a.features,a.encoder)
+    bags=None
+    if a.normalization=='field-moments-v2':
+        from .bags import load_bags
+        cases,bags,metadata=load_bags(rows,a.features,a.encoder,mh)
+        z=np.asarray([[fields.mean(axis=0) for fields in case] for case in bags])
+    else:
+        cases,z,metadata=load_case_features(rows,a.features,a.encoder)
     if metadata[0]['manifest_sha256']!=mh:raise ValueError('Features and current manifest differ')
     y=np.asarray([c['label'] for c in cases]);roles=protocol['trials'][str(a.trial)]['case_roles']
     train,val,test=stratified_inner_split(cases,roles,a.seed)
     # Only outer-training/inner-training cases fit normalization; then all absent
     # standardized views are zeroed by vectorize rather than contributing pixels.
-    mean=z[train].mean(axis=0);std=z[train].std(axis=0);std=np.where(std>1e-6,std,1.0)
+    if bags is not None:
+        from .bags import fit_normalization
+        mean,std=fit_normalization(bags,train)
+    else:
+        mean=z[train].mean(axis=0);std=z[train].std(axis=0);std=np.where(std>1e-6,std,1.0)
     z=(z-mean)/std
     candidates=[];best=None
     for C in (0.01,0.1,1.0,10.0):
@@ -138,6 +150,7 @@ def main():
             'unit':protocol['unit'],'encoder':a.encoder,'method':a.method,'trial':a.trial,'seed':a.seed,
             'code_sha':a.code_sha,'manifest_sha256':mh,'protocol_sha256':file_hash(a.protocol),
             'class_names':CLASS_NAMES,'selected_C':C,'validation':metric,'candidates':candidates,
+            'normalization_policy':a.normalization,
             'case_ids':{role:[cases[i]['case_id'] for i in indices] for role,indices in [('train',train),('validation',val),('test',test)]},
             'field_policy':'mean over all fields within each magnification; identical across fusion baselines',
             'model_selection':'fixed four-value C grid on inner validation only; outer cases excluded',

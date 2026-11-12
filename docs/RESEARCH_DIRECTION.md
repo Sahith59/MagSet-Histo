@@ -1,6 +1,6 @@
 # Research direction and evidence gates
 
-Updated November 11, 2026. The implemented neural models are baselines. The candidate partial-matching method remains an untested hypothesis.
+Updated November 12, 2026. The implemented neural models are baselines. The candidate partial-matching method remains an untested hypothesis.
 
 ## What current evidence supports
 
@@ -36,7 +36,9 @@ Continue only if the effect survives different inner splits/training seeds and h
 
 [BRACS details](https://www.bracs.icar.cnr.it/details/) describe seven original categories and provide patient/split metadata. Its [download page](https://www.bracs.icar.cnr.it/download/) currently requires an account, and its [rules](https://www.bracs.icar.cnr.it/rules/) require accurate registration and citation. No registration, author contact, or terms acceptance has been performed. TCGA-MS offers an immediately inspectable secondary route while BRACS access remains an optional later step.
 
-The TCGA-MS download and checksum/metadata audit are now complete; see [the audit](TCGA_MS_AUDIT.md). After excluding 19 `._` sidecar-named entries, there are 65,312 candidate images covering 128 labeled slides/patients; 122 have all seven resolutions. The count differs from the paper, some fold roles omit classes, and filename coordinates do not establish seven-scale pairing. Image decoding and the native evaluation protocol remain prerequisites to training.
+The TCGA-MS download, checksum/metadata audit, and full image decoding are complete; see [the audit](TCGA_MS_AUDIT.md). After excluding 19 `._` sidecar-named entries, all 65,312 images passed RGB decoding at 224×224 with zero errors. They cover 128 labeled slides/patients; 122 have all seven resolutions. The count differs from the paper, some fold roles omit classes, and filename coordinates do not establish seven-scale pairing. The native evaluation protocol and pretraining-overlap audit remain prerequisites to training.
+
+The [fair-comparison contract](COMPARISON_PLAN.md) distinguishes measured internal controls from unfinished published-method adaptations. The next small round aligns actual linear/neural normalization and tests capacity or dropout individually. Its scores must not be selected using outer-test outcomes.
 
 ## Remaining paper gates
 

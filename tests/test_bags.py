@@ -13,6 +13,27 @@ from synthetic_bags import write_fixture
 
 
 class BagsTests(unittest.TestCase):
+    def test_mean_baseline_uses_the_same_training_only_field_normalization(self):
+        from magset.baseline import stratified_inner_split
+        with tempfile.TemporaryDirectory() as tmp:
+            manifest,protocol,cache=write_fixture(tmp)
+            cases,bags,_=load_bags(read_manifest(manifest),cache,'phikon-v2',file_hash(manifest))
+            roles=json.loads(protocol.read_text())['trials']['1']['case_roles']
+            train,_,_=stratified_inner_split(cases,roles,812)
+            mean,std=fit_normalization(bags,train)
+            output=Path(tmp)/'mean'
+            run=subprocess.run([sys.executable,'-m','magset.baseline','--manifest',str(manifest),
+                '--protocol',str(protocol),'--features',str(cache),'--encoder','phikon-v2','--method','mean',
+                '--trial','1','--normalization','field-moments-v2','--output',str(output),
+                '--code-sha','synthetic'],capture_output=True,text=True)
+            self.assertEqual(run.returncode,0,run.stderr)
+            report,_=verify_run(output/'metrics.json')
+            self.assertEqual(report['normalization_policy'],'field-moments-v2')
+            self.assertNotIn('test',report)
+            with np.load(output/'linear-model.npz',allow_pickle=False) as saved:
+                np.testing.assert_array_equal(saved['mean'],mean)
+                np.testing.assert_array_equal(saved['std'],std)
+
     def test_normalization_excludes_held_out_and_balances_field_counts(self):
         bags = [[np.array([[float(i)],[float(i+2)]]) for _ in range(4)] for i in range(3)]
         mean,std = fit_normalization(bags,[0,1])

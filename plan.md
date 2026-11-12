@@ -1,6 +1,6 @@
 # MAGSET-Histo execution plan
 
-Updated November 11, 2026. This is a living execution plan, not a report of completed experiments. Public research status is recorded here; private working copies also maintain a separate running-state handoff. Checkboxes are completion claims and must be updated only with evidence.
+Updated November 12, 2026. This is a living execution plan, not a report of completed experiments. Public research status is recorded here; private working copies also maintain a separate running-state handoff. Checkboxes are completion claims and must be updated only with evidence.
 
 ## Objective and scope
 
@@ -257,3 +257,11 @@ Prespecified next sensitivity round: repeat all six neural methods across five p
 In parallel, the pinned public TCGA-MS archive downloaded through SLURM and matched its provider checksum. Its archive/label audit is complete: 65,312 candidate images after sidecar exclusion, 128 labeled patients, and 122 complete seven-resolution slides. Some fold roles omit classes and the release differs from the paper's image count. This does not establish dataset compatibility: full decoding, native protocol/eligibility, correspondence assumptions, and encoder-pretraining overlap remain prerequisites to fitting. See `docs/TCGA_MS_AUDIT.md`. BRACS access requires an account. Primary sources and the remaining novelty questions are recorded in `docs/RESEARCH_DIRECTION.md`; baseline methods are drafted in `paper/methods-draft.md`.
 
 The 45 prespecified sensitivity configurations are now complete and independently verified, with no convergence/numerical warnings or tracebacks in their logs. Results are generated in `docs/SENSITIVITY_RESULTS.md`. Changing the inner split changes both score levels and the strongest neural row. The original linear mean control remains higher than neural rows for both checked splits. Preserve these negative outcomes; do not select only the favorable validation split. Next data-readiness jobs safely extract the pinned TCGA-MS archive and fully decode seven resolution shards (maximum four workers), with no second-dataset fitting or test scoring. The next model work should test reduced capacity/stronger regularization, reconcile grouping sensitivity, and specify a native second-dataset protocol before candidate matching.
+
+## November 12 checkpoint and comparison registration
+
+All prior MagSet jobs are complete. TCGA-MS extraction succeeded and all seven decoding reports match the pinned inventory/archive: 65,312 RGB images, 224×224, zero errors. The metadata audit now includes verified image readiness. There is still no second-dataset fitting or final outer-test result.
+
+Registered the next bounded round in `docs/COMPARISON_PLAN.md`: ten mean-linear fits using exactly the neural field normalization, plus forty one-factor capacity/dropout controls across the two existing inner splits and two neural architectures. Reference the twenty already completed original neural configurations; do not repeat them. Every comparison must pass an actual saved-normalization-array equality check, exact case/cache identity, independent score recomputation, and configuration-difference checks. Use at most four GPU and four CPU workers. Keep all outcomes, including regressions.
+
+The next paper benchmark requires exact compatible reproductions or clearly labeled adaptations of MagViT and M2OTCA, with same-task baselines and capacity controls. The existing contextual gate and one-block attention model are useful internal controls, not exact published-method reproductions. Native TCGA eligibility/labels/resolutions and pretraining overlap remain to define before training there.
