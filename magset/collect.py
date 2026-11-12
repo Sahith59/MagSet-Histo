@@ -71,8 +71,8 @@ def verify_run(path):
     return report, {'metrics_sha256':file_hash(path),'predictions_sha256':file_hash(score_path)}
 
 
-def collect(root, seed=812, allow_incomplete=False):
-    expected={(e,m,t,seed) for e in ENCODERS for m in METHODS for t in range(1,6)}
+def collect(root, seed=812, allow_incomplete=False, encoders=ENCODERS, methods=METHODS, trials=(1,2,3,4,5)):
+    expected={(e,m,t,seed) for e in encoders for m in methods for t in trials}
     records={};provenance=[]
     for path in sorted(Path(root).glob('*/metrics.json')):
         report,hashes=verify_run(path)
@@ -82,23 +82,24 @@ def collect(root, seed=812, allow_incomplete=False):
         records[key]=report;provenance.append({'run':path.parent.name,**hashes})
     missing=sorted(expected-set(records))
     if missing and not allow_incomplete:
-        raise ValueError('Validation matrix incomplete: %d of 30 runs missing'%len(missing))
+        raise ValueError('Validation matrix incomplete: %d of %d runs missing'%(len(missing),len(expected)))
     for field in ['code_sha','manifest_sha256','protocol_sha256','unit']:
         if len({r[field] for r in records.values()})>1:
             raise ValueError('Run provenance differs: '+field)
     summaries=[]
     # Incomplete collections are status reports, never partial method rankings.
     if not missing:
-        for encoder in ENCODERS:
-            for method in METHODS:
-                runs=[records[(encoder,method,t,seed)] for t in range(1,6)]
-                summaries.append({'encoder':encoder,'method':method,'trials':5,
-                    'mean_validation_subset_macro_f1':sum(r['validation']['mean_subset_macro_f1'] for r in runs)/5,
+        for encoder in encoders:
+            for method in methods:
+                runs=[records[(encoder,method,t,seed)] for t in trials]
+                summaries.append({'encoder':encoder,'method':method,'trials':len(trials),
+                    'mean_validation_subset_macro_f1':sum(r['validation']['mean_subset_macro_f1'] for r in runs)/len(runs),
                     'minimum_trial_worst_subset_macro_f1':min(r['validation']['worst_subset_macro_f1'] for r in runs),
-                    'mean_validation_full_view_macro_f1':sum(r['validation']['subsets']['40+100+200+400']['macro_f1'] for r in runs)/5,
-                    'selected_C_by_trial':[r['selected_C'] for r in runs]})
+                    'mean_validation_full_view_macro_f1':sum(r['validation']['subsets']['40+100+200+400']['macro_f1'] for r in runs)/len(runs),
+                    'selected_configuration_by_trial':[r.get('selected_configuration',{'C':r.get('selected_C')}) for r in runs]})
     return {'status':'complete validation-only pilot' if not missing else 'incomplete',
-            'verified_runs':len(records),'expected_runs':30,'seed':seed,'missing':missing,
+            'verified_runs':len(records),'expected_runs':len(expected),'seed':seed,'missing':missing,
+            'matrix':{'encoders':encoders,'methods':methods,'trials':trials},
             'collector_code_sha256':file_hash(__file__),
             'summary':summaries,'artifact_hashes':provenance,
             'interpretation':'Inner-validation results from repeated holdouts; not outer-test evidence, independent-fold confidence intervals, or a clinical performance claim.'}
@@ -108,7 +109,10 @@ def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--runs',type=Path,required=True);p.add_argument('--output',type=Path,required=True)
     p.add_argument('--seed',type=int,default=812);p.add_argument('--allow-incomplete',action='store_true')
-    a=p.parse_args();report=collect(a.runs,a.seed,a.allow_incomplete)
+    p.add_argument('--encoders',nargs='+',choices=ENCODERS,default=ENCODERS)
+    p.add_argument('--methods',nargs='+',default=METHODS)
+    p.add_argument('--trials',nargs='+',type=int,choices=range(1,6),default=(1,2,3,4,5))
+    a=p.parse_args();report=collect(a.runs,a.seed,a.allow_incomplete,a.encoders,a.methods,a.trials)
     a.output.parent.mkdir(parents=True,exist_ok=True)
     a.output.write_text(json.dumps(report,indent=2,allow_nan=False)+'\n')
     print(json.dumps({k:report[k] for k in ['status','verified_runs','expected_runs','summary']},indent=2))
