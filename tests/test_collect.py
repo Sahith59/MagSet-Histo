@@ -53,5 +53,19 @@ class CollectTests(unittest.TestCase):
             path,_=fixture(tmp);p=path.parent/'predictions.jsonl';text=p.read_text().replace('"role": "validation"','"role": "test"',1);p.write_text(text)
             with self.assertRaises(ValueError):verify_run(path)
 
+    def test_mixed_training_seeds_and_case_assignments_are_rejected(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path,report=fixture(tmp)
+            other=path.parent.with_name('other');other.mkdir()
+            report.update(method='other',training_seed=813)
+            (other/'metrics.json').write_text(json.dumps(report))
+            (other/'predictions.jsonl').write_text((path.parent/'predictions.jsonl').read_text())
+            with self.assertRaisesRegex(ValueError,'training_seed'):
+                collect(tmp,methods=('mean','other'),encoders=('phikon-v2',),trials=(1,))
+            report.pop('training_seed');report['case_ids']['train'][0]='different-fitting-case'
+            (other/'metrics.json').write_text(json.dumps(report))
+            with self.assertRaisesRegex(ValueError,'case membership'):
+                collect(tmp,methods=('mean','other'),encoders=('phikon-v2',),trials=(1,))
+
 
 if __name__=='__main__':unittest.main()

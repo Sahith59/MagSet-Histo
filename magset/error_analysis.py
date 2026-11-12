@@ -7,8 +7,8 @@ from .collect import collect, verify_run
 from .data import CLASS_NAMES
 
 
-def analyze(root):
-    verified = collect(root)
+def analyze(root, **matrix):
+    verified = collect(root,**matrix)
     groups = defaultdict(list)
     for path in sorted(Path(root).glob('*/metrics.json')):
         report, _ = verify_run(path)
@@ -74,7 +74,7 @@ def analyze(root):
 
 def markdown(report):
     lines = ['# Validation error analysis', '',
-             'Computed from all 30 verified validation runs. Outer-test predictions were not used. '
+             ('Computed from all %d verified validation runs. '%report['verified_runs'])+'Outer-test predictions were not used. '
              'Each trial has eight validation cases, and trials can reuse a case. '
              'Repeated records below are descriptive; they do not increase the independent sample size.', '',
              '## Available views', '',

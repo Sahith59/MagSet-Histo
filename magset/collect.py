@@ -72,6 +72,8 @@ def verify_run(path):
 
 
 def collect(root, seed=812, allow_incomplete=False, encoders=ENCODERS, methods=METHODS, trials=(1,2,3,4,5)):
+    if any(not values or len(set(values)) != len(values) for values in (encoders,methods,trials)):
+        raise ValueError('Matrix dimensions must be nonempty and unique')
     expected={(e,m,t,seed) for e in encoders for m in methods for t in trials}
     records={};provenance=[]
     for path in sorted(Path(root).glob('*/metrics.json')):
@@ -83,9 +85,14 @@ def collect(root, seed=812, allow_incomplete=False, encoders=ENCODERS, methods=M
     missing=sorted(expected-set(records))
     if missing and not allow_incomplete:
         raise ValueError('Validation matrix incomplete: %d of %d runs missing'%(len(missing),len(expected)))
-    for field in ['code_sha','manifest_sha256','protocol_sha256','unit']:
-        if len({r[field] for r in records.values()})>1:
+    for field in ['code_sha','manifest_sha256','protocol_sha256','unit','training_seed','config_sha256']:
+        if len({r.get(field) for r in records.values()})>1:
             raise ValueError('Run provenance differs: '+field)
+    for trial in trials:
+        assignments={json.dumps({role:sorted(ids) for role,ids in r['case_ids'].items()},sort_keys=True)
+                     for r in records.values() if r['trial']==trial}
+        if len(assignments)>1:
+            raise ValueError('Methods disagree on case membership within trial')
     summaries=[]
     # Incomplete collections are status reports, never partial method rankings.
     if not missing:
