@@ -103,7 +103,7 @@ Primary metric: equal-subset mean patient-level macro F1. Also report the worst-
 
 For each subset, restrict inputs, not labels. Use a fixed complete-view cohort for artificial missingness when feasible. Report naturally incomplete cases separately. Masks, field subsampling, and data augmentations do not create new independent patients. If evaluation eligibility changes, disclose patient counts and do not attribute population changes to the model.
 
-Provisional split choice: three outer patient-group folds subject to the audited count of independent groups in the rarest subtype. The supplied tables contain subtype/count inconsistencies, so they do not determine the final protocol. Verify counts before freezing. Use class-covered validation from outer training patients where feasible; if too few cases remain, use a prespecified conservative tuning scheme and explain the limitation. Use three training seeds per selected final configuration. Outer folds are never used for model/epoch/hyperparameter selection.
+Provisional split choice (superseded for the initial pilot by the provider-case track described below): three outer patient-group folds subject to the audited count of independent groups in the rarest subtype. The supplied tables contain subtype/count inconsistencies, so they do not determine the final protocol. Verify counts before freezing. Use class-covered validation from outer training patients where feasible; if too few cases remain, use a prespecified conservative tuning scheme and explain the limitation. Use three training seeds per selected final configuration. Outer folds are never used for model/epoch/hyperparameter selection.
 
 Keep raw and conservative identifiers, exact membership lists, split-generation seed, dataset hash, and group-disjointness reports. Freeze membership/config before final evaluation. The original five 70/30 trials, ordinary five-fold CV, and new three-fold grouped evaluation are different protocols; name each accurately. If reproducing a published binary result, use its exact protocol in a separate comparison rather than compare its score directly to an eight-class score.
 
@@ -219,3 +219,11 @@ Refresh job/storage state, resume the first unfinished milestone, and record new
 ## Stop and reconsider conditions
 
 Change the design if grouping cannot be verified, the candidate overlaps substantially with existing methods, the primary metric fails on rare subtypes, most gains disappear with capacity controls, or the second dataset contradicts the claim. Record negative evidence. An honest, narrowed contribution is preferable to unsupported novelty or cherry-picked benchmarks.
+
+## November 11 implementation checkpoint
+
+The official archive is downloaded and indexed. Its provider trial files establish 82 subtype-qualified case identities, with 54 train/28 test cases per trial and no case crossing roles. Numeric-stem grouping differs and can combine subtypes; it is a separate sensitivity question. The primary pilot uses the five provider repeated holdouts with inner validation from the training cases only. It is labeled a provider-case benchmark, without asserting independently reverified clinical patient identity. Three-fold stem stratification is infeasible for adenosis's two stems.
+
+Implemented tools: provider-protocol audit; full image-decode shards; pinned Phikon-v2/ResNet-50 frozen extraction; mean, masked concatenation, and late-fusion logistic baselines; model selection across a fixed four-value regularization grid on eight inner-validation cases; explicit outer-evaluation opt-in; score/model/provenance records. Existing labels and images are never used to adapt the frozen pretrained encoder.
+
+Execution dependency: isolated CPU runtime/bootstrap and pinned checkpoint download; one-GPU real-feature pilot; up to four GPU feature workers over eight encoder/magnification shards; up to six CPU workers for 30 validation-only configurations (two encoders, three fusion methods, five provider trials, seed 812). Each run records source/manifest/model revisions. Final statistical analysis and learned fusion/candidate mechanisms remain unfinished.

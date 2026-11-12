@@ -16,13 +16,16 @@ The official BreakHis archive contains **7,909 images**. Our initial audit confi
 
 We will evaluate every nonempty combination of the four magnifications, giving **15 availability settings**. Related images must remain in the same split. Eight-class macro F1, per-class recall, full-view and worst-subset performance, uncertainty, and computation will be reported separately from image-level accuracy.
 
+The initial code now includes pinned frozen-feature extraction for Phikon-v2 and ResNet-50, provider-protocol auditing, full PNG validation, and mean/concatenation/late-fusion linear baselines. Initial benchmark jobs select hyperparameters on inner validation cases only; outer-test scoring requires an explicit flag.
+
 There are no new model-performance results yet. The supplied historical notebooks reported 93.73% and 94.99% accuracy on 40× images, but their split and model-selection procedures do not establish generalization to unseen patients. Those scores are not MAGSET results.
 
 ## Getting started
 
-The data preparation tools use Python 3.9 or newer and the standard library:
+The download/indexing tools use Python 3.9 or newer and the standard library. The baseline checks additionally need NumPy, SciPy, scikit-learn, and Pillow:
 
 ```bash
+python3 -m pip install numpy==1.26.4 scipy==1.15.2 scikit-learn==1.6.1 Pillow==11.1.0
 python3 -m unittest discover -s tests -v
 python3 scripts/prepare_breakhis.py --data-root /path/to/breakhis --download
 ```

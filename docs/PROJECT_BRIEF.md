@@ -9,7 +9,7 @@
 | Encoder | First candidate: pretrained Phikon-v2 ViT-L; compare UNI2-h if access is available and an ImageNet encoder. Freeze features first, then test controlled adapter/fine-tuning. |
 | Architecture | Encode images, aggregate within each magnification, fuse the observed scale representations, classify. A mask excludes absent views. |
 | Candidate mechanism | Availability-conditioned partial evidence transport: match comparable evidence across observed scale sets while preserving unmatched scale-specific evidence. This is a hypothesis; OT, missing-view masking, and residuals already have prior art. |
-| Split | Group by audited patient identifiers. Provisional primary protocol: group-disjoint outer evaluation, class-covered inner validation where feasible, and repeated training seeds. Exact protocol freezes after identifier reconciliation. |
+| Split | Initial pilot: five provider-defined case holdouts (54 train/28 test), with eight inner-validation cases. Outer-test scoring disabled. Numeric-stem grouping is a separate sensitivity analysis. |
 | Primary result | Mean eight-class patient macro F1 across all 15 nonempty magnification subsets. Also full-view and worst-subset F1, class recall, calibration, and uncertainty. |
 | Current results | Only historical 40X notebook outputs: 93.73% and 94.99% accuracy. No new model results. |
 | Historical base paper | Lang et al., SPIE Medical Imaging 2021, DOI 10.1117/12.2582299, with Dong Hye Ye as coauthor. |
