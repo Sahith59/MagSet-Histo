@@ -1,5 +1,7 @@
 # MagSet-Histo in plain language
 
+**Current priority:** BreakHis is the main dataset. Finish the [quick project baseline](BREAKHIS_MILESTONE_PLAN.md) first. TCGA and novel-paper follow-up below are deferred research records. The [BreakHis first-results page](BREAKHIS_FIRST_RESULTS.md) is the current deliverable.
+
 Updated November 12, 2026. This explains the actual experiments and distinguishes them from proposals. The repository name is a working name; the latest pilot uses a linear classifier rather than a transformer.
 
 ## 1. What problem are we solving?

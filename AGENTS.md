@@ -2,6 +2,10 @@
 
 Current user priority (November12,2026): **BreakHis first.** Finish the quick BreakHis project baseline deliverable for Professor Dong before novel-method/paper work. TCGA follow-up is deferred; preserve its completed artifacts without making it the critical path. Report baseline execution, exploratory validation and final clinical/research claims separately. See `docs/BREAKHIS_MILESTONE_PLAN.md`.
 
+Stay on BreakHis through model improvement, evaluation and the project report. Completing the first baseline milestone is not permission to switch back to TCGA; that work remains deferred until the BreakHis project deliverable is finished or the user changes priority.
+
+Use `scripts/report_breakhis_milestone.py` for the current first-results page/professor brief. The older mixed-dataset packet/deck builder is a historical research artifact, not the current milestone workflow.
+
 Read `README.md`, `plan.md`, and `docs/RELATED_WORK.md` before changing the research direction. When present in the private workspace, also read `memory/STATE.md`, `memory/PROJECT.md`, and `.local/AGENTS.private.md` for the current handoff and cluster operating rules.
 
 - Use all four BreakHis magnifications and support any nonempty available subset. The original 40X notebooks are historical experiments, not the proposed architecture.

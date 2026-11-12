@@ -1,5 +1,13 @@
 # MAGSET-Histo execution plan
 
+## Current user priority: BreakHis quick deliverable first
+
+User clarified on November12,2026 that BreakHis is the main dataset and its project deliverable with Professor Dong must be finished first. This section supersedes earlier next-step language that prioritized TCGA or novelty. Preserve completed TCGA work as deferred background; do not expand it now.
+
+Immediate acceptance contract: `docs/BREAKHIS_MILESTONE_PLAN.md`. First checked baseline results are available now in `docs/BREAKHIS_FIRST_RESULTS.md`. Complete the raw-image replay and short professor handoff, then register one bounded standard BreakHis improvement. Distinguish baseline execution from reliable final performance and method novelty. No globally pristine BreakHis confirmation cohort remains after development; clinical grouping is unresolved.
+
+The current baseline uses frozen Phikon-v2 fields, fitting-only saved normalization, mean pooling plus availability indicators and a logistic head. Do not imply a novel transformer is the implemented model. Both inner splits and all trials must be reported. The historical roadmap below is retained as research context, not the immediate work queue.
+
 Updated November 12, 2026. This is a living execution plan, not a report of completed experiments. Public research status is recorded here; private working copies also maintain a separate running-state handoff. Checkboxes are completion claims and must be updated only with evidence.
 
 ## Objective and scope
@@ -311,3 +319,13 @@ Completed a targeted source/code comparison of the three closest references. Pin
 Added a trusted-hash, development-only analysis of all28 one-view-addition edges using existing960 pilot predictions. No refits or reserved predictions. The mean control has26 wrong-to-right and22 right-to-wrong transitions across448 repeated patient/edge comparisons; five of16 patients are harmed on at least one edge. These are dependent descriptive events, not448 independent patients, significance or a proven remedy. Every edge/arm is retained publicly as aggregates. Four additional tests cover known help/harm/confidence counts, invalid coverage and pinned label/source guards; all54 tests passed.
 
 Next: one narrow hypothesis and decisive control, compatible-method specification, a newly registered small fit budget, then controlled execution. The failed agreement-specific gate remains in force. No automatic parameter/seed/temperature sweep, fine-tuning, original rotating-fold training, relabeling or reserved evaluation was launched. Writing and breast-data/grouping readiness proceed alongside design.
+
+## BreakHis-first baseline milestone completed
+
+User clarified that the quick BreakHis project with Professor Dong is the immediate deliverable, ahead of TCGA and novel-paper work. The existing ten matched Phikon mean runs were independently rechecked against trusted labels/splits and all1,200 saved validation records. Split812 mean-subset F1/accuracy0.3843/45.7%, all-view F1/accuracy0.4083/47.5%; split8130.3169/38.3%, all-view0.3083/37.5%. Both splits and all trials are retained. These involve31 distinct validation provider cases, not1,200 independent patients.
+
+Implemented a checksum-guarded original-image prediction replay. GPU job4959781 completed0 in44seconds on immutable source9448a7e319167b7417670a882552edb372603fd3. It reused the actual saved trial1/seed812 head, reconstructed all120 archived validation probabilities from the cache, then read121 original images of the first sorted validation case and replayed all15 availability settings. Maximum differences4.44e-16 cached and5.517742757e-08 raw. No new fits or outer-role predictions. An independent reviewer verified the actual artifact, original-case counts, truth/class order, source/head/archive hashes and all15 raw probability vectors. A discovered report-integrity gap was repaired and regression-tested before success was reported. All60 tests pass.
+
+Current deliverables are `docs/BREAKHIS_FIRST_RESULTS.md`, the BreakHis-first professor brief, `docs/BREAKHIS_MILESTONE_PLAN.md`, prediction/report commands, and `docs/reviews/BREAKHIS_MILESTONE_REVIEW.md`. They establish a working baseline milestone only. Predictive quality is modest (including zero phyllodes recall in these selected validation records); final clinical grouping, clean confirmation, method novelty and a paper remain unfinished.
+
+Continue on BreakHis: specify one bounded standard improvement, run it under the fixed provider-case development protocol, then package its evaluation and project report. Do not return to TCGA after baseline completion. First numbers are available now; a next changed-model table is targeted for the next one or two work sessions as a conditional implementation/queue estimate, with no gain guaranteed. No new training experiment has been launched by the replay job.

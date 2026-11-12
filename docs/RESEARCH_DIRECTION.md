@@ -1,5 +1,7 @@
 # Research direction and evidence gates
 
+**Current priority:** BreakHis is the main dataset. Finish the [quick project baseline](BREAKHIS_MILESTONE_PLAN.md) first. TCGA and novel-paper follow-up below are deferred research records. The [BreakHis first-results page](BREAKHIS_FIRST_RESULTS.md) is the current deliverable.
+
 Updated November 12, 2026. The implemented neural models are baselines. The original partial-transport candidate remains unimplemented. The smaller affinity-contrast candidate was implemented and tested; it did not beat duplicate features.
 
 ## Current decision after the fixed native pilot

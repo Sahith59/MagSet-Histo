@@ -1,72 +1,44 @@
 # MagSet-Histo
 
-Breast tissue can look very different at different microscope magnifications. A wider view shows tissue structure; a closer view reveals cell detail. This project studies how to combine those views to classify breast tumor subtypes, including cases where some magnifications are unavailable.
+**BreakHis is our main dataset. The immediate goal is the quick BreakHis project deliverable for Professor Dong.** TCGA follow-up is deferred. A novel method and conference paper are later research milestones.
 
-We use **MAGSET** as a working name for a Magnification-Aware Set Transformer. The method is under development. The first experiments use BreakHis at **40×, 100×, 200×, and 400×**, with eight tumor-subtype labels.
+We classify a provider case into one of eight breast-tumor subtypes using its available microscope views at 40×,100×,200× and 400×. We support all 15 nonempty view combinations without assuming that fields are physically paired across zooms.
 
-## What we are testing
+## First checked BreakHis numbers
 
-The starting point is a pretrained pathology image encoder followed by a model that combines the available sets of images. We will compare simple averaging, learned gating, and transformer fusion before testing a candidate that matches comparable evidence across magnifications while retaining evidence unique to each view.
+| Validation split | Mean-subset macro F1 | Mean-subset case accuracy | All-view case accuracy |
+| --- | ---: | ---: | ---: |
+|812|0.3843|45.7%|47.5%|
+|813|0.3169|38.3%|37.5%|
 
-Cross-magnification matching and missing-view models already have substantial prior work. Our proposed extension is a research hypothesis, and its value will depend on controlled comparisons and ablations.
+These are exploratory provider-case validation results, averaged over five overlapping trials with46 fitting/8 validation/28 excluded outer-role cases each. F1 is not accuracy. Both splits together involve 31 distinct validation cases; 1,200 saved case/subset records do not represent 1,200 independent patients. All 82 provider cases entered development somewhere, and some clinical identifier relationships remain unresolved. No globally fresh BreakHis confirmation cohort remains.
 
-## Data and evaluation
+The [complete first-results report](docs/BREAKHIS_FIRST_RESULTS.md) shows every trial, class weaknesses, provenance and execution checks. The baseline uses a frozen Phikon-v2 image reader, within-view mean pooling, saved fitting-only normalization, available-view mean plus mask, and a logistic classifier. The working repository name does not imply that this baseline is a novel transformer.
 
-The official BreakHis archive contains **7,909 images**. Our initial audit confirms the four magnification totals. Patient/specimen grouping is still being reconciled with the original protocol: bare filename identifiers are not globally unique, and some specimens share numeric identifier stems.
+## Immediate deliverable
 
-We will evaluate every nonempty combination of the four magnifications, giving **15 availability settings**. Related images must remain in the same split. Eight-class macro F1, per-class recall, full-view and worst-subset performance, uncertainty, and computation will be reported separately from image-level accuracy.
+- Checked eight-class BreakHis baseline and complete development-results table.
+- Raw-image validation replay verified: 121 original images, all 15 view settings; archived probabilities reproduced within 0.000000056.
+- Reproducible source, saved model/prediction checks, clear limits and a short professor handoff.
+- One bounded BreakHis improvement comparison after this baseline is packaged.
 
-The code includes pinned frozen-feature extraction for Phikon-v2 and ResNet-50, provider-protocol auditing, full PNG validation, linear field/case controls, and six masked hierarchical pooling/attention baselines. Pilot model selection uses inner validation only. The new training CLIs do not score outer cases.
+Start with the [focused milestone plan](docs/BREAKHIS_MILESTONE_PLAN.md), [next tasks](docs/NEXT_STEPS.md), and [plain training explanation](docs/TRAINING_STRATEGY.md).
 
-The first 30 validation-only baseline runs are complete; see [the pilot results](docs/VALIDATION_PILOT.md). Final outer-test evaluation has not been run. The supplied historical notebooks reported 93.73% and 94.99% accuracy on 40× images, but their split and model-selection procedures do not establish generalization to unseen patients. Those scores are not MAGSET results.
-
-The next 50 controlled comparisons are also complete and verified; see [field and neural results](docs/FUSION_RESULTS.md). Learned attention has not improved the initial Phikon mean baseline in this exploratory screen. Split/training-seed stability, grouping sensitivity, and external validation remain important next steps. The proposed matching mechanism is still unimplemented and unproven.
-
-All 45 prespecified [seed sensitivity checks](docs/SENSITIVITY_RESULTS.md) are complete. Validation-case selection changes scores substantially, and the linear control remains higher than neural controls for both checked splits. We are prioritizing data/protocol readiness and regularization before a complex matching model.
-
-All 65,312 TCGA-MS images have also passed full decoding. The next comparison aligns linear/neural normalization and varies capacity or dropout one factor at a time; see [the apples-to-apples contract](docs/COMPARISON_PLAN.md). Full published-method reproductions and the candidate mechanism remain unfinished.
-
-That 50-configuration comparison is now complete: all saved normalization and input-context checks passed. The [matched results](docs/CAPACITY_RESULTS.md) still favor linear mean fusion on both inner splits. There are now 175 completed validation configurations in total; these are exploratory development runs, not independent clinical samples or final test results.
-
-Three critique agents completed two review rounds. Trusted metadata checks now confirm all 175 saved label/split records, but repeated BreakHis trials have used all 82 provider cases in development somewhere. No outer-role scores have been computed; there is no globally pristine BreakHis confirmation cohort. A new [TCGA supervised quarantine](docs/TCGA_QUARANTINE_PROTOCOL.md) reserves 32 patients before any classifier fitting. Phikon has known TCGA-source pretraining, so frozen ImageNet ResNet is the first provenance control for this secondary task.
-
-The [fixed native four-fit pilot](docs/NATIVE_DEVELOPMENT_RESULTS.md) is now complete: mean/duplicate/random/affinity mean-subset macro F1 is 0.334028/0.339583/0.334028/0.338194. Affinity does not beat the duplicate-feature control, so this pilot does not support an agreement-specific improvement claim. These are secondary 16-class development results on 16 patients; the 32 reserved patients remain unscored. The original transport candidate remains unimplemented.
-
-## Getting started
-
-The download/indexing tools use Python 3.9 or newer and the standard library. The baseline checks additionally need NumPy, SciPy, scikit-learn, and Pillow:
+## Run checks
 
 ```bash
 python3 -m pip install numpy==1.26.4 scipy==1.15.2 scikit-learn==1.6.1 Pillow==11.1.0
 python3 -m unittest discover -s tests -v
-python3 scripts/prepare_breakhis.py --data-root /path/to/breakhis --download
 ```
 
-On a shared cluster, submit download, validation, and training through its scheduler. See [the portable cluster guide](docs/CLUSTER_SETUP.md) for configuration. The original dataset and pretrained weights are obtained from their providers, not bundled in this repository.
+The full neural checks additionally need torch==2.6.0. The real raw-image replay uses the existing pinned GPU environment, original dataset, pretrained encoder and saved baseline head; these artifacts are not bundled in Git. Submit heavy work through SLURM using [the cluster guide](docs/CLUSTER_SETUP.md). The replay entry point is `python -m magset.breakhis_predict --help`; its validation-only guard excludes fitting and outer-role inputs.
 
-Neural checks additionally require `torch==2.6.0`; without it those checks are explicitly skipped. CI runs them in a separate pinned CPU-PyTorch job. Cluster training uses the pinned CUDA runtime described in the cluster guide.
+## Evidence and research record
 
-## Project documents
+- [Data audit](docs/DATA_AUDIT.md) and [BreakHis evaluation protocol](docs/BENCHMARK_PROTOCOL.md).
+- [Initial baselines](docs/VALIDATION_PILOT.md), [neural controls](docs/FUSION_RESULTS.md), [sensitivity checks](docs/SENSITIVITY_RESULTS.md), [matched comparison](docs/CAPACITY_RESULTS.md).
+- [Project explanation](docs/PROJECT_EXPLAINED.md), [execution plan](plan.md), [implemented methods draft](paper/methods-draft.md).
+- [BreakHis review](docs/reviews/BREAKHIS_MILESTONE_REVIEW.md) and [prior critique ledger](docs/reviews/CLOSURE_LEDGER.md).
+- Deferred research records: [related work](docs/RELATED_WORK.md), [TCGA protocol](docs/TCGA_QUARANTINE_PROTOCOL.md), [secondary pilot](docs/NATIVE_DEVELOPMENT_RESULTS.md), [source audit](docs/METHOD_COMPARISON_AUDIT.md).
 
-- [Next tasks and current status](docs/NEXT_STEPS.md)
-- [Training strategy in plain language](docs/TRAINING_STRATEGY.md)
-- [Closest-method audit](docs/METHOD_COMPARISON_AUDIT.md), [TCGA label lineage](docs/TCGA_LABEL_LINEAGE_AUDIT.md), and [view-addition failures](docs/VIEW_ADDITION_AUDIT.md)
-- [Plain-language guide: problem, data, splits, models, training, and metrics](docs/PROJECT_EXPLAINED.md)
-- [Research and execution plan](plan.md)
-- [One-page project brief](docs/PROJECT_BRIEF.md)
-- [Related work and comparison rules](docs/RELATED_WORK.md)
-- [Data audit](docs/DATA_AUDIT.md)
-- [Implemented validation pilot protocol](docs/BENCHMARK_PROTOCOL.md)
-- [Initial validation results](docs/VALIDATION_PILOT.md)
-- [Computed error analysis](docs/ERROR_ANALYSIS.md)
-- [Controlled fusion protocol](docs/FUSION_PILOT.md) and [results](docs/FUSION_RESULTS.md)
-- [Research direction and contribution gates](docs/RESEARCH_DIRECTION.md)
-- [Second-dataset archive and metadata audit](docs/TCGA_MS_AUDIT.md)
-- [Split and training-seed sensitivity](docs/SENSITIVITY_RESULTS.md)
-- [Baseline and fair-comparison contract](docs/COMPARISON_PLAN.md)
-- [Normalization-matched capacity results](docs/CAPACITY_RESULTS.md)
-- [Professor Dong evidence brief](docs/evidence/PROFESSOR_BRIEF.md) and [offline presentation](docs/evidence/PROFESSOR_DECK.html)
-- [Critique findings and closure ledger](docs/reviews/CLOSURE_LEDGER.md)
-- [Implemented methods draft](paper/methods-draft.md)
-
-The historical reference is [Lang et al., SPIE Medical Imaging 2021](https://doi.org/10.1117/12.2582299). The closest task and mechanism comparisons currently include [MagViT](https://arxiv.org/abs/2608.16959) and [M2OTCA](https://doi.org/10.1016/j.media.2026.104082). See the related-work document for distinctions between their tasks and our intended evaluation.
+Historical notebook accuracies use a different image-based split/selection procedure and are not comparable with our case-level results. Baseline completion, final generalization evidence and method novelty are separate claims.

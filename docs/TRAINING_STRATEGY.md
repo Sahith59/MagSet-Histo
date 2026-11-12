@@ -1,39 +1,39 @@
-# How we train, in plain language
+# How we train the BreakHis baseline
 
-Updated November 12, 2026. Current implementation: frozen image reader plus a trained decision maker. The repository's working name does not mean that the latest model is a transformer.
+Current priority: the BreakHis project with Professor Dong. The following describes its implemented baseline. TCGA has a different archived protocol and is deferred.
 
-## The two pieces
+## Picture reader and decision maker
 
-The **picture reader** is an externally pretrained image encoder. It turns an image into numbers. ResNet-50 gives 2,048 numbers; Phikon-v2 gives 1,024. We keep its existing weights fixed in the current experiments. This is often called frozen-feature transfer learning.
+A pretrained **Phikon-v2 picture reader** turns each image into 1,024 numbers. Its weights stay fixed. We do not teach it again in the current baseline.
 
-The **decision maker** learns which numerical descriptions go with which class. The latest pilot uses a small regularized multinomial logistic classifier. It learns from the fitting cases, not from the reserved cases.
+A small **decision maker**, a logistic classifier, learns from those numbers and the known eight-subtype labels. Its training penalty discourages wrong/confident answers and excessively large decision weights. This is frozen-feature transfer learning.
 
-## One training example
+## What happens to a case
 
-Start with the related pictures of one case. Normalize image features using rules learned from fitting cases only. Average pictures within each available zoom; then average the zoom summaries and add four yes/no availability flags. The classifier receives this case description and the correct training label.
+1. Gather all related images at its available 40×/100×/200×/400× views.
+2. Read every field with the fixed image encoder and its pinned transform.
+3. Average images within each zoom, using saved fitting-only normalization.
+4. Average the available zoom summaries and add four yes/no availability flags.
+5. Train the decision maker on fitting-case descriptions and labels.
 
-The classifier changes its decision weights to reduce its mistakes. Cross-entropy penalizes giving the correct class too little probability. The L2 penalty discourages excessively large decision weights. These penalties try to improve learning; they do not guarantee good performance on new patients.
+The training code first pools fields and then applies the saved per-view normalization; this affine operation uses fitting-only field moments. The prediction replay reuses that exact ordering and vectorizer.
 
-## Practise with missing views
+## Practise with missing zooms
 
-For a case with four views, training uses all 15 nonempty combinations. A case with three available views has seven combinations. Each original case contributes total training weight one across its combinations. A case with more pictures or combinations does not count as more people.
+All four views give 15 nonempty combinations. We train on all 15, distributing each case's base training mass across them. Pictures and masks do not become extra independent patients. BreakHis also uses class balancing: classes with fewer fitting cases receive extra weight, so common classes do not dominate. Cases within the same class have equal influence regardless of their field count.
 
-The native pilot has 80 fitting patients, five per class. Its 1,152 derived rows therefore have total weight 80 and class weight five. We do not apply an additional row-count balancing rule. Fitting-only normalization gives each case equal influence at each view it possesses.
+## Split and model selection
 
-## Practice questions and final exam
+Each of the five provider repeated trials has 46 fitting cases, 8 validation cases and 28 excluded outer-role cases. The validation group contains one case per subtype. Existing split seeds 812 and 813 are both reported. The original fitting grid uses C values 0.01,0.1,1,10; validation mean macro F1 over 15 view settings selects C. Outer-role outcomes never choose C in that trial.
 
-Sixteen native development patients provide the small practice check. Thirty-two reserved patients are excluded from classifier fitting, normalization, tuning, and current scoring. Frozen, label-blind image encoding was allowed for all roles. That preparation does not let reserved predictions guide model choices.
+Each model retains its normalization, coefficients and class order. An independent checker regenerates split memberships and compares saved labels/probabilities with the original manifest. The raw-image demo checks the actual saved trial 1/seed 812 head rather than fitting a new model.
 
-BreakHis uses a different exploratory repeated-trial protocol: 46 fit /8 validation /28 outer-role cases per trial. Across development every one of its 82 provider cases has been used for fitting or validation somewhere. It has no globally fresh confirmation cohort, and clinical identifier relationships remain unresolved.
+The small classifier uses LBFGS optimization with at most 1,000 iterations. This is not 1,000 passes through every original image. Image encoding already used GPUs; cached-feature heads fit efficiently on CPUs.
 
-## Exact latest pilot settings
+## What comes next
 
-All four arms used the same frozen ImageNet ResNet-50 features, fitting cases, normalization and subset weights. We fixed logistic C=0.1, L2, LBFGS, tolerance 0.0001 and at most 1,000 solver iterations. These are optimization iterations, not 1,000 passes through the original image dataset. There was no parameter grid.
+First package the checked baseline and raw-image demonstration. Then specify one limited supervised improvement on BreakHis, such as updating a small part of the image reader. That later step is fine-tuning; it has not been performed by this baseline or demonstration. Keep the encoder/adaptation policy identical when comparing fusion methods.
 
-The three augmented arms shared a fixed 32D projection (seed 812). Affinity temperature was 0.2. Four fits were completed before development scoring; each model and its preprocessing reloaded successfully. [The specification](NATIVE_DEVELOPMENT_PILOT_SPEC.md) defines every setting.
+The current numbers are exploratory. All 82 provider cases have entered development somewhere, and clinical identity relationships remain uncertain. We must not describe them as a fresh independent clinical test. Novelty and a conference paper are later evidence gates, not requirements for completing the first working project milestone.
 
-## What happens later?
-
-First establish a useful combining mechanism against strong controls. If warranted, a later registered stage can update a limited part of the picture reader using fitting cases only. That is fine-tuning. Every compared method must share the same encoder/adaptation policy so that a stronger reader is not mistaken for a better fusion mechanism.
-
-Fine-tuning and a larger reader are future possibilities. They were not run in the four-fit pilot. GPUs were used to encode images; the cached-feature classifier fits efficiently on CPUs. The latest agreement arm did not beat duplicate features, so the next work is the [audit and experiment plan](NEXT_STEPS.md), not an automatic architecture or hyperparameter sweep.
+[Focused plan](BREAKHIS_MILESTONE_PLAN.md) · [First numbers](BREAKHIS_FIRST_RESULTS.md).

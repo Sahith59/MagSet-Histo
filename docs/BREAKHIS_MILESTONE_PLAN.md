@@ -2,6 +2,8 @@
 
 Priority reset November 12, 2026 at the user's request. **BreakHis is the main dataset. Finish its first project deliverable before pursuing a novel paper or further TCGA work.** Completed TCGA artifacts are retained as deferred work; they do not determine this milestone.
 
+Baseline completion is only the first milestone. Continue BreakHis improvement, evaluation and the project report afterward; do not resume TCGA automatically after this checkpoint.
+
 ## What the first deliverable means
 
 A repeatable eight-subtype BreakHis baseline using all four magnifications, a checked development-results table, and a raw-image prediction demonstration. This is a working project baseline, not a claim that the classification problem is solved, clinical generalization is verified, or a new mechanism has been invented.
@@ -43,3 +45,7 @@ The historical notebook accuracies are from a different image-based split/select
 The model may make wrong predictions in the demonstration. An honestly selected incorrect example is still valid execution evidence; it must not be described as successful classification.
 
 No further TCGA training, label research, external-dataset expansion or novelty work is on the immediate critical path. Update this plan from verified evidence, not anticipated success.
+
+## Verified checkpoint
+
+The first baseline package is ready. Ten matched runs/1,200 saved validation records passed trusted checks. Job4959781 completed0 in44seconds, reading121 original images and replaying all15 view settings of the fixed first validation case. Maximum raw probability difference5.517742757e-08; cached120-record replay difference4.44e-16. No new fitting or outer-role prediction. All60 software tests passed. This establishes baseline execution and reported exploratory scores, not reliable clinical performance, method novelty or a completed paper. The next project task is a registered standard BreakHis improvement.
