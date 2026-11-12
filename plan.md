@@ -237,3 +237,9 @@ Execution dependency: isolated CPU runtime/bootstrap and pinned checkpoint downl
 - Select a compatible second dataset based on actual access and reproducible protocols.
 
 At the latest check the environment, full image decoding, and GPU pilot succeeded. Seven of eight feature shards succeeded; one process could not access CUDA. Only that missing shard was resubmitted on an A40, and the existing validation array dependency was updated to the retry. Completed caches were preserved.
+
+## First validation round completed
+
+The runtime, full PNG validation, real GPU pilot, and all eight frozen-feature shards are complete. One CUDA-unavailable process was retried successfully without changing the encoder/preprocessing. All 30 linear baseline configurations completed, and saved probabilities independently reproduce their reported metrics. No convergence or numerical warnings were found in the validation logs. Outer-test scoring remains disabled.
+
+The initial scores are in `docs/VALIDATION_PILOT.md`. Before adding the candidate mechanism, prioritize error analysis and controlled comparisons of image-level heads/case aggregation, learned within-scale pooling, gating, and set attention. The small validation samples make score stability and rare-class behavior important unresolved questions. A manuscript scaffold and score-verification collector were developed alongside the cluster work.

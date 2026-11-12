@@ -18,7 +18,7 @@ We will evaluate every nonempty combination of the four magnifications, giving *
 
 The initial code now includes pinned frozen-feature extraction for Phikon-v2 and ResNet-50, provider-protocol auditing, full PNG validation, and mean/concatenation/late-fusion linear baselines. Initial benchmark jobs select hyperparameters on inner validation cases only; outer-test scoring requires an explicit flag.
 
-There are no new model-performance results yet. The supplied historical notebooks reported 93.73% and 94.99% accuracy on 40× images, but their split and model-selection procedures do not establish generalization to unseen patients. Those scores are not MAGSET results.
+The first 30 validation-only baseline runs are complete; see [the pilot results](docs/VALIDATION_PILOT.md). Final outer-test evaluation has not been run. The supplied historical notebooks reported 93.73% and 94.99% accuracy on 40× images, but their split and model-selection procedures do not establish generalization to unseen patients. Those scores are not MAGSET results.
 
 ## Getting started
 
@@ -39,5 +39,6 @@ On a shared cluster, submit download, validation, and training through its sched
 - [Related work and comparison rules](docs/RELATED_WORK.md)
 - [Data audit](docs/DATA_AUDIT.md)
 - [Implemented validation pilot protocol](docs/BENCHMARK_PROTOCOL.md)
+- [Initial validation results](docs/VALIDATION_PILOT.md)
 
 The historical reference is [Lang et al., SPIE Medical Imaging 2021](https://doi.org/10.1117/12.2582299). The closest task and mechanism comparisons currently include [MagViT](https://arxiv.org/abs/2608.16959) and [M2OTCA](https://doi.org/10.1016/j.media.2026.104082). See the related-work document for distinctions between their tasks and our intended evaluation.
