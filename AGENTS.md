@@ -1,5 +1,7 @@
 # Project working instructions
 
+Current user priority (November12,2026): **BreakHis first.** Finish the quick BreakHis project baseline deliverable for Professor Dong before novel-method/paper work. TCGA follow-up is deferred; preserve its completed artifacts without making it the critical path. Report baseline execution, exploratory validation and final clinical/research claims separately. See `docs/BREAKHIS_MILESTONE_PLAN.md`.
+
 Read `README.md`, `plan.md`, and `docs/RELATED_WORK.md` before changing the research direction. When present in the private workspace, also read `memory/STATE.md`, `memory/PROJECT.md`, and `.local/AGENTS.private.md` for the current handoff and cluster operating rules.
 
 - Use all four BreakHis magnifications and support any nonempty available subset. The original 40X notebooks are historical experiments, not the proposed architecture.
