@@ -38,5 +38,6 @@ On a shared cluster, submit download, validation, and training through its sched
 - [One-page project brief](docs/PROJECT_BRIEF.md)
 - [Related work and comparison rules](docs/RELATED_WORK.md)
 - [Data audit](docs/DATA_AUDIT.md)
+- [Implemented validation pilot protocol](docs/BENCHMARK_PROTOCOL.md)
 
 The historical reference is [Lang et al., SPIE Medical Imaging 2021](https://doi.org/10.1117/12.2582299). The closest task and mechanism comparisons currently include [MagViT](https://arxiv.org/abs/2608.16959) and [M2OTCA](https://doi.org/10.1016/j.media.2026.104082). See the related-work document for distinctions between their tasks and our intended evaluation.
