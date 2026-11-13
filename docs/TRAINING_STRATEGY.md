@@ -39,3 +39,9 @@ Afterward, discard the auxiliary classifier, encode the fitting and validation i
 The current numbers are exploratory. All 82 provider cases have entered development somewhere, and clinical identity relationships remain uncertain. We must not describe them as a fresh independent clinical test. Novelty and a conference paper are later evidence gates, not requirements for completing the first working project milestone.
 
 [Focused plan](BREAKHIS_MILESTONE_PLAN.md) · [First numbers](BREAKHIS_FIRST_RESULTS.md).
+
+## What the diagnosis found
+
+The saved adapted case classifier answers its fitting cases very well (98.5–98.7% balanced accuracy) but does poorly on validation (38.8–45.7%). The auxiliary image head also has a large gap: about98% on fitting pictures and32–35% on validation with class/case/view balancing. Keeping that head and using either fixed averaging readout does not fix validation. This is consistent with poor generalization; no single cause has been established. [Diagnosis, all readouts and figure](BREAKHIS_DIAGNOSIS_RESULTS.md).
+
+For a linear head, classifying a mean feature equals averaging field logits with the same weights. That checked identity helps avoid blaming early averaging alone. The next training design should establish a compatible supervised reference and address the small independent case count; this diagnosis itself performs no fitting or new encoder execution.

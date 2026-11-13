@@ -15,7 +15,9 @@ The raw-image replay passed on 121 original images, covering all 15 view setting
 
 **Fixed improvement tested:** ten six-epoch last-block Phikon-v2 adaptation models, plus a separate fitting-only smoke. All jobs and the complete checker passed in25minutes11seconds from first start to checked completion. Adapted mean accuracy45.7%/38.8%; primary F1.3840/.3205 versus frozen.3843/.3169. The two-split improvement gate failed; phyllodes recall remains 0. Keep the frozen baseline. No outer predictions or automatic replacement sweep.
 
-**Next:** diagnose saved-model generalization and image-versus-case aggregation; audit a compatible public eight-class baseline before registering another training recipe. [Complete paired results](../BREAKHIS_ADAPTATION_RESULTS.md) · [Published benchmark context](../BREAKHIS_PUBLIC_BENCHMARKS.md).
+**Diagnosis completed November13:** no new fitting or encoder execution. Saved adapted case heads achieve98.5–98.7% fitting balanced accuracy versus38.8–45.7% validation. The auxiliary image head achieves about98% fitting versus32–35% validation with class/case/view weighting. Neither fixed auxiliary case readout rescues the result. This supports a large fit–validation/generalization gap, without proving one sole cause. Independent auditing recomputed all saved diagnostic score arithmetic. [Diagnosis and figure](../BREAKHIS_DIAGNOSIS_RESULTS.md).
+
+**Next:** audit split/class coverage and specify one compatible regularized supervised image-model baseline before registering another fitting budget. [Complete adaptation result](../BREAKHIS_ADAPTATION_RESULTS.md) · [Published benchmark context](../BREAKHIS_PUBLIC_BENCHMARKS.md).
 
 **Open limits:** clinical relationships between some provider IDs remain unverified; all 82 cases entered development somewhere, so there is no globally fresh BreakHis confirmation cohort. Reliable final evaluation, method novelty and a submission-ready paper remain unfinished.
 

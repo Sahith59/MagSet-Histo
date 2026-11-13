@@ -19,6 +19,6 @@ Immutable training source: `3a8dde70d809b115928bf773511a0cd6e0f8e30c`. Immutable
 
 ## What happens next
 
-Stay on BreakHis. Diagnose fitting-versus-validation behavior and the auxiliary-image-head versus case-aggregation behavior using saved artifacts. Audit a compatible public eight-class patient-disjoint baseline before registering another training recipe. No automatic longer training, model sweep, outer scoring or return to TCGA follows this result.
+Stay on BreakHis. The [saved-artifact diagnosis](BREAKHIS_DIAGNOSIS_RESULTS.md) is complete and finds a large generalization gap in both heads; neither auxiliary readout rescues validation. Next audit split/class coverage and specify a compatible supervised image-model baseline before registering another training recipe. No automatic longer training, model sweep, outer scoring or return to TCGA follows this result.
 
 Current accuracy is concerning for a strong classifier. Only 46 cases fit each model, including one adenosis and one phyllodes case; repeated images cannot supply additional independent variety. The training image loss falls strongly while case validation barely changes, but this does not prove a single failure cause. All-view accuracy is also weak. Clinical grouping and clean confirmation remain unresolved, so no honest ETA to 80% or 90% accuracy can be given.

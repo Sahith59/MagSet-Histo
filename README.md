@@ -26,6 +26,8 @@ Start with the [focused milestone plan](docs/BREAKHIS_MILESTONE_PLAN.md), [next 
 
 The [fixed adaptation comparison](docs/BREAKHIS_ADAPTATION_RESULTS.md) is complete: all ten runs and the artifact checker passed, but accuracy is45.7%/38.8% and the two-split F1 improvement gate failed. Keep the frozen baseline above as the default. [Published benchmark context](docs/BREAKHIS_PUBLIC_BENCHMARKS.md) explains related eight-class results and protocol differences.
 
+The [saved-model diagnosis](docs/BREAKHIS_DIAGNOSIS_RESULTS.md) is also complete. The adapted case classifier scores98.5–98.7% fitting balanced accuracy and38.8–45.7% on validation. The auxiliary image classifier scores about98% fitting versus32–35% validation under class/case/view weighting. Neither fixed auxiliary readout rescues the result. This supports a large generalization gap; it does not identify one sole cause. No new fitting or encoder execution was used.
+
 ## Run checks
 
 ```bash
