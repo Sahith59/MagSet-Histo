@@ -9,10 +9,10 @@ Priority reset November 12,2026. **BreakHis is the main dataset. Finish its quic
 |1|Publish checked BreakHis baseline numbers|Available now: both validation splits and all ten trial results are in BREAKHIS_FIRST_RESULTS.md|
 |2|Verify prediction from original images|Completed: job 4959781 replayed 121 original images and 15 view settings with its saved model; maximum probability difference 0.0000000552|
 |3|Package the baseline for Professor Dong|Complete baseline package: results, verified replay, model/source hashes, class weaknesses and limits; professor brief updated|
-|4|Run the registered BreakHis improvement|Fixed last-block adaptation implemented; fitting-only GPU smoke passed; ten-run array4962271 submitted with at most four GPU tasks|
+|4|Run the registered BreakHis improvement|Completed: all ten fits and checker passed; primary two-split improvement gate failed; frozen baseline retained|
 |5|Resolve final evaluation and research claims|After an accepted grouping/claim scope and method freeze; no claim of a pristine clinical test cohort or novelty now|
 
-The [registered improvement](BREAKHIS_ADAPTATION_SPEC.md) tests limited supervised adaptation of the image reader against the existing frozen baseline. It is ordinary transfer learning. Wait for all ten fixed runs, validate artifacts and score arithmetic, report both split arrangements and every trial, and retain losing outcomes. [Execution checkpoint](BREAKHIS_ADAPTATION_STATUS.md). Do not start an automatic architecture sweep or score outer cases to rescue a weak result.
+The [completed improvement](BREAKHIS_ADAPTATION_RESULTS.md) did not meaningfully improve accuracy and failed the two-split F1 gate. Keep the frozen baseline. Next, diagnose saved-model fitting/validation and image/case-aggregation behavior, then audit a [public eight-class comparator](BREAKHIS_PUBLIC_BENCHMARKS.md) for a compatible reproduction. Register a justified fixed recipe before any new fits. Do not start an automatic architecture sweep or score outer cases to rescue this result.
 
 ## What is already done
 

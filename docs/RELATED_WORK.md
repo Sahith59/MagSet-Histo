@@ -1,3 +1,5 @@
+Current BreakHis-only benchmark update: [public results and compatibility notes](BREAKHIS_PUBLIC_BENCHMARKS.md), including the2026 graph-transformer author implementation and eight-class distillation paper. These are contextual author results, not reproductions. The completed [last-block adaptation](BREAKHIS_ADAPTATION_RESULTS.md) failed its two-split improvement gate.
+
 # Papers, benchmark tracks, and the novelty audit
 
 November 12 source-audit update: see [the implementation/compatibility audit](METHOD_COMPARISON_AUDIT.md) and [native target-label lineage](TCGA_LABEL_LINEAGE_AUDIT.md). They record pinned author code, obtained-release differences, reproduction limits and unresolved artifacts. Historical author scores below remain contextual numbers rather than our benchmark targets.
