@@ -90,3 +90,39 @@ All seven focused tests pass independently, including a new extreme-logit fixtur
 **Execution acceptance:** no remaining blocker was found for one bounded two-CPU/12-GB job applying these fixed probes to the ten existing fitting/validation artifact sets. The job performs no fitting, optimizer updates, encoder execution or raw-image processing. Its source/configuration/comparison and per-run artifact bindings, early archive replay, forbidden-role checks, exact weighting, pooling identities and stable-loss path are accepted. Actual output acceptance remains pending the saved complete diagnostic artifacts.
 
 Private diagnostic JSON contains case assignments, including excluded-role metadata needed for provenance. Public evidence must recursively remove provider identifiers and field paths, retaining only aggregate scores/counts and hashes. The failed primary adaptation gate and frozen-baseline choice remain unchanged by any diagnostic readout score.
+
+## Actual diagnostic artifact audit
+
+The CPU diagnosis from SLURM job `4968029` is complete. Its saved output binds the accepted source/configuration/comparison and reports ten diagnosed runs with no new fits, encoder forwards or outer predictions. The reviewer independently checked all **32,400 case/readout/subset records** and **51,760 cached-field records** against the trusted manifest, subtype labels, exact fitting/validation memberships and complete path coverage. These counts include repeated images/cases across trials and masks; they are not independent patients or additional acquired data.
+
+For every role, trial, subset and readout, an independent scalar confusion-matrix implementation recomputed accuracy, balanced accuracy, macro F1, ordinary and class-balanced case CE, subtype recall, confusion matrices and Brier scores. Field raw and class/case/view-balanced metrics were recomputed with independently constructed weights. Every stored metric and cross-trial summary agrees within `2e-12`. Role weights sum to one separately, and all labels/paths belong to the allowed 46 fitting/eight validation cases. No scored record belongs to its own run's outer role.
+
+Both auxiliary case readouts were independently reconstructed from the saved field arrays. Averaged field log probabilities reproduce mean-logit softmax because each field's log-normalizer adds only a class-common constant. Equal-view averages of field probabilities reproduce the other readout. The maximum probability/log-probability difference is `1.0658141036401503e-14`. For every positive saved probability, its stored log probability agrees with direct `log(p)` within `3.552713678800501e-15`; the actual output has no zero-probability entries, and the repaired extreme-loss path remains independently unit-tested.
+
+Existing frozen/adapted case-head validation probabilities match their original archives within `1.4432899320127035e-15`. Available local report/prediction/head hashes, all diagnostic output hashes, original frozen-reference bindings and exact run contexts agree. A lightweight read-only query additionally verified all ten original frozen head hashes against their saved remote files. The execution records' maximum Torch auxiliary-head discrepancy is `5.681480765851177e-07`, below the registered `1e-5`; maximum affine commutation discrepancy is `7.105427357601002e-15`, below `1e-10`.
+
+The raw frozen/adapted feature caches and production encoder checkpoints remain remote. The reviewer verified the geometry summaries' arithmetic, finite bounds, hash lineage and full valid mass, rather than independently recalculating cosine/L2 from those raw vectors locally. Recorded Torch/probe errors are also audited execution evidence, not a fresh full raw-feature forward by the reviewer. This limit is retained in acceptance.
+
+Private complete diagnosis SHA-256: `9e397afa96f98dec67e62d9e7a3179cfc61b4589f4ff5228d00f8e0ea04630b0`.
+
+## Measured finding and permitted interpretation
+
+The table uses balanced accuracy. Case rows average all 15 subsets and five provider trials; field rows use the registered class/case/view weighting. Fitting and validation refer to each run's own roles.
+
+| Saved readout | Seed 812 fitting | Seed 812 validation | Seed 813 fitting | Seed 813 validation |
+| --- | ---: | ---: | ---: | ---: |
+| Frozen logistic case head | 98.26% | 45.67% | 98.35% | 38.33% |
+| Adapted logistic case head | 98.47% | 45.67% | 98.67% | 38.83% |
+| Auxiliary field head | 98.11% | 35.03% | 97.92% | 31.77% |
+| Auxiliary mean-logit case readout | 99.80% | 41.50% | 99.80% | 38.67% |
+| Auxiliary mean-probability case readout | 99.79% | 41.67% | 99.79% | 39.00% |
+
+For the auxiliary field head, balanced canonical fitting CE is approximately `0.1001/0.1053`, versus validation CE `3.0218/2.8650` for seeds 812/813. Both case and field tasks therefore show a substantial fitting-versus-validation gap under these exact roles. The frozen case head already shows this gap, so adaptation did not introduce it uniquely. This supports limited generalization of the tested systems; it does not identify one exclusive cause.
+
+Neither fixed auxiliary case readout rescues mean-subset macro F1: seed 812 auxiliary logit/probability F1 is `0.3326/0.3356`, versus `0.3840` for the adapted logistic head; seed 813 is `0.2995/0.3033`, versus `0.3205`. The small seed-813 probability-readout accuracy difference is not a new primary success or grounds for posthoc readout selection. Phyllodes case recall remains zero for all four readouts in these validation records.
+
+Recorded validation geometry has raw-field cosine approximately `0.9984` on both arrangements and own-normalized case/view cosine approximately `0.9966/0.9961`, with relative L2 changes around `0.08` and no excluded near-zero mass. These are descriptive similarities, not unchanged representations or a demonstrated cause of unchanged predictions. Linear commutation specifically prevents attributing any auxiliary mean-logit advantage to recovered information lost by linear mean-feature pooling. The observed case/field score difference also changes the prediction unit, so it is not a causal pooling experiment.
+
+**Final scoped acceptance:** the complete diagnosis is accepted as a reproducible posthoc description of the saved fitting/validation behavior, with the raw-geometry recomputation limitation above. It supports investigating generalization and data/representation diversity before another registered experiment. It does not establish the sole failure cause, a universally ineffective pooling strategy, a clinical accuracy ceiling, a newly selected successful model, significance, novelty or independent confirmation. The failed adaptation gate and frozen reference remain unchanged. No fitting, images, encoder execution, cluster jobs or outer scoring were performed by this reviewer.
+
+The generated public diagnosis page and aggregate ledger were also checked. The ledger exactly matches the accepted private output after the declared removal of case assignments and reduction of per-subset metric fields. A recursive scan found no provider identifiers or private field/machine paths. Reported table values match the audited outputs, and the report retains the distinction between balanced field/case units, the weak field labels, affine commutation, posthoc reuse and the geometry verification limit.
