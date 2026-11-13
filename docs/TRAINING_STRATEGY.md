@@ -30,9 +30,11 @@ Each model retains its normalization, coefficients and class order. An independe
 
 The small classifier uses LBFGS optimization with at most 1,000 iterations. This is not 1,000 passes through every original image. Image encoding already used GPUs; cached-feature heads fit efficiently on CPUs.
 
-## What comes next
+## Current improvement experiment
 
-First package the checked baseline and raw-image demonstration. Then specify one limited supervised improvement on BreakHis, such as updating a small part of the image reader. That later step is fine-tuning; it has not been performed by this baseline or demonstration. Keep the encoder/adaptation policy identical when comparing fusion methods.
+The checked baseline and raw-image demonstration are packaged. The next experiment updates only Phikon-v2's last block and final output normalization. It first practises with an auxiliary image classifier for one epoch, then also updates those encoder layers for five epochs. Class-balanced sampling gives rare classes a fair share of practice; within each class it balances cases and zooms. Only fitting cases supply those updates.
+
+Afterward, discard the auxiliary classifier, encode the fitting and validation images without augmentation, and train the same mean-plus-mask logistic case classifier described above. Keep the same four C choices, cases and metrics. A fitting-only GPU practice run passed; ten full runs were submitted. No improved score has been verified yet. [Exact recipe](BREAKHIS_ADAPTATION_SPEC.md) · [Execution checkpoint](BREAKHIS_ADAPTATION_STATUS.md).
 
 The current numbers are exploratory. All 82 provider cases have entered development somewhere, and clinical identity relationships remain uncertain. We must not describe them as a fresh independent clinical test. Novelty and a conference paper are later evidence gates, not requirements for completing the first working project milestone.
 

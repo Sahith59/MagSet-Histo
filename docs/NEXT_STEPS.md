@@ -9,10 +9,10 @@ Priority reset November 12,2026. **BreakHis is the main dataset. Finish its quic
 |1|Publish checked BreakHis baseline numbers|Available now: both validation splits and all ten trial results are in BREAKHIS_FIRST_RESULTS.md|
 |2|Verify prediction from original images|Completed: job 4959781 replayed 121 original images and 15 view settings with its saved model; maximum probability difference 0.0000000552|
 |3|Package the baseline for Professor Dong|Complete baseline package: results, verified replay, model/source hashes, class weaknesses and limits; professor brief updated|
-|4|Specify and run one standard BreakHis improvement|Next one or two work sessions as a working estimate, conditional on implementation/queue; fix the comparison before training|
+|4|Run the registered BreakHis improvement|Fixed last-block adaptation implemented; fitting-only GPU smoke passed; ten-run array4962271 submitted with at most four GPU tasks|
 |5|Resolve final evaluation and research claims|After an accepted grouping/claim scope and method freeze; no claim of a pristine clinical test cohort or novelty now|
 
-The next improvement can test limited supervised adaptation of the image reader against the existing frozen baseline. It is ordinary transfer learning until evidence and a prior-art distinction justify anything more. Select one change, fix its settings and fit count, compare the same cases/views/metrics, retain losing outcomes, and avoid a broad architecture sweep.
+The [registered improvement](BREAKHIS_ADAPTATION_SPEC.md) tests limited supervised adaptation of the image reader against the existing frozen baseline. It is ordinary transfer learning. Wait for all ten fixed runs, validate artifacts and score arithmetic, report both split arrangements and every trial, and retain losing outcomes. [Execution checkpoint](BREAKHIS_ADAPTATION_STATUS.md). Do not start an automatic architecture sweep or score outer cases to rescue a weak result.
 
 ## What is already done
 

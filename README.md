@@ -24,6 +24,8 @@ The [complete first-results report](docs/BREAKHIS_FIRST_RESULTS.md) shows every 
 
 Start with the [focused milestone plan](docs/BREAKHIS_MILESTONE_PLAN.md), [next tasks](docs/NEXT_STEPS.md), and [plain training explanation](docs/TRAINING_STRATEGY.md).
 
+The [next improvement](docs/BREAKHIS_ADAPTATION_STATUS.md) is now in execution: a fixed last-block Phikon-v2 adaptation recipe, checked fitting-only GPU smoke, and ten submitted production runs with four-way GPU concurrency. Improved validation scores are still pending. The baseline above remains the current measured result.
+
 ## Run checks
 
 ```bash
