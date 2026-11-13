@@ -15,8 +15,11 @@ One fixed recipe: six epochs, with one head-only warmup epoch and five last-bloc
 - Its frozen prefix stayed unchanged. Head-only warmup preserved the encoder; subsequent updates changed both the last block and final LayerNorm.
 - Starting features matched the original frozen cache within0.000001312; the final encoder reloaded with maximum feature difference0. Actual checkpoint and source bindings passed the separate artifact checker.
 - Ten production models were submitted as SLURM array4962271, capped at four simultaneous GPU tasks. The launch checkpoint showed four running and six waiting for the array limit. Full results are pending; this document is a checkpoint, not a live monitor.
+- Collector4962297 is queued with `afterok:4962271`, using immutable checker source `d5567ee402dd11d75b295b33f16b1eebb5799f61`. It will verify the complete matrix only after all ten training jobs succeed. A failed training task prevents automatic acceptance.
 
 Immutable training source: `3a8dde70d809b115928bf773511a0cd6e0f8e30c`. Configuration SHA256: `224c0de10715bdc2248653e4d4c0803aa510823e2efbfba44e2a2229f3b156e6`. Technical checkpoint SHA256: `21ee668fc45f1eaba2ea0b1aebc6f93846cfa5b76d7c8f9b07cd9927eb14055d`.
+
+The [execution ledger](evidence/BREAKHIS_ADAPTATION_EXECUTION.json) records the actual smoke/source/data bindings without provider identifiers. It contains execution evidence, not an adapted performance result.
 
 ## What happens after training
 

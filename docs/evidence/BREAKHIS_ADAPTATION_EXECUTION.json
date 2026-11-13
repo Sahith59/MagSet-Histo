@@ -1,0 +1,81 @@
+{
+  "schema": "magset.breakhis-adaptation-execution.v1",
+  "dataset": "BreakHis",
+  "date": "2026-11-12",
+  "training_source_sha": "3a8dde70d809b115928bf773511a0cd6e0f8e30c",
+  "implementation_sha256": "0673f9d90483a71a49d3f6b3f0a021c6a800054821fee1e64191c2ab6a6a6c00",
+  "manifest_sha256": "958893f923a745220fac66f19656bcdbfb38996f70ef8044e1349619f4102e31",
+  "protocol_sha256": "dca9a93bb570fd7cfec9fe72e5cad9ac76f838725b03c7a7a593824fecd51134",
+  "config_sha256": "224c0de10715bdc2248653e4d4c0803aa510823e2efbfba44e2a2229f3b156e6",
+  "smoke_artifact_sha256": "561ff9e6480458b9ad64858ff16d60fac9af88080670bc2570052ef7572188ae",
+  "frozen_reference": {
+    "metrics_sha256": "2c2fe0c1ba8179d74b13bf02571fda5c56d5e418e40ad7637c6591251065fad3",
+    "predictions_sha256": "825b1f0591d6af0977963c1c447e4538599cb08b97cf9f3f0c44ec1810d2e5ed"
+  },
+  "technical_smoke": {
+    "job": "4962114",
+    "scheduler_state": "COMPLETED",
+    "scheduler_exit_code": "0:0",
+    "scheduler_elapsed_seconds": 59,
+    "validation_predictions_computed": 0,
+    "outer_predictions_computed": 0,
+    "proof": {
+      "frozen_prefix_sha256": "034f42fe583908f1412ed2b5a8c685f1349b9220474f4d7d9e43490bb6055bb8",
+      "allowed_before_sha256": "961782a476479c3917a0a04edf77da7033ed92d5903cee3f32aa60febd194216",
+      "allowed_after_sha256": "37773f3fd028beff23b0c34c32b80726cb706ae157cbaf9831cf940787f906b0",
+      "base_last_block_sha256": "3cffd023502c26dbaa854dacb18a9dba6be90d4ac8a920596ba74980af183586",
+      "base_final_norm_sha256": "d83cd54c0e60b86d33ae66b2bef0bad9b4f9dc08b09bbbed0d2e4f4cd3b29f6f",
+      "encoder_trainable_parameters": 12600320,
+      "checkpoint_sha256": "21ee668fc45f1eaba2ea0b1aebc6f93846cfa5b76d7c8f9b07cd9927eb14055d",
+      "initial_base_feature_max_difference": 1.3113021850585938e-06,
+      "encoder_reload_max_difference": 0.0
+    },
+    "epochs": [
+      {
+        "epoch": 1,
+        "draws": 32,
+        "class_draws": [
+          5,
+          5,
+          7,
+          1,
+          2,
+          3,
+          6,
+          3
+        ],
+        "encoder_adapting": false,
+        "last_block_sha256": "3cffd023502c26dbaa854dacb18a9dba6be90d4ac8a920596ba74980af183586",
+        "final_norm_sha256": "d83cd54c0e60b86d33ae66b2bef0bad9b4f9dc08b09bbbed0d2e4f4cd3b29f6f"
+      },
+      {
+        "epoch": 2,
+        "draws": 32,
+        "class_draws": [
+          3,
+          3,
+          4,
+          3,
+          2,
+          7,
+          3,
+          7
+        ],
+        "encoder_adapting": true,
+        "last_block_sha256": "a2f24bfcf1eb3605c8954749341407f22ffcbfc01d6b08997678d36837139455",
+        "final_norm_sha256": "00bfa7919bf7638f5f5b196b665ea0ddb59c0f0d041335a39d1f52065f351592"
+      }
+    ]
+  },
+  "production": {
+    "array": "4962271",
+    "registered_fits": 10,
+    "maximum_concurrent_gpu_tasks": 4,
+    "epochs_per_fit": 6,
+    "status": "submitted; launch checkpoint four running, six pending at array limit; complete scores unverified",
+    "collector_job": "4962297",
+    "collector_dependency": "afterok:4962271",
+    "collector_source_sha": "d5567ee402dd11d75b295b33f16b1eebb5799f61"
+  },
+  "interpretation": "Technical execution evidence only; no adapted classification result, clinical performance or novelty claimed."
+}
