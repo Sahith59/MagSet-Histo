@@ -1,0 +1,15 @@
+{
+  "name": "breakhis-saved-artifact-diagnosis-v1",
+  "comparison_sha256": "c26398dcfbeac6ac76f737ab686a987f82c2ea6874a45132fe9a0a7fc8b5637b",
+  "training_source_sha": "3a8dde70d809b115928bf773511a0cd6e0f8e30c",
+  "readouts": ["frozen_case_head", "adapted_case_head", "aux_mean_logits", "aux_mean_probabilities"],
+  "roles": ["train", "validation"],
+  "subsets": "all 15 nonempty magnification subsets",
+  "field_weighting": "equal class, equal case within class, equal view, uniform field within view, separately by role",
+  "auxiliary_input": "raw adapted CLS; dropout disabled; no normalization refit",
+  "new_fits": 0,
+  "new_encoder_forwards": 0,
+  "outer_predictions": 0,
+  "aux_torch_probability_tolerance": 0.00001,
+  "affine_pooling_tolerance": 0.0000000001
+}
