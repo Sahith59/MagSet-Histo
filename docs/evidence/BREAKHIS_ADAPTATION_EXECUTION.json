@@ -72,10 +72,14 @@
     "registered_fits": 10,
     "maximum_concurrent_gpu_tasks": 4,
     "epochs_per_fit": 6,
-    "status": "submitted; launch checkpoint four running, six pending at array limit; complete scores unverified",
+    "status": "all ten tasks COMPLETED0; complete paired comparison verified; two-split primary improvement gate failed",
     "collector_job": "4962297",
     "collector_dependency": "afterok:4962271",
-    "collector_source_sha": "d5567ee402dd11d75b295b33f16b1eebb5799f61"
+    "collector_source_sha": "d5567ee402dd11d75b295b33f16b1eebb5799f61",
+    "collector_status": "COMPLETED0 in30seconds",
+    "training_makespan_seconds": 1474,
+    "first_start_to_checked_completion_seconds": 1511,
+    "paired_comparison_sha256": "c26398dcfbeac6ac76f737ab686a987f82c2ea6874a45132fe9a0a7fc8b5637b"
   },
   "interpretation": "Technical execution evidence only; no adapted classification result, clinical performance or novelty claimed."
 }
