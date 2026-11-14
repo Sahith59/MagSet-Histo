@@ -1,8 +1,10 @@
 # MagSet-Histo
 
-**BreakHis is our main dataset. The immediate goal is the quick BreakHis project deliverable for Professor Dong.** TCGA follow-up is deferred. A novel method and conference paper are later research milestones.
+**BreakHis is our main dataset. The immediate goal is the master’s capstone deliverable for Professor Dong.** TCGA follow-up is deferred. A novel method and conference paper are later research milestones.
 
 We classify a provider case into one of eight breast-tumor subtypes using its available microscope views at 40×,100×,200× and 400×. We support all 15 nonempty view combinations without assuming that fields are physically paired across zooms.
+
+The supplied notebooks saved93.73%/94.99% on single40× images with image-random, reused validation. Our current scores use a different case-level protocol. The [capstone before/now explanation](docs/CAPSTONE_BEFORE_AND_NOW.md) separates those results and explains why a direct95%→40% comparison is invalid. Three independent GPT-6.1 Sol reviews checked the original evidence, protocol and modelling choices.
 
 ## First checked BreakHis numbers
 
@@ -20,7 +22,7 @@ The [complete first-results report](docs/BREAKHIS_FIRST_RESULTS.md) shows every 
 - Checked eight-class BreakHis baseline and complete development-results table.
 - Raw-image validation replay verified: 121 original images, all 15 view settings; archived probabilities reproduced within 0.000000056.
 - Reproducible source, saved model/prediction checks, clear limits and a short professor handoff.
-- Complete the registered supervised ResNet-50 comparison under the same case roles, then finish the BreakHis project report.
+- Complete the registered frozen regional-view comparison and finish the capstone report; the supervised ResNet comparison is already complete.
 
 Start with the [focused milestone plan](docs/BREAKHIS_MILESTONE_PLAN.md), [next tasks](docs/NEXT_STEPS.md), and [plain training explanation](docs/TRAINING_STRATEGY.md).
 
@@ -29,6 +31,8 @@ The [fixed adaptation comparison](docs/BREAKHIS_ADAPTATION_RESULTS.md) is comple
 The [saved-model diagnosis](docs/BREAKHIS_DIAGNOSIS_RESULTS.md) is also complete. The adapted case classifier scores98.5–98.7% fitting balanced accuracy and38.8–45.7% on validation. The auxiliary image classifier scores about98% fitting versus32–35% validation under class/case/view weighting. Neither fixed auxiliary readout rescues the result. This supports a large generalization gap; it does not identify one sole cause. No new fitting or encoder execution was used.
 
 The [coverage/reference audit](docs/BREAKHIS_REFERENCE_AUDIT.md) and [supervised ResNet-50 comparison](docs/BREAKHIS_SUPERVISED_RESULTS.md) are complete. All ten models and the checker passed after disclosed technical recovery. Mean-subset F1 is0.3084/0.3006 and case accuracy37.0%/40.0%; F1 is lower than the frozen reference on both arrangements. The registered gate failed; keep the frozen reference. [Execution record](docs/BREAKHIS_SUPERVISED_STATUS.md) · [Fixed recipe](docs/BREAKHIS_SUPERVISED_SPEC.md) · [BreakHis report draft](paper/breakhis-project-report.md).
+
+The [saved-prediction endpoint bridge](docs/CAPSTONE_BRIDGE_RESULTS.md) is complete without new fits or model execution. A [fixed regional-view test](docs/BREAKHIS_MULTICROP_STATUS.md) is running: four frozen-feature GPU shards, followed by20 matched fixed-C CPU heads. Its fitting-only smoke and all110 local tests passed; new scientific scores are pending. Keep the frozen reference until complete checked evidence supports a change.
 
 ## Run checks
 

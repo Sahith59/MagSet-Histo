@@ -43,3 +43,11 @@ Keep the frozen baseline while the registered comparison runs. Do not infer that
 3. Agree on the intended prediction unit, acceptable provider/clinical claim scope and credible final-evaluation route with Professor Dong before registering another model experiment. No outer-case rescue, score-driven resplit, automatic architecture/rate/epoch sweep or switch to TCGA.
 
 Training execution is complete. Predictive quality and final evaluation remain unresolved; finishing jobs is not evidence that the problem is solved.
+
+## November14 capstone priority update
+
+The user emphasized the approaching master's capstone and requested three independent GPT-6.1 Sol reviewers. Original saved numbers93.73%/94.99% are verified historical40× image validation, not the same endpoint as today's case/subset score. [Before/now explanation](CAPSTONE_BEFORE_AND_NOW.md). Deadline and formal task have been requested; until clarified, preserve eight subtypes and all four magnifications.
+
+The no-fit [image endpoint bridge](CAPSTONE_BRIDGE_RESULTS.md) is complete and independently checked. One prospective [regional-view representation](BREAKHIS_MULTICROP_SPEC.md), with unchanged labels/roles and fixedC0.01 in both arms, is now launched. Smoke4971319 passed; four GPU tasks4971322 run frozen extraction, and CPU job4971323 waits for complete audited caches before exactly20 fits. [Execution checkpoint](BREAKHIS_MULTICROP_STATUS.md). This is the only new fitting budget; no follow-on sweep is implied.
+
+Next: verify all four caches and all20 outputs, independent numerical review, then update the capstone report with every result. Continue report/demo preparation while those bounded jobs run. Any later EfficientNet reproduction needs an explicit image-task contract; do not copy a case-overlapping split or treat original95% as a new-patient target. Novelty and the paper remain later milestones.

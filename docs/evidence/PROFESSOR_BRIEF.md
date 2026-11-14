@@ -1,4 +1,4 @@
-# BreakHis project: first baseline for Professor Dong
+# BreakHis master’s capstone: progress for Professor Dong
 
 **Current priority: finish the BreakHis project deliverable first. TCGA follow-up and novel-paper work are deferred.**
 
@@ -24,3 +24,7 @@ The raw-image replay passed on 121 original images, covering all 15 view setting
 **Open limits:** clinical relationships between some provider IDs remain unverified; all 82 cases entered development somewhere, so there is no globally fresh BreakHis confirmation cohort. Reliable final evaluation, method novelty and a submission-ready paper remain unfinished.
 
 [Complete first results](../BREAKHIS_FIRST_RESULTS.md) · [Focused plan](../BREAKHIS_MILESTONE_PLAN.md) · [Training explanation](../TRAINING_STRATEGY.md).
+
+**Original versus current:** the supplied notebooks saved93.73%/94.99% for single40× image-random, reused validation. Current case/subset numbers are a different endpoint, not a measured95%→40% degradation. [Independent original review](../reviews/CAPSTONE_ORIGINAL_RESULTS_REVIEW.md). The saved-prediction image bridge is complete: ResNet40× raw image accuracy27.13%/29.94%, equal-case weighted32.89%/31.82%, case averaging37.5%/35.0%; no new fits/forwards. This does not reproduce EfficientNet and does not make the protocols interchangeable.
+
+**Next bounded test launched:** fixed central-plus-four-regional frozen Phikon representation versus matched fixedC0.01 control, same roles/all15 subsets. Four A40 extraction jobs and dependent20-head CPU comparison are submitted after a clean fitting-only smoke and110 passing tests. No new scientific score is claimed yet. [Status](../BREAKHIS_MULTICROP_STATUS.md) · [Capstone plan and explanations](../CAPSTONE_BEFORE_AND_NOW.md). Date/formal capstone task are awaiting clarification; paper novelty remains later.

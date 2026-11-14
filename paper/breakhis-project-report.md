@@ -59,3 +59,9 @@ Each fitting set contains one adenosis and one phyllodes provider case. Augmenta
 - [ ] Agree on acceptable grouping/claim scope and a credible final-evaluation route before making stronger research claims.
 
 No conference submission, new dataset access request or message to Professor Dong has been sent.
+
+## Capstone endpoint alignment and next registered comparison
+
+The original supplied notebooks saved93.73%/94.99% on40× image-random reused validation; they did not implement the present case/missing-view task. [Original/current contract](../docs/CAPSTONE_BEFORE_AND_NOW.md) prevents describing this as a measured model drop. A fixed, non-fitting image-endpoint analysis of accepted ResNet validation arrays reports every magnification and a40× case-aggregation bridge; all ten runs and source hashes were independently rechecked. [Results](../docs/CAPSTONE_BRIDGE_RESULTS.md).
+
+One further conventional feature-representation comparison is registered and running: original Phikon central-view feature versus a fixed50/50 blend with four regional features, unchanged official processor and frozen weights. Exactly20 fixedC0.01 heads use the same fitting/validation roles and all15 subsets. The technical smoke passed; scientific outcomes remain pending. [Recipe](../docs/BREAKHIS_MULTICROP_SPEC.md) · [Execution](../docs/BREAKHIS_MULTICROP_STATUS.md). Complete the capstone report regardless of outcome; no new-patient confirmation or novel mechanism follows from a high validation score.

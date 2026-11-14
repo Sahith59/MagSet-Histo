@@ -1,5 +1,11 @@
 # MAGSET-Histo execution plan
 
+## Latest checkpoint: master's capstone first, November14
+
+User emphasizes capstone completion before the research paper, asks for original versus current scores and explicitly requests multiple GPT-6.1 Sol independent reviews. All three reviews completed. Read `docs/CAPSTONE_BEFORE_AND_NOW.md` before comparing historical93.73%/94.99% image-random outputs with current case-level results. The saved-validation image bridge is complete and independently audited; it does not reproduce the notebook model or recover95% under the current grouped roles.
+
+Proceed under existing eight-class/four-view scope while the requested capstone date/task clarification is pending. One narrow frozen regional-view test is registered in `docs/BREAKHIS_MULTICROP_SPEC.md`, config42e8e98e..., source47ad41657979c3e154cc9db7b89f1fec4b1f40ac. Smoke4971319 passed in21seconds, parity1.386e-6 and exact blend replay, with independent actual-artifact acceptance. Feature array4971322 has four A40 tasks; job4971323 waits for all four then performs exactly20 fixed-C heads. No backbone fitting, new labels, resplit or architecture sweep. All110 pinned local tests pass. New scientific outcome is pending; keep the frozen reference. Finish capstone reporting regardless of this result; novelty/TCGA stay deferred.
+
 ## Current user priority: BreakHis quick deliverable first
 
 User clarified on November12,2026 that BreakHis is the main dataset and its project deliverable with Professor Dong must be finished first. This section supersedes earlier next-step language that prioritized TCGA or novelty. Preserve completed TCGA work as deferred background; do not expand it now.
