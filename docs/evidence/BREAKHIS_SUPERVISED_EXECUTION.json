@@ -1,6 +1,5 @@
 {
-  "updated_utc": "2026-11-14T04:47:00Z",
-  "status": "production submitted; complete comparison pending",
+  "status": "all ten runs, complete artifact checker and independent numerical review passed; improvement gate failed",
   "training_source_sha": "c1b6b0ce24ffc99a00b3eb98cc09130934ffb0bb",
   "collector_source_sha": "f4ba03ae1278ac7ecf1897328353abd43444b1f3",
   "config_sha256": "d239cff3df4fcca16e64b9bf4f36309a5c8ea923c931198cd1a4b34f914b5839",
@@ -40,19 +39,137 @@
   },
   "array": {
     "job": "4970079",
-    "running_at_checkpoint": 4,
-    "pending_at_checkpoint": 6,
-    "completed_at_checkpoint": 0
+    "running_at_launch_checkpoint": 4,
+    "pending_at_launch_checkpoint": 6,
+    "completed_at_launch_checkpoint": 0,
+    "final_original_completed": 8,
+    "final_original_timed_out": 2
   },
   "collector": {
     "job": "4970104",
-    "dependency": "afterok:4970079",
-    "state_at_checkpoint": "PENDING"
+    "dependency": "afterok:4971227",
+    "state_at_checkpoint": "COMPLETED",
+    "original_dependency": "afterok:4970079",
+    "reason_for_dependency_change": "both A40 attempts failed unchanged probability replay gate; restore original committed states on A100; exact ten-run verification still required",
+    "previous_recovery_dependency": "afterok:4971209",
+    "exit_code": "0:0",
+    "elapsed_seconds": 58,
+    "stderr_bytes": 0
   },
   "tests": {
     "pinned_full_suite_passed": 86,
     "repeated_collector_integrity_tests_passed": 3
   },
-  "result": null,
-  "interpretation": "Ordinary complete-pipeline reference under exploratory provider-case validation; no performance gain, exact author reproduction, clinical confirmation or novelty established."
+  "result": {
+    "comparison_sha256": "60b2bdbcaa775bb6a03f7b5e9ec85b318e888c3844cc2a4653f17adb378e3078",
+    "registered_gate_passed": false,
+    "supervised_mean_subset_macro_f1": [
+      0.3083888888888889,
+      0.30061111111111105
+    ],
+    "supervised_mean_subset_accuracy": [
+      0.37,
+      0.4
+    ],
+    "frozen_mean_subset_macro_f1": [
+      0.38427777777777783,
+      0.3168888888888889
+    ],
+    "frozen_mean_subset_accuracy": [
+      0.4566666666666667,
+      0.3833333333333333
+    ],
+    "decision": "retain frozen reference; no automatic model sweep"
+  },
+  "interpretation": "Ordinary complete-pipeline reference under exploratory provider-case validation; no performance gain, exact author reproduction, clinical confirmation or novelty established.",
+  "recovery": {
+    "date": "2026-11-14",
+    "array": "4971209",
+    "wrapper_source_sha": "d7cbe25be36d0137bc6166f47f29569a4b5f50e4",
+    "training_source_unchanged": true,
+    "training_configuration_unchanged": true,
+    "original_timed_out_tasks": [
+      0,
+      1
+    ],
+    "original_timeout_elapsed_seconds": [
+      7218,
+      7218
+    ],
+    "original_successful_tasks": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "original_successful_elapsed_seconds": [
+      956,
+      955,
+      1001,
+      1041,
+      1049,
+      1008,
+      926,
+      856
+    ],
+    "new_gpu_type": "A40",
+    "scientific_epoch_limit": 20,
+    "preserve_interrupted_files_before_resume": true,
+    "resume_authority": "last.pt only; orphan temporary state preserved but not loaded",
+    "running_at_checkpoint": 0,
+    "state": "both FAILED selected validation field replay safeguard",
+    "elapsed_seconds": [
+      69,
+      127
+    ],
+    "saved_epochs_before_A40": [
+      20,
+      19
+    ],
+    "replay_tolerance_unchanged": 1e-06,
+    "failure_scope": "scalar selected mean-subset macro F1 replay passed; mandatory field-probability parity failed; unlogged maximum error not inferred"
+  },
+  "a100_continuation": {
+    "date": "2026-11-14",
+    "array": "4971227",
+    "wrapper_source_sha": "752441c0fbe00dca90f184888ce8ee2ad15d6e38",
+    "restore_original_preserved_states_from_array": "4971209",
+    "required_gpu_family": "A100",
+    "scientific_epoch_limit": 20,
+    "training_source_unchanged": true,
+    "configuration_unchanged": true,
+    "original_epoch_boundaries": [
+      20,
+      19
+    ],
+    "running_at_checkpoint": 0,
+    "node": "arctrddgxa001",
+    "claim": "technical recovery attempt; full replay and artifact verification still pending",
+    "state": "both COMPLETED0; selected validation replay passed",
+    "elapsed_seconds": [
+      119,
+      204
+    ],
+    "completed": 2,
+    "stderr_bytes": [
+      0,
+      0
+    ]
+  },
+  "launch_checkpoint_utc": "2026-11-14T04:47:00Z",
+  "updated_date": "2026-11-14",
+  "independent_numerical_review": {
+    "accepted": true,
+    "final_field_records": 51760,
+    "candidate_field_records": 30116,
+    "final_case_records": 8100,
+    "candidate_case_records": 4800,
+    "candidate_sets": 40,
+    "max_case_probability_replay_error": 1.78e-15,
+    "scope": "all numeric outputs, roles, truths and available hashes; full model/optimizer tensor verification is remote collector evidence"
+  }
 }

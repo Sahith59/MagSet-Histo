@@ -110,3 +110,49 @@ The reviewer separately inspected the small remote log/hash evidence. The retry 
 | Empty retry stderr | `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855` |
 
 **Smoke acceptance:** the bounded retry clears the fitting/unfreeze/BN/reload and clean-worker-shutdown gates. The earlier warned smoke remains a separately recorded technical fit, not a production model or selected result. The production array may proceed under the registered ten-run recipe and concurrency policy; no predictive gain or rare-class improvement is accepted until the complete matrix passes result verification. This review used existing tensors, metadata and read-only artifact hashes only: no training, image decoding, encoder/model forward, optimizer update, job submission or unrelated-job action was performed.
+
+## November 14: technical recovery audit
+
+Eight original production tasks completed, but tasks 0/1 of array `4970079` timed out at 7,218 seconds each. Their committed checkpoints were at epochs 20 and 19. Operations wrapper `d7cbe25be36d0137bc6166f47f29569a4b5f50e4` preserved and hashed the interrupted checkpoints, selected states, candidate arrays and orphan temporary files before A40 continuation `4971209`. Both A40 tasks failed the unchanged selected-validation-field probability replay safeguard. Their recorded primary scalar F1 replay passed; that alone does not prove equality of every hard decision, subset metric or probability. No magnitude beyond the fixed tolerance failure was inferred from the logs.
+
+The rollback wrapper `752441c0fbe00dca90f184888ce8ee2ad15d6e38` preserves the rejected A40 artifacts first, validates the saved original receipt bindings, verifies each original preserved file digest, and restores last/selected/candidate files through checked staging copies. It excludes orphan `last.tmp` from resume authority. The original immutable C1 training source then reconstructs selected state from authoritative `last.pt`; settings, roles, 20-epoch limit and four candidate opportunities are unchanged. The A100-family constraint is an attempted compatibility remedy, not proof of the sole numerical cause of the A40 failure.
+
+All four copied receipts match the remote receipt hashes. For both trials, every restored A100 last/selected/candidate digest exactly matches the pre-A40 receipt, and `started.json` remains unchanged. Trial 1 remains at committed epoch 20: its recorded `next_epoch=21` starts an empty training loop and is not an additional epoch. Trial 2 restores original epoch 19 and repeats only the uncommitted final epoch. The A40 epoch-20 state and its changed candidate file are preserved separately rather than becoming the final model's initialization. Both original selected epochs were 10; no performance-driven replacement or altered checkpoint rule was found in this recovery chain.
+
+| Receipt | SHA-256 |
+| --- | --- |
+| Trial 1 before A40 | `cd25bcb2ba67f4b8f3a97ad373e7f1fde57c4c0ce6db50386504a4f1859e9579` |
+| Trial 1 A100 preservation/restoration | `0977ce0c008fa6911b755359daf11cb2120b3252e710a410e96ca60624bc1032` |
+| Trial 2 before A40 | `34ea767874bc2020ee886ee3285c9ee2c367e6f42a994d65f640c184e0d0a607` |
+| Trial 2 A100 preservation/restoration | `b7dff4e52d2f4f9eb59a13fe6f93dca78bb497c22bfe15700399e27886f68534` |
+
+The live scheduler command points to the immutable `752441c` wrapper, whose remote bytes match the Git object (file SHA-256 `6fd260fbed27e38a91071b576c49cd2de3ef115c53fa16279f8218e6258ef5d7`). Read-only accounting/log inspection subsequently confirms A100 tasks `4971227_0/1` completed with zero exit status in 119/204 seconds and empty stderr. Both reached final-artifact output after replay. Full collector `4970104` then completed with zero exit status in 58 seconds. No checkpoint download, fitting, forward pass or job mutation was used in this operations review.
+
+The recovery is accepted as a transparent technical continuation/rollback, conditional on the unchanged complete-result gates below. The wrappers are operational changes, not changes to the trained scientific recipe. Their generic receipt reason mentions the original timeout; the execution record must also retain the rejected A40 replay failure and restoration lineage so the second continuation is not mistaken for an ordinary first resume.
+
+### Runtime accounting
+
+Trial 1 consumed 7,218 + 69 + 119 = **7,406 allocated GPU-task seconds** across original/A40/A100 segments. Trial 2 consumed 7,218 + 127 + 204 = **7,549 seconds**. This includes discarded/repeated work, including repeated epoch-20 processing for trial 2. The final training report's `elapsed_seconds` measures only its final invocation and must not replace these totals.
+
+All ten original segments plus four recovery segments total **22,747 single-GPU allocated task-seconds** (about 6.32 allocated GPU-hours). Both disclosed technical smokes add 73 seconds, giving 22,820 seconds overall. These are allocation durations, not measured GPU-kernel utilization, and do not include queue/idle gaps or the separate CPU collector. The eight uninterrupted models took 856–1,049 seconds each. Report active resource cost and elapsed calendar time separately; no new scientific epoch allowance is created by repeating failed/uncommitted work.
+
+## November 14: complete numerical result audit
+
+The ten-run paired comparison is now available with SHA-256 `60b2bdbcaa775bb6a03f7b5e9ec85b318e888c3844cc2a4653f17adb378e3078`. The reviewer independently checked the copied reports, final fitting/validation field arrays and case records, all four candidate field sets per run, recovery receipts, accepted frozen references and comparison ledger against the trusted manifest/protocol. No partial model ranking was used.
+
+The audit covers **51,760 final field records**, **30,116 candidate-validation field records**, **8,100 final case/subset records**, and **4,800 candidate case/subset records**. These are repeated derived observations across the same cases and trials. Exact path coverage, fitting/validation membership and subtype truths pass; no scored record belongs to its own run's excluded outer group. Per-role class/case/view field weights were independently constructed from original manifest counts.
+
+An independent scalar confusion-matrix calculation and stable log-mean-exp reconstruction reproduce every case/field F1, accuracy, balanced accuracy, CE, Brier score, subtype recall and confusion matrix, every one of the 15 subsets, all 40 candidate score sets, and all paired/cross-trial summaries within `2e-12`. Equal-field-within-view/equal-available-view probability averaging reproduces saved case probabilities/log probabilities within `1.7763568394002505e-15`. Candidate selection obeys the registered earliest maximum. Selected epochs in seed/trial order are `[10,10,20,5,15]` and `[10,15,10,5,10]`.
+
+Available report/prediction/field hashes, source/configuration/data identities, frozen-reference hashes, exact 20-epoch history/draw/phase/rate traces, component-hash metadata, selected epoch and support counts agree with the ledger. The production model and full optimizer/checkpoint tensors remain remote; their complete-schema, BN, optimizer, selected-state and reload checks are the reviewed remote collector's evidence rather than a fresh local tensor recheck in this numerical audit. There are 22 and 20 distinct validation provider cases, union 31; phyllodes has two distinct validation cases per arrangement.
+
+| Inner seed | Frozen mean-subset macro F1 | Supervised mean-subset macro F1 | Mean F1 change | Frozen case accuracy | Supervised case accuracy |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| 812 | 0.3842777778 | 0.3083888889 | −0.0758888889 | 45.6667% | 37.0000% |
+| 813 | 0.3168888889 | 0.3006111111 | −0.0162777778 | 38.3333% | 40.0000% |
+
+Full-view supervised accuracy is 40% for both arrangements, versus frozen 47.5%/37.5%. Phyllodes case recall remains zero on both. Mean per-trial worst-subset F1 and Brier score are also worse for this recipe on both arrangements. The seed-813 accuracy increase does not override its lower primary macro F1 or the failed rare-class condition.
+
+The generalization gap persists: selected supervised case fitting balanced accuracy averages approximately 99.55%/99.70%, versus validation 37%/40%; class/case/view-balanced field accuracy is 97.49%/97.84% fitting versus 31.23%/32.63% validation. These are descriptive fitting–validation differences, not a causal diagnosis or an independent clinical performance estimate.
+
+**Final result acceptance:** the complete fixed experiment and its disclosed technical recoveries are accepted as reproducible exploratory evidence. The registered +0.02-F1-on-both-arrangements and positive-phyllodes-recall gate is **false**. Retain the frozen reference; do not adopt this recipe or select a favorable split/secondary endpoint. This does not prove that every ResNet/CNN, longer training or alternative aggregation must fail, nor authorize an automatic sweep. Clinical identity, independent confirmation, reliable predictive performance and novelty remain unresolved. The reviewer performed no fitting, model forward, new image processing, outer scoring, checkpoint download or cluster job action in this result/recovery audit.
