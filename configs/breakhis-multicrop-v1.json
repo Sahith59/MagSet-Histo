@@ -1,0 +1,40 @@
+{
+  "name": "breakhis-multicrop-v1",
+  "schema_version": 1,
+  "manifest_sha256": "958893f923a745220fac66f19656bcdbfb38996f70ef8044e1349619f4102e31",
+  "protocol_sha256": "dca9a93bb570fd7cfec9fe72e5cad9ac76f838725b03c7a7a593824fecd51134",
+  "encoder": {
+    "repository": "owkin/phikon-v2",
+    "revision": "2ae989a9c40cffaa27f0a6cb29cc94d1d6f9a5fd",
+    "features": "CLS token from last_hidden_state",
+    "dimension": 1024,
+    "transform": "official AutoImageProcessor configuration at the pinned revision"
+  },
+  "thumbnail_weight": 0.5,
+  "quadrant_weight": 0.5,
+  "thumbnail_provenance": {
+    "40": {
+      "npz_sha256": "b5daddf7c8539851dadce9be88c093aa3bc866efffc9dccffd3d6f1e02ad614d",
+      "json_sha256": "e0192110cde0c4c6f2b5d66bf2e2b53ef5394f448f711656f2c7650acad17be2"
+    },
+    "100": {
+      "npz_sha256": "047a9ff53e07d857aafc671b972d721e4b2190492b88c134d7a027f90b87c0a0",
+      "json_sha256": "9dda516c7eff60dd2032d376e44f951c634ee277574bc3321826c2ee6c390dd1"
+    },
+    "200": {
+      "npz_sha256": "26e8635b1773fe78aa41943fb09fba71d8ee77197b35a38c9fb41237090e782d",
+      "json_sha256": "0c1ec05146307e3df07ff749441b85033066d54e8065b0214350d970ea0874f8"
+    },
+    "400": {
+      "npz_sha256": "2d61a4325ae82dd295445678134885af7a3a37622cec1be3cc26dbc076da3385",
+      "json_sha256": "4c5b93b58bc62b4e3b8a94b5f414a52c4ba57cd7420a9b4967ca89a3ff4f640b"
+    }
+  },
+  "thumbnail_parity_atol": 0.0001,
+  "smoke_fields": 4,
+  "smoke_magnification": 40,
+  "fixed_C": 0.01,
+  "max_iter": 1000,
+  "normalization": "field-moments-v2",
+  "primary_gate_margin": 0.02
+}
