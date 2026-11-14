@@ -30,9 +30,9 @@ Each model retains its normalization, coefficients and class order. An independe
 
 The small classifier uses LBFGS optimization with at most 1,000 iterations. This is not 1,000 passes through every original image. Image encoding already used GPUs; cached-feature heads fit efficiently on CPUs.
 
-## Current improvement experiment
+## Completed adaptation experiment
 
-The checked baseline and raw-image demonstration are packaged. The next experiment updates only Phikon-v2's last block and final output normalization. It first practises with an auxiliary image classifier for one epoch, then also updates those encoder layers for five epochs. Class-balanced sampling gives rare classes a fair share of practice; within each class it balances cases and zooms. Only fitting cases supply those updates.
+The checked baseline and raw-image demonstration are packaged. The completed adaptation updated only Phikon-v2's last block and final output normalization. It first practised with an auxiliary image classifier for one epoch, then also updated those encoder layers for five epochs. Class-balanced sampling gave rare classes a fair share of practice; within each class it balanced cases and zooms. Only fitting cases supplied those updates.
 
 Afterward, discard the auxiliary classifier, encode the fitting and validation images without augmentation, and train the same mean-plus-mask logistic case classifier described above. Keep the same four C choices, cases and metrics. All ten full runs and the artifact checker passed. Mean case accuracy is45.7%/38.8%; primary F1 does not improve on both splits, so this recipe fails its improvement gate and the frozen baseline remains the default. [Complete results](BREAKHIS_ADAPTATION_RESULTS.md). [Exact recipe](BREAKHIS_ADAPTATION_SPEC.md) · [Execution checkpoint](BREAKHIS_ADAPTATION_STATUS.md).
 
@@ -44,4 +44,18 @@ The current numbers are exploratory. All 82 provider cases have entered developm
 
 The saved adapted case classifier answers its fitting cases very well (98.5–98.7% balanced accuracy) but does poorly on validation (38.8–45.7%). The auxiliary image head also has a large gap: about98% on fitting pictures and32–35% on validation with class/case/view balancing. Keeping that head and using either fixed averaging readout does not fix validation. This is consistent with poor generalization; no single cause has been established. [Diagnosis, all readouts and figure](BREAKHIS_DIAGNOSIS_RESULTS.md).
 
-For a linear head, classifying a mean feature equals averaging field logits with the same weights. That checked identity helps avoid blaming early averaging alone. The next training design should establish a compatible supervised reference and address the small independent case count; this diagnosis itself performs no fitting or new encoder execution.
+For a linear head, classifying a mean feature equals averaging field logits with the same weights. That checked identity helps avoid blaming early averaging alone. The diagnosis itself performs no fitting or new encoder execution.
+
+## Training now: a standard supervised picture model
+
+Think of the model as a picture reader plus an eight-answer decision maker. In this comparison, we teach both parts using the fitting pictures. We keep the same46 fitting/eight validation/28 excluded cases per run, all four zooms and all15 input combinations. Ten fits cover five trials at each of the two existing split arrangements.
+
+1. Start from **ImageNet-pretrained ResNet-50**. Its2,048-number picture description feeds dropout and an eight-class linear classifier.
+2. For the first two epochs, teach only the classifier. For epochs3–20, also update the picture reader. BatchNorm running statistics stay fixed throughout.
+3. Balance practice across tumor types, cases and zooms. Use fitting-only flips, quarter-turns and small color changes. Resize each whole picture to224×224; this changes its rectangular shape. AdamW adjusts the weights using label-smoothed cross-entropy, with fixed regularization and learning-rate schedule.
+4. At epochs5/10/15/20, check the same validation cases. Keep the earliest checkpoint with the best mean15-subset macro F1; finish all20 epochs. Validation answers never supply gradient updates.
+5. For a case, average picture probabilities within each zoom, then average the available zooms equally. Keep this trained image classifier; there is no second logistic fit or calibration choice.
+
+This is one complete alternative pipeline. A better score would not tell us which single change caused it. Pictures, repeated draws and input combinations do not create extra independent cases: each fitting set still has just one adenosis and one phyllodes provider case.
+
+The technical check passed; ten production fits and a dependent checker are submitted. **The scores are pending.** Keep the frozen reference until the complete checked comparison is available. [Exact settings](BREAKHIS_SUPERVISED_SPEC.md) · [Execution checkpoint](BREAKHIS_SUPERVISED_STATUS.md).

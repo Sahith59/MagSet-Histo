@@ -1,0 +1,58 @@
+{
+  "updated_utc": "2026-11-14T04:47:00Z",
+  "status": "production submitted; complete comparison pending",
+  "training_source_sha": "c1b6b0ce24ffc99a00b3eb98cc09130934ffb0bb",
+  "collector_source_sha": "f4ba03ae1278ac7ecf1897328353abd43444b1f3",
+  "config_sha256": "d239cff3df4fcca16e64b9bf4f36309a5c8ea923c931198cd1a4b34f914b5839",
+  "manifest_sha256": "958893f923a745220fac66f19656bcdbfb38996f70ef8044e1349619f4102e31",
+  "protocol_sha256": "dca9a93bb570fd7cfec9fe72e5cad9ac76f838725b03c7a7a593824fecd51134",
+  "pretrained_weights_sha256": "11ad3fa62ca79e40addfd354a8ec4b7c75143b3038b8d2a807fbc68deab379ca",
+  "technical_fits": 2,
+  "production_fits": 10,
+  "max_concurrent_gpus": 4,
+  "first_smoke": {
+    "job": "4969999",
+    "source_sha": "6b418598b3334dce2e81af02a8f035278e08ef12",
+    "state": "COMPLETED",
+    "exit_code": "0:0",
+    "elapsed_seconds": 43,
+    "accepted_for_production": false,
+    "reason": "loader shutdown warnings; retained before bounded-loader repair"
+  },
+  "accepted_smoke": {
+    "job": "4970065",
+    "state": "COMPLETED",
+    "exit_code": "0:0",
+    "elapsed_seconds": 30,
+    "artifact_verification": "supervised technical smoke verified",
+    "smoke_sha256": "d0a6844545e6737eb251a662f1daf1fa4b387bf17d15452046f0569a87cf9880",
+    "last_sha256": "66858ad0db81e1df297efd7af27dc5aad8510d3b48c7e17e8215b91f30ea8486",
+    "verification_report_sha256": "f1e4b34654e814a2525cad9e8cc2bce2fc538bae21db7d651248c8280048daa3",
+    "stderr_bytes": 0,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "head_optimizer_steps": 6,
+    "backbone_optimizer_steps": 2,
+    "epochs": 3,
+    "draws_per_epoch": 64,
+    "reload_logit_max_difference": 0.0,
+    "validation_images_scored": 0,
+    "outer_images_scored": 0
+  },
+  "array": {
+    "job": "4970079",
+    "running_at_checkpoint": 4,
+    "pending_at_checkpoint": 6,
+    "completed_at_checkpoint": 0
+  },
+  "collector": {
+    "job": "4970104",
+    "dependency": "afterok:4970079",
+    "state_at_checkpoint": "PENDING"
+  },
+  "tests": {
+    "pinned_full_suite_passed": 86,
+    "repeated_collector_integrity_tests_passed": 3
+  },
+  "result": null,
+  "interpretation": "Ordinary complete-pipeline reference under exploratory provider-case validation; no performance gain, exact author reproduction, clinical confirmation or novelty established."
+}

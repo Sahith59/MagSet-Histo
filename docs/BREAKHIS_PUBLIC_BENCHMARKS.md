@@ -22,8 +22,10 @@ We score a provider case after combining its fields, and average over15 availabl
 
 Patient-disjoint eight-class public reports are higher than ours. We should not explain away our performance by asserting that all stronger studies leak data. Conversely, their reported numbers cannot establish an exact performance gap until their grouping, splits, labels, scoring, selection and implementation are reproduced compatibly.
 
-## Next comparison contract
+## Compatibility audit and current comparison
 
-Audit the graph implementation and locked splits without executing untrusted author code. Fix the intended eight-class image and case scoring tracks, then register one compatible baseline reproduction using our exact fitting/validation memberships, transform, field budget, tuning budget and 15-subset endpoint where applicable. Report author numbers beside our reproduction as separate columns. No exact matching eight-class 15-subset public leaderboard was established by this check; that is a search limitation, not proof that none exists.
+The [pinned code/CSV audit](BREAKHIS_REFERENCE_AUDIT.md) is complete without executing author code. Released multiclass files have overlapping validation membership, a bare-ID aggregation ambiguity and cross-view role conflicts in one fold. This does not establish the historical execution path or invalidate the publication; it prevents copying those splits into an exact joint four-view reproduction.
 
-The [completed adaptation result](BREAKHIS_ADAPTATION_RESULTS.md) fails its primary improvement gate. Keep the frozen baseline, diagnose generalization/aggregation and preserve the negative outcome before another training recipe.
+Preserve our existing roles. A [standard supervised ResNet-50 pipeline](BREAKHIS_SUPERVISED_SPEC.md) is registered and running as a task/role-matched reference. It is not an exact graph-paper reproduction or identical-budget fusion ablation. Keep author numbers and our implementation results separate. No exact matching eight-class15-subset public leaderboard was established; that is a search limitation, not proof that none exists.
+
+The [completed adaptation result](BREAKHIS_ADAPTATION_RESULTS.md) fails its primary improvement gate; the [diagnosis](BREAKHIS_DIAGNOSIS_RESULTS.md) found a large fitting/validation gap. Keep the frozen baseline pending the complete supervised comparison and preserve every negative outcome.

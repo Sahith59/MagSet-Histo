@@ -20,13 +20,15 @@ The [complete first-results report](docs/BREAKHIS_FIRST_RESULTS.md) shows every 
 - Checked eight-class BreakHis baseline and complete development-results table.
 - Raw-image validation replay verified: 121 original images, all 15 view settings; archived probabilities reproduced within 0.000000056.
 - Reproducible source, saved model/prediction checks, clear limits and a short professor handoff.
-- One bounded BreakHis improvement comparison after this baseline is packaged.
+- Complete the registered supervised ResNet-50 comparison under the same case roles, then finish the BreakHis project report.
 
 Start with the [focused milestone plan](docs/BREAKHIS_MILESTONE_PLAN.md), [next tasks](docs/NEXT_STEPS.md), and [plain training explanation](docs/TRAINING_STRATEGY.md).
 
 The [fixed adaptation comparison](docs/BREAKHIS_ADAPTATION_RESULTS.md) is complete: all ten runs and the artifact checker passed, but accuracy is45.7%/38.8% and the two-split F1 improvement gate failed. Keep the frozen baseline above as the default. [Published benchmark context](docs/BREAKHIS_PUBLIC_BENCHMARKS.md) explains related eight-class results and protocol differences.
 
 The [saved-model diagnosis](docs/BREAKHIS_DIAGNOSIS_RESULTS.md) is also complete. The adapted case classifier scores98.5–98.7% fitting balanced accuracy and38.8–45.7% on validation. The auxiliary image classifier scores about98% fitting versus32–35% validation under class/case/view weighting. Neither fixed auxiliary readout rescues the result. This supports a large generalization gap; it does not identify one sole cause. No new fitting or encoder execution was used.
+
+The [coverage/reference audit](docs/BREAKHIS_REFERENCE_AUDIT.md) is complete. A standard supervised ResNet-50 reference is now training: ten fits, same cases and15-subset endpoint, up to four GPUs concurrently. The fitting-only technical check passed after a disclosed loader cleanup; an automatic checker waits for the complete matrix. **No improved score is available yet.** [Execution checkpoint](docs/BREAKHIS_SUPERVISED_STATUS.md) · [Fixed recipe](docs/BREAKHIS_SUPERVISED_SPEC.md) · [BreakHis project-report draft](paper/breakhis-project-report.md).
 
 ## Run checks
 

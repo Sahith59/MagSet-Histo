@@ -12,7 +12,7 @@ Priority reset November 12,2026. **BreakHis is the main dataset. Finish its quic
 |4|Run the registered BreakHis improvement|Completed: all ten fits and checker passed; primary two-split improvement gate failed; frozen baseline retained|
 |5|Resolve final evaluation and research claims|After an accepted grouping/claim scope and method freeze; no claim of a pristine clinical test cohort or novelty now|
 
-The [completed improvement](BREAKHIS_ADAPTATION_RESULTS.md) did not meaningfully improve accuracy and failed the two-split F1 gate. Keep the frozen baseline. The [saved-model diagnosis](BREAKHIS_DIAGNOSIS_RESULTS.md) is complete: both case and image heads fit training cases well but generalize poorly; keeping the auxiliary head does not fix validation. Next audit split/class coverage and a [public eight-class comparator](BREAKHIS_PUBLIC_BENCHMARKS.md), then define one compatible supervised image-model reference with the same case roles and metrics. Register a justified fixed recipe before any new fits. Do not start an automatic architecture sweep or score outer cases to rescue this result.
+The [completed improvement](BREAKHIS_ADAPTATION_RESULTS.md) did not meaningfully improve accuracy and failed the two-split F1 gate. Keep the frozen baseline. The [saved-model diagnosis](BREAKHIS_DIAGNOSIS_RESULTS.md) found a large fitting/validation gap. The [coverage and reference audit](BREAKHIS_REFERENCE_AUDIT.md) is now complete, and one [fixed supervised ResNet-50 recipe](BREAKHIS_SUPERVISED_SPEC.md) was registered before fitting. Its ten full runs are submitted, with at most four simultaneous GPUs; the complete checker is queued after the array. No improved scores are established. [Dated execution checkpoint](BREAKHIS_SUPERVISED_STATUS.md).
 
 ## What is already done
 
@@ -34,4 +34,12 @@ Every status update should explain plainly what we just did, what the evidence s
 
 Job4968029 completed all ten fixed probes in70seconds, with no new fits, encoder forwards or outer predictions. Independent auditing recomputed32,400 case-score records and51,760 field-score records (dependent repetitions, not new cases). Mean fitting/validation balanced case accuracy is98.5/45.7% and98.7/38.8%; auxiliary weighted field accuracy is98.1/35.0% and97.9/31.8%. The affine-pooling identity and saved archive replays passed.
 
-Keep the frozen baseline. Before another fitting budget is registered, specify a compatible regularized supervised image baseline and its case aggregation under the existing eight-class protocol. Do not infer that more epochs, bigger encoders, a new pooling block or stronger clinical claims follow from this diagnostic result.
+Keep the frozen baseline while the registered comparison runs. Do not infer that a bigger model or longer training follows automatically from this diagnosis.
+
+## Current next actions
+
+1. Finish all ten fixed ResNet-50 fits and the automatic artifact checker. Require the complete matrix before ranking; do not use interim trial scores to change settings.
+2. Independently inspect actual outputs, then publish every trial, both arrangements, all15 subsets, subtype recall/support, fitting–validation gaps and runtime/model size. Apply the already registered descriptive gate.
+3. Update the [BreakHis project-report draft](../paper/breakhis-project-report.md) and professor brief with checked results and limitations. Confirm acceptable grouping/claim scope and final evaluation with Professor Dong before stronger claims.
+
+Coverage auditing, the technical smoke, implementation review, report structure and the first-results package are done. The remaining bottleneck is the measured supervised comparison and a credible final-evaluation route. A failed reference does not authorize an automatic architecture/rate/epoch sweep.

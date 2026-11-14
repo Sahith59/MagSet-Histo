@@ -2,6 +2,8 @@
 
 Working text for revision with Professor Dong. It describes the current implementation, not a finalized novel method or completed generalization study. Final test results are intentionally absent.
 
+Historical multi-round methods record. The current BreakHis-first scope, completed negative results and pending supervised reference are consolidated in the [project-report draft](breakhis-project-report.md). Its status supersedes forward-looking confirmation language below; TCGA remains deferred and does not provide clean external breast confirmation.
+
 ## Task and data unit
 
 We study eight-subtype classification from sets of breast histopathology fields at 40×, 100×, 200×, and 400×. For case i and magnification m, X_im denotes its unordered set of image fields. The prediction model receives any nonempty subset S of the four magnifications and returns eight class probabilities. We evaluate all 15 possible S while retaining the same eligible cases. This is controlled, artificial withholding of available magnifications; the present cohort does not establish the clinical frequency of naturally missing views.

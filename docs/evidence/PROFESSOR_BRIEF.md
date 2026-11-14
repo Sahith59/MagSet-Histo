@@ -17,7 +17,9 @@ The raw-image replay passed on 121 original images, covering all 15 view setting
 
 **Diagnosis completed November13:** no new fitting or encoder execution. Saved adapted case heads achieve98.5–98.7% fitting balanced accuracy versus38.8–45.7% validation. The auxiliary image head achieves about98% fitting versus32–35% validation with class/case/view weighting. Neither fixed auxiliary case readout rescues the result. This supports a large fit–validation/generalization gap, without proving one sole cause. Independent auditing recomputed all saved diagnostic score arithmetic. [Diagnosis and figure](../BREAKHIS_DIAGNOSIS_RESULTS.md).
 
-**Next:** audit split/class coverage and specify one compatible regularized supervised image-model baseline before registering another fitting budget. [Complete adaptation result](../BREAKHIS_ADAPTATION_RESULTS.md) · [Published benchmark context](../BREAKHIS_PUBLIC_BENCHMARKS.md).
+**Now running:** ten registered supervised ResNet-50 fits under the same case roles and15-subset endpoint, at most four simultaneous GPUs. Head-only epochs1–2 precede full-backbone training through epoch20; retain the trained image head and equally average within zoom, then across zooms. The fitting-only technical check passed after a disclosed loader cleanup; the complete checker waits for the array. No improved score is established yet. [Fixed recipe](../BREAKHIS_SUPERVISED_SPEC.md) · [Execution checkpoint](../BREAKHIS_SUPERVISED_STATUS.md).
+
+**Coverage/reference audit completed:** each fitting set has only one adenosis and one phyllodes provider case. All7,909 fields are accounted for. The inspected author's released folds and identities are incompatible with a direct joint four-view reproduction, so published scores stay separate. [Audit](../BREAKHIS_REFERENCE_AUDIT.md) · [Project-report draft](../../paper/breakhis-project-report.md).
 
 **Open limits:** clinical relationships between some provider IDs remain unverified; all 82 cases entered development somewhere, so there is no globally fresh BreakHis confirmation cohort. Reliable final evaluation, method novelty and a submission-ready paper remain unfinished.
 
