@@ -14,7 +14,7 @@ Clinical identity uncertainty,31 distinct validation cases across arrangements, 
 
 The full pinned local suite passed119tests; a subsequent complete local run passed119tests in7.199seconds. No scientific settings changed during packaging.
 
-The [PDF](../../output/pdf/BreakHis-Capstone.pdf) has ten16:9 pages. All actual PDF pages were rendered using native Quartz and visually reviewed. Browser geometry found no content/footer overlap. Result text, dimensions and portable HTTPS references passed; no local file URLs remain in annotations. PDF SHA256: `8b8f4c393a4d6171d52fd890b1e570763bcb60649620b4abf7e28373b0665693`.
+The [PDF](../../output/pdf/BreakHis-Capstone.pdf) has ten16:9 pages. All actual PDF pages were rendered using native Quartz and visually reviewed. Browser geometry found no content/footer overlap. Result text, dimensions and portable HTTPS references passed; no local file URLs remain in annotations. PDF SHA256: `2607db4d31be47870491c26ebd4496a09bcc0f6dd948f48b2a9ea8331191eb81`.
 
 The [browser deck](../evidence/CAPSTONE_PRESENTATION.html), [report](../../paper/breakhis-project-report.md), [rehearsal guide](../../paper/capstone-rehearsal.md) and [demo instructions](../CAPSTONE_DEMO.md) accompany it. Changed/new public text passed actual-provider-identifier/private-path and local Markdown-link checks; source deny-list strings were distinguished from actual identifiers. Git whitespace checks passed.
 

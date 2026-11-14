@@ -89,6 +89,9 @@ addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' '].includes(e.key))
 addEventListener('resize',resize);const initial=Number(location.hash.replace('#slide-',''));show(Number.isFinite(initial)&&initial>0?initial-1:0);resize();
 '''
     html = '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BreakHis — Master’s Capstone</title><style>' + css + '</style></head><body><main id="shell"><div id="stage">' + ''.join(slides) + '</div></main><nav aria-label="Slide controls"><button id="previous" aria-label="Previous slide">←</button><span id="count"></span><button id="next" aria-label="Next slide">→</button></nav><script>' + js + '</script></body></html>'
+    # Keep exported PDF punctuation portable across renderers.
+    for dash in ('\u2010', '\u2011', '\u2012', '\u2013', '\u2014', '\u2015'):
+        html = html.replace(dash, '-')
     assert html.count('<section class="slide"') == 10
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(html)
