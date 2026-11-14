@@ -65,15 +65,17 @@ def load_inputs(rows, thumbnail, multicrop, manifest_hash, config, config_hash, 
                 or not new.get('transform')):
             raise ValueError('Candidate source/transform/config/thumbnail provenance missing')
         with np.load(Path(thumbnail)/('phikon-v2-%d.npz' % scale), allow_pickle=False) as a:
-            lookup = {p: a['features'][i].copy() for i, p in enumerate(a['paths'].tolist())}
+            original_features = a['features']
+            lookup = {p: original_features[i] for i, p in enumerate(a['paths'].tolist())}
         with np.load(Path(multicrop)/('phikon-v2-%d.npz' % scale), allow_pickle=False) as a:
             paths = a['paths'].tolist(); n = len(paths); d = config['encoder']['dimension']
             q = a['quadrant_features']; g = a['thumbnail_features']; f = a['features']
+            widths = a['widths']; heights = a['heights']; raw_hashes = a['raw_sha256']; saved_bounds = a['bounds']
             if (q.shape != (n, 4, d) or g.shape != (n, d) or f.shape != (n, d)
                     or any(x.dtype != np.float32 or not np.isfinite(x).all() for x in (q, g, f))
-                    or a['bounds'].shape != (n, 4, 4)
-                    or a['widths'].shape != (n,) or a['heights'].shape != (n,)
-                    or a['raw_sha256'].shape != (n,)):
+                    or saved_bounds.shape != (n, 4, 4)
+                    or widths.shape != (n,) or heights.shape != (n,)
+                    or raw_hashes.shape != (n,)):
                 raise ValueError('Invalid candidate vector/metadata schema')
             if not np.array_equal(g, np.stack([lookup[p] for p in paths])):
                 raise ValueError('Candidate thumbnail differs from original cache')
@@ -84,9 +86,9 @@ def load_inputs(rows, thumbnail, multicrop, manifest_hash, config, config_hash, 
                 r = manifest[p]; w = int(r['width']); h = int(r['height'])
                 bounds = [[0, 0, w//2, h//2], [w//2, 0, w, h//2],
                           [0, h//2, w//2, h], [w//2, h//2, w, h]]
-                if (a['widths'][i] != w or a['heights'][i] != h
-                        or a['raw_sha256'][i] != r['sha256']
-                        or not np.array_equal(a['bounds'][i], bounds)):
+                if (widths[i] != w or heights[i] != h
+                        or raw_hashes[i] != r['sha256']
+                        or not np.array_equal(saved_bounds[i], bounds)):
                     raise ValueError('Raw identity/dimensions/quadrant bounds differ')
     return cases, {'thumbnail': control, 'multicrop': candidate}, original_meta, candidate_meta
 
@@ -208,7 +210,8 @@ def compare(manifest, protocol, thumbnail, multicrop, reference_root, config_pat
         raise ValueError('Registered manifest/protocol differs')
     if cases != trusted['cases']:
         raise ValueError('Trusted case order differs')
-    provenance = {'expected_extractor_source': expected_source, 'code_sha': code_sha, 'implementation_sha256': file_hash(__file__), 'config': config,
+    provenance = {'expected_extractor_source': expected_source, 'code_sha': code_sha,
+                  'head_code_sha': code_sha, 'feature_code_sha': expected_source['code_sha'] if expected_source else None, 'implementation_sha256': file_hash(__file__), 'config': config,
                   'config_sha256': file_hash(config_path), 'thumbnail_provenance': old_meta, 'multicrop_provenance': new_meta}
     # Verify every retained reference and cache binding before performing any fit.
     references = {}
@@ -245,10 +248,25 @@ def compare(manifest, protocol, thumbnail, multicrop, reference_root, config_pat
     return result
 
 
+
+def feature_source_contract(source, config_path):
+    """Bind a reused cache to its original immutable producer, separately from heads."""
+    source = Path(source)
+    code = (source/'.source-sha').read_text().strip()
+    archive = (source/'.archive-sha256').read_text().strip()
+    if (not re.fullmatch(r'[0-9a-f]{40}', code)
+            or not re.fullmatch(r'[0-9a-f]{64}', archive)
+            or Path(config_path).read_bytes() != (source/'configs/breakhis-multicrop-v1.json').read_bytes()):
+        raise ValueError('Invalid immutable feature source/configuration')
+    return {'code_sha': code, 'archive_sha256': archive,
+            'source_sha256': {name: file_hash(source/name) for name in EXTRACTOR_SOURCE_FILES}}
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     for name in ('manifest', 'protocol', 'thumbnail-cache', 'multicrop-cache', 'reference-root', 'config', 'output'):
         parser.add_argument('--'+name, type=Path, required=True)
+    parser.add_argument('--feature-source', type=Path, help='Original immutable feature producer snapshot; defaults to current head source')
     parser.add_argument('--code-sha', required=True); a = parser.parse_args()
     source = Path(__file__).resolve().parents[1]
     if (not re.fullmatch(r'[0-9a-f]{40}', a.code_sha)
@@ -256,8 +274,7 @@ def main():
             or a.config.read_bytes() != (source/'configs/breakhis-multicrop-v1.json').read_bytes()
             or (source/'.source-sha').read_text().strip() != a.code_sha):
         raise ValueError('Use an immutable source snapshot with matching code SHA')
-    expected_source = {'code_sha': a.code_sha, 'archive_sha256': (source/'.archive-sha256').read_text().strip(),
-                       'source_sha256': {name: file_hash(source/name) for name in EXTRACTOR_SOURCE_FILES}}
+    expected_source = feature_source_contract(a.feature_source or source, a.config)
     compare(a.manifest, a.protocol, a.thumbnail_cache, a.multicrop_cache, a.reference_root, a.config, a.output, a.code_sha, expected_source)
 
 

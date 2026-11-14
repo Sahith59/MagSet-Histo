@@ -99,8 +99,10 @@ class MulticropCompareTests(unittest.TestCase):
                         'thumbnail_features':g,'quadrant_features':q,'raw_sha256':np.asarray(['raw']),
                         'widths':np.asarray([4]),'heights':np.asarray([4]),
                         'bounds':np.asarray([[[0,0,2,2],[2,0,4,2],[0,2,2,4],[2,2,4,4]]])}
-                rows.append({'relative_path':p,'width':'4','height':'4','sha256':'raw'})
-                op=old/('phikon-v2-%d.npz'%scale);np.savez(op,paths=np.asarray([p]),features=g)
+                fields={key:np.concatenate([value,value],axis=0) for key,value in fields.items()}
+                fields['paths']=np.asarray([p,p+'.second'])
+                rows.extend({'relative_path':path,'width':'4','height':'4','sha256':'raw'} for path in fields['paths'].tolist())
+                op=old/('phikon-v2-%d.npz'%scale);np.savez(op,paths=fields['paths'],features=np.concatenate([g,g]))
                 meta={'encoder':config['encoder'],'feature_sha256':file_hash(op),'transform':{'resize':224}}
                 op.with_suffix('.json').write_text(json.dumps(meta));om.append(meta)
                 pins={'npz_sha256':file_hash(op),'json_sha256':file_hash(op.with_suffix('.json'))}
@@ -109,14 +111,24 @@ class MulticropCompareTests(unittest.TestCase):
                 nm.append({'encoder':config['encoder'],'thumbnail_metadata':meta,'thumbnail_provenance':pins,
                            'thumbnail_feature_sha256':meta['feature_sha256'],'config_sha256':'cfg',
                            'code_sha':'a'*40,'archive_sha256':'b'*64,'source_sha256':{'source':'c'*64},
-                           'transform':meta['transform'], 'config':config, 'images':1, 'smoke':False,
-                           'smoke_limit':0, 'smoke_roles':None, 'quadrant_forwards':4,
+                           'transform':meta['transform'], 'config':config, 'images':2, 'smoke':False,
+                           'smoke_limit':0, 'smoke_roles':None, 'quadrant_forwards':8,
                            'technical_thumbnail_forwards':0, 'blend_replay_max_abs':0,
                            'thumbnail_parity_max_abs':None,
                            'blend':'float32(0.5*float64(g) + 0.5*mean(q1..q4,float64))'})
             cases=[{'case_id':'toy'}]
             def loads(*args):return (cases,[],om if Path(args[1])==old else nm)
-            with patch.object(m,'load_bags',side_effect=loads):
+            real_load=np.load
+            class ReadOnceArchive:
+                def __init__(self,*args,**kwargs):self.archive=real_load(*args,**kwargs);self.reads=set()
+                @property
+                def files(self):return self.archive.files
+                def __enter__(self):return self
+                def __exit__(self,*args):self.archive.close()
+                def __getitem__(self,key):
+                    if key in self.reads:raise AssertionError('Repeated compressed-array decompression: '+key)
+                    self.reads.add(key);return self.archive[key]
+            with patch.object(m,'load_bags',side_effect=loads), patch.object(m.np,'load',side_effect=ReadOnceArchive):
                 contract={k:nm[0][k] for k in ('code_sha','archive_sha256','source_sha256')}
                 m.load_inputs(rows,old,new,'manifest',config,'cfg',contract)
                 for key,value in [('code_sha','f'*40), ('archive_sha256','f'*64), ('source_sha256',{'other':'f'*64}), ('quadrant_forwards',5), ('smoke',True), ('technical_thumbnail_forwards',1)]:
@@ -150,6 +162,22 @@ class MulticropCompareTests(unittest.TestCase):
             self.assertEqual(value['pooled']['records'],120)
             self.assertAlmostEqual(value['pooled_class_balanced']['weight_sum'],1)
             self.assertAlmostEqual(value['mean_subset_cross_entropy'],value['mean_subset_class_balanced_cross_entropy'])
+
+    def test_original_feature_snapshot_contract(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            source=Path(tmp);(source/'configs').mkdir()
+            config=source/'configs/breakhis-multicrop-v1.json';config.write_text('{}')
+            (source/'.source-sha').write_text('a'*40)
+            (source/'.archive-sha256').write_text('b'*64)
+            for name in m.EXTRACTOR_SOURCE_FILES:
+                path=source/name;path.parent.mkdir(exist_ok=True);path.write_text(name)
+            contract=m.feature_source_contract(source,config)
+            self.assertEqual(contract['code_sha'],'a'*40)
+            self.assertEqual(set(contract['source_sha256']),set(m.EXTRACTOR_SOURCE_FILES))
+            other=source/'different.json';other.write_text('{"changed":true}')
+            with self.assertRaises(ValueError):m.feature_source_contract(source,other)
+            (source/'.source-sha').write_text('invalid')
+            with self.assertRaises(ValueError):m.feature_source_contract(source,config)
 
     def test_invalid_partition_prevents_fit(self):
         cases,bags,trusted=self.toy()

@@ -10,14 +10,18 @@ from unittest.mock import patch
 
 import numpy as np
 from PIL import Image
-import torch
-
 from magset.data import CLASS_NAMES, file_hash
-from magset.multicrop_features import (CheckedFields, SOURCE_FILES, blend_features,
-    canonical_hash, encode_batches, load_thumbnails, quadrant_bounds, quadrants,
-    select_rows, validate_config, verify_source, run)
+
+try:
+    import torch
+    from magset.multicrop_features import (CheckedFields, SOURCE_FILES, blend_features,
+        canonical_hash, encode_batches, load_thumbnails, quadrant_bounds, quadrants,
+        select_rows, validate_config, verify_source, run)
+except ImportError:
+    torch = None
 
 
+@unittest.skipIf(torch is None, 'Pinned Torch needed for multicrop feature checks')
 class MulticropFeatureTests(unittest.TestCase):
     def test_real_and_odd_geometry_covers_every_pixel_once(self):
         for width, height in ((700, 460), (7, 5), (2, 2)):
