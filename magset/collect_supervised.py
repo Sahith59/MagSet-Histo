@@ -169,6 +169,8 @@ def verify_one(folder,manifest,protocol,reference_root,source,weights,trial,seed
     if proof['best']!=best or verified['selected_epoch']!=best['epoch']:raise ValueError('Earliest-best selection differs')
     if file_hash(folder/'selected.pt')!=verified['selected_model_sha256']:raise ValueError('Selected checkpoint checksum differs')
     selected=bound_checkpoint(folder/'selected.pt',context);check_state(selected['model'],original,config);check_state(saved['best_model'],original,config)
+    parameter_count=sum(v.numel() for k,v in selected['model'].items() if not k.endswith(('running_mean','running_var','num_batches_tracked')))
+    if verified['model_parameters']!=parameter_count:raise ValueError('Reported model size differs')
     if selected['epoch']!=best['epoch'] or digest_state(selected['model'])!=best['state_sha256'] or digest_state(saved['best_model'])!=best['state_sha256']:
         raise ValueError('Selected model/last best snapshot differs')
     for role,cases,role_rows,claim in (('train',fit,fit_rows,verified['fitting']),('validation',val,val_rows,verified['validation'])):
@@ -199,21 +201,27 @@ def collect(root,manifest,protocol,reference_root,source,weights):
     root=Path(root);config=json.loads((Path(source)/'configs/breakhis-supervised-v1.json').read_text())
     original=torch.load(weights,map_location='cpu',weights_only=True)
     _,smoke_hashes=verify_one(root/'technical-smoke-retry1',manifest,protocol,reference_root,source,weights,1,812,True,original)
+    old_source=Path(source).parent/'6b418598b3334dce2e81af02a8f035278e08ef12'
+    _,first_smoke=verify_one(root/'technical-smoke',manifest,protocol,reference_root,old_source,weights,1,812,True,original)
     expected={root/('split%d'%s)/('trial%d'%t)/'metrics.json' for s in (812,813) for t in range(1,6)}
     if set(root.glob('split*/trial*/metrics.json'))!=expected:raise ValueError('Complete exact ten-run matrix required')
-    pairs=[];proof=[]
+    pairs=[];proof=[];unique={s:set() for s in (812,813)};class_unique={s:{i:set() for i in range(8)} for s in (812,813)}
     for seed in (812,813):
         for trial in range(1,6):
             folder=root/('split%d'%seed)/('trial%d'%trial);r,h=verify_one(folder,manifest,protocol,reference_root,source,weights,trial,seed,False,original)
+            unique[seed].update(r['case_ids']['validation'])
             baseline=Path(reference_root)/('split%d'%seed)/('phikon-v2-mean-trial%d-seed%d'%(trial,seed));frozen,_=verify_run(baseline/'metrics.json')
             pair={'seed':seed,'trial':trial,'selected_epoch':r['selected_epoch'],'fitting':r['fitting'],'field_metrics':r['field_metrics']}
             for name,directory,report in (('frozen',baseline,frozen),('supervised',folder,r)):
                 records=[json.loads(line) for line in (directory/'predictions.jsonl').read_text().splitlines()];pair[name]=summarize(report,records)
+                if name=='supervised':
+                    for row in records:class_unique[seed][row['truth']].add(row['case_id'])
             pair['delta_mean_subset_macro_f1']=pair['supervised']['mean_subset_macro_f1']-pair['frozen']['mean_subset_macro_f1']
             pairs.append(pair);proof.append({'seed':seed,'trial':trial,**h})
     summary=[]
     for seed in (812,813):
-        group=[p for p in pairs if p['seed']==seed];row={'seed':seed}
+        group=[p for p in pairs if p['seed']==seed];row={'seed':seed,'distinct_validation_cases':len(unique[seed]),
+            'class_distinct_cases':[len(class_unique[seed][i]) for i in range(8)]}
         for name in ('frozen','supervised'):
             row[name]={k:sum(p[name][k] for p in group)/5 for k in ('mean_subset_macro_f1','mean_subset_accuracy','full_view_macro_f1','full_view_accuracy','worst_subset_macro_f1','brier')}
             row[name]['class_recall']=np.mean([p[name]['class_recall'] for p in group],axis=0).tolist()
@@ -222,6 +230,9 @@ def collect(root,manifest,protocol,reference_root,source,weights):
     return {'status':'complete verified supervised reference','dataset':'BreakHis','verified_runs':10,'class_names':CLASS_NAMES,
             'training_source_sha':(Path(source)/'.source-sha').read_text().strip(),'config_sha256':file_hash(Path(source)/'configs/breakhis-supervised-v1.json'),
             'manifest_sha256':file_hash(manifest),'protocol_sha256':file_hash(protocol),'smoke':smoke_hashes,
+            'distinct_validation_cases_union':len(unique[812]|unique[813]),'technical_fits':2,
+            'first_smoke':{'source_sha':'6b418598b3334dce2e81af02a8f035278e08ef12','job':'4969999','accepted_for_production':False,
+                           'reason':'loader shutdown warnings; retained before bounded-loader repair',**first_smoke},
             'summary':summary,'pairs':pairs,'artifacts':proof,'promising_descriptive_gate':promising,'collector_sha256':file_hash(__file__),
             'interpretation':'Exploratory paired provider-case pipeline comparison; no clinical confirmation, independent-fold significance, exact author reproduction or novelty claim'}
 
