@@ -17,7 +17,10 @@ jobs:
       - name: Run data, protocol, and baseline checks
         run: python -m unittest discover -s tests -v
       - name: Check shell syntax
-        run: bash -n scripts/sync_cluster.sh slurm/*.sbatch
+        run: |
+          for script in scripts/sync_cluster.sh slurm/*.sbatch; do
+            bash -n "$script"
+          done
   neural-tests:
     runs-on: ubuntu-latest
     steps:
