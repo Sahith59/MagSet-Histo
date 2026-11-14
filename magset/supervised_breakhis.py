@@ -45,8 +45,10 @@ def pixels(image,size):
 
 
 class DrawSampler(Sampler):
-    def __init__(self,weights,seed,epoch):self.weights=weights;self.seed=seed;self.epoch=epoch
-    def __len__(self):return len(self.weights)
+    def __init__(self,weights,seed,epoch,max_draws=None):
+        self.weights=weights;self.seed=seed;self.epoch=epoch;self.draws=len(weights) if max_draws is None else min(len(weights),max_draws)
+        if self.draws<1:raise ValueError('Need positive draw budget')
+    def __len__(self):return self.draws
     def __iter__(self):
         values=torch.multinomial(self.weights,len(self),replacement=True,generator=torch.Generator().manual_seed(self.seed+self.epoch*1000003))
         return iter((int(i),draw) for draw,i in enumerate(values))
@@ -63,11 +65,11 @@ class Images(Dataset):
         return row['relative_path'],self.labels[case_id(row)],pixels(image,self.config['image_size'])
 
 
-def stream(rows,root,cases,config,workers,epoch=0):
+def stream(rows,root,cases,config,workers,epoch=0,max_draws=None):
     ids={c['case_id'] for c in cases}
     if len(ids)!=len(cases) or not rows or len({r['relative_path'] for r in rows})!=len(rows) or any(case_id(r) not in ids for r in rows):
         raise ValueError('Image loader accepts unique allowed-role rows only')
-    sampler=DrawSampler(sampling_weights(rows,cases),config['training_seed'],epoch) if epoch else None
+    sampler=DrawSampler(sampling_weights(rows,cases),config['training_seed'],epoch,max_draws) if epoch else None
     return DataLoader(Images(rows,root,{c['case_id']:c['label'] for c in cases},config,epoch),batch_size=config['batch_size'],
         sampler=sampler,shuffle=False,drop_last=False,num_workers=workers,collate_fn=identity_collate,worker_init_fn=worker_init,
         multiprocessing_context='spawn' if workers else None,persistent_workers=False,
@@ -167,8 +169,8 @@ def train(model,fit_rows,val_rows,fit,val,root,config,context,output,device,work
         rates=learning_rates(config,epoch)
         for group,lr in zip(optimizer.param_groups,rates):group['lr']=lr
         loss_sum=draws=0;class_draws=[0]*8;case_draws=Counter();view_draws=Counter()
-        for batch_index,batch in enumerate(stream(fit_rows,root,fit,config,workers,epoch)):
-            if smoke and batch_index>=config['smoke_batches_per_epoch']:break
+        draw_budget=min(len(fit_rows),config['batch_size']*config['smoke_batches_per_epoch']) if smoke else len(fit_rows)
+        for batch_index,batch in enumerate(stream(fit_rows,root,fit,config,workers,epoch,draw_budget)):
             paths,y,x=zip(*batch);target=torch.tensor(y,device=device);optimizer.zero_grad(set_to_none=True)
             loss=nn.functional.cross_entropy(model(torch.stack(x).to(device)),target,label_smoothing=config['label_smoothing'])
             if not torch.isfinite(loss):raise ValueError('Nonfinite supervised fitting loss')
@@ -177,7 +179,7 @@ def train(model,fit_rows,val_rows,fit,val,root,config,context,output,device,work
             for p,label in zip(paths,y):
                 class_draws[label]+=1;row=labels[p];case_draws[case_id(row)]+=1;view_draws[int(row['magnification'])]+=1
             if (batch_index+1)%64==0:print(json.dumps({'epoch':epoch,'batches':batch_index+1,'draws':draws}),flush=True)
-        if not draws or (not smoke and draws!=len(fit_rows)):raise ValueError('Registered draw budget differs')
+        if draws!=draw_budget:raise ValueError('Registered draw budget differs')
         if state_hash(model,'bn')!=initial['bn']:raise ValueError('Pretrained BatchNorm statistics changed')
         if not adapting and state_hash(model,'backbone')!=initial['backbone']:raise ValueError('Backbone changed during head warmup')
         row={'epoch':epoch,'loss':loss_sum/draws,'draws':draws,'class_draws':class_draws,'case_draws':dict(case_draws),
@@ -200,6 +202,7 @@ def train(model,fit_rows,val_rows,fit,val,root,config,context,output,device,work
         print(json.dumps({'epoch':epoch,'loss':row['loss'],'draws':draws,'backbone_adapting':adapting}),flush=True)
     saved=bound_checkpoint(last,context)
     if saved['epoch']!=epochs:raise ValueError('Fixed epoch budget incomplete')
+    if state_hash(model,'bn')!=initial['bn']:raise ValueError('Final BatchNorm statistics changed')
     if [h['epoch'] for h in history]!=list(range(1,epochs+1)) or (not smoke and [c['epoch'] for c in candidates]!=config['selection_epochs']):
         raise ValueError('History/selection epoch coverage differs')
     if not smoke and best!=max(candidates,key=lambda c:c['validation']['mean_subset_macro_f1']):raise ValueError('Selected checkpoint rule differs')

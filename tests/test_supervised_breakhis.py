@@ -44,6 +44,8 @@ class SupervisedTests(unittest.TestCase):
     def test_draw_indices_and_augmentation_are_worker_independent(self):
         weights=torch.tensor([.5,.5],dtype=torch.float64);first=list(sup.DrawSampler(weights,812,3));second=list(sup.DrawSampler(weights,812,3))
         self.assertEqual(first,second);self.assertEqual([d for _,d in first],[0,1])
+        limited=sup.DrawSampler(torch.ones(32,dtype=torch.float64),812,3,16)
+        self.assertEqual(len(limited),16);self.assertEqual(len(list(limited)),16)
         x=Image.fromarray(np.arange(12*10*3,dtype=np.uint8).reshape(12,10,3));a=sup.augment(x,'p.png',3,8,812)
         torch.manual_seed(77);np.testing.assert_array_equal(a,sup.augment(x,'p.png',3,8,812))
         self.assertGreater(len({sup.augment(x,'p.png',3,d,812).tobytes() for d in range(8)}),1)

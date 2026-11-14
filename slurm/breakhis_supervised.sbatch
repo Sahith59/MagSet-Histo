@@ -21,6 +21,7 @@ TASK_OPTIONS=()
 if [[ "${MAGSET_SMOKE:-0}" == 1 ]]; then
   [[ "$SLURM_ARRAY_TASK_ID" == 0 ]]
   TASK_OUTPUT="$MAGSET_ROOT/runs/breakhis-supervised-v1/technical-smoke"
+  if [[ "${MAGSET_SMOKE_ATTEMPT:-0}" == 1 ]]; then TASK_OUTPUT="$MAGSET_ROOT/runs/breakhis-supervised-v1/technical-smoke-retry1"; fi
   TASK_OPTIONS+=(--smoke)
 fi
 if [[ "${MAGSET_RESUME:-0}" == 1 ]]; then TASK_OPTIONS+=(--resume); fi
