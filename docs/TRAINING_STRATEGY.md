@@ -46,7 +46,7 @@ The saved adapted case classifier answers its fitting cases very well (98.5–98
 
 For a linear head, classifying a mean feature equals averaging field logits with the same weights. That checked identity helps avoid blaming early averaging alone. The diagnosis itself performs no fitting or new encoder execution.
 
-## Training now: a standard supervised picture model
+## Completed supervised reference: a standard picture model
 
 Think of the model as a picture reader plus an eight-answer decision maker. In this comparison, we teach both parts using the fitting pictures. We keep the same46 fitting/eight validation/28 excluded cases per run, all four zooms and all15 input combinations. Ten fits cover five trials at each of the two existing split arrangements.
 
@@ -58,4 +58,4 @@ Think of the model as a picture reader plus an eight-answer decision maker. In t
 
 This is one complete alternative pipeline. A better score would not tell us which single change caused it. Pictures, repeated draws and input combinations do not create extra independent cases: each fitting set still has just one adenosis and one phyllodes provider case.
 
-The technical check passed; ten production fits and a dependent checker are submitted. **The scores are pending.** Keep the frozen reference until the complete checked comparison is available. [Exact settings](BREAKHIS_SUPERVISED_SPEC.md) · [Execution checkpoint](BREAKHIS_SUPERVISED_STATUS.md).
+All ten fits and the complete checker passed after disclosed technical recovery. **This recipe failed its improvement gate:** F1.3084/.3006, accuracy37.0%/40.0%, phyllodes recall0. Fitting balanced case accuracy is99.6%/99.7%, so a large fitting–validation gap persists. Keep the frozen reference. [Complete result](BREAKHIS_SUPERVISED_RESULTS.md). [Exact settings](BREAKHIS_SUPERVISED_SPEC.md) · [Execution checkpoint](BREAKHIS_SUPERVISED_STATUS.md).

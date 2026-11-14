@@ -1,6 +1,6 @@
 # BreakHis project report: current evidence draft
 
-Working report for review with Professor Dong, November13,2026. This is a project-progress draft; the supervised comparison is still running. It is not a submission-ready manuscript or a novel-method claim. The older [methods draft](methods-draft.md) records earlier experimental rounds.
+Working report for review with Professor Dong, November14,2026. This is a project-progress draft; the supervised comparison and full artifact verification are complete. It is not a submission-ready manuscript or a novel-method claim. The older [methods draft](methods-draft.md) records earlier experimental rounds.
 
 ## Question
 
@@ -28,15 +28,15 @@ The retained reference uses frozen Phikon-v2 image features, within-view means, 
 | --- | --- | --- | --- |
 | Frozen Phikon-v2 mean reference |0.3843 /45.7%|0.3169 /38.3%|Ten runs and raw-image replay verified |
 | Last-block Phikon adaptation, then same case head |0.3840 /45.7%|0.3205 /38.8%|Ten runs verified; prespecified improvement gate failed |
-| Fully supervised ResNet-50 reference |Pending|Pending|Ten fits submitted; complete artifact check required |
+| Fully supervised ResNet-50 reference |0.3084 /37.0%|0.3006 /40.0%|Ten fits and full checker passed; improvement gate failed |
 
 Scores are five-trial means of the15-subset endpoint. The [baseline report](../docs/BREAKHIS_FIRST_RESULTS.md) and [adaptation report](../docs/BREAKHIS_ADAPTATION_RESULTS.md) retain all trials and class weaknesses. The original-image execution replay reproduced the selected baseline's archived probabilities within5.52e-08.
 
 The [saved-model diagnosis](../docs/BREAKHIS_DIAGNOSIS_RESULTS.md) found98.5–98.7% fitting balanced case accuracy versus38.8–45.7% validation in adapted case heads. The auxiliary image head also showed a large gap. Neither fixed auxiliary aggregation probe rescued validation F1. This supports weak generalization under these roles, without identifying one sole cause.
 
-## Registered supervised comparison
+## Completed registered supervised comparison
 
-The next reference initializes torchvision ResNet-50 from fixed ImageNet1K_V2 weights. A2,048-dimensional pooled image representation feeds Dropout(.3) and an eight-class linear head. Epochs1–2 train only the head; epochs3–20 update the full backbone and head. Pretrained BatchNorm running buffers remain fixed; affine parameters train after warmup.
+The supervised reference initializes torchvision ResNet-50 from fixed ImageNet1K_V2 weights. A2,048-dimensional pooled image representation feeds Dropout(.3) and an eight-class linear head. Epochs1–2 train only the head; epochs3–20 update the full backbone and head. Pretrained BatchNorm running buffers remain fixed; affine parameters train after warmup.
 
 AdamW uses backbone/head learning rates1e-4/1e-3, weight decay1e-4 and gradient clipping1. After warmup, a fixed cosine multiplier decreases from1 to0.1. Label-smoothed cross-entropy(.1) trains on batch32. Each epoch makes exactly as many weighted replacement draws as fitting fields: equal expected mass per class, case within class, zoom within case, and field within zoom. This balances practice; it does not create new independent cases.
 
@@ -54,8 +54,8 @@ Each fitting set contains one adenosis and one phyllodes provider case. Augmenta
 
 - [x] Verified baseline, original-image replay, fixed adaptation and saved-model diagnosis.
 - [x] Coverage/reference audit; supervised recipe registered before outcomes; technical gate passed.
-- [ ] Complete and verify all ten supervised fits; report every trial, both arrangements, rare-class support, score gaps and runtime/model size.
-- [ ] Independently review actual outputs; update results and professor handoff without selecting a favorable split.
+- [x] Complete and verify all ten supervised fits; report every trial, both arrangements, rare-class support, score gaps and runtime/model size. [Full negative result](../docs/BREAKHIS_SUPERVISED_RESULTS.md).
+- [x] Independently review all actual numerical outputs; update results and professor handoff without selecting a favorable split. Full model/optimizer verification remains remote-checker evidence.
 - [ ] Agree on acceptable grouping/claim scope and a credible final-evaluation route before making stronger research claims.
 
 No conference submission, new dataset access request or message to Professor Dong has been sent.

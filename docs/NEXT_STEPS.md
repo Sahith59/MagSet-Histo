@@ -12,7 +12,7 @@ Priority reset November 12,2026. **BreakHis is the main dataset. Finish its quic
 |4|Run the registered BreakHis improvement|Completed: all ten fits and checker passed; primary two-split improvement gate failed; frozen baseline retained|
 |5|Resolve final evaluation and research claims|After an accepted grouping/claim scope and method freeze; no claim of a pristine clinical test cohort or novelty now|
 
-The [completed improvement](BREAKHIS_ADAPTATION_RESULTS.md) did not meaningfully improve accuracy and failed the two-split F1 gate. Keep the frozen baseline. The [saved-model diagnosis](BREAKHIS_DIAGNOSIS_RESULTS.md) found a large fitting/validation gap. The [coverage and reference audit](BREAKHIS_REFERENCE_AUDIT.md) is now complete, and one [fixed supervised ResNet-50 recipe](BREAKHIS_SUPERVISED_SPEC.md) was registered before fitting. Its ten full runs are submitted, with at most four simultaneous GPUs; the complete checker is queued after the array. No improved scores are established. [Dated execution checkpoint](BREAKHIS_SUPERVISED_STATUS.md).
+The [completed adaptation](BREAKHIS_ADAPTATION_RESULTS.md) failed its improvement gate. The [saved-model diagnosis](BREAKHIS_DIAGNOSIS_RESULTS.md) found a large fitting/validation gap; the [coverage/reference audit](BREAKHIS_REFERENCE_AUDIT.md) is complete. The [fixed supervised ResNet-50 reference](BREAKHIS_SUPERVISED_RESULTS.md) also completed all ten fits and full verification: F1.3084/.3006, accuracy37.0%/40.0%, phyllodes recall0. Its gate failed. Keep the frozen reference; no automatic model sweep follows. [Execution record](BREAKHIS_SUPERVISED_STATUS.md).
 
 ## What is already done
 
@@ -38,8 +38,8 @@ Keep the frozen baseline while the registered comparison runs. Do not infer that
 
 ## Current next actions
 
-1. Finish all ten fixed ResNet-50 fits and the automatic artifact checker. Require the complete matrix before ranking; do not use interim trial scores to change settings.
-2. Independently inspect actual outputs, then publish every trial, both arrangements, all15 subsets, subtype recall/support, fitting–validation gaps and runtime/model size. Apply the already registered descriptive gate.
-3. Update the [BreakHis project-report draft](../paper/breakhis-project-report.md) and professor brief with checked results and limitations. Confirm acceptable grouping/claim scope and final evaluation with Professor Dong before stronger claims.
+1. The supervised comparison and independent numerical review are complete. Preserve the full negative result and all original/recovery execution evidence; keep the frozen reference.
+2. Consolidate the [BreakHis report](../paper/breakhis-project-report.md) and professor brief: verified baseline, two failed improvement recipes, scarce independent rare-class examples and unresolved grouping/confirmation limits.
+3. Agree on the intended prediction unit, acceptable provider/clinical claim scope and credible final-evaluation route with Professor Dong before registering another model experiment. No outer-case rescue, score-driven resplit, automatic architecture/rate/epoch sweep or switch to TCGA.
 
-Coverage auditing, the technical smoke, implementation review, report structure and the first-results package are done. The remaining bottleneck is the measured supervised comparison and a credible final-evaluation route. A failed reference does not authorize an automatic architecture/rate/epoch sweep.
+Training execution is complete. Predictive quality and final evaluation remain unresolved; finishing jobs is not evidence that the problem is solved.

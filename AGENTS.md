@@ -4,7 +4,7 @@ Current user priority (November12,2026): **BreakHis first.** Finish the quick Br
 
 Stay on BreakHis through model improvement, evaluation and the project report. Completing the first baseline milestone is not permission to switch back to TCGA; that work remains deferred until the BreakHis project deliverable is finished or the user changes priority.
 
-Use `scripts/report_breakhis_milestone.py` for the current first-results page/professor brief. The older mixed-dataset packet/deck builder is a historical research artifact, not the current milestone workflow.
+Use `scripts/report_breakhis_milestone.py` for the historical first-results page. The current professor brief and BreakHis project report also include completed adaptation, diagnosis and the supervised reference; do not overwrite them with an older baseline-only builder. `scripts/report_breakhis_supervised.py` renders the hash-bound complete supervised comparison. The older mixed-dataset packet/deck builder is historical.
 
 Read `README.md`, `plan.md`, and `docs/RELATED_WORK.md` before changing the research direction. When present in the private workspace, also read `memory/STATE.md`, `memory/PROJECT.md`, and `.local/AGENTS.private.md` for the current handoff and cluster operating rules.
 

@@ -28,7 +28,7 @@ The [fixed adaptation comparison](docs/BREAKHIS_ADAPTATION_RESULTS.md) is comple
 
 The [saved-model diagnosis](docs/BREAKHIS_DIAGNOSIS_RESULTS.md) is also complete. The adapted case classifier scores98.5–98.7% fitting balanced accuracy and38.8–45.7% on validation. The auxiliary image classifier scores about98% fitting versus32–35% validation under class/case/view weighting. Neither fixed auxiliary readout rescues the result. This supports a large generalization gap; it does not identify one sole cause. No new fitting or encoder execution was used.
 
-The [coverage/reference audit](docs/BREAKHIS_REFERENCE_AUDIT.md) is complete. A standard supervised ResNet-50 reference is now training: ten fits, same cases and15-subset endpoint, up to four GPUs concurrently. The fitting-only technical check passed after a disclosed loader cleanup; an automatic checker waits for the complete matrix. **No improved score is available yet.** [Execution checkpoint](docs/BREAKHIS_SUPERVISED_STATUS.md) · [Fixed recipe](docs/BREAKHIS_SUPERVISED_SPEC.md) · [BreakHis project-report draft](paper/breakhis-project-report.md).
+The [coverage/reference audit](docs/BREAKHIS_REFERENCE_AUDIT.md) and [supervised ResNet-50 comparison](docs/BREAKHIS_SUPERVISED_RESULTS.md) are complete. All ten models and the checker passed after disclosed technical recovery. Mean-subset F1 is0.3084/0.3006 and case accuracy37.0%/40.0%; F1 is lower than the frozen reference on both arrangements. The registered gate failed; keep the frozen reference. [Execution record](docs/BREAKHIS_SUPERVISED_STATUS.md) · [Fixed recipe](docs/BREAKHIS_SUPERVISED_SPEC.md) · [BreakHis report draft](paper/breakhis-project-report.md).
 
 ## Run checks
 
