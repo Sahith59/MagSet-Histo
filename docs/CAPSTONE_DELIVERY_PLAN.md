@@ -2,6 +2,10 @@
 
 Updated November14,2026 from the user's confirmed timing. **Prepare the complete package by November17–18. Presentation is expected around November20; the exact day is not fixed.** Professor Dong has not specified the prediction task. Keep the existing eight-subtype study and report the source-defined benign/malignant secondary outcome separately.
 
+## Available for review now
+
+The [ten-slide PDF](../output/pdf/BreakHis-Capstone.pdf), [browser presentation](evidence/CAPSTONE_PRESENTATION.html), [report draft](../paper/breakhis-project-report.md), [recorded prediction viewer](evidence/CAPSTONE_PREDICTION_REPLAY.html) and [short rehearsal/Q&A guide](../paper/capstone-rehearsal.md) are prepared. The next work is review, revision to actual capstone requirements and rehearsal; no new model search is scheduled.
+
 ## Deliverables and dates
 
 | Working date | Deliverable | Acceptance evidence |

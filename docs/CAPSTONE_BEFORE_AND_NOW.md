@@ -1,6 +1,6 @@
-# Capstone: received results, current results and the next test
+# Capstone: received results and checked current results
 
-November14,2026. The master's capstone is the immediate priority; a novel research paper comes afterward. The submission date and formal task requirements have been requested and are not yet supplied. Until clarified, retain eight tumor types, all four magnifications and the existing case roles.
+November14,2026. The master's capstone is the immediate priority; a novel research paper comes afterward. The user needs the package in3–4days, by November17–18, with a presentation around November20. Exact day and formal task/rubric are unspecified. Retain eight tumor types, all four magnifications and existing case roles. [Delivery plan](CAPSTONE_DELIVERY_PLAN.md).
 
 ## The numbers we received
 
@@ -35,12 +35,17 @@ Each fitting set has **one adenosis case and one phyllodes case**. Hundreds of i
 
 Small independent case coverage, dataset/feature transfer, image information lost during processing and objective alignment are plausible contributors. A bug in the checked metric arithmetic, label order or role filtering has not been found. Audits establish implementation consistency; they do not prove optimal training, one sole cause, reliable clinical performance or a fundamental performance ceiling.
 
-## What we are doing for the capstone
+## Separate benign/malignant result
 
-1. Preserve the original saved results with their exact meaning and show our changed protocol separately. No original figure is relabeled as a new result.
-2. Run a [fixed saved-prediction bridge](CAPSTONE_BRIDGE_SPEC.md): report individual-image scores at all four zooms, including40×, and compare40× image versus case aggregation using the same accepted weights and images. This requires no new fitting or model execution. It is endpoint alignment, not an exact EfficientNet reproduction.
-3. Test one [registered local-plus-global representation](BREAKHIS_MULTICROP_SPEC.md). Keep the pathology image reader frozen, keep existing roles, and compare its original central view with a fixed blend of that view and four regional crops. Both arms use one fixed classifier regularization. This is a conventional preprocessing experiment; improvement is unproven.
-4. Finish the capstone report and working prediction evidence regardless of that test's outcome. Retain every result. A corrected EfficientNet reproduction is a separately scoped option if the formal capstone requires it; it is not an automatic additional model search.
+Using the same saved eight-class outputs, the retained model answers the broader question with **87.0%/80.7% accuracy**, binary macro F1.8666/.7877, malignant sensitivity98.7%/91.3% and benign specificity75.3%/70.0%. These average all15 view settings and five trials. The broad group is often correct while subtypes within it are confused. This is a retrospective secondary analysis of reused validation cases, not a newly trained binary model, fresh test or improvement of eight-class accuracy. [All pipelines, trials and checks](CAPSTONE_BINARY_RESULTS.md).
+
+## Completed work and next steps
+
+1. Preserve the original saved results with their exact meaning and show our changed protocol separately.
+2. Completed the [fixed image-endpoint bridge](CAPSTONE_BRIDGE_RESULTS.md), independently checked on all ten runs. ResNet40× raw-image accuracy is27.13%/29.94%; same-view case accuracy is37.5%/35.0%. No new fitting or model execution. This aligns endpoints; it does not reproduce EfficientNet.
+3. Completed the [registered regional-view comparison](BREAKHIS_MULTICROP_RESULTS.md). All four feature shards and20 heads passed independent checks. F1 changes against the matched fixed-C control are−.0058/+.0059, with zero phyllodes recall. The gate failed. Keep the historical frozen reference; no follow-on sweep.
+4. Completed the [binary secondary analysis](CAPSTONE_BINARY_RESULTS.md) and a fresh121-image saved-model replay in39seconds. All15 view combinations matched archived outputs within6.05e-08. The [interactive viewer](evidence/CAPSTONE_PREDICTION_REPLAY.html) displays saved outputs rather than running live image uploads.
+5. Freeze the model and finish the report, presentation and rehearsal by November17–18. Retain every result. A corrected EfficientNet reproduction is separately scoped if the formal capstone requires it; no automatic model search follows.
 
 The three independent GPT-6.1 Sol reviews cover [original evidence](reviews/CAPSTONE_ORIGINAL_RESULTS_REVIEW.md), [protocol](reviews/CAPSTONE_PROTOCOL_REVIEW.md) and [modelling](reviews/CAPSTONE_MODEL_REVIEW.md). Capstone acceptance depends on the university's requirements, which we do not yet have. We can seek stronger measured performance; we cannot promise95%, change the target to manufacture it, or present training accuracy as held-out accuracy.
 

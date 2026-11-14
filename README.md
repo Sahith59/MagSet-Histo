@@ -20,9 +20,9 @@ The [complete first-results report](docs/BREAKHIS_FIRST_RESULTS.md) shows every 
 ## Immediate deliverable
 
 - Checked eight-class BreakHis baseline and complete development-results table.
-- Raw-image validation replay verified: 121 original images, all 15 view settings; archived probabilities reproduced within 0.000000056.
+- Raw-image validation replay verified: 121 original images, all 15 view settings; archived probabilities reproduced within 6.05e-08 in a fresh39-second replay.
 - Reproducible source, saved model/prediction checks, clear limits and a short professor handoff.
-- Complete the registered frozen regional-view comparison and finish the capstone report; the supervised ResNet comparison is already complete.
+- The regional-view comparison is complete and failed its improvement gate. Freeze the reference and finish the capstone report/presentation by November17–18.
 
 Start with the [focused milestone plan](docs/BREAKHIS_MILESTONE_PLAN.md), [next tasks](docs/NEXT_STEPS.md), and [plain training explanation](docs/TRAINING_STRATEGY.md).
 
@@ -32,7 +32,13 @@ The [saved-model diagnosis](docs/BREAKHIS_DIAGNOSIS_RESULTS.md) is also complete
 
 The [coverage/reference audit](docs/BREAKHIS_REFERENCE_AUDIT.md) and [supervised ResNet-50 comparison](docs/BREAKHIS_SUPERVISED_RESULTS.md) are complete. All ten models and the checker passed after disclosed technical recovery. Mean-subset F1 is0.3084/0.3006 and case accuracy37.0%/40.0%; F1 is lower than the frozen reference on both arrangements. The registered gate failed; keep the frozen reference. [Execution record](docs/BREAKHIS_SUPERVISED_STATUS.md) · [Fixed recipe](docs/BREAKHIS_SUPERVISED_SPEC.md) · [BreakHis report draft](paper/breakhis-project-report.md).
 
-The [saved-prediction endpoint bridge](docs/CAPSTONE_BRIDGE_RESULTS.md) is complete without new fits or model execution. A [fixed regional-view test](docs/BREAKHIS_MULTICROP_STATUS.md) is running: four frozen-feature GPU shards, followed by20 matched fixed-C CPU heads. Its fitting-only smoke and all110 local tests passed; new scientific scores are pending. Keep the frozen reference until complete checked evidence supports a change.
+The [saved-prediction endpoint bridge](docs/CAPSTONE_BRIDGE_RESULTS.md) and [regional-view comparison](docs/BREAKHIS_MULTICROP_RESULTS.md) are complete and independently checked. The regional candidate changes F1 by−.0058/+.0059 against its matched fixed-C control, with zero phyllodes recall; its gate failed. Keep the frozen reference. The full pinned local suite has119 passing tests.
+
+The separate [benign/malignant secondary analysis](docs/CAPSTONE_BINARY_RESULTS.md) gives **87.0%/80.7% accuracy** for the retained model. This is a fixed retrospective grouping of saved eight-class probabilities, not a newly trained model, fresh test or improvement of the eight-subtype score. Sensitivity/specificity, all three earlier pipelines and both arrangements are reported.
+
+Open the [verified prediction replay](docs/evidence/CAPSTONE_PREDICTION_REPLAY.html) to explore all15 saved view outputs. It is an offline viewer, not live image-upload inference. [Demo instructions](docs/CAPSTONE_DEMO.md) · [Delivery plan](docs/CAPSTONE_DELIVERY_PLAN.md). The user needs the capstone package by November17–18 for a presentation around November20; exact day/rubric remain unspecified. Model search is frozen; TCGA/novel-paper work remains deferred.
+
+Capstone materials: [ten-slide PDF](output/pdf/BreakHis-Capstone.pdf), [browser presentation](docs/evidence/CAPSTONE_PRESENTATION.html), [report](paper/breakhis-project-report.md) and [plain-language rehearsal guide](paper/capstone-rehearsal.md).
 
 ## Run checks
 

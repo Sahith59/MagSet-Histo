@@ -1,5 +1,5 @@
 {
-  "status": "regional extraction submitted; scientific outcome pending",
+  "status": "complete; independent reviews accepted; improvement gate failed",
   "job": "4971319",
   "elapsed_seconds": 21,
   "source_sha": "47ad41657979c3e154cc9db7b89f1fec4b1f40ac",
@@ -25,6 +25,20 @@
   "production_quad_forwards": 31636,
   "production_head_fits": 20,
   "max_simultaneous_gpus": 4,
-  "retained_model": "frozen Phikon-v2 historical reference until complete checked comparison",
-  "registered_gate": "candidate-control mean15subset macroF1 >=.02 on both arrangements AND phyllodes recall >0 on both; descriptive only"
+  "retained_model": "historical frozen Phikon-v2 mean/logistic reference",
+  "registered_gate": "candidate-control mean15subset macroF1 >=.02 on both arrangements AND phyllodes recall >0 on both; descriptive only",
+  "feature_array_status": "all four COMPLETED0, stderr empty",
+  "feature_elapsed_seconds": [
+    134,
+    137,
+    125,
+    115
+  ],
+  "head_status": "COMPLETED0, stderr empty",
+  "head_elapsed_seconds": 466,
+  "registered_gate_passed": false,
+  "comparison_sha256": "13e547269d9c5dc9d0ab3b867b6cba36e068501d14f80109f9b8e4fa17c7164b",
+  "independent_cache_review": "PASS all four caches and7909fields",
+  "independent_numerical_review": "PASS all20heads,16200records,30850metrics",
+  "later_performance_fix_used_for_these_outputs": false
 }

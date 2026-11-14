@@ -59,3 +59,11 @@ Think of the model as a picture reader plus an eight-answer decision maker. In t
 This is one complete alternative pipeline. A better score would not tell us which single change caused it. Pictures, repeated draws and input combinations do not create extra independent cases: each fitting set still has just one adenosis and one phyllodes provider case.
 
 All ten fits and the complete checker passed after disclosed technical recovery. **This recipe failed its improvement gate:** F1.3084/.3006, accuracy37.0%/40.0%, phyllodes recall0. Fitting balanced case accuracy is99.6%/99.7%, so a large fitting–validation gap persists. Keep the frozen reference. [Complete result](BREAKHIS_SUPERVISED_RESULTS.md). [Exact settings](BREAKHIS_SUPERVISED_SPEC.md) · [Execution checkpoint](BREAKHIS_SUPERVISED_STATUS.md).
+
+## Model freeze and secondary output, November14
+
+The regional-view experiment also completed and failed its improvement gate (F1 change−.0058/+.0059, phyllodes recall0). Keep the original frozen reference. No further training sweep is running.
+
+For the separate broad benign/malignant answer, add the saved probabilities of the four dataset-defined malignant subtypes. At0.5 or higher answer malignant, otherwise benign. This trains nothing new and searches no threshold. Retained binary accuracy is87.0%/80.7%; exact eight-type accuracy remains45.7%/38.3%. This is retrospective reused validation, not a new test. [Full secondary results](CAPSTONE_BINARY_RESULTS.md).
+
+Finish the report, demonstration and presentation by November17–18. More practice on the same rare case does not create another independent case. [Delivery plan](CAPSTONE_DELIVERY_PLAN.md).

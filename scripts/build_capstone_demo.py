@@ -37,9 +37,9 @@ progress{width:100%;height:18px;accent-color:#087e8b}strong{font-size:22px}.scor
 <p>Predicted subtype: <strong id="subtype"></strong></p></section>
 <section class="panel"><h2>Benign / malignant secondary output</h2>
 <p id="broad" class="score"></p><p id="benign"></p><p id="malignant"></p>
-<p class="muted">Malignant score = sum of the four malignant subtype probabilities. Fixed threshold:0.5. This is a different question from naming the exact subtype.</p>
+<p class="muted">Malignant score = sum of the four malignant subtype probabilities. Fixed threshold: 0.5. This is a different question from naming the exact subtype.</p>
 <p id="fields"></p></section></div>
-<section class="meta"><p><b>What this demonstrates</b><br>The existing saved Phikon-v2 model processed121 original fields. All15 view combinations reproduced archived validation outputs within5.52e-08. The case was selected lexicographically before inspecting its result.</p>
+<section class="meta"><p><b>What this demonstrates</b><br><span id="proof"></span> The case follows the fixed lexicographic validation-case rule; it was not selected by searching for a correct prediction.</p>
 <p>This is one execution example, not an accuracy estimate or a clinical validation. The original-image computation happened on the cluster; the controls above select its saved outputs.</p>
 <p id="source"></p></section></main>
 <script id="data" type="application/json">__DATA__</script><script>
@@ -56,6 +56,7 @@ document.getElementById('benign').textContent='Benign model score: '+pct(pb);doc
 document.getElementById('fields').textContent=mags.reduce((a,m)=>a+d.fields_by_view[String(m)],0)+' original fields across '+mags.length+' available view(s).';
 }inputs.forEach(x=>x.addEventListener('change',render));render();
 document.getElementById('source').textContent='Saved head SHA256: '+d.model_sha256+' · Source demo SHA256: '+d.raw_demo_sha256;
+document.getElementById('proof').textContent='The saved Phikon-v2 model processed '+d.image_count+' original fields. All 15 view combinations reproduced archived validation outputs within '+d.raw_replay_max_probability_difference.toExponential(2)+'.';
 </script></html>'''
 
 
@@ -67,7 +68,7 @@ def main():
     archive=[json.loads(line) for line in (a.run_dir/'predictions.jsonl').read_text().splitlines()]
     d=json.loads(a.raw_demo.read_text())
     verify_demo(d,report,trusted,archive,a.head,'9448a7e319167b7417670a882552edb372603fd3')
-    value={k:d[k] for k in ('class_names','truth','fields_by_view','predictions','model_sha256')}
+    value={k:d[k] for k in ('class_names','truth','fields_by_view','predictions','model_sha256','image_count','raw_replay_max_probability_difference')}
     value['raw_demo_sha256']=file_hash(a.raw_demo)
     text=json.dumps(value,allow_nan=False)
     if any(x in text for x in ('SOB_','/Users/','/data/users','/home/users')):raise ValueError('Private identifier in public demo')

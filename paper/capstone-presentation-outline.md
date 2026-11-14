@@ -40,7 +40,7 @@ Speaking prompt: “The pipeline works and its numbers reproduce, but exact subt
 
 ## 7. Benign/malignant secondary result
 
-Use the independently checked binary secondary report with both arrangements, fixed0.5 threshold and all three accepted earlier pipelines. Show accuracy, sensitivity/specificity and AUROC with correct names. Explicitly label retrospective reused validation, derived from eight-class scores and not a newly trained binary model or an eight-class improvement.
+The retained model gives87.0%/80.7% binary accuracy, sensitivity98.7%/91.3% and specificity75.3%/70.0%. Use both arrangements, fixed0.5 threshold and all three accepted earlier pipelines from the checked report. Show accuracy, sensitivity/specificity and AUROC with correct names. Explicitly label retrospective reused validation, derived from eight-class scores and not a newly trained binary model or an eight-class improvement.
 
 Speaking prompt: “The model often gets the broad group right while confusing subtypes within that group.”
 
@@ -50,7 +50,7 @@ Show fitting versus validation balanced accuracy: supervised ResNet about99.6–
 
 ## 9. Prediction demonstration
 
-Use the lexicographically first validation case already chosen before its outcome, not a newly selected successful example. The saved model's121 raw fields reproduced all15 archived outputs within5.52e-08. Display eight scores and their fixed benign/malignant sum while toggling available views. Label any interactive saved-output viewer as a replay; keep the actual model command available.
+Use the lexicographically first validation case already chosen before its outcome, not a newly selected successful example. The saved model's121 raw fields reproduced all15 archived outputs within6.05e-08 in a fresh39-second replay. Display eight scores and their fixed benign/malignant sum while toggling available views. Label any interactive saved-output viewer as a replay; keep the actual model command available.
 
 ## 10. What is complete and what comes next
 

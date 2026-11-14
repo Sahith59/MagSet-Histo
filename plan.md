@@ -4,7 +4,11 @@
 
 User emphasizes capstone completion before the research paper, asks for original versus current scores and explicitly requests multiple GPT-6.1 Sol independent reviews. All three reviews completed. Read `docs/CAPSTONE_BEFORE_AND_NOW.md` before comparing historical93.73%/94.99% image-random outputs with current case-level results. The saved-validation image bridge is complete and independently audited; it does not reproduce the notebook model or recover95% under the current grouped roles.
 
-Proceed under existing eight-class/four-view scope while the requested capstone date/task clarification is pending. One narrow frozen regional-view test is registered in `docs/BREAKHIS_MULTICROP_SPEC.md`, config42e8e98e..., source47ad41657979c3e154cc9db7b89f1fec4b1f40ac. Smoke4971319 passed in21seconds, parity1.386e-6 and exact blend replay, with independent actual-artifact acceptance. Feature array4971322 has four A40 tasks; job4971323 waits for all four then performs exactly20 fixed-C heads. No backbone fitting, new labels, resplit or architecture sweep. All110 pinned local tests pass. New scientific outcome is pending; keep the frozen reference. Finish capstone reporting regardless of this result; novelty/TCGA stay deferred.
+The user confirmed a3–4day deadline: package by November17–18, presentation around November20; exact day and formal task are unspecified. Keep eight classes/four views. [Delivery plan](docs/CAPSTONE_DELIVERY_PLAN.md).
+
+The regional test is COMPLETE on immutable source47ad41657979c3e154cc9db7b89f1fec4b1f40ac: smoke4971319, four shards4971322 and20heads4971323 allCOMPLETED0. Independent cache/numeric reviews accepted all outputs. F1 changes−.0058/+.0059 and phyllodes recall0 fail the gate. No follow-on sweep. The separate fixed retrospective binary readout gives retained accuracy87.0%/80.7%; it does not replace eight-class45.7%/38.3%. Fresh replay4971403 processed121images/all15subsets in39s with≤6.05e-08 parity. All119 pinned tests pass. No active MagSet job at the latest check; unrelated jobs untouched.
+
+Current tasks: freeze the retained model, publish complete evidence, finish the report/presentation/demo, independently review labels/numbers and rehearse by November17–18. Historical roadmap below is preserved; newer capstone dates and freeze supersede earlier training queues. TCGA/novelty remain deferred.
 
 ## Current user priority: BreakHis quick deliverable first
 
