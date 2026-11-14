@@ -20,7 +20,7 @@ set -euo pipefail
 export OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 MKL_NUM_THREADS=2
 cd "$MAGSET_SOURCE"
 "$MAGSET_ROOT/envs/magset/bin/python" - <<'PY'
-import json, os, shutil
+import json, os, re, shutil
 from pathlib import Path
 import torch
 from magset.adapt_breakhis import bound_checkpoint
@@ -28,6 +28,9 @@ from magset.data import file_hash
 
 torch.set_num_threads(2)
 root=Path(os.environ['MAGSET_ROOT'])
+gpu=torch.cuda.get_device_name(0)
+required=os.environ.get('MAGSET_REQUIRED_GPU_FAMILY')
+if required and required not in gpu:raise ValueError('Recovery GPU family differs')
 trial=int(os.environ['SLURM_ARRAY_TASK_ID'])+1
 folder=root/'runs/breakhis-supervised-v1/split812'/f'trial{trial}'
 if (folder/'metrics.json').exists():raise ValueError('Completed model must not be rerun')
@@ -52,7 +55,28 @@ receipt={'reason':'original scheduler wall-time limit; continue authoritative la
     'training_source_sha':os.environ['MAGSET_CODE_SHA'],'saved_epoch':epoch,'next_epoch':epoch+1,
     'scientific_epoch_limit':20,'selected_epoch_in_last':saved['best']['epoch'],
     'preserved_artifact_sha256':hashes,'recovery_node':os.environ.get('SLURMD_NODENAME'),
-    'recovery_gpu':torch.cuda.get_device_name(0),'orphan_files_are_not_resume_authority':True}
+    'recovery_gpu':gpu,'orphan_files_are_not_resume_authority':True}
+restore=os.environ.get('MAGSET_RESTORE_FROM_RECOVERY')
+if restore:
+    if not re.fullmatch('[0-9]+',restore):raise ValueError('Invalid recovery source ID')
+    original=folder/('recovery-'+restore+'-'+os.environ['SLURM_ARRAY_TASK_ID'])
+    prior=json.loads((original/'receipt.json').read_text())
+    if (prior['training_source_sha']!=os.environ['MAGSET_CODE_SHA'] or prior['trial']!=trial
+            or prior['original_array']!=os.environ['MAGSET_ORIGINAL_ARRAY']):
+        raise ValueError('Restoration source binding differs')
+    restored={}
+    for name,digest in prior['preserved_artifact_sha256'].items():
+        if name not in ('last.pt','selected.pt') and not re.fullmatch('selection-epoch[0-9]+[.]npz',name):continue
+        source=original/name
+        if file_hash(source)!=digest:raise ValueError('Original preserved checkpoint changed')
+        stage=folder/(name+'.restore-tmp')
+        shutil.copyfile(source,stage)
+        if file_hash(stage)!=digest:raise ValueError('Checkpoint restoration copy differs')
+        os.replace(stage,folder/name);restored[name]=digest
+    saved=bound_checkpoint(folder/'last.pt',context);epoch=saved['epoch']
+    if epoch!=prior['saved_epoch']:raise ValueError('Original epoch boundary differs')
+    receipt.update(restored_from_recovery=restore,restored_artifact_sha256=restored,
+                   saved_epoch=epoch,next_epoch=epoch+1,selected_epoch_in_last=saved['best']['epoch'])
 (evidence/'receipt.json').write_text(json.dumps(receipt,indent=2,allow_nan=False)+'\n')
 print(json.dumps({'resume_trial':trial,'saved_epoch':epoch,'next_epoch':epoch+1,'gpu':receipt['recovery_gpu']}),flush=True)
 PY
