@@ -1,5 +1,9 @@
 # MAGSET-Histo execution plan
 
+## Latest user clarification: November15, two-step decisions with all eight types
+
+The user confirmed a genuine hierarchy: benign/malignant first, then one of four subtypes inside that group. BreakHis only for this capstone; TCGA remains deferred. See [confirmed architecture and score definitions](docs/DUAL_STEP_SCOPE.md). This supersedes the earlier freeze as a restriction against planning the user-requested hierarchy; preserve the completed flat baseline/model/results unchanged. The hierarchy is not implemented or evaluated yet. The current87.0%/80.7% is a derived binary readout, not two-step performance.94–95% is an unachieved goal. Explain the before/current/target differences now; next register one bounded fair comparison before new fitting. Do not silently switch to the paper's five labels, reuse an image-overlapping split, or describe existing scores as hierarchical results.
+
 ## Latest checkpoint: master's capstone first, November14
 
 User emphasizes capstone completion before the research paper, asks for original versus current scores and explicitly requests multiple GPT-6.1 Sol independent reviews. All three reviews completed. Read `docs/CAPSTONE_BEFORE_AND_NOW.md` before comparing historical93.73%/94.99% image-random outputs with current case-level results. The saved-validation image bridge is complete and independently audited; it does not reproduce the notebook model or recover95% under the current grouped roles.

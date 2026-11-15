@@ -2,6 +2,10 @@
 
 November14,2026. The user needs the package in3–4days, by November17–18, for a presentation around November20. Exact day and rubric are unspecified. **BreakHis remains main; keep eight subtypes and four magnifications.** TCGA and novel-paper development are deferred.
 
+## November15 clarification: next architecture is two-step, eight-type
+
+The user confirmed benign/malignant followed by a four-subtype specialist within that group. [Confirmed scope](DUAL_STEP_SCOPE.md). Current flat baseline evidence stays intact. Explain the comparison first, then register one bounded hierarchy/control experiment before fitting. No new run or hierarchical accuracy exists yet;94–95% is a goal. This update supersedes earlier model-freeze language only for the requested hierarchy work, not for broad architecture searches or altered evaluation.
+
 ## What is complete
 
 - Original notebook outputs checked:93.73%/94.99% saved40× image-random, reused validation. Historical, not newly reproduced.

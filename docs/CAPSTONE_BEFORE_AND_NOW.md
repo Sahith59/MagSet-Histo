@@ -2,6 +2,10 @@
 
 November14,2026. The master's capstone is the immediate priority; a novel research paper comes afterward. The user needs the package in3–4days, by November17–18, with a presentation around November20. Exact day and formal task/rubric are unspecified. Retain eight tumor types, all four magnifications and existing case roles. [Delivery plan](CAPSTONE_DELIVERY_PLAN.md).
 
+## November15 architecture clarification
+
+The user confirmed **all eight types with genuine two-step decisions**: benign/malignant first, then one of four subtypes within the selected group. This is the requested next architecture, not the model that produced the scores below. Current87.0%/80.7% binary results are derived from direct eight-class outputs. No hierarchical result or94–95% accuracy is established. [Decision chain, labels and next experiment](DUAL_STEP_SCOPE.md).
+
 ## The numbers we received
 
 | Original notebook | Saved accuracy | Correct evaluation images | Saved macro F1 |

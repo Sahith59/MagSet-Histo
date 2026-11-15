@@ -2,6 +2,8 @@
 
 **BreakHis is our main dataset. The immediate goal is the master’s capstone deliverable for Professor Dong.** TCGA follow-up is deferred. A novel method and conference paper are later research milestones.
 
+**November15 target clarification:** the user requests two-step decisions while retaining all eight subtypes: benign/malignant first, then one of four types within that group. [Architecture and before/now score definitions](docs/DUAL_STEP_SCOPE.md). The verified model below is still the direct eight-class baseline; the requested hierarchy has no measured result yet.94–95% remains a goal.
+
 We classify a provider case into one of eight breast-tumor subtypes using its available microscope views at 40×,100×,200× and 400×. We support all 15 nonempty view combinations without assuming that fields are physically paired across zooms.
 
 The supplied notebooks saved93.73%/94.99% on single40× images with image-random, reused validation. Our current scores use a different case-level protocol. The [capstone before/now explanation](docs/CAPSTONE_BEFORE_AND_NOW.md) separates those results and explains why a direct95%→40% comparison is invalid. Three independent GPT-6.1 Sol reviews checked the original evidence, protocol and modelling choices.

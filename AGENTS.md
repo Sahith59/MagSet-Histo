@@ -2,6 +2,8 @@
 
 Current user priority (November12,2026): **BreakHis first.** Finish the quick BreakHis project baseline deliverable for Professor Dong before novel-method/paper work. TCGA follow-up is deferred; preserve its completed artifacts without making it the critical path. Report baseline execution, exploratory validation and final clinical/research claims separately. See `docs/BREAKHIS_MILESTONE_PLAN.md`.
 
+Latest user architecture requirement (November15,2026): keep all eight types with genuine two-step decisions: binary benign/malignant router, then a four-class specialist for the selected group. Read `docs/DUAL_STEP_SCOPE.md`. Preserve the existing direct eight-class results. Derived benign/malignant probabilities are not an implemented hierarchy. No hierarchical score or94–95% result exists yet. Prepare a bounded comparison recipe before new fitting; retain current grouping/magnification/validation safeguards and do not switch to the paper's five final labels.
+
 Stay on BreakHis through model improvement, evaluation and the project report. Completing the first baseline milestone is not permission to switch back to TCGA; that work remains deferred until the BreakHis project deliverable is finished or the user changes priority.
 
 Use `scripts/report_breakhis_milestone.py` for the historical first-results page. The current professor brief and BreakHis project report also include completed adaptation, diagnosis and the supervised reference; do not overwrite them with an older baseline-only builder. `scripts/report_breakhis_supervised.py` renders the hash-bound complete supervised comparison. The older mixed-dataset packet/deck builder is historical.
