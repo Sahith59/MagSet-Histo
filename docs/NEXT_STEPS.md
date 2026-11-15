@@ -1,10 +1,10 @@
 # Next tasks: finish the BreakHis capstone
 
-November14,2026. The user needs the package in3–4days, by November17–18, for a presentation around November20. Exact day and rubric are unspecified. **BreakHis remains main; keep eight subtypes and four magnifications.** TCGA and novel-paper development are deferred.
+Updated November15,2026. The November14 timing request gives a working package deadline of November17–18 and presentation around November20. Exact day and rubric are unspecified. **BreakHis remains main; the corrected target is five final categories with four magnifications.** TCGA and novel-paper development are deferred.
 
-## November15 clarification: next architecture is two-step, eight-type
+## November15 correction: binary first, malignant subtype second
 
-The user confirmed benign/malignant followed by a four-subtype specialist within that group. [Confirmed scope](DUAL_STEP_SCOPE.md). Current flat baseline evidence stays intact. Explain the comparison first, then register one bounded hierarchy/control experiment before fitting. No new run or hierarchical accuracy exists yet;94–95% is a goal. This update supersedes earlier model-freeze language only for the requested hierarchy work, not for broad architecture searches or altered evaluation.
+The user superseded the earlier eight-type hierarchy choice. Final labels are benign plus ductal/lobular/mucinous/papillary carcinoma. Step1 predicts benign/malignant; only predicted malignant cases reach Step2. [Corrected scope](DUAL_STEP_SCOPE.md). Retain the completed eight-class baseline evidence. First explain the task/score changes, then register one bounded direct-five control versus true dual-step comparison. No new training or five-class/hierarchical score exists yet;94–95% remains a goal. Preserve cases/roles/all magnifications and count routing errors in final five-class metrics. This supersedes earlier blanket freeze and eight-target language only for the explicitly requested task change.
 
 ## What is complete
 
@@ -20,11 +20,11 @@ The user confirmed benign/malignant followed by a four-subtype specialist within
 
 | Order | Work | Completion condition |
 | --- | --- | --- |
-| 1 | Freeze model and publish evidence | Frozen reference retained; every result and failed gate preserved; labels clear |
-| 2 | Finish report and presentation | Data, roles, architecture, training, metrics, comparisons, limits and references included |
-| 3 | Prepare demonstration | [Verified saved-output viewer](evidence/CAPSTONE_PREDICTION_REPLAY.html), actual inference instructions and replay/live distinction |
-| 4 | Review/rehearse by Nov17–18 | Check every number, practise a short explanation/questions, incorporate actual rubric requirements |
-| 5 | Scope subsequent research | Reconcile clinical identities, obtain fresh confirmation and define one specific novel hypothesis |
+| 1 | Fix the five-category experiment contract | Direct-five versus binary-plus-malignant-four; same roles/representation/subsets and declared selection budget |
+| 2 | Implement/check both pipelines | Canonical label mapping, fitting-only normalization, routing, finite scores, save/reload and no case-role leakage |
+| 3 | Run a bounded comparison | Report both arrangements/all trials, final five-class accuracy/F1/balanced accuracy, binary routing and malignant typing separately |
+| 4 | Revise report/demo/presentation | New task/results clearly separated from completed eight-class and retrospective binary evidence; no invented94–95% result |
+| 5 | Review/rehearse and scope later research | Work toward Nov17–18 materials/~Nov20 presentation; novel paper/fresh confirmation remain later work |
 
 Each trial uses46 fitting/eight validation/28 excluded provider cases. Arrangements812/813 cover22/20 distinct validation cases,31 in their union. Trials/views/images repeat; all82 cases entered development somewhere. Clinical identity remains unverified and no globally fresh confirmation cohort remains.
 

@@ -1,10 +1,10 @@
 # Capstone: received results and checked current results
 
-November14,2026. The master's capstone is the immediate priority; a novel research paper comes afterward. The user needs the package in3–4days, by November17–18, with a presentation around November20. Exact day and formal task/rubric are unspecified. Retain eight tumor types, all four magnifications and existing case roles. [Delivery plan](CAPSTONE_DELIVERY_PLAN.md).
+November14,2026. The master's capstone is the immediate priority; a novel research paper comes afterward. The user needs the package in3–4days, by November17–18, with a presentation around November20. Exact day and formal task/rubric are unspecified. The completed baseline has eight tumor types; the November15 target correction below specifies the new five-category task. Preserve all four magnifications and existing case roles. [Delivery plan](CAPSTONE_DELIVERY_PLAN.md).
 
-## November15 architecture clarification
+## November15 corrected target: five-category dual step
 
-The user confirmed **all eight types with genuine two-step decisions**: benign/malignant first, then one of four subtypes within the selected group. This is the requested next architecture, not the model that produced the scores below. Current87.0%/80.7% binary results are derived from direct eight-class outputs. No hierarchical result or94–95% accuracy is established. [Decision chain, labels and next experiment](DUAL_STEP_SCOPE.md).
+The user corrected the earlier eight-type hierarchy answer: **one pooled benign label plus ductal, lobular, mucinous and papillary carcinoma**. Step1 predicts benign/malignant; benign stops, malignant proceeds to Step2. There is no benign subtype head. The five-category system has no trained/evaluated result yet. Existing eight-class and binary scores below retain their original meaning. [Corrected architecture, labels and future scorecard](DUAL_STEP_SCOPE.md).
 
 ## The numbers we received
 

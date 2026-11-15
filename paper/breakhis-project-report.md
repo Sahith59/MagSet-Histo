@@ -1,5 +1,7 @@
 # BreakHis project report: current evidence draft
 
+**November15 scope correction:** the requested next system has five final labels: pooled benign plus four malignant types. It makes a binary decision first and applies malignant subtyping only after a malignant decision. This system has not been trained/evaluated. The eight-class results below are the earlier baseline and must not be presented as five-class performance. [Corrected target and score definitions](../docs/DUAL_STEP_SCOPE.md).
+
 Working report for review with Professor Dong, November14,2026. The evidence package is due November17–18 for a presentation around November20; exact day and rubric are unspecified. All planned comparisons and independent artifact reviews are complete. It is not a submission-ready manuscript or a novel-method claim. The older [methods draft](methods-draft.md) records earlier experimental rounds.
 
 ## Question

@@ -1,8 +1,10 @@
 # MAGSET-Histo execution plan
 
-## Latest user clarification: November15, two-step decisions with all eight types
+## Latest user correction: November15, dual-step with five final labels
 
-The user confirmed a genuine hierarchy: benign/malignant first, then one of four subtypes inside that group. BreakHis only for this capstone; TCGA remains deferred. See [confirmed architecture and score definitions](docs/DUAL_STEP_SCOPE.md). This supersedes the earlier freeze as a restriction against planning the user-requested hierarchy; preserve the completed flat baseline/model/results unchanged. The hierarchy is not implemented or evaluated yet. The current87.0%/80.7% is a derived binary readout, not two-step performance.94–95% is an unachieved goal. Explain the before/current/target differences now; next register one bounded fair comparison before new fitting. Do not silently switch to the paper's five labels, reuse an image-overlapping split, or describe existing scores as hierarchical results.
+The user corrected the previous eight-type hierarchy choice: **pooled benign plus four malignant types**. Step1 benign/malignant; benign stops, malignant proceeds to Step2 (ductal/lobular/mucinous/papillary). No benign subtype expert. BreakHis only for this capstone; TCGA deferred. Read [the corrected architecture/scorecard](docs/DUAL_STEP_SCOPE.md).
+
+Preserve completed eight-class baseline results and the previous presentation as dated evidence, not five-class performance. Current87.0%/80.7% remains retrospective binary accuracy; no five-class or trained dual-step result exists.94–95% is an unachieved goal. Next explain the before/current/target differences, then register a bounded direct-five control versus dual-step experiment with matching roles/representations/input units/selection opportunities. Report final five-class accuracy and macro F1/balanced accuracy, binary routing and malignant typing separately. Raw accuracy gains from pooling labels are not an architecture improvement. Historical eight-class roadmap/freeze text below is superseded where it conflicts with this explicit correction.
 
 ## Latest checkpoint: master's capstone first, November14
 

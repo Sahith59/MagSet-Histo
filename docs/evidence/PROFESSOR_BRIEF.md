@@ -1,5 +1,7 @@
 # BreakHis master’s capstone: progress for Professor Dong
 
+**November15 scope correction:** the requested next system has five final labels: pooled benign plus four malignant types. It makes a binary decision first and applies malignant subtyping only after a malignant decision. This system has not been trained/evaluated. The eight-class results below are the earlier baseline and must not be presented as five-class performance. [Corrected target and score definitions](../DUAL_STEP_SCOPE.md).
+
 **Current priority: finish the BreakHis project deliverable first. TCGA follow-up and novel-paper work are deferred.**
 
 The model reads the available microscope images of one provider case and predicts one of eight breast-tumor subtypes. It uses a frozen Phikon-v2 picture reader and a trained mean-pooling/logistic decision maker. This is an established baseline, not a novel mechanism.

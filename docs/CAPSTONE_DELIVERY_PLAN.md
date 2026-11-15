@@ -1,6 +1,10 @@
 # Master's capstone delivery plan
 
-Updated November14,2026 from the user's confirmed timing. **Prepare the complete package by November17–18. Presentation is expected around November20; the exact day is not fixed.** Professor Dong has not specified the prediction task. Keep the existing eight-subtype study and report the source-defined benign/malignant secondary outcome separately.
+Updated November14,2026 from the user's confirmed timing. **Prepare the complete package by November17–18. Presentation is expected around November20; the exact day is not fixed.** Professor Dong has not specified the prediction task. The earlier materials document eight-subtype results; the explicit November15 correction below specifies the next five-category system.
+
+## November15 target correction
+
+The user now specifies five final labels: benign plus four malignant subtypes. Binary first; benign stops and malignant goes to the subtype head. This supersedes the earlier eight-type hierarchy choice. [Corrected scope](DUAL_STEP_SCOPE.md). The existing report/deck/demo document the completed eight-class baseline; revise them for the new task after its recipe/results exist. They are not a completed five-class dual-step deliverable. The first next task is a bounded direct-five versus dual-step comparison;94–95% remains an unachieved goal.
 
 ## Available for review now
 

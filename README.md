@@ -2,13 +2,13 @@
 
 **BreakHis is our main dataset. The immediate goal is the master’s capstone deliverable for Professor Dong.** TCGA follow-up is deferred. A novel method and conference paper are later research milestones.
 
-**November15 target clarification:** the user requests two-step decisions while retaining all eight subtypes: benign/malignant first, then one of four types within that group. [Architecture and before/now score definitions](docs/DUAL_STEP_SCOPE.md). The verified model below is still the direct eight-class baseline; the requested hierarchy has no measured result yet.94–95% remains a goal.
+**November15 corrected target:** five final categories: pooled benign plus ductal, lobular, mucinous and papillary carcinoma. Step1 predicts benign/malignant. Benign stops; malignant proceeds to Step2 for its subtype. This supersedes the earlier eight-type hierarchy choice. [Architecture and score definitions](docs/DUAL_STEP_SCOPE.md). This target has not been trained/evaluated;94–95% remains a goal.
 
-We classify a provider case into one of eight breast-tumor subtypes using its available microscope views at 40×,100×,200× and 400×. We support all 15 nonempty view combinations without assuming that fields are physically paired across zooms.
+Use BreakHis images at40×/100×/200×/400×, supporting all15 nonempty view combinations without assuming fields are physically paired across zooms. **The verified results below belong to our earlier direct eight-class baseline**, not the new five-category system. Earlier TCGA work remains separate and deferred.
 
 The supplied notebooks saved93.73%/94.99% on single40× images with image-random, reused validation. Our current scores use a different case-level protocol. The [capstone before/now explanation](docs/CAPSTONE_BEFORE_AND_NOW.md) separates those results and explains why a direct95%→40% comparison is invalid. Three independent GPT-6.1 Sol reviews checked the original evidence, protocol and modelling choices.
 
-## First checked BreakHis numbers
+## Earlier eight-class BreakHis baseline numbers
 
 | Validation split | Mean-subset macro F1 | Mean-subset case accuracy | All-view case accuracy |
 | --- | ---: | ---: | ---: |
@@ -40,7 +40,7 @@ The separate [benign/malignant secondary analysis](docs/CAPSTONE_BINARY_RESULTS.
 
 Open the [verified prediction replay](docs/evidence/CAPSTONE_PREDICTION_REPLAY.html) to explore all15 saved view outputs. It is an offline viewer, not live image-upload inference. [Demo instructions](docs/CAPSTONE_DEMO.md) · [Delivery plan](docs/CAPSTONE_DELIVERY_PLAN.md). The user needs the capstone package by November17–18 for a presentation around November20; exact day/rubric remain unspecified. Model search is frozen; TCGA/novel-paper work remains deferred.
 
-Capstone materials: [ten-slide PDF](output/pdf/BreakHis-Capstone.pdf), [browser presentation](docs/evidence/CAPSTONE_PRESENTATION.html), [report](paper/breakhis-project-report.md) and [plain-language rehearsal guide](paper/capstone-rehearsal.md).
+Earlier eight-class baseline materials (not yet revised for the new five-category target): [ten-slide PDF](output/pdf/BreakHis-Capstone.pdf), [browser presentation](docs/evidence/CAPSTONE_PRESENTATION.html), [report](paper/breakhis-project-report.md) and [plain-language rehearsal guide](paper/capstone-rehearsal.md).
 
 ## Run checks
 
