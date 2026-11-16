@@ -4,7 +4,7 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=16G
-#SBATCH --time=00:15:00
+#SBATCH --time=00:45:00
 set -euo pipefail
 : "${MAGSET_ROOT:?Set project root}"
 : "${MAGSET_SOURCE:?Set immutable source}"

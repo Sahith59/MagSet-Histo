@@ -1,6 +1,10 @@
-# Active improvement round — November16,2026
+# Completed improvement round — November 16, 2026
 
-User requests further diagnosis/model search and compute. Registered complementary GenBio frozen-KDE and F-feature whole-case mean/attention comparisons are active, with three independent diagnosis/research lanes completed. Source/input/GPU technical gates precede bounded production arrays and complete CPU collection. Same five labels,46/8/28 roles and15 subsets.95% remains a goal; no new classification score is known. Read [the active execution record](docs/BREAKHIS_NEXT_ROUND_STATUS.md) and [fixed recipe](docs/BREAKHIS_NEXT_ROUND_SPEC.md). This update supersedes the previous all-jobs-complete checkpoint below.
+The user-requested data/model diagnosis and model search are complete. GenBio dual 70.50%/75.17% and whole-case MIL mean 70.17%/71.83%, attention 71.67%/70.50% do not consistently improve the retained two-step references. P remains the strongest two-step macro-F1 readout, with 76.33%/75.67% accuracy and 85%/85% all-four-view accuracy (separate endpoint). F retains 76.83% second-arrangement accuracy. GenBio’s 77.83%/.6406 one-stage 813 control is recorded separately. 95% remains unachieved.
+
+All 40 GPU trajectories, ten paired GenBio runs and both full collectors completed, with 370-test CI and actual GPU checks accepted. Source/configuration/caches/predictions and independent reviews are frozen. No project jobs remain running. UNI2-h/Virchow2/H-optimus0 remain gated options without confirmed project access; no new access forms or terms were submitted.
+
+Next finish the five-category presentation/demo and rehearse the evidence for Professor Dong. For further predictive work, target malignant case generalization: confirm available stronger pretrained models or separately register a constrained cross-case learning objective. Do not automatically combine predictors or change the benchmark. [Completed round](docs/BREAKHIS_NEXT_ROUND_STATUS.md) · [GenBio](docs/BREAKHIS_GENBIO_RESULTS.md) · [MIL](docs/BREAKHIS_CASE_MIL_RESULTS.md). Historical launch notes below are superseded.
 
 # Current execution checkpoint — November 16, 2026
 

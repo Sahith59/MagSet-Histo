@@ -4,9 +4,9 @@ BreakHis is our main dataset. We are building a breast histology classification 
 
 The system first decides **benign or malignant**. Benign is the final answer; malignant images proceed to a specialist that chooses ductal, lobular, mucinous or papillary carcinoma. We use the available 40×/100×/200×/400× images of each provider case and evaluate all 15 nonempty zoom combinations. [Task and architecture](docs/DUAL_STEP_SCOPE.md) · [Plain-language training guide](docs/TRAINING_STRATEGY.md).
 
-**Latest verified result:** decision-specific centering has our highest observed macro F1, **.6027 / .6025**, with **76.33% / 75.67% final five-category accuracy**. With all four zooms available, accuracy is 85% in both arrangements; that is a separate endpoint. Changes are mixed: the earlier three-crop model still has higher second-arrangement accuracy at 76.83%. **94–95% final accuracy has not been achieved.** [Latest results](docs/BREAKHIS_PRIOR_CENTERED_RESULTS.md) · [Professor brief](docs/evidence/PROFESSOR_BRIEF.md).
+**Latest verified result:** decision-specific centering has our highest observed macro F1 among two-step pipelines, **.6027 / .6025**, with **76.33% / 75.67% final five-category accuracy**. With all four zooms available, accuracy is 85% in both arrangements; that is a separate endpoint. Changes are mixed: the earlier three-crop model still has higher second-arrangement accuracy at 76.83%. **94–95% final accuracy has not been achieved.** [Latest results](docs/BREAKHIS_PRIOR_CENTERED_RESULTS.md) · [Professor brief](docs/evidence/PROFESSOR_BRIEF.md).
 
-A new controlled round is active: a complementary GenBio pathology reader and whole-case mean/attention learning on existing features. GPU technical checks and input audits precede production; no new classification score is known yet. [Live execution record](docs/BREAKHIS_NEXT_ROUND_STATUS.md).
+The complementary GenBio reader and whole-case mean/attention round is complete and verified. Neither consistently improves the requested two-step endpoint. All 40 GPU training trajectories and ten paired GenBio classifier jobs completed; all 370 neural tests passed. [Completed execution and decision](docs/BREAKHIS_NEXT_ROUND_STATUS.md).
 
 ## Current five-category results
 
@@ -26,6 +26,11 @@ Accuracy/F1 below averages all 15 zoom combinations and five overlapping trials 
 | N: native-pixel similarity |60.00% /61.00%|.4394 /.5014|
 | P: shared class-balanced center |76.17% /75.33%|.5992 /.5778|
 | P: decision-specific centers |76.33% / 75.67%|**.6027 /.6025**|
+| GenBio-PathFM similarity |70.50% /75.17%|.5837 /.5813|
+| Whole-case learned mean |70.17% /71.83%|.5199 /.5094|
+| Whole-case gated attention |71.67% /70.50%|.5453 /.5234|
+
+GenBio's one-stage control scores 71.33%/77.83%, F1 .5960/.6406. Its stronger 813 result is a different readout, with weaker 812 accuracy; it does not establish a two-step gain. [GenBio results](docs/BREAKHIS_GENBIO_RESULTS.md) · [Whole-case results](docs/BREAKHIS_CASE_MIL_RESULTS.md).
 
 All comparisons above are complete and verified. More pixels and extra adapter training did not automatically help. Decision-specific centers produce modest F1 gains, with accuracy and recall tradeoffs; both centering modes fail the registered larger-improvement screen. Their direct-five controls are exact duplicates, leaving four structurally unique direct settings and eight dual settings across the mode family. No novel mechanism or 95% result is established. [Native negative result](docs/BREAKHIS_NATIVE_RESULTS.md) · [Centering evidence](docs/BREAKHIS_PRIOR_CENTERED_RESULTS.md) · [Full scorecard](paper/breakhis-five-class-report.md).
 
