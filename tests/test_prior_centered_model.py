@@ -84,7 +84,12 @@ class PriorCenteredModelTests(unittest.TestCase):
             for center_head, density_head in combinations:
                 for view in range(4):
                     expected = scalar_logs(self.bags, self.labels, self.support, self.query, center_head, density_head, view, temperature)
-                    np.testing.assert_allclose(cache.logs[center_head][density_head][view], expected, rtol=0, atol=1e-12)
+                    # Scalar and vectorized FP64 means/norms reduce in different orders.
+                    # At T=.01 their ~1e-14 cosine rounding is amplified in large
+                    # negative logs; retain the absolute bound near zero and add
+                    # a 64-epsilon, magnitude-scaled roundoff allowance.
+                    np.testing.assert_allclose(cache.logs[center_head][density_head][view], expected,
+                                               rtol=64*np.finfo(np.float64).eps, atol=1e-12)
             for head in m.HEADS:
                 for view in bundle.heads[head].views:
                     np.testing.assert_allclose(view.weights.sum(0), np.ones(11), rtol=0, atol=1e-14)
