@@ -12,8 +12,9 @@ The experiment asks whether teaching part of the image reader on the actual case
 | Direct-model technical check | Array task 4979613_0 completed successfully in 20 seconds |
 | Two-step technical check | Array task 4979613_1 completed successfully in 42 seconds |
 | Independent acceptance of actual GPU checks | Accepted; 2,512 independent assertions passed |
-| Twenty full training runs | Array 4979622: two tasks completed successfully in7m45s/8m13s at the latest check; four active, fourteen queued; full comparison pending |
-| Complete-matrix results verification | Collector implemented and independently reviewed; 174 full-suite tests passed; CPU job4979632 automatically waits for all20 fits |
+| Twenty full training runs | Array 4979622: four tasks completed successfully at the latest check; four active, twelve queued; full comparison pending |
+| Complete-matrix results verification | CPU job4979632 waits for successful completion of all20 fits; immutable checker source650c14c |
+| Independent numerical verification | CPU job4979664 waits for collector4979632; separate reviewer source343829a; full suite187 tests passed |
 
 The two technical checks each trained on eight fitting cases for two epochs, using two batches per epoch. They tested a heads-only phase, a partial-backbone adaptation phase, and checkpoint save/reload. Each performed 128 training field forwards plus eight reload-probe forwards, with no validation or excluded-case predictions. Both ran on A40 GPUs, reserved about 1.52 GB of GPU memory, and reported zero feature/probability differences on their fixed reload probes. Scheduler elapsed times include startup; internal model lifecycle times were 11.75 and 30.84 seconds. Actual technical-check accuracy is not a validation result and is not reported.
 
