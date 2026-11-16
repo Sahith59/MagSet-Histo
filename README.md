@@ -19,7 +19,7 @@ Accuracy below averages all15 zoom combinations and five trials within each vali
 | Midnight-12k, field supervision |73.7% /70.0%|.5732 /.5017|
 | **Midnight-12k, similarity dual-step** |**75.7% /75.0%**|**.5897 /.5643**|
 
-Midnight case means improve both accuracy and macro F1 on both arrangements; the field method has a higher first-arrangement result but a weaker second one. All20 Midnight direct/dual paired runs and their saved predictions were verified. The complete ten-run similarity comparison also improves accuracy and macro F1 on both arrangements. Malignant subtype errors remain; one fixed last-layer adapter experiment is being implemented. [Current report](paper/breakhis-five-class-report.md) · [First-five reference](docs/BREAKHIS_FIVE_CLASS_RESULTS.md) · [Completed CNN comparison](docs/BREAKHIS_CASEBAG_RESULTS.md).
+Midnight case means improve both accuracy and macro F1 on both arrangements; the field method has a higher first-arrangement result but a weaker second one. All20 Midnight direct/dual paired runs and their saved predictions were verified. The complete ten-run similarity comparison also improves accuracy and macro F1 on both arrangements. Malignant subtype errors remain; the fixed last-layer adapter experiment is running as20 matched tasks, with eight A40 GPUs active at the initial check. [Execution status](docs/BREAKHIS_LORA_STATUS.md). [Current report](paper/breakhis-five-class-report.md) · [First-five reference](docs/BREAKHIS_FIVE_CLASS_RESULTS.md) · [Completed CNN comparison](docs/BREAKHIS_CASEBAG_RESULTS.md).
 
 The supplied notebooks saved93.73%/94.99% on eight-type40× individual images with image-random, reused validation. Their task, prediction unit and split differ from this five-category case experiment. [Before/now explanation](docs/CAPSTONE_BEFORE_AND_NOW.md). Original notebooks and earlier results remain historical evidence.
 
@@ -66,7 +66,7 @@ python3 -m pip install numpy==1.26.4 scipy==1.15.2 scikit-learn==1.6.1 Pillow==1
 python3 -m unittest discover -s tests -v
 ```
 
-The full neural checks additionally need torch==2.6.0 and torchvision==0.21.0. The latest full pinned suite passed252 tests. The real raw-image replay uses the existing pinned GPU environment, original dataset, pretrained encoder and saved baseline head; these artifacts are not bundled in Git. Submit heavy work through SLURM using [the cluster guide](docs/CLUSTER_SETUP.md). The replay entry point is `python -m magset.breakhis_predict --help`; its validation-only guard excludes fitting and outer-role inputs.
+The full neural checks additionally need torch==2.6.0 and torchvision==0.21.0. The latest full pinned suite passed277 tests. The real raw-image replay uses the existing pinned GPU environment, original dataset, pretrained encoder and saved baseline head; these artifacts are not bundled in Git. Submit heavy work through SLURM using [the cluster guide](docs/CLUSTER_SETUP.md). The replay entry point is `python -m magset.breakhis_predict --help`; its validation-only guard excludes fitting and outer-role inputs.
 
 ## Evidence and research record
 

@@ -8,8 +8,8 @@ Updated November16,2026. The November14 timing request gives a working package d
 
 1. **Completed:** diagnose the failed CNN and rare-type errors; test field supervision; extract all7,909 images with the larger frozen Midnight encoder; verify20 paired case/field comparisons.
 2. **Measured gain:** Midnight case-dual72.0%/71.3% versus first Phikon65.8%/68.8%, on identical roles and15-view scoring. Binary decisions91.2%/94.2%; malignant typing60.0%/54.3% remains limiting. [Evidence](BREAKHIS_IMPROVEMENT_RESULTS.md).
-3. **Executing:** one fixed same-view similarity classifier, four temperatures, fitting-only support and centering. Verify all ten paired runs before reporting.
-4. **Next decision:** assess one bounded adaptation of the pathology encoder if similarity alone is insufficient; keep enough time for output verification and the five-category capstone materials.
+3. **Completed:** similarity classifier75.67%/75.00%, macro F1.5897/.5643; all ten paired runs verified. [Accepted result](BREAKHIS_KERNEL_RESULTS.md).
+4. **Executing:** one bounded last-layer adapter comparison; the input audit and both real GPU technical checks passed;20 matched fits are running, with automatic collection afterward. [Status](BREAKHIS_LORA_STATUS.md). Keep enough time for output verification and five-category capstone materials.
 5. Update the presentation/report from measured results; explain that notebook94.99% and case-level five-category accuracy use different protocols. No95% or novelty claim is established.
 
 The sections below retain the earlier milestones and history.

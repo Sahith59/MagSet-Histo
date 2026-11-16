@@ -1,79 +1,43 @@
-Latest November16 result: **75.67%/75.00%** final two-step accuracy and macro F1.5897/.5643 for the completed Midnight similarity classifier, on the same splits and15-subset scoring. This supersedes72.00%/71.33% as the best current paired accuracy result. [Verified similarity comparison](BREAKHIS_KERNEL_RESULTS.md). One bounded last-layer adapter comparison is being implemented;94–95% remains unachieved. Earlier execution notes below retain their original scope.
+# How our current BreakHis system learns
 
-# Latest training update — November16
+Updated November16,2026. Imagine a student looking at several microscope photographs of the same tissue. The student first asks, “Is it benign or malignant?” If malignant, the next question is, “Which malignant type?” Our five possible final answers are benign, ductal, lobular, mucinous and papillary carcinoma.
 
-Our best current two-step model uses **frozen Midnight-12k** to turn each tissue image into3072 numbers. Average images within each microscope zoom, normalize using fitting cases only, then average the available zoom descriptions and add four view-availability flags. A small trained binary classifier decides benign/malignant. A second classifier, fitted on35 malignant cases, chooses ductal/lobular/mucinous/papillary. Benign stops at the first decision.
+## What goes in and comes out
 
-The same46 fitting/eight validation/28 excluded provider cases are used per run. Four regularization settings are evaluated as complete pipelines and selected by end-to-end mean15-subset macro F1. This scored72.0%/71.3% final accuracy. Binary91.2%/94.2% is a separate easier decision. [Measured improvement](BREAKHIS_IMPROVEMENT_RESULTS.md).
+Input is one provider case's tissue photographs at the available40×/100×/200×/400× zooms. Different fields across zooms need not show the exact same physical spot. Output is one final category, with probabilities describing the model's confidence. We evaluate every one of the15 nonempty zoom combinations.
 
-The next fixed experiments are a same-cache similarity classifier and a small last-layer LoRA adaptation, keeping the roles and final scoring unchanged. [Similarity recipe](BREAKHIS_KERNEL_SPEC.md) · [Adapter recipe](BREAKHIS_LORA_SPEC.md). The older explanations below retain their original experiment scope.
+## Current best model: compare with fitting examples
 
-# How we train the BreakHis baseline
+1. **Read the photographs.** A pretrained pathology image reader, Midnight-12k, turns each image into3,072 numbers describing visual patterns. We keep this reader frozen: its original weights do not change.
+2. **Make descriptions comparable.** For each zoom, calculate a center from fitting cases only, with equal case influence. Subtract it and normalize the description's length.
+3. **Compare examples.** Compare a new image with fitting images from the same zoom using cosine similarity. A temperature controls how strongly close matches dominate the vote. Each case has equal influence inside its class, regardless of image count.
+4. **Combine the evidence.** Calculate benign/malignant and malignant-four probabilities for fields. Compose their five-category probabilities, average fields within each zoom, then average the available zooms equally.
+5. **Give the two-step answer.** If case malignant probability is below.5, answer benign. Otherwise choose the highest-probability malignant type. Exactly.5 routes malignant.
 
-Current priority: the BreakHis project with Professor Dong. The following describes its implemented baseline. TCGA has a different archived protocol and is deferred.
+The fitting examples and their labels form this classifier's reference set. There are no newly optimized classifier coefficients in this similarity method. The reader itself was previously trained by its authors; our fitting/evaluation images and labels are BreakHis only. External pretrained weights are transfer learning.
 
-## Picture reader and decision maker
+## The split, in simple terms
 
-A pretrained **Phikon-v2 picture reader** turns each image into 1,024 numbers. Its weights stay fixed. We do not teach it again in the current baseline.
+Each run has46 fitting cases,8 validation cases and28 excluded cases. Related images and all zooms stay together. We repeat the comparison across five overlapping trials and two validation arrangements,812/813. These are arrangements of the same dataset, not two datasets.
 
-A small **decision maker**, a logistic classifier, learns from those numbers and the known eight-subtype labels. Its training penalty discourages wrong/confident answers and excessively large decision weights. This is frozen-feature transfer learning.
+The46 fitting cases contain11 benign,25 ductal,2 lobular,5 mucinous and3 papillary cases. The malignant expert uses35 true-malignant fitting cases. Validation contains4 benign cases and one of each malignant type. We preserve the original eight-label roles before merging benign labels.
 
-## What happens to a case
+We choose among four temperatures using final five-category macro F1 averaged over all15 zoom subsets. Selection looks at validation only; excluded cases supply no predictions or fitting statistics. Fitting diagnostics remove the entire query case from both reference examples and centering, so an example cannot match itself.
 
-1. Gather all related images at its available 40×/100×/200×/400× views.
-2. Read every field with the fixed image encoder and its pinned transform.
-3. Average images within each zoom, using saved fitting-only normalization.
-4. Average the available zoom summaries and add four yes/no availability flags.
-5. Train the decision maker on fitting-case descriptions and labels.
+These validation arrangements have been reused during development. They contain31 distinct provider keys overall, with unresolved clinical identity relationships. They are not a fresh final clinical test.
 
-The training code first pools fields and then applies the saved per-view normalization; this affine operation uses fitting-only field moments. The prediction replay reuses that exact ordering and vectorizer.
+## What the scores mean
 
-## Practise with missing zooms
+**Current final accuracy is75.67%/75.00%.** That means roughly75–76 correct final answers per100 case/zoom decisions in these development arrangements. They are repeated, dependent decisions, not100 independent patients. Macro F1 is.5897/.5643 and gives minority classes more visibility than raw accuracy.
 
-All four views give 15 nonempty combinations. We train on all 15, distributing each case's base training mass across them. Pictures and masks do not become extra independent patients. BreakHis also uses class balancing: classes with fewer fitting cases receive extra weight, so common classes do not dominate. Cases within the same class have equal influence regardless of their field count.
+The benign/malignant decision is92.0%/92.7% correct. The malignant specialist gets56.7% of known malignant types correct. Neither number is the whole-system five-category accuracy. With all four zooms present, final accuracy is82.5%/80.0%; that is a separate setting. [Complete verified result](BREAKHIS_KERNEL_RESULTS.md).
 
-## Split and model selection
+## Next training experiment: adjust a small part of the reader
 
-Each of the five provider repeated trials has 46 fitting cases, 8 validation cases and 28 excluded outer-role cases. The validation group contains one case per subtype. Existing split seeds 812 and 813 are both reported. The original fitting grid uses C values 0.01,0.1,1,10; validation mean macro F1 over 15 view settings selects C. Outer-role outcomes never choose C in that trial.
+The next fixed recipe uses standard LoRA adapters in the final four reader blocks. It trains about114,000 adapter/head parameters while freezing the original encoder weights. Heads start from the fixed C=1 field model for the same fitting cases, rather than a validation-selected initialization.
 
-Each model retains its normalization, coefficients and class order. An independent checker regenerates split memberships and compares saved labels/probabilities with the original manifest. The raw-image demo checks the actual saved trial 1/seed 812 head rather than fitting a new model.
+For20 epochs, visit every fitting case once per epoch and sample two photographs from each zoom. The first two epochs update heads; the next18 update adapters and heads. Give rare case types more loss weight. Use the same image sampling across direct-five and two-step arms. Evaluate complete models at epochs2/6/12/20 and select by the same final macro F1 criterion. An epoch2 selection would identify a head-only result, not learned-adapter benefit.
 
-The small classifier uses LBFGS optimization with at most 1,000 iterations. This is not 1,000 passes through every original image. Image encoding already used GPUs; cached-feature heads fit efficiently on CPUs.
+There are20 matched runs: ten roles for each arm. Before launching them, fitting-only GPU checks exercise warmup and real adapter gradients, verify unchanged original weights and test saving/reloading. The completed runs then need output verification. [Fixed recipe and resource budget](BREAKHIS_LORA_SPEC.md).
 
-## Completed adaptation experiment
-
-The checked baseline and raw-image demonstration are packaged. The completed adaptation updated only Phikon-v2's last block and final output normalization. It first practised with an auxiliary image classifier for one epoch, then also updated those encoder layers for five epochs. Class-balanced sampling gave rare classes a fair share of practice; within each class it balanced cases and zooms. Only fitting cases supplied those updates.
-
-Afterward, discard the auxiliary classifier, encode the fitting and validation images without augmentation, and train the same mean-plus-mask logistic case classifier described above. Keep the same four C choices, cases and metrics. All ten full runs and the artifact checker passed. Mean case accuracy is45.7%/38.8%; primary F1 does not improve on both splits, so this recipe fails its improvement gate and the frozen baseline remains the default. [Complete results](BREAKHIS_ADAPTATION_RESULTS.md). [Exact recipe](BREAKHIS_ADAPTATION_SPEC.md) · [Execution checkpoint](BREAKHIS_ADAPTATION_STATUS.md).
-
-The current numbers are exploratory. All 82 provider cases have entered development somewhere, and clinical identity relationships remain uncertain. We must not describe them as a fresh independent clinical test. Novelty and a conference paper are later evidence gates, not requirements for completing the first working project milestone.
-
-[Focused plan](BREAKHIS_MILESTONE_PLAN.md) · [First numbers](BREAKHIS_FIRST_RESULTS.md).
-
-## What the diagnosis found
-
-The saved adapted case classifier answers its fitting cases very well (98.5–98.7% balanced accuracy) but does poorly on validation (38.8–45.7%). The auxiliary image head also has a large gap: about98% on fitting pictures and32–35% on validation with class/case/view balancing. Keeping that head and using either fixed averaging readout does not fix validation. This is consistent with poor generalization; no single cause has been established. [Diagnosis, all readouts and figure](BREAKHIS_DIAGNOSIS_RESULTS.md).
-
-For a linear head, classifying a mean feature equals averaging field logits with the same weights. That checked identity helps avoid blaming early averaging alone. The diagnosis itself performs no fitting or new encoder execution.
-
-## Completed supervised reference: a standard picture model
-
-Think of the model as a picture reader plus an eight-answer decision maker. In this comparison, we teach both parts using the fitting pictures. We keep the same46 fitting/eight validation/28 excluded cases per run, all four zooms and all15 input combinations. Ten fits cover five trials at each of the two existing split arrangements.
-
-1. Start from **ImageNet-pretrained ResNet-50**. Its2,048-number picture description feeds dropout and an eight-class linear classifier.
-2. For the first two epochs, teach only the classifier. For epochs3–20, also update the picture reader. BatchNorm running statistics stay fixed throughout.
-3. Balance practice across tumor types, cases and zooms. Use fitting-only flips, quarter-turns and small color changes. Resize each whole picture to224×224; this changes its rectangular shape. AdamW adjusts the weights using label-smoothed cross-entropy, with fixed regularization and learning-rate schedule.
-4. At epochs5/10/15/20, check the same validation cases. Keep the earliest checkpoint with the best mean15-subset macro F1; finish all20 epochs. Validation answers never supply gradient updates.
-5. For a case, average picture probabilities within each zoom, then average the available zooms equally. Keep this trained image classifier; there is no second logistic fit or calibration choice.
-
-This is one complete alternative pipeline. A better score would not tell us which single change caused it. Pictures, repeated draws and input combinations do not create extra independent cases: each fitting set still has just one adenosis and one phyllodes provider case.
-
-All ten fits and the complete checker passed after disclosed technical recovery. **This recipe failed its improvement gate:** F1.3084/.3006, accuracy37.0%/40.0%, phyllodes recall0. Fitting balanced case accuracy is99.6%/99.7%, so a large fitting–validation gap persists. Keep the frozen reference. [Complete result](BREAKHIS_SUPERVISED_RESULTS.md). [Exact settings](BREAKHIS_SUPERVISED_SPEC.md) · [Execution checkpoint](BREAKHIS_SUPERVISED_STATUS.md).
-
-## Model freeze and secondary output, November14
-
-The regional-view experiment also completed and failed its improvement gate (F1 change−.0058/+.0059, phyllodes recall0). Keep the original frozen reference. No further training sweep is running.
-
-For the separate broad benign/malignant answer, add the saved probabilities of the four dataset-defined malignant subtypes. At0.5 or higher answer malignant, otherwise benign. This trains nothing new and searches no threshold. Retained binary accuracy is87.0%/80.7%; exact eight-type accuracy remains45.7%/38.3%. This is retrospective reused validation, not a new test. [Full secondary results](CAPSTONE_BINARY_RESULTS.md).
-
-Finish the report, demonstration and presentation by November17–18. More practice on the same rare case does not create another independent case. [Delivery plan](CAPSTONE_DELIVERY_PLAN.md).
+The94–95% final-accuracy goal remains unmet. We retain improvements and failed models, use the same comparisons, and report the numbers the experiments produce.
