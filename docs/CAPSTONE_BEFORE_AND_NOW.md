@@ -4,7 +4,7 @@ November14,2026. The master's capstone is the immediate priority; a novel resear
 
 ## November15 corrected target: five-category dual step
 
-The user corrected the earlier eight-type hierarchy answer: **one pooled benign label plus ductal, lobular, mucinous and papillary carcinoma**. Step1 predicts benign/malignant; benign stops, malignant proceeds to Step2. There is no benign subtype head. The five-category system has no trained/evaluated result yet. Existing eight-class and binary scores below retain their original meaning. [Corrected architecture, labels and future scorecard](DUAL_STEP_SCOPE.md).
+The user corrected the earlier eight-type hierarchy answer: **one pooled benign label plus ductal, lobular, mucinous and papillary carcinoma**. Step1 predicts benign/malignant; benign stops, malignant proceeds to Step2. There is no benign subtype head. The first trained five-category comparison is complete: dual-step65.8%/68.8% accuracy vs direct-five66.7%/64.7%; its improvement gate failed. These are five-class case-validation results, separately from the eight-class and binary tables below. [Verified first-five results](BREAKHIS_FIVE_CLASS_RESULTS.md). Existing eight-class and binary scores below retain their original meaning. [Corrected architecture, labels and future scorecard](DUAL_STEP_SCOPE.md).
 
 ## The numbers we received
 

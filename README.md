@@ -2,11 +2,20 @@
 
 **BreakHis is our main dataset. The immediate goal is the master’s capstone deliverable for Professor Dong.** TCGA follow-up is deferred. A novel method and conference paper are later research milestones.
 
-**November15 corrected target:** five final categories: pooled benign plus ductal, lobular, mucinous and papillary carcinoma. Step1 predicts benign/malignant. Benign stops; malignant proceeds to Step2 for its subtype. This supersedes the earlier eight-type hierarchy choice. [Architecture and score definitions](docs/DUAL_STEP_SCOPE.md). This target has not been trained/evaluated;94–95% remains a goal.
+**November15 corrected target:** five final categories: pooled benign plus ductal, lobular, mucinous and papillary carcinoma. Step1 predicts benign/malignant. Benign stops; malignant proceeds to Step2 for its subtype. This supersedes the earlier eight-type hierarchy choice. [Architecture and score definitions](docs/DUAL_STEP_SCOPE.md). The first trained five-category comparison is complete: dual-step accuracy65.8%/68.8% versus direct-five66.7%/64.7%, averaged over all15view subsets. The improvement screen failed;94–95% remains a goal. [Verified first-five results](docs/BREAKHIS_FIVE_CLASS_RESULTS.md).
 
 Use BreakHis images at40×/100×/200×/400×, supporting all15 nonempty view combinations without assuming fields are physically paired across zooms. **The verified results below belong to our earlier direct eight-class baseline**, not the new five-category system. Earlier TCGA work remains separate and deferred.
 
 The supplied notebooks saved93.73%/94.99% on single40× images with image-random, reused validation. Our current scores use a different case-level protocol. The [capstone before/now explanation](docs/CAPSTONE_BEFORE_AND_NOW.md) separates those results and explains why a direct95%→40% comparison is invalid. Three independent GPT-6.1 Sol reviews checked the original evidence, protocol and modelling choices.
+
+## Current five-category results
+
+| Model | Arrangement812 accuracy / macro F1 | Arrangement813 accuracy / macro F1 |
+| --- | ---: | ---: |
+| Direct five-class |66.7% /0.5161|64.7% /0.5035|
+| Binary → malignant-four |65.8% /0.4975|68.8% /0.5325|
+
+Both use identical provider roles/frozen features and four complete-pipeline selection settings. Ten paired runs/120heads and independent actual-output review passed; the mixed result fails the both-arrangement improvement gate. These are exploratory case-validation numbers, not untouched final test accuracy. [Current project report](paper/breakhis-five-class-report.md). A separate stronger case-bag CNN recipe is being prepared; no result from it is included here.
 
 ## Earlier eight-class BreakHis baseline numbers
 

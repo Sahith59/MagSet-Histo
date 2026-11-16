@@ -27,7 +27,7 @@ The original paper uses pretrained ResNet-50 features, binary XGBoost, then mali
 | --- | --- | --- | --- |
 | Supplied notebooks | Eight types, one40× image | Trainable ImageNet EfficientNetV2B0; non-local attention or spatial ConvLSTM gate; global average pooling; Dense64/ReLU; Dense8/softmax | Historical saved93.73%/94.99%; not independently retrained |
 | Current retained baseline | Eight types, one provider case across available zooms | Frozen Phikon-v2; within-zoom means; fitting-only normalization; available-zoom mean plus four flags; eight-class logistic head | Mean15-subset validation45.7%/38.3% |
-| User-confirmed next target | Benign plus four malignant types | Shared representation; binary router; malignant-four-class specialist | **Not implemented/trained/evaluated yet** |
+| User-confirmed next target | Benign plus four malignant types | Shared representation; binary router; malignant-four-class specialist | First frozen-Phikon pair complete: dual65.8%/68.8%, direct66.7%/64.7%; gate failed |
 
 The notebook pair represents two models. Current pairs represent two existing validation arrangements812/813, each averaged across five overlapping trials and15 view combinations. The current87.0%/80.7% benign/malignant result sums saved eight-class probabilities; it is a retrospective secondary result, not five-class accuracy or trained dual-step performance. The paper's86.22% is author-reported binary image accuracy under another protocol, not five-class accuracy.
 
@@ -55,6 +55,6 @@ Preserve completed baseline artifacts. Register a full recipe for a **direct fiv
 
 Lock normalization, class/case weighting, encoder choice, optimization, routing threshold, probability reporting, selection metric and fit budget before new outcomes. First compare the decision structures with a shared representation; backbone changes require separately declared experiments. Preserve both arrangements/all trials and negative outcomes. Do not resplit or use excluded-case outcomes to chase94–95%.
 
-94–95% remains the user's goal, not an achieved or guaranteed result. The correction changes the requested target and future scorecard; it changes no saved result. No new model fitting, inference, split change or cluster training job was performed while making this correction.
+[The first registered trained comparison](BREAKHIS_FIVE_CLASS_RESULTS.md) is complete and independently verified; a stronger case-bag CNN comparison is being prepared separately.94–95% remains the user's goal, not an achieved or guaranteed result. The correction changes the requested target and future scorecard; it changes no saved result. No new model fitting, inference, split change or cluster training job was performed while making this correction.
 
 [Original/current evidence](CAPSTONE_BEFORE_AND_NOW.md) · [Independent notebook/paper review](reviews/CAPSTONE_ORIGINAL_RESULTS_REVIEW.md) · [Current baseline training](TRAINING_STRATEGY.md) · [Binary secondary results](CAPSTONE_BINARY_RESULTS.md).

@@ -4,7 +4,7 @@ Updated November15,2026. The November14 timing request gives a working package d
 
 ## November15 correction: binary first, malignant subtype second
 
-The user superseded the earlier eight-type hierarchy choice. Final labels are benign plus ductal/lobular/mucinous/papillary carcinoma. Step1 predicts benign/malignant; only predicted malignant cases reach Step2. [Corrected scope](DUAL_STEP_SCOPE.md). Retain the completed eight-class baseline evidence. First explain the task/score changes, then register one bounded direct-five control versus true dual-step comparison. No new training or five-class/hierarchical score exists yet;94–95% remains a goal. Preserve cases/roles/all magnifications and count routing errors in final five-class metrics. This supersedes earlier blanket freeze and eight-target language only for the explicitly requested task change.
+The user superseded the earlier eight-type hierarchy choice. Final labels are benign plus ductal/lobular/mucinous/papillary carcinoma. Step1 predicts benign/malignant; only predicted malignant cases reach Step2. [Corrected scope](DUAL_STEP_SCOPE.md). Retain the completed eight-class baseline evidence. First explain the task/score changes, then register one bounded direct-five control versus true dual-step comparison. The first trained five-class comparison is now complete: dual65.8%/68.8% vs direct66.7%/64.7%, gate failed.94–95% remains a goal. [Verified results](BREAKHIS_FIVE_CLASS_RESULTS.md). Preserve cases/roles/all magnifications and count routing errors in final five-class metrics. This supersedes earlier blanket freeze and eight-target language only for the explicitly requested task change.
 
 ## What is complete
 
@@ -20,11 +20,12 @@ The user superseded the earlier eight-type hierarchy choice. Final labels are be
 
 | Order | Work | Completion condition |
 | --- | --- | --- |
-| 1 | Fix the five-category experiment contract | Direct-five versus binary-plus-malignant-four; same roles/representation/subsets and declared selection budget |
-| 2 | Implement/check both pipelines | Canonical label mapping, fitting-only normalization, routing, finite scores, save/reload and no case-role leakage |
-| 3 | Run a bounded comparison | Report both arrangements/all trials, final five-class accuracy/F1/balanced accuracy, binary routing and malignant typing separately |
-| 4 | Revise report/demo/presentation | New task/results clearly separated from completed eight-class and retrospective binary evidence; no invented94–95% result |
-| 5 | Review/rehearse and scope later research | Work toward Nov17–18 materials/~Nov20 presentation; novel paper/fresh confirmation remain later work |
+| 1 | Preserve first five-class comparison | Complete:147tests,120headfits/fullcollector/independent numeric review; mixed negative result retained |
+| 2 | Fix next case-supervised CNN recipe | One EfficientNetV2B0 direct5/dual pair, same cases; freeze source/config before fitting |
+| 3 | Verify setup and technical execution | Pinned public weight/package bytes, strict source/unit review and two fitting-only A40 smoke fits; production blocked until acceptance |
+| 4 | Run bounded CNN comparison | Twenty fixed50epochfits, four checkpoint opportunities, maxfour A40 GPUs; all outcomes retained |
+| 5 | Update report/demo/presentation and rehearse | Only accepted measured results; Nov17–18 working materials/~Nov20 presentation; novelty/fresh confirmation later |
+
 
 Each trial uses46 fitting/eight validation/28 excluded provider cases. Arrangements812/813 cover22/20 distinct validation cases,31 in their union. Trials/views/images repeat; all82 cases entered development somewhere. Clinical identity remains unverified and no globally fresh confirmation cohort remains.
 

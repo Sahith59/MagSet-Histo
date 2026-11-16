@@ -1,5 +1,11 @@
 # MAGSET-Histo execution plan
 
+## Current experiment checkpoint: first five-category results verified
+
+November15: source0471cd4ab8fb1da71eba8870f2ea0fa59ce0e8f3, configd3a5ac3c…; zero-fit audit4979472COMP0/4s, all ten paired jobs4979473COMP0/11–17s, collector4979474COMP0/64s, all errors empty.147 pinned tests/CI passed. Independent actual review accepted80candidates/120heads/64,800dependentrecords,4,924,986checks. Direct5accuracy66.7%/64.7%, F1.5161/.5035; dual65.8%/68.8%, F1.4975/.5325. Both-arrangement gate failed. [Complete results](docs/BREAKHIS_FIVE_CLASS_RESULTS.md).
+
+Diagnoses verified roles/labels/cache/old metrics; malignant subtyping remains weak(about56%). Prepare ONE separately registered EfficientNetV2B0 case-bag direct5/dual comparison; source/tests/pinned public weights and two fitting-only A40 smokes must pass before20productionfits. NoCNNproduction result yet, no94–95%claim. [Current report](paper/breakhis-five-class-report.md). This supersedes earlier statements that a trained five-class hierarchy does not exist; prior eight-class experiments remain historical evidence.
+
 ## Latest user correction: November15, dual-step with five final labels
 
 The user corrected the previous eight-type hierarchy choice: **pooled benign plus four malignant types**. Step1 benign/malignant; benign stops, malignant proceeds to Step2 (ductal/lobular/mucinous/papillary). No benign subtype expert. BreakHis only for this capstone; TCGA deferred. Read [the corrected architecture/scorecard](docs/DUAL_STEP_SCOPE.md).
