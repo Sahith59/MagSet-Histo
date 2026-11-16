@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+#SBATCH --job-name=magset-approved-features
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=4
+#SBATCH --mem=48G
+#SBATCH --time=00:45:00
+#SBATCH --partition=qTRDGPU
+#SBATCH --gres=gpu:A40:1
+set -euo pipefail
+: "${MAGSET_ROOT:?Set project root}"
+: "${MAGSET_SOURCE:?Set immutable source}"
+: "${MAGSET_CODE_SHA:?Set immutable source SHA}"
+: "${MAGSET_APPROVED_ACTION:?Use smoke or run}"
+[[ "$(cat "$MAGSET_SOURCE/.source-sha")" == "$MAGSET_CODE_SHA" ]]
+TASK_MODELS=(uni2-h-v1 virchow2-v1 h-optimus-0-v1)
+TASK_MAGS=(40 100 200 400)
+TASK_INDEX="${SLURM_ARRAY_TASK_ID:?Use model array}"
+[[ "$TASK_INDEX" =~ ^[0-9]+$ ]]
+TASK_LIMIT=0
+if [[ "$MAGSET_APPROVED_ACTION" == smoke ]]; then
+ (( TASK_INDEX>=0 && TASK_INDEX<3 ))
+ TASK_MODEL="${TASK_MODELS[$TASK_INDEX]}"
+ TASK_MAG=40
+ TASK_LIMIT=4
+ TASK_OUTPUT="$MAGSET_ROOT/runs/approved-feature-smoke-v1/$TASK_MODEL"
+elif [[ "$MAGSET_APPROVED_ACTION" == run ]]; then
+ (( TASK_INDEX>=0 && TASK_INDEX<12 ))
+ TASK_MODEL="${TASK_MODELS[$((TASK_INDEX/4))]}"
+ TASK_MAG="${TASK_MAGS[$((TASK_INDEX%4))]}"
+ TASK_OUTPUT="$MAGSET_ROOT/cache/features-$TASK_MODEL"
+else
+ exit 2
+fi
+export OMP_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4 MKL_NUM_THREADS=4 CUBLAS_WORKSPACE_CONFIG=:4096:8
+cd "$MAGSET_SOURCE"
+"$MAGSET_ROOT/envs/magset/bin/python" -u -m magset.approved_features --config "configs/$TASK_MODEL.json" --cache-root "$MAGSET_ROOT/cache/$TASK_MODEL" --manifest "$MAGSET_ROOT/data/processed/manifest.csv" --images-root "$MAGSET_ROOT/data/raw" --output-root "$TASK_OUTPUT" --magnification "$TASK_MAG" --code-sha "$MAGSET_CODE_SHA" --limit "$TASK_LIMIT" --batch-size 4 --workers 0
