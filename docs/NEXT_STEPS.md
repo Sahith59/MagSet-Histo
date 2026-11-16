@@ -1,54 +1,47 @@
-Latest November16 result: **75.67%/75.00%** final two-step accuracy and macro F1.5897/.5643 for the completed Midnight similarity classifier, on the same splits and15-subset scoring. This supersedes72.00%/71.33% as the best current paired accuracy result. [Verified similarity comparison](BREAKHIS_KERNEL_RESULTS.md). One bounded last-layer adapter comparison is being implemented;94–95% remains unachieved. Earlier execution notes below retain their original scope.
-
 # Next tasks: finish the BreakHis capstone
 
-Updated November16,2026. The November14 timing request gives a working package deadline of November17–18 and presentation around November20. Exact day and rubric are unspecified. **BreakHis remains main; the corrected target is five final categories with four magnifications.** TCGA and novel-paper development are deferred.
+Updated November 16, 2026. BreakHis remains the priority for Professor Dong's capstone deliverable. The target is **pooled benign plus four malignant types**, using every available magnification and evaluating all 15 nonempty subsets. TCGA and novel-paper development remain deferred. The working materials deadline is November 17–18; presentation around November 20 remains a planning assumption, with the exact day and rubric unconfirmed.
 
-## Current improvement sequence
+## Accepted position
 
-1. **Completed:** diagnose the failed CNN and rare-type errors; test field supervision; extract all7,909 images with the larger frozen Midnight encoder; verify20 paired case/field comparisons.
-2. **Measured gain:** Midnight case-dual72.0%/71.3% versus first Phikon65.8%/68.8%, on identical roles and15-view scoring. Binary decisions91.2%/94.2%; malignant typing60.0%/54.3% remains limiting. [Evidence](BREAKHIS_IMPROVEMENT_RESULTS.md).
-3. **Completed:** similarity classifier75.67%/75.00%, macro F1.5897/.5643; all ten paired runs verified. [Accepted result](BREAKHIS_KERNEL_RESULTS.md).
-4. **Executing:** one bounded last-layer adapter comparison; the input audit and both real GPU technical checks passed;20 matched fits are running, with automatic collection afterward. [Status](BREAKHIS_LORA_STATUS.md). Keep enough time for output verification and five-category capstone materials.
-5. Update the presentation/report from measured results; explain that notebook94.99% and case-level five-category accuracy use different protocols. No95% or novelty claim is established.
+All registered experiments and collectors are complete and accepted. The leading results remain a scorecard with tradeoffs, rather than an unqualified winner. P's head-specific geometry has the highest measured macro F1 on both arrangements; its 813 accuracy remains below F. Both P modes fail the registered screen against F. **94–95% final accuracy remains unachieved.**
 
-The sections below retain the earlier milestones and history.
+| Two-step method | Accuracy 812 / 813 | Macro F1 812 / 813 |
+| --- | ---: | ---: |
+| Single-center similarity, C | 75.67% / 75.00% | .589691 / .564292 |
+| Three-crop similarity, F | 75.50% / 76.83% | .592510 / .579947 |
+| Class-balanced shared center, P | 76.17% / 75.33% | .599196 / .577788 |
+| Head-specific centers, P | 76.33% / 75.67% | .602715 / .602512 |
+| Native-pixel similarity, N | 60.00% / 61.00% | .439405 / .501395 |
 
-## November15 correction: binary first, malignant subtype second
+These average all 15 subsets and five trials per arrangement. P's head-specific all-four-view accuracy is 85%/85%, a separate endpoint. [C](BREAKHIS_KERNEL_RESULTS.md) · [F](BREAKHIS_COVERAGE_RESULTS.md) · [P accepted JSON](evidence/BREAKHIS_PRIOR_CENTERED_RESULTS.json) · [N](BREAKHIS_NATIVE_RESULTS.md).
 
-The user superseded the earlier eight-type hierarchy choice. Final labels are benign plus ductal/lobular/mucinous/papillary carcinoma. Step1 predicts benign/malignant; only predicted malignant cases reach Step2. [Corrected scope](DUAL_STEP_SCOPE.md). Retain the completed eight-class baseline evidence. First explain the task/score changes, then register one bounded direct-five control versus true dual-step comparison. The first trained five-class comparison is now complete: dual65.8%/68.8% vs direct66.7%/64.7%, gate failed.94–95% remains a goal. [Verified results](BREAKHIS_FIVE_CLASS_RESULTS.md). Preserve cases/roles/all magnifications and count routing errors in final five-class metrics. This supersedes earlier blanket freeze and eight-target language only for the explicitly requested task change.
+The LoRA comparison and fixed equal-probability vote are complete, not running. LoRA dual accuracy is 68.33%/59.83%; its fixed C=1 initialization was already 68.17%/59.50%, and eight of ten dual runs select the head-only epoch 2 checkpoint. The fixed vote scores 74.17%/72.17%, below C. Its 95% binary score on 813 is not final five-category accuracy. Preserve these negative outcomes. [LoRA](BREAKHIS_LORA_RESULTS.md) · [Fixed vote](BREAKHIS_FIXED_ENSEMBLE_RESULTS.md).
 
-## What is complete
+The main remaining weakness is malignant typing. Head-specific P achieves 58.33%/62.33% true-malignant subtype accuracy despite 94.83%/93.00% binary accuracy. Mucinous and papillary recall remains weak and uneven. F's typing accuracy was 57.00%/59.33%. Stronger routing alone cannot close the gap to 95% final accuracy.
 
-- Original notebook outputs checked:93.73%/94.99% saved40× image-random, reused validation. Historical, not newly reproduced.
-- Retained frozen Phikon reference: eight-class accuracy45.7%/38.3%, macro F1.3843/.3169, averaged across five trials and all15 view combinations.
-- Adaptation, supervised ResNet and regional-view comparisons complete; none passed its improvement gate. Every outcome is retained.
-- No-fit image endpoint bridge complete and independently checked on all ten runs.
-- Retrospective benign/malignant secondary analysis complete: retained accuracy87.0%/80.7%; sensitivity/specificity and all three earlier pipelines reported. This does not replace eight-class evaluation.
-- Fresh raw-image replay4971403 completed in39s:121 fields,15 combinations, maximum probability difference6.05e-08; no fitting or outer scoring.
-- Three GPT-6.1 Sol review streams completed. The earlier pinned suite had119 tests; the registered CNN source passed162 tests; the later complete collector/reviewer suite passed187 tests. Technical A40 checks4979613 passed independent review;20 full fits are submitted as array4979622. Unrelated jobs remain untouched.
+## Close the evidence and prioritize the capstone
 
-[Current CNN execution record](BREAKHIS_CASEBAG_STATUS.md).
+1. **Freeze the complete verified package:** preserve accepted caches, model/support metadata, complete candidate ledgers, prediction archives, source/configuration hashes and independent reviews. Keep C/F/P tradeoffs and N's negative result visible. No experiments or collectors are still awaiting completion.
+2. **Finish report, deck and demonstration:** use the accepted scorecard and representative failure cases; distinguish final five-category, binary, malignant-typing and all-four-view endpoints. Demonstrate the retained frozen workflow without converting reused validation into a fresh test claim.
+3. **Rehearse and confirm delivery details:** prepare a short explanation of the task correction, controlled changes, measured gains and remaining subtype errors. Confirm the actual presentation day and rubric before treating the tentative schedule as fixed.
 
-## Current priority after completed CNN runs
+N's larger native input did not improve this fixed recipe; it changes resolution, context and coverage together, so its loss does not isolate a single cause. P reuses accepted F features and changes fitting-label-based centering only. Its geometry result is descriptive: the original center remains valid, and sparse class centroids may increase variance. Each named P mode has four temperatures; direct controls repeat exactly, leaving four structurally unique direct and eight dual choices across the family. Report both modes. [P registration](BREAKHIS_PRIOR_CENTERED_SPEC.md).
 
-All20 CNN fits and both verification jobs completed successfully. CNNtwo-step accuracy46.50%/53.33% is below the frozen-Phikon65.83%/68.83%. Review saved rare-type errors and the fitting/validation gap, then revise the capstone materials around the best verified model and the complete comparison. [Accepted results](BREAKHIS_CASEBAG_RESULTS.md).
+No automatic N+P combination, threshold search, resplit or sweep follows. Any additional intervention aimed at malignant subtype representation needs a separate fixed registration, matched controls and complete reporting. It is not a promised route to 95%.
 
-## Earlier execution queue
+## Complete the deliverable
 
-| Order | Work | Completion condition |
-| --- | --- | --- |
-| 1 | Preserve first five-class comparison | Complete:147tests,120headfits/fullcollector/independent numeric review; mixed negative result retained |
-| 2 | Fix next case-supervised CNN recipe | Complete: source `b5f0df1` and recipe frozen before fitting;162 tests passed |
-| 3 | Verify setup and technical execution | Preparation and zero-fit audit passed; both fitting-only A40 technical checks completed. Independent actual-output acceptance passed2,512 assertions |
-| 4 | Run bounded CNN comparison | Array4979622 active:20 fixed50epoch fits, maxfour A40 GPUs; CPUcollector4979632 then independentreview4979664 automatically verify all results before publication |
-| 5 | Update report/demo/presentation and rehearse | Only accepted measured results; Nov17–18 working materials/~Nov20 presentation; novelty/fresh confirmation later |
+Update the [five-category report](../paper/breakhis-five-class-report.md), [professor brief](evidence/PROFESSOR_BRIEF.md), presentation and demonstration with accepted results and their failure cases. Explain the binary-to-malignant-four decision chain, direct-five control, class supports, all-view versus 15-subset endpoints and computation costs. Retain the original eight-class comparisons as historical evidence.
 
+The supplied notebooks' saved 93.73%/94.99% values concern eight-type, 40× image-random reused validation. They are neither reproduced results for this system nor comparable case-level five-category scores. The current workflow's standard components and evaluation safeguards do not establish a novel algorithm or clinical readiness.
 
-Each trial uses46 fitting/eight validation/28 excluded provider cases. Arrangements812/813 cover22/20 distinct validation cases,31 in their union. Trials/views/images repeat; all82 cases entered development somewhere. Clinical identity remains unverified and no globally fresh confirmation cohort remains.
+Use the completed evidence to rehearse the practical question: what does the model answer, where does it fail, and what did each controlled change teach us? The next report should state an achieved number, not infer 95% from a binary diagnostic or promise it from a larger model. [Plain-language training guide](TRAINING_STRATEGY.md) · [Delivery plan](CAPSTONE_DELIVERY_PLAN.md).
 
-Low subtype accuracy remains a material limitation. ResNet's99.6–99.7% fitting balanced accuracy versus37–40% validation shows a large generalization gap; each fitting set contains one adenosis and one phyllodes case. No single cause is proven. More GPUs do not create independent cases. No automatic architecture/crop/rate/resplit sweep or outer rescue follows.
+## Evaluation limits that remain fixed
 
-[Before/now](CAPSTONE_BEFORE_AND_NOW.md) · [Binary results](CAPSTONE_BINARY_RESULTS.md) · [Regional result](BREAKHIS_MULTICROP_RESULTS.md) · [Dates](CAPSTONE_DELIVERY_PLAN.md) · [Report](../paper/breakhis-project-report.md).
+Each role has 46 fitting/eight validation/28 excluded provider cases. Fitting support is 11/25/2/5/3 across benign/ductal/lobular/mucinous/papillary; validation support is 4/1/1/1/1. Images, crops and all magnifications stay together, and excluded cases supply neither classifier predictions nor fitting statistics. Fitting similarity diagnostics remove the whole query case before support and centering.
 
-No message to Professor Dong, access request or conference submission has been sent.
+Arrangements 812/813 cover 22/20 distinct validation keys, 31 in their union. All 82 provider keys entered development somewhere; clinical identity remains unresolved. Repeated images, masks and overlapping trials are dependent, and reused validation is not a fresh confirmation cohort. Final accuracy, macro F1, balanced accuracy, all-five recalls and routing/type diagnostics must be reported together.
+
+Earlier baseline execution, adaptation, CNN, image-replay and eight-class results remain preserved in their dated result pages. Their old running-job statements do not describe current execution. No message to Professor Dong or conference submission has been sent.

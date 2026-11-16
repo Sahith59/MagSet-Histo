@@ -1,30 +1,35 @@
 # MagSet-Histo
 
-**BreakHis is our main dataset. The immediate goal is the master’s capstone deliverable for Professor Dong.** TCGA follow-up is deferred. A novel method and conference paper are later research milestones.
+BreakHis is our main dataset. We are building a breast histology classification project for Professor Dong's master's capstone, with a research paper as a later goal. TCGA follow-up is deferred.
 
-**Current target:** five final categories: benign, ductal, lobular, mucinous and papillary carcinoma. Step1 predicts benign/malignant; only malignant proceeds to its four-type classifier. We use all four magnifications,40×/100×/200×/400×, and evaluate all15 nonempty combinations. [Architecture and score definitions](docs/DUAL_STEP_SCOPE.md).
+The system first decides **benign or malignant**. Benign is the final answer; malignant images proceed to a specialist that chooses ductal, lobular, mucinous or papillary carcinoma. We use the available 40×/100×/200×/400× images of each provider case and evaluate all 15 nonempty zoom combinations. [Task and architecture](docs/DUAL_STEP_SCOPE.md) · [Plain-language training guide](docs/TRAINING_STRATEGY.md).
 
-**November16 improvement:** our frozen Midnight-12k similarity classifier now reaches **75.7%/75.0%** two-step validation accuracy, up from the first frozen-Phikon65.8%/68.8%. The subsequent three-crop variant scores75.5%/76.8%, with slightly higher macro F1 on both arrangements and mixed accuracy changes; all-four-view accuracy is82.5% on both. [Coverage results](docs/BREAKHIS_COVERAGE_RESULTS.md). The same cases, splits and scoring rules are used. **94–95% final five-category accuracy has not been reached.** [Latest verified result](docs/BREAKHIS_KERNEL_RESULTS.md) · [Earlier improvement studies](docs/BREAKHIS_IMPROVEMENT_RESULTS.md).
+**Latest verified result:** decision-specific centering has our highest observed macro F1, **.6027 / .6025**, with **76.33% / 75.67% final five-category accuracy**. With all four zooms available, accuracy is 85% in both arrangements; that is a separate endpoint. Changes are mixed: the earlier three-crop model still has higher second-arrangement accuracy at 76.83%. **94–95% final accuracy has not been achieved.** [Latest results](docs/BREAKHIS_PRIOR_CENTERED_RESULTS.md) · [Professor brief](docs/evidence/PROFESSOR_BRIEF.md).
 
 ## Current five-category results
 
-Accuracy below averages all15 zoom combinations and five trials within each validation arrangement. These are reused provider-case development scores, with31 distinct validation keys overall. They are not an untouched final patient test.
+Accuracy/F1 below averages all 15 zoom combinations and five overlapping trials in each arrangement. These are reused provider-case development scores, with 31 distinct validation keys overall and unresolved clinical identity. They are not an untouched final patient test. Every row uses the same 46 fitting/eight validation/28 excluded roles and explicit two-step final labels.
 
-| Two-step pipeline | Accuracy812 /813 | Macro F1812 /813 |
+| Two-step pipeline | Accuracy 812 / 813 | Macro F1 812 / 813 |
 | --- | ---: | ---: |
-| Phikon-v2, case means |65.8% /68.8%|.4975 /.5325|
-| EfficientNetV2B0, case-supervised |46.5% /53.3%|.2346 /.3108|
-| Phikon-v2, field supervision |66.7% /69.5%|.4975 /.5207|
-| Midnight-12k, case means |72.0% /71.3%|.5558 /.5350|
-| Midnight-12k, field supervision |73.7% /70.0%|.5732 /.5017|
-| **Midnight-12k, similarity dual-step** |**75.7% /75.0%**|**.5897 /.5643**|
-| Midnight adapter recipe |68.3% /59.8%|.4944 /.3754|
-| Fixed equal-probability vote |74.2% /72.2%|.5781 /.5326|
-| Midnight three-crop similarity |75.5% /76.8%|.5925 /.5799|
+| Phikon-v2, case means |65.83% /68.83%|.4975 /.5325|
+| EfficientNetV2B0, case supervision |46.50% /53.33%|.2346 /.3108|
+| Phikon-v2, field supervision |66.67% /69.50%|.4975 /.5207|
+| Midnight-12k, case means |72.00% /71.33%|.5558 /.5350|
+| Midnight-12k, field supervision |73.67% /70.00%|.5732 /.5017|
+| C: single-center similarity |75.67% /75.00%|.5897 /.5643|
+| D: adapter recipe |68.33% /59.83%|.4944 /.3754|
+| E: fixed equal-probability vote |74.17% /72.17%|.5781 /.5326|
+| F: three-crop similarity |75.50% /76.83%|.5925 /.5799|
+| N: native-pixel similarity |60.00% /61.00%|.4394 /.5014|
+| P: shared class-balanced center |76.17% /75.33%|.5992 /.5778|
+| P: decision-specific centers |76.33% / 75.67%|**.6027 /.6025**|
 
-Midnight case means improve both accuracy and macro F1 on both arrangements; the field method has a higher first-arrangement result but a weaker second one. All20 Midnight direct/dual paired runs and their saved predictions were verified. The complete ten-run similarity comparison also improves accuracy and macro F1 on both arrangements. Malignant subtype errors remain; the completed adapter recipe scored68.3%/59.8%, below the retained similarity model. Its fixed C=1 initialization was already weak, and eight of ten two-step runs selected head-only checkpoints. [Completed adapter result](docs/BREAKHIS_LORA_RESULTS.md). [Current report](paper/breakhis-five-class-report.md) · [First-five reference](docs/BREAKHIS_FIVE_CLASS_RESULTS.md) · [Completed CNN comparison](docs/BREAKHIS_CASEBAG_RESULTS.md).
+All comparisons above are complete and verified. More pixels and extra adapter training did not automatically help. Decision-specific centers produce modest F1 gains, with accuracy and recall tradeoffs; both centering modes fail the registered larger-improvement screen. Their direct-five controls are exact duplicates, leaving four structurally unique direct settings and eight dual settings across the mode family. No novel mechanism or 95% result is established. [Native negative result](docs/BREAKHIS_NATIVE_RESULTS.md) · [Centering evidence](docs/BREAKHIS_PRIOR_CENTERED_RESULTS.md) · [Full scorecard](paper/breakhis-five-class-report.md).
 
-The supplied notebooks saved93.73%/94.99% on eight-type40× individual images with image-random, reused validation. Their task, prediction unit and split differ from this five-category case experiment. [Before/now explanation](docs/CAPSTONE_BEFORE_AND_NOW.md). Original notebooks and earlier results remain historical evidence.
+The main weakness remains malignant typing. The latest head-specific model scores 94.83%/93.00% on benign/malignant routing, but 58.33%/62.33% on true-malignant subtyping. Binary accuracy is not final five-category accuracy. Only BreakHis images/labels are fitted/evaluated; public pathology pretraining is external transfer learning.
+
+The supplied notebooks saved 93.73%/94.99% on eight-type 40× individual images with image-random, reused validation. Their task, prediction unit and split differ from the current case experiment. [Before/now explanation](docs/CAPSTONE_BEFORE_AND_NOW.md). Original notebooks and earlier results remain historical evidence.
 
 ## Earlier eight-class BreakHis baseline numbers
 
@@ -39,28 +44,9 @@ The [complete first-results report](docs/BREAKHIS_FIRST_RESULTS.md) shows every 
 
 ## Immediate deliverable
 
-- Checked eight-class BreakHis baseline and complete development-results table.
-- Raw-image validation replay verified: 121 original images, all 15 view settings; archived probabilities reproduced within 6.05e-08 in a fresh39-second replay.
-- Reproducible source, saved model/prediction checks, clear limits and a short professor handoff.
-- The regional-view comparison is complete and failed its improvement gate. Freeze the reference and finish the capstone report/presentation by November17–18.
+Finish the five-category capstone report, presentation and demonstration using the complete accepted scorecard and representative errors. The working materials target is November 17–18, with presentation around November 20; the exact date remains unconfirmed. Preserve every negative comparison and state what the model can and cannot answer. [Next tasks](docs/NEXT_STEPS.md) · [Project report](paper/breakhis-five-class-report.md).
 
-Start with the [focused milestone plan](docs/BREAKHIS_MILESTONE_PLAN.md), [next tasks](docs/NEXT_STEPS.md), and [plain training explanation](docs/TRAINING_STRATEGY.md).
-
-The [fixed adaptation comparison](docs/BREAKHIS_ADAPTATION_RESULTS.md) is complete: all ten runs and the artifact checker passed, but accuracy is45.7%/38.8% and the two-split F1 improvement gate failed. Keep the frozen baseline above as the default. [Published benchmark context](docs/BREAKHIS_PUBLIC_BENCHMARKS.md) explains related eight-class results and protocol differences.
-
-The [saved-model diagnosis](docs/BREAKHIS_DIAGNOSIS_RESULTS.md) is also complete. The adapted case classifier scores98.5–98.7% fitting balanced accuracy and38.8–45.7% on validation. The auxiliary image classifier scores about98% fitting versus32–35% validation under class/case/view weighting. Neither fixed auxiliary readout rescues the result. This supports a large generalization gap; it does not identify one sole cause. No new fitting or encoder execution was used.
-
-The [coverage/reference audit](docs/BREAKHIS_REFERENCE_AUDIT.md) and [supervised ResNet-50 comparison](docs/BREAKHIS_SUPERVISED_RESULTS.md) are complete. All ten models and the checker passed after disclosed technical recovery. Mean-subset F1 is0.3084/0.3006 and case accuracy37.0%/40.0%; F1 is lower than the frozen reference on both arrangements. The registered gate failed; keep the frozen reference. [Execution record](docs/BREAKHIS_SUPERVISED_STATUS.md) · [Fixed recipe](docs/BREAKHIS_SUPERVISED_SPEC.md) · [BreakHis report draft](paper/breakhis-project-report.md).
-
-The [saved-prediction endpoint bridge](docs/CAPSTONE_BRIDGE_RESULTS.md) and [regional-view comparison](docs/BREAKHIS_MULTICROP_RESULTS.md) are complete and independently checked. The regional candidate changes F1 by−.0058/+.0059 against its matched fixed-C control, with zero phyllodes recall; its gate failed. Keep the frozen reference. The full pinned local suite has119 passing tests.
-
-The separate [benign/malignant secondary analysis](docs/CAPSTONE_BINARY_RESULTS.md) gives **87.0%/80.7% accuracy** for the retained model. This is a fixed retrospective grouping of saved eight-class probabilities, not a newly trained model, fresh test or improvement of the eight-subtype score. Sensitivity/specificity, all three earlier pipelines and both arrangements are reported.
-
-Open the [verified prediction replay](docs/evidence/CAPSTONE_PREDICTION_REPLAY.html) to explore all15 saved view outputs. It is an offline viewer, not live image-upload inference. [Demo instructions](docs/CAPSTONE_DEMO.md) · [Delivery plan](docs/CAPSTONE_DELIVERY_PLAN.md). The user needs the capstone package by November17–18 for a presentation around November20; exact day/rubric remain unspecified. The earlier eight-class model search is frozen; five-category improvement work continues. TCGA/novel-paper work remains deferred.
-
-Earlier eight-class baseline materials (not yet revised for the new five-category target): [ten-slide PDF](output/pdf/BreakHis-Capstone.pdf), [browser presentation](docs/evidence/CAPSTONE_PRESENTATION.html), [report](paper/breakhis-project-report.md) and [plain-language rehearsal guide](paper/capstone-rehearsal.md).
-
-The [EfficientNet five-category experiment](docs/BREAKHIS_CASEBAG_RESULTS.md) is complete. Both automated verification stages accepted all20 runs. Its fitting/validation gap and rare-type errors guide the next diagnosis.
+The original six supplied references remain unchanged and excluded from public source. Raw data, weights, provider identifiers, private cluster operations and conversation memory are also excluded. Source/configuration revisions, audits and complete aggregate evidence are recorded for reproducibility.
 
 ## Run checks
 

@@ -1,3 +1,13 @@
+# Current execution checkpoint — November 16, 2026
+
+All registered native-input and paired-centering comparisons are complete and verified. Native input fails at 60%/61%. Head-specific centering gives 76.33%/75.67% final accuracy and the highest observed macro F1, .602715/.602512. Its all-four-view accuracy is 85%/85%, a separate endpoint. Compared with F 75.50%/76.83%, accuracy remains mixed; both mode screens fail and 95% is unachieved. C/F and all negative rows remain on the scorecard.
+
+The original 46/8/28 provider roles, all 15 subsets and hard binary routing remain fixed. Both centering modes are reported; direct controls repeat, with four structurally unique direct/eight dual family settings. There are no remaining project training or collection jobs at this checkpoint. Do not launch an automatic combination or alter splits to reach the desired number.
+
+Next finish and freeze the accepted evidence, update the five-category presentation/demo, and rehearse the method and errors for Professor Dong. The materials target remains November 17–18, presentation around November 20, without a confirmed date. Any additional malignant-representation intervention needs a separate bounded registration, same controls and time for verification. TCGA/paper novelty work remains deferred; no confirmed conference or fresh clinical validation claim. [Current steps](docs/NEXT_STEPS.md) · [Scorecard](paper/breakhis-five-class-report.md) · [Latest result](docs/BREAKHIS_PRIOR_CENTERED_RESULTS.md).
+
+The dated execution notes below are historical; this checkpoint supersedes their pending-job statements.
+
 ## November16 completed adapter result and next bounded tests
 
 All20 adapter fits and collector finished. Two-step68.33%/59.83%, below retained similarity75.67%/75.00%. FixedC1initialization already68.17%/59.50%, and8/10dualcheckpoints arehead-only. [Measured result](docs/BREAKHIS_LORA_RESULTS.md). Next tests: one fixed50/50probability ensemble (no new fitting/weight choice) and one frozen3horizontalcrop representation with the unchanged KDE classifier/four temperatures. Both preserve original roles and the five-category task;94–95% remains unachieved. [Ensemble registration](docs/BREAKHIS_FIXED_ENSEMBLE_SPEC.md) · [Coverage registration](docs/BREAKHIS_COVERAGE_SPEC.md).
