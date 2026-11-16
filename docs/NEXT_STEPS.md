@@ -18,7 +18,11 @@ The user superseded the earlier eight-type hierarchy choice. Final labels are be
 
 [Current CNN execution record](BREAKHIS_CASEBAG_STATUS.md).
 
-## Current work queue
+## Current priority after completed CNN runs
+
+All20 CNN fits and both verification jobs completed successfully. CNNtwo-step accuracy46.50%/53.33% is below the frozen-Phikon65.83%/68.83%. Review saved rare-type errors and the fitting/validation gap, then revise the capstone materials around the best verified model and the complete comparison. [Accepted results](BREAKHIS_CASEBAG_RESULTS.md).
+
+## Earlier execution queue
 
 | Order | Work | Completion condition |
 | --- | --- | --- |

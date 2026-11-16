@@ -8,6 +8,8 @@ Use BreakHis images at40×/100×/200×/400×, supporting all15 nonempty view com
 
 The supplied notebooks saved93.73%/94.99% on single40× images with image-random, reused validation. Our current scores use a different case-level protocol. The [capstone before/now explanation](docs/CAPSTONE_BEFORE_AND_NOW.md) separates those results and explains why a direct95%→40% comparison is invalid. Three independent GPT-6.1 Sol reviews checked the original evidence, protocol and modelling choices.
 
+The completed EfficientNet comparison scored **46.5%/53.3% two-step validation accuracy**. All20 cluster runs and both verification jobs passed. The earlier frozen-Phikon two-step model is the best verified option at65.8%/68.8%. [Completed CNN results](docs/BREAKHIS_CASEBAG_RESULTS.md).
+
 ## Current five-category results
 
 | Model | Arrangement812 accuracy / macro F1 | Arrangement813 accuracy / macro F1 |
@@ -51,7 +53,7 @@ Open the [verified prediction replay](docs/evidence/CAPSTONE_PREDICTION_REPLAY.h
 
 Earlier eight-class baseline materials (not yet revised for the new five-category target): [ten-slide PDF](output/pdf/BreakHis-Capstone.pdf), [browser presentation](docs/evidence/CAPSTONE_PRESENTATION.html), [report](paper/breakhis-project-report.md) and [plain-language rehearsal guide](paper/capstone-rehearsal.md).
 
-The stronger [EfficientNet five-category experiment](docs/BREAKHIS_CASEBAG_STATUS.md) is registered. Its two A40 technical checks passed independent review; the20 full training runs are launched as array4979622 (four active, sixteen queued at the first check). Results are pending. The earlier decks and replay viewer remain eight-class historical artifacts.
+The [EfficientNet five-category experiment](docs/BREAKHIS_CASEBAG_RESULTS.md) is complete. Both automated verification stages accepted all20 runs. Its fitting/validation gap and rare-type errors guide the next diagnosis.
 
 ## Run checks
 

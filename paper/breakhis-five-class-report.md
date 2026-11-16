@@ -1,6 +1,6 @@
 # BreakHis five-category dual-step project report
 
-Working capstone report, November15,2026. The target is a pooled benign label or one of four malignant types. The first trained comparison is complete and independently verified; a stronger case-supervised CNN recipe is being prepared separately. This is exploratory provider-case validation, not a fresh final patient test or a novel-method claim.
+Working capstone report, November15,2026. The target is a pooled benign label or one of four malignant types. The first trained comparison is complete and independently verified; the separately registered case-supervised CNN comparison has also completed. This is exploratory provider-case validation, not a fresh final patient test or a novel-method claim.
 
 ## Problem and inputs/outputs
 
@@ -44,10 +44,14 @@ For dual, binary values describe the actual router. For direct, they are a separ
 
 The trained dual router is reasonably useful, but malignant typing remains around56%. On these saved outputs, perfect routing with unchanged typing would give about77.8%/78.2% overall. This is an oracle diagnostic bound, not a new trained result. The evidence supports improving representation/case learning, without proving a single biological or preprocessing cause.
 
+## Completed case-supervised EfficientNet comparison
+
+The20-run EfficientNetV2B0 comparison completed on A40 GPUs and passed both independent output checks. Direct-five validation accuracy was48.83%/49.00%, and the two-step pipeline scored46.50%/53.33% with macro F1.2346/.3108. The two-step fitting accuracy was87.36%/85.13%, showing a substantial fitting/validation gap. The earlier frozen-Phikon two-step pipeline is the best verified option at65.83%/68.83%. Rare-type recall and model generalization are the next diagnosis priorities. [Full accepted comparison](../docs/BREAKHIS_CASEBAG_RESULTS.md).
+
 ## Complete evidence and limits
 
 All ten paired runs and120headfits completed; the zero-fit audit, full collector and independent review passed. Original C candidates, all trials/subsets/class confusions/fitting gaps remain available. [Detailed results and full ledger](../docs/BREAKHIS_FIVE_CLASS_RESULTS.md) · [Independent numerical review](../docs/reviews/FIVE_CLASS_ACTUAL_RESULTS_REVIEW.md) · [Prospective first recipe](../docs/BREAKHIS_FIVE_CLASS_SPEC.md).
 
-The result does not reach94–95%. Malignant subtype recognition remains weak, including scarce lobular/papillary fitting cases. The next separately declared comparison will test case-supervised EfficientNetV2B0 representations against the same direct-five control; it has no production result yet. No threshold/seed/resplit sweep or excluded-case rescue is included.
+The result does not reach94–95%. Malignant subtype recognition remains weak, including scarce lobular/papillary fitting cases. The separately declared EfficientNetV2B0 comparison is now complete and scored below the earlier baseline. No threshold/seed/resplit sweep or excluded-case rescue is included.
 
 The earlier notebooks'93.73%/94.99% were historical eight-class40×image-random reused validation, not independently retrained. Earlier case8accuracy45.7%/38.3% and binary87.0%/80.7% retain their meanings; changing to five labels is not an eight-class improvement. [Historical evidence](../docs/CAPSTONE_BEFORE_AND_NOW.md). No final clinical validity, new mechanism, conference-ready claim or institutional acceptance is established.

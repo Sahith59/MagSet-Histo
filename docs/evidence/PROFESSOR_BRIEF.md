@@ -2,6 +2,8 @@
 
 November15,2026. Final outputs: pooled benign plus ductal/lobular/mucinous/papillary carcinoma. Only BreakHis images/labels are fitted/evaluated. Step1is benign/malignant; predicted benign stops and predicted malignant proceeds to a four-type classifier.
 
+The subsequent20-run EfficientNetV2B0 comparison is complete. Its two-step validation accuracy is46.50%/53.33%, with macro F1.2346/.3108. Fitting accuracy is87.36%/85.13%, alongside weak rare-type recall on validation. Both output checks passed. The frozen-Phikon two-step result below is the best verified option. [Completed comparison](../BREAKHIS_CASEBAG_RESULTS.md).
+
 | First trained model | Accuracy812 /813 | Macro F1812 /813 |
 | --- | ---: | ---: |
 | Direct five-class |66.7% /64.7%|.5161 /.5035|
@@ -13,6 +15,6 @@ Each run uses46fitting/eightvalidation/28excludedprovider cases, original eight-
 
 Actualsource0471cd4ab8fb1da71eba8870f2ea0fa59ce0e8f3;147pinnedtestsandCIpassed. Audit4979472,10pairedtasks4979473andcollector4979474allcompleted0. Independent4,924,986checksaccepted80candidates/120heads/64,800dependentrecords,allnormalizersbitwiseandmaxmetricerror4.44e-16. [All results](../BREAKHIS_FIVE_CLASS_RESULTS.md) · [Current report](../../paper/breakhis-five-class-report.md) · [Independent review](../reviews/FIVE_CLASS_ACTUAL_RESULTS_REVIEW.md).
 
-Next: one separately registered EfficientNetV2B0 case-supervised direct5/dual comparison, with fixed source/data/recipe, public pinned ImageNet weights, tests and two fitting-only A40 smokes before20productionfits. It has no production result yet. Capstone remains priority; novel-paper/TCGA/fresh confirmation later. No advisor message or submission sent.
+Next work is the saved-output rare-subtype diagnosis and the five-category capstone presentation/report update. The94–95% target remains unachieved. Capstone delivery remains the immediate priority.
 
 Historical supplied notebooks93.73%/94.99% were eight-type40×image-random reused validation, not independently retrained. Earlier case8accuracy45.7%/38.3% and derivedbinary87.0%/80.7% stay distinct. Existing eight-class deck/demo are dated baseline artifacts and need task-specific revision; do not relabel their scores as five-category performance. [Before/now explanation](../CAPSTONE_BEFORE_AND_NOW.md).

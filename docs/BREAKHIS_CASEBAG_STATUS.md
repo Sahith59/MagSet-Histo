@@ -1,6 +1,6 @@
 # EfficientNet five-category experiment: execution record
 
-Updated November 15, 2026. This is a new, registered experiment. Its classification results are pending. The accepted frozen-feature five-category results remain [65.8% and 68.8% accuracy for the two-step model](BREAKHIS_FIVE_CLASS_RESULTS.md); 94–95% has not been reached.
+Updated November 15, 2026 at 21:42 EST. All20 full training runs and both results checks completed successfully. EfficientNet two-step validation accuracy is46.50%/53.33%. The earlier frozen-Phikon two-step model is the best verified option at65.83%/68.83%. The94–95% target remains unachieved. [Completed comparison](BREAKHIS_CASEBAG_RESULTS.md).
 
 The experiment asks whether teaching part of the image reader on the actual case-level task improves malignant subtype recognition. It compares direct five-category prediction with the requested benign/malignant decision followed by malignant subtyping. All four magnifications are used, and all 15 nonempty combinations are evaluated. This is a complete-pipeline comparison; the training losses differ between the two arms.
 
@@ -12,9 +12,9 @@ The experiment asks whether teaching part of the image reader on the actual case
 | Direct-model technical check | Array task 4979613_0 completed successfully in 20 seconds |
 | Two-step technical check | Array task 4979613_1 completed successfully in 42 seconds |
 | Independent acceptance of actual GPU checks | Accepted; 2,512 independent assertions passed |
-| Twenty full training runs | Array 4979622: four tasks completed successfully at the latest check; four active, twelve queued; full comparison pending |
-| Complete-matrix results verification | CPU job4979632 waits for successful completion of all20 fits; immutable checker source650c14c |
-| Independent numerical verification | CPU job4979664 waits for collector4979632; separate reviewer source343829a; full suite187 tests passed |
+| Twenty full training runs | All20 array4979622 tasks completed successfully, with empty error logs |
+| Complete-matrix results verification | Job4979632 completed successfully in2m34s, accepted |
+| Independent numerical verification | Job4979664 completed successfully in46s, accepted3,852,210 assertions |
 
 The two technical checks each trained on eight fitting cases for two epochs, using two batches per epoch. They tested a heads-only phase, a partial-backbone adaptation phase, and checkpoint save/reload. Each performed 128 training field forwards plus eight reload-probe forwards, with no validation or excluded-case predictions. Both ran on A40 GPUs, reserved about 1.52 GB of GPU memory, and reported zero feature/probability differences on their fixed reload probes. Scheduler elapsed times include startup; internal model lifecycle times were 11.75 and 30.84 seconds. Actual technical-check accuracy is not a validation result and is not reported.
 
@@ -36,6 +36,6 @@ Actual smoke acceptance is bound by SHA256 `4568db1d88a7aae0f8f55cd4b7385de56026
 
 The separate CPU collector checks all 20 runs and 80 candidate checkpoints before producing any public aggregate. It verifies the frozen training source independently of its own later checker revision, case assignments, pretrained bytes, optimizer lifecycle, saved feature/head probability replay, explicit two-step decisions and checkpoint selection. It decodes no images and performs no CNN forwards. The 12 focused corruption/selection tests passed independently; the full pinned suite passed 174 tests. [Collector source review](reviews/CASEBAG_COLLECTOR_REVIEW.md).
 
-Interim execution-only update: the first two full direct models completed all50 epochs. Their selected validation feature/probability replay and fixed reload probes matched exactly. Internal model lifecycles took458.21 and486.15 seconds. These are runtime and integrity observations only; no partial classification ranking is published. A rough batch forecast is about an hour, subject to slower workers, queueing and final verification.
+Historical observation during launch. the first two full direct models completed all50 epochs. Their selected validation feature/probability replay and fixed reload probes matched exactly. Internal model lifecycles took458.21 and486.15 seconds. These are runtime and integrity observations only; no partial classification ranking is published. The subsequent full completion and accepted results are recorded above.
 
-A second, independently written NumPy/SciPy reviewer now reconstructs trusted roles and replays all120 saved score archives (80 candidates plus40 selected fitting/validation archives), 25,800 dependent records, checkpoint choices, both split summaries and the improvement screen. It imports neither the training package nor Torch and performs no image decoding. Its13 focused tests passed independently; the full pinned suite passed187 tests. Exact selected epochs and artifact hashes are required; independently calculated numeric metrics allow a fixed1e-10 roundoff tolerance. Both reviewers must complete before new classification scores are accepted.
+A second, independently written NumPy/SciPy reviewer now reconstructs trusted roles and replays all120 saved score archives (80 candidates plus40 selected fitting/validation archives), 25,800 dependent records, checkpoint choices, both split summaries and the improvement screen. It imports neither the training package nor Torch and performs no image decoding. Its13 focused tests passed independently; the full pinned suite passed187 tests. Exact selected epochs and artifact hashes are required; independently calculated numeric metrics allow a fixed1e-10 roundoff tolerance. Both reviewers subsequently completed and accepted the full results.

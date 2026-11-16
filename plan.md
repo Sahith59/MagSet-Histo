@@ -1,3 +1,9 @@
+## November 15 completed CNN comparison
+
+All20 EfficientNet fits and both verification jobs have completed. Two-step validation accuracy is46.50%/53.33%, compared with the earlier frozen-Phikon65.83%/68.83%. The earlier model is the current best verified two-step option. Immediate work is reviewing rare-subtype errors and the fitting/validation gap, then updating the five-category capstone presentation and report for Professor Dong. [Accepted results](docs/BREAKHIS_CASEBAG_RESULTS.md).
+
+The execution updates below record the earlier launch sequence.
+
 ## November 15 execution update
 
 The first trained five-category frozen-feature comparison is complete and independently verified: dual-step accuracy65.8%/68.8%, direct-five66.7%/64.7%; its improvement gate failed. Preserve all outcomes. A stronger case-supervised EfficientNetV2B0 comparison is registered at source `b5f0df1`. Preparation4979545, zero-fit audit4979604 and both A40 technical checks4979613 completed successfully. Both actual smokes passed independent acceptance before submission of20 full50-epoch fits as array4979622, at most four A40 GPUs concurrently. A separate collector will verify the complete output matrix before any classification claim. [Live execution record](docs/BREAKHIS_CASEBAG_STATUS.md). The fixed split is46 fitting/eight validation/28 excluded provider cases per run; no global fresh test or95% result is established. Historical roadmap sections below are subordinate to this current five-category capstone priority.
