@@ -1,6 +1,24 @@
 # BreakHis five-category dual-step project report
 
-Working capstone report, November15,2026. The target is a pooled benign label or one of four malignant types. The first trained comparison is complete and independently verified; the separately registered case-supervised CNN comparison has also completed. This is exploratory provider-case validation, not a fresh final patient test or a novel-method claim.
+Working capstone report, updated November16,2026. The target is a pooled benign label or one of four malignant types. The first trained comparison is complete and independently verified; the separately registered case-supervised CNN comparison has also completed. This is exploratory provider-case validation, not a fresh final patient test or a novel-method claim.
+
+## Current measured improvement
+
+The stronger frozen Midnight-12k pathology encoder raises two-step accuracy to **72.00%/71.33%**, from the first frozen-Phikon65.83%/68.83%, on identical provider roles and scoring. Macro F1 improves from.4975/.5325 to.5558/.5350. This is a measured development gain of6.17/2.50 percentage points in raw accuracy, below the94–95% goal.
+
+| Two-step pipeline | Accuracy812 /813 | Macro F1812 /813 |
+| --- | ---: | ---: |
+| First frozen Phikon case means |65.83% /68.83%|.4975 /.5325|
+| Case-supervised EfficientNet |46.50% /53.33%|.2346 /.3108|
+| Frozen Phikon field supervision |66.67% /69.50%|.4975 /.5207|
+| **Frozen Midnight case means** |**72.00% /71.33%**|**.5558 /.5350**|
+| Frozen Midnight field supervision |73.67% /70.00%|.5732 /.5017|
+
+The Midnight case pipeline retains the same fitting-only normalization, available-view mean and four flags, and balanced logistic router/expert; each image now supplies3072 frozen features (CLS plus mean patch tokens), rather than Phikon's1024. Its router scores91.17%/94.17%, but true-malignant typing scores60.00%/54.33%. Most remaining whole-system errors are incorrect malignant types even when the broad routing decision is correct. A higher binary accuracy is not five-category accuracy.
+
+All20 Midnight paired case/field runs,240 head fits and129,600 dependent candidate case/subset records were checked against exact source/config/cache/role bindings before aggregation. Four complete tuning candidates per arm were preserved. Further registered studies test a support-example similarity classifier and one bounded standard-LoRA adjustment of the encoder. [Complete improvement results and provenance](../docs/BREAKHIS_IMPROVEMENT_RESULTS.md) · [Adapter recipe](../docs/BREAKHIS_LORA_SPEC.md).
+
+The following detailed sections retain the first Phikon comparison as a historical reference. Its results are superseded as the best current consistent pipeline by Midnight case means, without changing their meaning or hiding failed experiments.
 
 ## Problem and inputs/outputs
 
@@ -46,7 +64,7 @@ The trained dual router is reasonably useful, but malignant typing remains aroun
 
 ## Completed case-supervised EfficientNet comparison
 
-The20-run EfficientNetV2B0 comparison completed on A40 GPUs and passed both independent output checks. Direct-five validation accuracy was48.83%/49.00%, and the two-step pipeline scored46.50%/53.33% with macro F1.2346/.3108. The two-step fitting accuracy was87.36%/85.13%, showing a substantial fitting/validation gap. The earlier frozen-Phikon two-step pipeline is the best verified option at65.83%/68.83%. Rare-type recall and model generalization are the next diagnosis priorities. [Full accepted comparison](../docs/BREAKHIS_CASEBAG_RESULTS.md).
+The20-run EfficientNetV2B0 comparison completed on A40 GPUs and passed both independent output checks. Direct-five validation accuracy was48.83%/49.00%, and the two-step pipeline scored46.50%/53.33% with macro F1.2346/.3108. The two-step fitting accuracy was87.36%/85.13%, showing a substantial fitting/validation gap. At that stage, frozen Phikon remained best at65.83%/68.83%; the later Midnight improvement above supersedes it. Rare-type recall and model generalization are the next diagnosis priorities. [Full accepted comparison](../docs/BREAKHIS_CASEBAG_RESULTS.md).
 
 ## Complete evidence and limits
 

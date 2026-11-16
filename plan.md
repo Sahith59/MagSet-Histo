@@ -1,6 +1,12 @@
+## November16 measured improvement and current work
+
+The same five-category two-step task now scores **72.0%/71.3%** with frozen Midnight-12k case features, compared with65.8%/68.8% for the first Phikon case baseline. Macro F1 also improves on both arrangements. The field-supervised Midnight alternative scores73.7%/70.0%, a mixed result. All20 Midnight paired runs and complete saved prediction matrix were verified. [Results](docs/BREAKHIS_IMPROVEMENT_RESULTS.md).
+
+The next registered test compares cases with similar fitting examples using centered cosine kernel densities. It uses the same frozen features and exact roles, four temperature candidates, true binary→malignant-four routing and no excluded-case predictions. A separate fixed last-layer LoRA adaptation is being assessed if the support classifier does not help. Preserve the capstone reporting time, every negative result and honest metric meanings.94–95% final accuracy remains unachieved.
+
 ## November 15 completed CNN comparison
 
-All20 EfficientNet fits and both verification jobs have completed. Two-step validation accuracy is46.50%/53.33%, compared with the earlier frozen-Phikon65.83%/68.83%. The earlier model is the current best verified two-step option. Immediate work is reviewing rare-subtype errors and the fitting/validation gap, then updating the five-category capstone presentation and report for Professor Dong. [Accepted results](docs/BREAKHIS_CASEBAG_RESULTS.md).
+All20 EfficientNet fits and both verification jobs have completed. Two-step validation accuracy is46.50%/53.33%, compared with the earlier frozen-Phikon65.83%/68.83%. That was the best verified option on November15; the November16 update above supersedes it. Immediate work is reviewing rare-subtype errors and the fitting/validation gap, then updating the five-category capstone presentation and report for Professor Dong. [Accepted results](docs/BREAKHIS_CASEBAG_RESULTS.md).
 
 The execution updates below record the earlier launch sequence.
 

@@ -1,20 +1,23 @@
-# BreakHis five-category dual-step: current capstone evidence
+# BreakHis five-category capstone: current evidence
 
-November15,2026. Final outputs: pooled benign plus ductal/lobular/mucinous/papillary carcinoma. Only BreakHis images/labels are fitted/evaluated. Step1is benign/malignant; predicted benign stops and predicted malignant proceeds to a four-type classifier.
+Updated November16,2026. We classify breast tissue as benign or one of four malignant types: ductal, lobular, mucinous or papillary carcinoma. The two-step system first predicts benign/malignant, then gives a malignant subtype. Only BreakHis images/labels are fitted/evaluated. TCGA follow-up is deferred.
 
-The subsequent20-run EfficientNetV2B0 comparison is complete. Its two-step validation accuracy is46.50%/53.33%, with macro F1.2346/.3108. Fitting accuracy is87.36%/85.13%, alongside weak rare-type recall on validation. Both output checks passed. The frozen-Phikon two-step result below is the best verified option. [Completed comparison](../BREAKHIS_CASEBAG_RESULTS.md).
+**The best consistently improved two-step model now scores72.0%/71.3% accuracy**, versus65.8%/68.8% for our first Phikon baseline. Both validation arrangements improve, with identical cases, roles and15-magnification-subset scoring. The new image reader is frozen Midnight-12k, followed by fitting-only normalization, average available-view features, four view flags and balanced logistic router/expert heads.
 
-| First trained model | Accuracy812 /813 | Macro F1812 /813 |
+| Two-step method | Accuracy812 /813 | Macro F1812 /813 |
 | --- | ---: | ---: |
-| Direct five-class |66.7% /64.7%|.5161 /.5035|
-| Dual-step |65.8% /68.8%|.4975 /.5325|
+| Frozen Phikon case means |65.8% /68.8%|.4975 /.5325|
+| EfficientNet case-supervised |46.5% /53.3%|.2346 /.3108|
+| Frozen Phikon field supervision |66.7% /69.5%|.4975 /.5207|
+| **Frozen Midnight case means** |**72.0% /71.3%**|**.5558 /.5350**|
+| Frozen Midnight field supervision |73.7% /70.0%|.5732 /.5017|
 
-These average all15view settings and five overlapping trials per arrangement. The mixed result fails the prospectively declared both-arrangement improvement gate.94–95% is not achieved. Dual binary accuracy87.8%/88.3% and true-malignant subtype accuracy55.7%/56.3% locate a major remaining typing limitation; they are not whole-system accuracy.
+All20 Midnight paired direct/dual case/field runs and the complete240-head prediction matrix were verified. Benign/malignant decisions improve to91.2%/94.2%; malignant subtype accuracy remains60.0%/54.3%. That is the main improvement target. **94–95% final five-category accuracy has not been reached.** A same-cache support-example classifier is executing, and one fixed last-layer adapter recipe is registered for further improvement.
 
-Each run uses46fitting/eightvalidation/28excludedprovider cases, original eight-label roles before pooling. Router sees46cases; specialist35true-malignant cases. Validation has4Ben/1eachMaltype; rawaccuracy andbalancedaccuracydiffer. Allrelatedfields/zoomsremainwiththecase.31distinctvalidationcasesacrossarrangements,unresolvedclinicalidentity,andall82casesalreadyentereddevelopmentmeanthisisexploratoryvalidation,nofreshfinalclinicaltest.
+BreakHis has7,909 images at40×/100×/200×/400×. Each run keeps related images/zooms together under a provider key:46 fitting,8 validation,28 excluded. Five overlapping trials and two arrangements reuse31 distinct validation keys. Fitting support is11 benign/25 ductal/2 lobular/5 mucinous/3 papillary. Clinical identifier relationships remain unresolved, and all82 provider keys have entered development somewhere. These are exploratory provider-case validation scores, not a fresh clinical patient test. Repeated zoom outputs do not create independent patients.
 
-Actualsource0471cd4ab8fb1da71eba8870f2ea0fa59ce0e8f3;147pinnedtestsandCIpassed. Audit4979472,10pairedtasks4979473andcollector4979474allcompleted0. Independent4,924,986checksaccepted80candidates/120heads/64,800dependentrecords,allnormalizersbitwiseandmaxmetricerror4.44e-16. [All results](../BREAKHIS_FIVE_CLASS_RESULTS.md) · [Current report](../../paper/breakhis-five-class-report.md) · [Independent review](../reviews/FIVE_CLASS_ACTUAL_RESULTS_REVIEW.md).
+The supplied notebooks saved93.73%/94.99% for eight-type40× individual images with image-random, reused validation. That historical score uses a different task, prediction unit and split. It cannot establish that this new case-based system has95% accuracy.
 
-Next work is the saved-output rare-subtype diagnosis and the five-category capstone presentation/report update. The94–95% target remains unachieved. Capstone delivery remains the immediate priority.
+[Detailed improvement results](../BREAKHIS_IMPROVEMENT_RESULTS.md) · [Five-category report](../../paper/breakhis-five-class-report.md) · [Original comparison](../BREAKHIS_FIVE_CLASS_RESULTS.md) · [CNN result](../BREAKHIS_CASEBAG_RESULTS.md) · [Historical before/now](../CAPSTONE_BEFORE_AND_NOW.md) · [Next tasks](../NEXT_STEPS.md).
 
-Historical supplied notebooks93.73%/94.99% were eight-type40×image-random reused validation, not independently retrained. Earlier case8accuracy45.7%/38.3% and derivedbinary87.0%/80.7% stay distinct. Existing eight-class deck/demo are dated baseline artifacts and need task-specific revision; do not relabel their scores as five-category performance. [Before/now explanation](../CAPSTONE_BEFORE_AND_NOW.md).
+Immediate deliverable: verify the remaining bounded improvement study, then revise the five-category presentation and report around all measured results. Novelty and conference claims follow stronger evidence; the capstone comes first.

@@ -1,0 +1,149 @@
+{
+  "name": "breakhis-midnight-lora-v1",
+  "schema_version": 1,
+  "base_input_config": "configs/breakhis-midnight-five-v1.json",
+  "base_input_config_sha256": "07b14d634f4bbebd1256e7a5c73f2fa4fce7273849e1663d14c688ca57aad6d3",
+  "reference_comparison_sha256": "c9fdd48763e17c2458aa375797827842d1695e6bdefa3fa5354ca1317bc235fe",
+  "initial_producer_code_sha": "1cbb90986261a9541b71d77e9f2f4eec260e8350",
+  "initial_readout": "field",
+  "initial_candidate_index": 2,
+  "initial_C": 1.0,
+  "initial_model_sha256": {
+    "812/1/direct": "1d2b697c6077d55099b70db2a4c3b61237b8e3139554ba295bf336a7d2e35c26",
+    "812/1/dual": "c2023863106270437da3bca42fcc34d4f219673001c7f06d74811796727f077f",
+    "812/2/direct": "2884fd13e8798b9ddd5661aa7523955d1d7a5811ad677d5904774386dc865420",
+    "812/2/dual": "a265b13bea8b7eeaacf61791f54abf91570840bd62ad53a6cbcaaee6198ae53d",
+    "812/3/direct": "be162a46ac4096899f64b23ef576c6117c3c33145faea4927722258e567f690f",
+    "812/3/dual": "7d2e18cfa71a010cdc8cdab0191b29bf7cf017f4c3abc154e534846e23f27d7b",
+    "812/4/direct": "dfbc9af402c4b7e5980835f8cf57d6b75b62a1c53dad467b0759085ed4fc6b37",
+    "812/4/dual": "4443fa6a63e953936b38139ecd9837153840792d12d5007b13a7098686d27841",
+    "812/5/direct": "957deb95990e905790933e01afb8888828e08f4f47bafcaa08c6d46411434f60",
+    "812/5/dual": "313ff159e15cc92e7a971e86ebec19d9679ab6a8003193eb4aa2b38584defe1f",
+    "813/1/direct": "3704d1810267c0e48e7caf8ffd67a12f2285128fa1833d27996b2ae7e741ea13",
+    "813/1/dual": "5a84c6ccb10504bc57688cd2e0dba8dd3b0c68c63dde768f54d6f8d25e2fc09f",
+    "813/2/direct": "e8dcc0f5fc47b6489d07c25454c75724125692556467e42bd10b479b0c8a5be3",
+    "813/2/dual": "fba7ef44fe2c9261510925a80d839be4aa7e802d33b4776614b86a982de5e0e4",
+    "813/3/direct": "0cbd2450acbf2e850585ac3517d8c95da328270e9b341b055e6129766437ecd3",
+    "813/3/dual": "2ff25457d03ac049e593790b95f23a31283f60baab1c2e40de364f90ee703684",
+    "813/4/direct": "b6cfc408b920196d4cff67ead4b81ca230e8f290904b4a054161d4cc1a10bc64",
+    "813/4/dual": "f952e92cf4e9a75a509de7cb71d947e22f40fbae0c7e92bf1ec32e2f9667e61e",
+    "813/5/direct": "4e854849e461fea727ad5344acd954086d1497352d4dc13df4b1ebc51a7d7d2d",
+    "813/5/dual": "96566b5b311f49d2792db4239dc54a876d6f78c31f1535c8545479d9624f3966"
+  },
+  "arms": [
+    "direct",
+    "dual"
+  ],
+  "epochs": 20,
+  "warmup_epochs": 2,
+  "candidate_epochs": [
+    2,
+    6,
+    12,
+    20
+  ],
+  "training_seed": 812,
+  "seed_rule": "812 + 10000*split_seed + trial; equal across arms",
+  "fields_per_view": 2,
+  "case_batch_size": 4,
+  "microbatch_cases": 1,
+  "last_batch_denominator": 4,
+  "loss": {
+    "direct": "mean sampled field CE per case * 46/(5*n_type), sum cases /4",
+    "binary": "mean sampled field BCE per case * 46/(2*n_broad), sum cases /4",
+    "malignant": "true-malignant mean sampled field CE per case * 46/(4*n_type), benign zero, sum cases /4",
+    "dual": "0.5*(binary+malignant)"
+  },
+  "lora": {
+    "layers": [
+      36,
+      37,
+      38,
+      39
+    ],
+    "projections": [
+      "query",
+      "value"
+    ],
+    "rank": 4,
+    "alpha": 8,
+    "dropout": 0.1,
+    "merge_weights": false,
+    "adapter_parameters": 98304,
+    "head_parameters": 15385,
+    "total_parameters": 113689
+  },
+  "normalization": "fixed original fitting-only per-view mean/std from C1 field checkpoint, four one-hot view flags",
+  "augmentation": {
+    "resize_shorter_side": 224,
+    "center_crop": 224,
+    "orientation": "uniform rot90 in0..3 and independent horizontal flip",
+    "color_jitter": {
+      "brightness": 0.1,
+      "contrast": 0.1,
+      "saturation": 0.1,
+      "hue": 0
+    },
+    "order": "resize,center crop,orientation,color jitter,ToTensor,Normalize(.5,.5)",
+    "rng": "CPU per-field seed derived from common run seed/epoch/case/view/sample under fork_rng"
+  },
+  "optimizer": {
+    "name": "AdamW",
+    "lr": 0.0001,
+    "weight_decay": 0.0001,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "eps": 1e-08
+  },
+  "scheduler": {
+    "name": "CosineAnnealingLR",
+    "T_max": 240,
+    "eta_min": 0,
+    "scope": "all20epochs,12optimizerupdates per epoch including partial lastbatch"
+  },
+  "gradient_clip": 1.0,
+  "precision": "FP32, eager attention, TF32 disabled",
+  "eval_batch_size": 8,
+  "workers": 0,
+  "routing_threshold": 0.5,
+  "routing_tie": "malignant",
+  "aggregation": "compose field joint-five probabilities, equal arithmetic field mean within each zoom, equal mean across available zooms",
+  "selection": "earliest maximum mean15-subset end-to-end five-category validation macroF1 across epochs2,6,12,20",
+  "production_runs": 20,
+  "candidate_pipelines": 80,
+  "production_trainable_parameters_per_run": 113689,
+  "outer_predictions": 0,
+  "technical_smoke": {
+    "epochs": 3,
+    "batches_per_epoch": 2,
+    "seed": 812,
+    "trial": 1,
+    "arms": [
+      "direct",
+      "dual"
+    ],
+    "validation_predictions": 0,
+    "purpose": "exercise both head warmup and adapter gradients, verify frozen state and initial/adapter reload parity on fitting probes"
+  },
+  "parity": {
+    "atol": 0.0001,
+    "rtol": 0.0001
+  },
+  "budget": {
+    "gpu": "A40",
+    "gpus_per_task": 1,
+    "cpus_per_task": 4,
+    "memory_gb": 64,
+    "minutes_per_task": 90,
+    "max_concurrent_tasks": 8,
+    "maximum_production_gpu_hours": 30
+  },
+  "improvement_screen": {
+    "each_arrangement_macro_f1_delta": 0.02,
+    "accuracy_not_lower": true,
+    "positive_recall_all_five_classes": true
+  },
+  "interpretation": "one bounded standard-LoRA adaptation study of a joint initialization/augmentation/adapter recipe on reused provider-case development roles; no LoRA-only causal attribution, novelty or95% guarantee; CPU cached-feature replay is not independent raw-image adapted-encoder reproduction"
+}

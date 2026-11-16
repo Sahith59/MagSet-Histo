@@ -2,22 +2,25 @@
 
 **BreakHis is our main dataset. The immediate goal is the master’s capstone deliverable for Professor Dong.** TCGA follow-up is deferred. A novel method and conference paper are later research milestones.
 
-**November15 corrected target:** five final categories: pooled benign plus ductal, lobular, mucinous and papillary carcinoma. Step1 predicts benign/malignant. Benign stops; malignant proceeds to Step2 for its subtype. This supersedes the earlier eight-type hierarchy choice. [Architecture and score definitions](docs/DUAL_STEP_SCOPE.md). The first trained five-category comparison is complete: dual-step accuracy65.8%/68.8% versus direct-five66.7%/64.7%, averaged over all15view subsets. The improvement screen failed;94–95% remains a goal. [Verified first-five results](docs/BREAKHIS_FIVE_CLASS_RESULTS.md).
+**Current target:** five final categories: benign, ductal, lobular, mucinous and papillary carcinoma. Step1 predicts benign/malignant; only malignant proceeds to its four-type classifier. We use all four magnifications,40×/100×/200×/400×, and evaluate all15 nonempty combinations. [Architecture and score definitions](docs/DUAL_STEP_SCOPE.md).
 
-Use BreakHis images at40×/100×/200×/400×, supporting all15 nonempty view combinations without assuming fields are physically paired across zooms. **The verified results below belong to our earlier direct eight-class baseline**, not the new five-category system. Earlier TCGA work remains separate and deferred.
-
-The supplied notebooks saved93.73%/94.99% on single40× images with image-random, reused validation. Our current scores use a different case-level protocol. The [capstone before/now explanation](docs/CAPSTONE_BEFORE_AND_NOW.md) separates those results and explains why a direct95%→40% comparison is invalid. Three independent GPT-6.1 Sol reviews checked the original evidence, protocol and modelling choices.
-
-The completed EfficientNet comparison scored **46.5%/53.3% two-step validation accuracy**. All20 cluster runs and both verification jobs passed. The earlier frozen-Phikon two-step model is the best verified option at65.8%/68.8%. [Completed CNN results](docs/BREAKHIS_CASEBAG_RESULTS.md).
+**November16 improvement:** the larger frozen Midnight-12k pathology encoder raised two-step validation accuracy to **72.0%/71.3%**, from the first frozen-Phikon result of65.8%/68.8%. The same cases, splits and scoring rules are used. Benign/malignant accuracy is91.2%/94.2%; malignant subtype recognition is the main remaining weakness. **94–95% final five-category accuracy has not been reached.** [Improvement evidence](docs/BREAKHIS_IMPROVEMENT_RESULTS.md).
 
 ## Current five-category results
 
-| Model | Arrangement812 accuracy / macro F1 | Arrangement813 accuracy / macro F1 |
-| --- | ---: | ---: |
-| Direct five-class |66.7% /0.5161|64.7% /0.5035|
-| Binary → malignant-four |65.8% /0.4975|68.8% /0.5325|
+Accuracy below averages all15 zoom combinations and five trials within each validation arrangement. These are reused provider-case development scores, with31 distinct validation keys overall. They are not an untouched final patient test.
 
-Both use identical provider roles/frozen features and four complete-pipeline selection settings. Ten paired runs/120heads and independent actual-output review passed; the mixed result fails the both-arrangement improvement gate. These are exploratory case-validation numbers, not untouched final test accuracy. [Current project report](paper/breakhis-five-class-report.md). A separate stronger case-bag CNN recipe is being prepared; no result from it is included here.
+| Two-step pipeline | Accuracy812 /813 | Macro F1812 /813 |
+| --- | ---: | ---: |
+| Phikon-v2, case means |65.8% /68.8%|.4975 /.5325|
+| EfficientNetV2B0, case-supervised |46.5% /53.3%|.2346 /.3108|
+| Phikon-v2, field supervision |66.7% /69.5%|.4975 /.5207|
+| **Midnight-12k, case means** |**72.0% /71.3%**|**.5558 /.5350**|
+| Midnight-12k, field supervision |73.7% /70.0%|.5732 /.5017|
+
+Midnight case means improve both accuracy and macro F1 on both arrangements; the field method has a higher first-arrangement result but a weaker second one. All20 Midnight direct/dual paired runs and their saved predictions were verified. The next registered similarity classifier uses this same cached encoder and fitting cases. [Current report](paper/breakhis-five-class-report.md) · [First-five reference](docs/BREAKHIS_FIVE_CLASS_RESULTS.md) · [Completed CNN comparison](docs/BREAKHIS_CASEBAG_RESULTS.md).
+
+The supplied notebooks saved93.73%/94.99% on eight-type40× individual images with image-random, reused validation. Their task, prediction unit and split differ from this five-category case experiment. [Before/now explanation](docs/CAPSTONE_BEFORE_AND_NOW.md). Original notebooks and earlier results remain historical evidence.
 
 ## Earlier eight-class BreakHis baseline numbers
 
@@ -49,7 +52,7 @@ The [saved-prediction endpoint bridge](docs/CAPSTONE_BRIDGE_RESULTS.md) and [reg
 
 The separate [benign/malignant secondary analysis](docs/CAPSTONE_BINARY_RESULTS.md) gives **87.0%/80.7% accuracy** for the retained model. This is a fixed retrospective grouping of saved eight-class probabilities, not a newly trained model, fresh test or improvement of the eight-subtype score. Sensitivity/specificity, all three earlier pipelines and both arrangements are reported.
 
-Open the [verified prediction replay](docs/evidence/CAPSTONE_PREDICTION_REPLAY.html) to explore all15 saved view outputs. It is an offline viewer, not live image-upload inference. [Demo instructions](docs/CAPSTONE_DEMO.md) · [Delivery plan](docs/CAPSTONE_DELIVERY_PLAN.md). The user needs the capstone package by November17–18 for a presentation around November20; exact day/rubric remain unspecified. The earlier eight-class model search is frozen; the registered five-category CNN comparison proceeds. TCGA/novel-paper work remains deferred.
+Open the [verified prediction replay](docs/evidence/CAPSTONE_PREDICTION_REPLAY.html) to explore all15 saved view outputs. It is an offline viewer, not live image-upload inference. [Demo instructions](docs/CAPSTONE_DEMO.md) · [Delivery plan](docs/CAPSTONE_DELIVERY_PLAN.md). The user needs the capstone package by November17–18 for a presentation around November20; exact day/rubric remain unspecified. The earlier eight-class model search is frozen; five-category improvement work continues. TCGA/novel-paper work remains deferred.
 
 Earlier eight-class baseline materials (not yet revised for the new five-category target): [ten-slide PDF](output/pdf/BreakHis-Capstone.pdf), [browser presentation](docs/evidence/CAPSTONE_PRESENTATION.html), [report](paper/breakhis-project-report.md) and [plain-language rehearsal guide](paper/capstone-rehearsal.md).
 
@@ -62,7 +65,7 @@ python3 -m pip install numpy==1.26.4 scipy==1.15.2 scikit-learn==1.6.1 Pillow==1
 python3 -m unittest discover -s tests -v
 ```
 
-The full neural checks additionally need torch==2.6.0. The real raw-image replay uses the existing pinned GPU environment, original dataset, pretrained encoder and saved baseline head; these artifacts are not bundled in Git. Submit heavy work through SLURM using [the cluster guide](docs/CLUSTER_SETUP.md). The replay entry point is `python -m magset.breakhis_predict --help`; its validation-only guard excludes fitting and outer-role inputs.
+The full neural checks additionally need torch==2.6.0 and torchvision==0.21.0. The latest full pinned suite passed252 tests. The real raw-image replay uses the existing pinned GPU environment, original dataset, pretrained encoder and saved baseline head; these artifacts are not bundled in Git. Submit heavy work through SLURM using [the cluster guide](docs/CLUSTER_SETUP.md). The replay entry point is `python -m magset.breakhis_predict --help`; its validation-only guard excludes fitting and outer-role inputs.
 
 ## Evidence and research record
 

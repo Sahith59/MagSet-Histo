@@ -1,6 +1,16 @@
 # Next tasks: finish the BreakHis capstone
 
-Updated November15,2026. The November14 timing request gives a working package deadline of November17–18 and presentation around November20. Exact day and rubric are unspecified. **BreakHis remains main; the corrected target is five final categories with four magnifications.** TCGA and novel-paper development are deferred.
+Updated November16,2026. The November14 timing request gives a working package deadline of November17–18 and presentation around November20. Exact day and rubric are unspecified. **BreakHis remains main; the corrected target is five final categories with four magnifications.** TCGA and novel-paper development are deferred.
+
+## Current improvement sequence
+
+1. **Completed:** diagnose the failed CNN and rare-type errors; test field supervision; extract all7,909 images with the larger frozen Midnight encoder; verify20 paired case/field comparisons.
+2. **Measured gain:** Midnight case-dual72.0%/71.3% versus first Phikon65.8%/68.8%, on identical roles and15-view scoring. Binary decisions91.2%/94.2%; malignant typing60.0%/54.3% remains limiting. [Evidence](BREAKHIS_IMPROVEMENT_RESULTS.md).
+3. **Executing:** one fixed same-view similarity classifier, four temperatures, fitting-only support and centering. Verify all ten paired runs before reporting.
+4. **Next decision:** assess one bounded adaptation of the pathology encoder if similarity alone is insufficient; keep enough time for output verification and the five-category capstone materials.
+5. Update the presentation/report from measured results; explain that notebook94.99% and case-level five-category accuracy use different protocols. No95% or novelty claim is established.
+
+The sections below retain the earlier milestones and history.
 
 ## November15 correction: binary first, malignant subtype second
 

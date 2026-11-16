@@ -1,3 +1,11 @@
+# Latest training update — November16
+
+Our best current two-step model uses **frozen Midnight-12k** to turn each tissue image into3072 numbers. Average images within each microscope zoom, normalize using fitting cases only, then average the available zoom descriptions and add four view-availability flags. A small trained binary classifier decides benign/malignant. A second classifier, fitted on35 malignant cases, chooses ductal/lobular/mucinous/papillary. Benign stops at the first decision.
+
+The same46 fitting/eight validation/28 excluded provider cases are used per run. Four regularization settings are evaluated as complete pipelines and selected by end-to-end mean15-subset macro F1. This scored72.0%/71.3% final accuracy. Binary91.2%/94.2% is a separate easier decision. [Measured improvement](BREAKHIS_IMPROVEMENT_RESULTS.md).
+
+The next fixed experiments are a same-cache similarity classifier and a small last-layer LoRA adaptation, keeping the roles and final scoring unchanged. [Similarity recipe](BREAKHIS_KERNEL_SPEC.md) · [Adapter recipe](BREAKHIS_LORA_SPEC.md). The older explanations below retain their original experiment scope.
+
 # How we train the BreakHis baseline
 
 Current priority: the BreakHis project with Professor Dong. The following describes its implemented baseline. TCGA has a different archived protocol and is deferred.
