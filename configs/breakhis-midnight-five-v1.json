@@ -1,0 +1,182 @@
+{
+  "manifest_sha256": "958893f923a745220fac66f19656bcdbfb38996f70ef8044e1349619f4102e31",
+  "protocol_sha256": "dca9a93bb570fd7cfec9fe72e5cad9ac76f838725b03c7a7a593824fecd51134",
+  "final_labels": [
+    "benign",
+    "ductal_carcinoma",
+    "lobular_carcinoma",
+    "mucinous_carcinoma",
+    "papillary_carcinoma"
+  ],
+  "map8_to5": [
+    0,
+    1,
+    0,
+    2,
+    3,
+    4,
+    0,
+    0
+  ],
+  "seeds": [
+    812,
+    813
+  ],
+  "trials": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "arms": [
+    "direct",
+    "dual"
+  ],
+  "C_grid": [
+    0.01,
+    0.1,
+    1.0,
+    10.0
+  ],
+  "training_seed": 812,
+  "solver": "lbfgs",
+  "penalty": "l2",
+  "tol": 0.0001,
+  "routing_threshold": 0.5,
+  "routing_tie": "malignant",
+  "expected_role_counts": [
+    46,
+    8,
+    28
+  ],
+  "fitting_five_support": [
+    11,
+    25,
+    2,
+    5,
+    3
+  ],
+  "validation_five_support": [
+    4,
+    1,
+    1,
+    1,
+    1
+  ],
+  "excluded_five_support": [
+    9,
+    12,
+    2,
+    3,
+    2
+  ],
+  "production_runs": 10,
+  "production_head_fits": 120,
+  "technical_head_fits": 0,
+  "outer_predictions": 0,
+  "dependencies": {
+    "numpy": "1.26.4",
+    "scipy": "1.15.2",
+    "scikit-learn": "1.6.1"
+  },
+  "name": "breakhis-midnight-five-v1",
+  "schema_version": 1,
+  "encoder_name": "midnight-12k",
+  "encoder_dimension": 3072,
+  "expected_images": 7909,
+  "encoder": {
+    "repository": "kaiko-ai/midnight",
+    "revision": "adc6b15679c981cce6f9b018bbad09d16eeeda9f",
+    "dimension": 3072,
+    "features": "concatenate final CLS token and mean final patch tokens",
+    "weights_file": "model.safetensors",
+    "weights_sha256": "52c14f20386ca17c2af8a7bf32c31c352668a8fbf6aefc88d86be6eaa0c72ca1",
+    "weights_size_bytes": 4546005432,
+    "config_file": "config.json",
+    "config_sha256": "0362e014a3f3b1ad2f2faf115d21cbc05ed48b3a6114bdb4ddec897bc83cc0fd",
+    "config_size_bytes": 879,
+    "model_card_file": "README.md",
+    "model_card_sha256": "7595d9ac11154d804a9e920abae185bd98798ebd4ba375490f1a845dc32d2001",
+    "model_card_size_bytes": 8080,
+    "license": "MIT",
+    "transform": {
+      "resize_shorter_side": 224,
+      "center_crop": 224,
+      "mean": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "std": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "interpolation": "bilinear",
+      "antialias": true
+    }
+  },
+  "cache_provenance": {
+    "40": {
+      "npz_sha256": "578ff93aeb1c5cf77008b173c9927187b4cd680d09e29b76f648016ba6d270c3",
+      "json_sha256": "d25badeaacb8ad1149f298367dabf92724c8339586f2fdbbbdd9c119132e60ae"
+    },
+    "100": {
+      "npz_sha256": "8b768a19f0e35c1a9f9bcea02d83d2a8d5dd87882d5f900bc27bb64b52e71c08",
+      "json_sha256": "c6f5a9fd7010460e9240c536717500421a45784f23e3d7e1ab71b24a5b660cd2"
+    },
+    "200": {
+      "npz_sha256": "4680d31a9627ffc20a74b3f831906c4a73e4aa55578e1bfcb09280bd01daeb7a",
+      "json_sha256": "f5d2e6875cbc861c5de518bfdf6f17f3fd9324f80976b77eaa5612334a6355aa"
+    },
+    "400": {
+      "npz_sha256": "2d25f482e4f782d138ccc597dcd183d4efe7c0c90200092ce38f199f93ed70fd",
+      "json_sha256": "a875eee0403dc9a70afa1f06ff14fbf26f4e915d6132985790c4188e6f39069c"
+    }
+  },
+  "feature_producer_code_sha": "a9a2fda4461aca74e6596a747ab191aefa7a96da",
+  "feature_extraction_config_sha256": "71da2f7ee8bbfb27876a212f7a2c6dd765ba23f4ca86d7d80e4b2982e7b017ce",
+  "feature_cache_audit_sha256": "fc032fba291b018d129fc06de20b1b26a9c4e8e6199ac3130d52087805ebcf49",
+  "readouts": [
+    "case",
+    "field"
+  ],
+  "max_iter": 2000,
+  "total_production_runs": 20,
+  "total_head_fits": 240,
+  "new_encoder_forwards": 0,
+  "head_weight_mass": {
+    "direct": 46,
+    "binary": 46,
+    "malignant": 35
+  },
+  "normalization": "field-moments-v2",
+  "reference_comparison_sha256": "bb97c03d22e4299da5ebd7a629cfd9d8c4693d3454feb05211607f7b80a4a795",
+  "improvement_screen": {
+    "each_arrangement_macro_f1_delta": 0.02,
+    "accuracy_not_lower": true,
+    "positive_recall_all_five_classes": true
+  },
+  "readout_definitions": {
+    "case": {
+      "training": "class-balanced logistic loss on all15 case/subset means",
+      "class_weight": "balanced",
+      "subset_weight": 0.06666666666666667,
+      "inference": "available-view feature mean plus four availability indicators"
+    },
+    "field": {
+      "training": "manualNhead/(Khead*n_cases_class*4*n_fields_case_view)",
+      "class_weight": null,
+      "inference": "mean per-field joint probabilities within views, then equal mean of available views"
+    }
+  },
+  "selection": "earliest maximum end-to-end five-category mean15-subset macroF1 within four C settings, shared across hierarchy heads",
+  "budget": {
+    "cpus_per_task": 4,
+    "memory_gb": 24,
+    "minutes_per_task": 45,
+    "max_concurrent_tasks": 4
+  },
+  "interpretation": "exploratory reused provider-case validation, separate frozen encoder/readout comparisons"
+}
