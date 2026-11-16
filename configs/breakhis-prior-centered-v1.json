@@ -1,0 +1,79 @@
+{
+  "name": "breakhis-prior-centered-v1",
+  "schema_version": 1,
+  "base_input_config": "configs/breakhis-coverage-kernel-v1.json",
+  "base_input_config_sha256": "a18a4bfe210265d7ca9a59a75cd8cd797e562c275f665b690cddfaebbdfd0c9b",
+  "modes": [
+    "class_shared",
+    "head_specific"
+  ],
+  "arms": [
+    "direct",
+    "dual"
+  ],
+  "temperatures": [
+    0.01,
+    0.03,
+    0.1,
+    0.3
+  ],
+  "normalization": {
+    "dtype": "float64",
+    "l2_zero_epsilon": 1e-12,
+    "zero_policy": "divide by max(norm, epsilon); exact zero stays zero",
+    "canonical_center": "per view: field mean per support case, then case means within each head class, then equal mean over head classes",
+    "class_shared": {
+      "direct": "direct-five center",
+      "binary": "direct-five center",
+      "malignant": "direct-five center"
+    },
+    "head_specific": {
+      "direct": "direct-five center",
+      "binary": "equal benign-case and malignant-case group centers",
+      "malignant": "equal four malignant-type centers; benign cases excluded"
+    }
+  },
+  "support_policy": "same original class/case/field density weights and uniform head-class priors as reference; no changes beyond origin before L2",
+  "fitting_diagnostic": "leave entire query case out before centers, weights and support counts; query truth does not determine centers",
+  "validation_policy": "fitting support only; no validation/excluded labels or fields in learned centers",
+  "production_run_pairs": 10,
+  "logical_candidate_pipelines": 160,
+  "structurally_unique_candidate_definitions": 120,
+  "logical_prediction_archives": 320,
+  "structurally_nonduplicated_prediction_archives": 240,
+  "logical_case_subset_records": 129600,
+  "structurally_nonduplicated_candidate_records": 97200,
+  "logical_full_fit_head_definitions": 60,
+  "structurally_unique_full_fit_head_definitions": 50,
+  "duplicate_scope": "40 direct candidate definitions and80 role archives repeat across modes; structural counts are not independent observations or guaranteed distinct file hashes",
+  "new_optimized_coefficients": 0,
+  "new_encoder_forwards": 0,
+  "fitting_labels_used_for_centers": true,
+  "selection": "earliest maximum end-to-end mean15-subset macroF1 among4shared temperatures per named mode/arm",
+  "selection_opportunities_per_named_mode_arm": 4,
+  "selection_opportunities_if_choosing_between_modes_per_arm": 8,
+  "routing_threshold": 0.5,
+  "routing_tie": "malignant",
+  "reference_file": "docs/evidence/BREAKHIS_COVERAGE_RESULTS.json",
+  "reference_comparison_sha256": "39d15d949e9fdbf0606b407f1eb364b456cbbec36d896d3fb263e68a9f35699c",
+  "secondary_reference_file": "docs/evidence/BREAKHIS_MIDNIGHT_KERNEL_RESULTS.json",
+  "secondary_reference_comparison_sha256": "e6e98fc26b3579261baf39b677e75551f7bbfbc5f3a7fe399db59c7169511274",
+  "improvement_screen": {
+    "each_arrangement_macro_f1_delta": 0.02,
+    "accuracy_not_lower": true,
+    "positive_recall_all_five_classes": true
+  },
+  "budget": {
+    "cpus_per_task": 4,
+    "memory_gb": 16,
+    "minutes_per_role": 30,
+    "max_concurrent_tasks": 4,
+    "collector_minutes": 45
+  },
+  "interpretation": "one supervised cosine-geometry ablation, not a correction of invalid prior mathematics; original shared center remains valid; sparse class centroids may increase variance; no novelty or95% guarantee; all reused provider-case scores and duplicate controls disclosed",
+  "structurally_unique_family_selection_opportunities": {
+    "direct": 4,
+    "dual": 8
+  },
+  "family_opportunity_scope": "eight logical mode-temperature slots per arm; duplicated direct controls leave four unique direct and eight unique dual choices"
+}
