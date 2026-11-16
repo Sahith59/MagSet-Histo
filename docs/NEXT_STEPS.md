@@ -2,9 +2,13 @@
 
 Updated November 16, 2026. BreakHis remains the priority for Professor Dong's capstone deliverable. The target is **pooled benign plus four malignant types**, using every available magnification and evaluating all 15 nonempty subsets. TCGA and novel-paper development remain deferred. The working materials deadline is November 17–18; presentation around November 20 remains a planning assumption, with the exact day and rubric unconfirmed.
 
+## Active user-requested improvement round
+
+Finish the two separately registered studies: a complementary frozen GenBio encoder with unchanged KDE, and mean versus attention pooling trained on whole cases using accepted F features. Source/input/technical gates precede production and complete saved-candidate collection. Keep the earlier C/F/P scorecard unchanged until new results are accepted. [Execution](BREAKHIS_NEXT_ROUND_STATUS.md) · [Recipe](BREAKHIS_NEXT_ROUND_SPEC.md). Capstone presentation/demo preparation remains the next deliverable alongside this bounded improvement work.
+
 ## Accepted position
 
-All registered experiments and collectors are complete and accepted. The leading results remain a scorecard with tradeoffs, rather than an unqualified winner. P's head-specific geometry has the highest measured macro F1 on both arrangements; its 813 accuracy remains below F. Both P modes fail the registered screen against F. **94–95% final accuracy remains unachieved.**
+The earlier C/F/P/N experiments and collectors are complete and accepted; the new registered round above is active. The leading results remain a scorecard with tradeoffs, rather than an unqualified winner. P's head-specific geometry has the highest measured macro F1 on both arrangements; its 813 accuracy remains below F. Both P modes fail the registered screen against F. **94–95% final accuracy remains unachieved.**
 
 | Two-step method | Accuracy 812 / 813 | Macro F1 812 / 813 |
 | --- | ---: | ---: |
@@ -22,7 +26,7 @@ The main remaining weakness is malignant typing. Head-specific P achieves 58.33%
 
 ## Close the evidence and prioritize the capstone
 
-1. **Freeze the complete verified package:** preserve accepted caches, model/support metadata, complete candidate ledgers, prediction archives, source/configuration hashes and independent reviews. Keep C/F/P tradeoffs and N's negative result visible. No experiments or collectors are still awaiting completion.
+1. **Freeze the complete verified package:** preserve accepted caches, model/support metadata, complete candidate ledgers, prediction archives, source/configuration hashes and independent reviews. Keep C/F/P tradeoffs and N's negative result visible. Earlier comparisons are closed; complete the new bounded round separately.
 2. **Finish report, deck and demonstration:** use the accepted scorecard and representative failure cases; distinguish final five-category, binary, malignant-typing and all-four-view endpoints. Demonstrate the retained frozen workflow without converting reused validation into a fresh test claim.
 3. **Rehearse and confirm delivery details:** prepare a short explanation of the task correction, controlled changes, measured gains and remaining subtype errors. Confirm the actual presentation day and rubric before treating the tentative schedule as fixed.
 

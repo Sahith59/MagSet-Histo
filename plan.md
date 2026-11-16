@@ -1,3 +1,7 @@
+# Active improvement round — November16,2026
+
+User requests further diagnosis/model search and compute. Registered complementary GenBio frozen-KDE and F-feature whole-case mean/attention comparisons are active, with three independent diagnosis/research lanes completed. Source/input/GPU technical gates precede bounded production arrays and complete CPU collection. Same five labels,46/8/28 roles and15 subsets.95% remains a goal; no new classification score is known. Read [the active execution record](docs/BREAKHIS_NEXT_ROUND_STATUS.md) and [fixed recipe](docs/BREAKHIS_NEXT_ROUND_SPEC.md). This update supersedes the previous all-jobs-complete checkpoint below.
+
 # Current execution checkpoint — November 16, 2026
 
 All registered native-input and paired-centering comparisons are complete and verified. Native input fails at 60%/61%. Head-specific centering gives 76.33%/75.67% final accuracy and the highest observed macro F1, .602715/.602512. Its all-four-view accuracy is 85%/85%, a separate endpoint. Compared with F 75.50%/76.83%, accuracy remains mixed; both mode screens fail and 95% is unachieved. C/F and all negative rows remain on the scorecard.

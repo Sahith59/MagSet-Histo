@@ -6,6 +6,8 @@ The system first decides **benign or malignant**. Benign is the final answer; ma
 
 **Latest verified result:** decision-specific centering has our highest observed macro F1, **.6027 / .6025**, with **76.33% / 75.67% final five-category accuracy**. With all four zooms available, accuracy is 85% in both arrangements; that is a separate endpoint. Changes are mixed: the earlier three-crop model still has higher second-arrangement accuracy at 76.83%. **94–95% final accuracy has not been achieved.** [Latest results](docs/BREAKHIS_PRIOR_CENTERED_RESULTS.md) · [Professor brief](docs/evidence/PROFESSOR_BRIEF.md).
 
+A new controlled round is active: a complementary GenBio pathology reader and whole-case mean/attention learning on existing features. GPU technical checks and input audits precede production; no new classification score is known yet. [Live execution record](docs/BREAKHIS_NEXT_ROUND_STATUS.md).
+
 ## Current five-category results
 
 Accuracy/F1 below averages all 15 zoom combinations and five overlapping trials in each arrangement. These are reused provider-case development scores, with 31 distinct validation keys overall and unresolved clinical identity. They are not an untouched final patient test. Every row uses the same 46 fitting/eight validation/28 excluded roles and explicit two-step final labels.

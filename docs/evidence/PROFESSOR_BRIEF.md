@@ -2,6 +2,8 @@
 
 Updated November 16, 2026. The completed **head-specific centering model has the highest macro F1 on both arrangements: 0.6027 / 0.6025**, with **76.33% / 75.67% final five-category validation accuracy**. The earlier three-crop model retains higher arrangement-813 accuracy at 76.83% (75.50% on 812). These are tradeoffs, not an unqualified accuracy winner. **94–95% final accuracy remains unachieved.**
 
+A new registered improvement round is active: complementary GenBio features and whole-case mean/attention learning. The accepted scorecard below is unchanged until complete new results pass collection. [Live execution](../BREAKHIS_NEXT_ROUND_STATUS.md).
+
 We predict pooled benign or ductal, lobular, mucinous or papillary carcinoma. The two-step system first decides benign/malignant; only malignant predictions receive a subtype. Only BreakHis images and labels are fitted/evaluated. TCGA follow-up remains deferred.
 
 | Completed two-step method | Accuracy 812 / 813 | Macro F1 812 / 813 |
@@ -25,7 +27,7 @@ The LoRA study is complete. Its fixed C=1 initialization already scored 68.17% /
 
 BreakHis has 7,909 images at 40×/100×/200×/400× and 82 qualified provider keys. Each run keeps related images and views together: 46 fitting, eight validation and 28 excluded cases. Fitting support is 11 benign, 25 ductal, two lobular, five mucinous and three papillary. Trials and view subsets reuse 31 distinct validation keys. Clinical identifier relationships remain unresolved, and all 82 keys have entered development. These are exploratory provider-case validation results, without a globally fresh clinical test or a novelty claim.
 
-Native global-input classification is complete and scored below the three-crop reference. Both centering modes are also complete. Head-specific centering gives the strongest F1 result, but neither mode meets the full descriptive improvement screen. Their direct controls are identical across modes; choosing between modes introduces eight structural two-step settings, with four distinct direct settings. No jobs remain pending.
+Native global-input classification is complete and scored below the three-crop reference. Both centering modes are also complete. Head-specific centering gives the strongest F1 result, but neither mode meets the full descriptive improvement screen. Their direct controls are identical across modes; choosing between modes introduces eight structural two-step settings, with four distinct direct settings. Those earlier comparisons have no pending jobs; the newly registered round above is active.
 
 Head-specific centering also has worse cross-entropy and Brier probability errors than F on both arrangements. Its F1 lead does not establish uniformly better predictions or confidence estimates.
 

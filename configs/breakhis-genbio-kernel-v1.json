@@ -50,9 +50,30 @@
     "max_concurrent_tasks": 4
   },
   "interpretation": "frozen complementary GenBio encoder with its official RGB-channel representation/input transform; unchanged case-centered cosine KDE and same four temperatures/providerroles; primaryC, secondaryF, contextP; no automaticfusion or Pcenter combination, no95 guarantee",
-  "feature_producer_code_sha": null,
-  "feature_audit_sha256": null,
-  "cache_provenance": {},
+  "feature_producer_code_sha": "6861fbfe8d847f16fa09b4f839193716c1e8d501",
+  "feature_audit_sha256": "bc7e119cbe51c715e95fbb1495b54c483e6b931f45ac148f059ed18c4c9f97dc",
+  "cache_provenance": {
+    "40": {
+      "npz_sha256": "2c6d5b5831db3bb47957d2b1e41cd9d6074c436a1e8bcf0fbaf7e3290860c7fe",
+      "json_sha256": "c17935ebcfc6f4a30c2073431ce895d1a099de9bd3d205aac46be732f37664ed",
+      "images": 1995
+    },
+    "100": {
+      "npz_sha256": "391abaa89dea15942aded549206aa5484ffaaf554e84215dd786d5219e1d7990",
+      "json_sha256": "a21679084927d49e40235d7afefc546311a5f1a235300722366ee1ad1fcc9544",
+      "images": 2081
+    },
+    "200": {
+      "npz_sha256": "7b69caa2fae6ec9ed707764850f352ec667f898101a00685d879add8f38197be",
+      "json_sha256": "0edf165be3766b6f1ca681fbf749b94455cbd765284e35e54568bed17c2aa98b",
+      "images": 2013
+    },
+    "400": {
+      "npz_sha256": "89345aa21329437a75b0042c360928bde4e4b4dc25de3115027872aeff0032f2",
+      "json_sha256": "e3ef0029090b05e60a5adb757cda246f19d47e6068bd6325bcbd6f1cbfe5810a",
+      "images": 1820
+    }
+  },
   "reference_file": "docs/evidence/BREAKHIS_MIDNIGHT_KERNEL_RESULTS.json",
   "secondary_reference_file": "docs/evidence/BREAKHIS_COVERAGE_RESULTS.json",
   "secondary_reference_comparison_sha256": "39d15d949e9fdbf0606b407f1eb364b456cbbec36d896d3fb263e68a9f35699c",

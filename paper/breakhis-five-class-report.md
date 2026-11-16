@@ -2,6 +2,8 @@
 
 Working capstone report, updated November 16, 2026. The completed **head-specific centering model has the highest macro F1 on both arrangements, 0.602715 / 0.602512**, with final five-category accuracy **76.33% / 75.67%**. Three-crop case-shared centering gives **75.50% / 76.83%**, F1 **0.592510 / 0.579947**, and retains higher arrangement-813 accuracy. Both remain on the scorecard; there is no unqualified accuracy winner. **94–95% final accuracy is not achieved.**
 
+A new registered improvement round is active: complementary GenBio features and whole-case mean/attention learning. The accepted scorecard below is unchanged until complete new results pass collection. [Live execution](../docs/BREAKHIS_NEXT_ROUND_STATUS.md).
+
 These are exploratory provider-case development results. Execution completion, predictive improvement and clinical/research claims are reported separately. All completed negative outcomes are retained; no novelty or fresh clinical generalization is established.
 
 ## Task, data and evaluation

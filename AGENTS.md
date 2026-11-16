@@ -1,5 +1,7 @@
 # Project working instructions
 
+November16 active update: the user explicitly requested more parallel diagnosis, stronger-model search and actual cluster improvement work. Two bounded studies are registered in docs/BREAKHIS_NEXT_ROUND_SPEC.md, with current jobs in docs/BREAKHIS_NEXT_ROUND_STATUS.md and private STATE. This supersedes the packaging-only next step below, without changing BreakHis scope, five labels, data roles, metrics or capstone timing. Do not invent new scores; finish source/technical/cache gates before production. No automatic model fusion, threshold/split sweep or95% guarantee.
+
 **Current priority: BreakHis capstone for Professor Dong.** Finish the five-category project deliverable before expanding TCGA or novel-paper work. The working materials deadline is November 17–18, 2026; presentation is around November 20, without a confirmed date or rubric. Read [the current next steps](docs/NEXT_STEPS.md) and [the accepted scorecard](paper/breakhis-five-class-report.md).
 
 The latest user correction supersedes the earlier eight-type hierarchy: final labels are pooled benign plus ductal, lobular, mucinous and papillary carcinoma. Step 1 is benign/malignant. Benign stops; malignant goes to the four-type expert. No benign subtype expert. All four magnifications and all 15 nonempty subsets remain in scope. [Task contract](docs/DUAL_STEP_SCOPE.md).
