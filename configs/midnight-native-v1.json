@@ -1,0 +1,141 @@
+{
+  "name": "midnight-native-v1",
+  "schema_version": 1,
+  "manifest_sha256": "958893f923a745220fac66f19656bcdbfb38996f70ef8044e1349619f4102e31",
+  "expected_images": 7909,
+  "expected_shapes": {
+    "700x460": 7835,
+    "700x456": 74
+  },
+  "base_extraction_config": "configs/midnight-12k-v1.json",
+  "base_extraction_config_sha256": "71da2f7ee8bbfb27876a212f7a2c6dd765ba23f4ca86d7d80e4b2982e7b017ce",
+  "encoder_name": "midnight-native-v1",
+  "encoder": {
+    "repository": "kaiko-ai/midnight",
+    "revision": "adc6b15679c981cce6f9b018bbad09d16eeeda9f",
+    "dimension": 3072,
+    "features": "concatenate native448x700 final CLS and mean of all1600 final patch tokens;3072features",
+    "weights_file": "model.safetensors",
+    "weights_sha256": "52c14f20386ca17c2af8a7bf32c31c352668a8fbf6aefc88d86be6eaa0c72ca1",
+    "weights_size_bytes": 4546005432,
+    "config_file": "config.json",
+    "config_sha256": "0362e014a3f3b1ad2f2faf115d21cbc05ed48b3a6114bdb4ddec897bc83cc0fd",
+    "config_size_bytes": 879,
+    "model_card_file": "README.md",
+    "model_card_sha256": "7595d9ac11154d804a9e920abae185bd98798ebd4ba375490f1a845dc32d2001",
+    "model_card_size_bytes": 8080,
+    "license": "MIT",
+    "transform": {
+      "resize": null,
+      "center_crop_height": 448,
+      "center_crop_width": 700,
+      "source_shapes": [
+        [
+          700,
+          460
+        ],
+        [
+          700,
+          456
+        ]
+      ],
+      "crop_boxes_xyxy": {
+        "700x460": [
+          0,
+          6,
+          700,
+          454
+        ],
+        "700x456": [
+          0,
+          4,
+          700,
+          452
+        ]
+      },
+      "mean": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "std": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "pixel_layout": "RGB CHW",
+      "patch_grid": [
+        32,
+        50
+      ],
+      "token_count": 1601,
+      "position_interpolation": "official Dinov2 FP32 bicubic37x37 to32x50, unchanged CLS position; keep official image_size518 configuration"
+    }
+  },
+  "dependencies": {
+    "torch": "2.6.0+cu124",
+    "transformers": "4.51.3",
+    "safetensors": "0.5.3",
+    "Pillow": "11.1.0",
+    "torchvision": "0.21.0+cu124"
+  },
+  "input_shape": [
+    3,
+    448,
+    700
+  ],
+  "expected_token_shape": [
+    1601,
+    1536
+  ],
+  "official_model_image_size": 518,
+  "official_position_grid": [
+    37,
+    37
+  ],
+  "frozen_base": true,
+  "execution": {
+    "precision": "FP32",
+    "attention": "eager",
+    "tf32": false,
+    "batch_size": 4,
+    "workers": 0,
+    "new_full_native_forwards": 7909,
+    "new_fits": 0,
+    "shards": [
+      40,
+      100,
+      200,
+      400
+    ]
+  },
+  "smoke": {
+    "images": 4,
+    "magnification": 40,
+    "selection": "firsttwoheight460+firsttwoheight456 at40x",
+    "checks": [
+      "exact native crop geometry/pixels",
+      "1601-token3072feature shape",
+      "repeat features",
+      "single-vs-batch",
+      "fresh strict-model reload",
+      "actual NPZ reload",
+      "finite features and frozen weights"
+    ],
+    "native_forwards": 16
+  },
+  "parity": {
+    "atol": 0.0001,
+    "rtol": 0.0001
+  },
+  "budget": {
+    "gpu": "A40",
+    "gpus_per_task": 1,
+    "cpus_per_task": 4,
+    "memory_gb": 64,
+    "minutes_per_shard": 60,
+    "max_concurrent_shards": 4,
+    "maximum_full_extraction_gpu_hours": 4
+  },
+  "interpretation": "fixed untrained native-input intervention changes resolution/coverage/global attention together; encoderweights/config unchanged, automatic positionalinterpolation; forwardcountsnotcomparablecompute because1601 vs257tokens; no95% or novelty guarantee"
+}

@@ -4,7 +4,7 @@
 
 **Current target:** five final categories: benign, ductal, lobular, mucinous and papillary carcinoma. Step1 predicts benign/malignant; only malignant proceeds to its four-type classifier. We use all four magnifications,40×/100×/200×/400×, and evaluate all15 nonempty combinations. [Architecture and score definitions](docs/DUAL_STEP_SCOPE.md).
 
-**November16 improvement:** our frozen Midnight-12k similarity classifier now reaches **75.7%/75.0%** two-step validation accuracy, up from the first frozen-Phikon65.8%/68.8%. The same cases, splits and scoring rules are used. **94–95% final five-category accuracy has not been reached.** [Latest verified result](docs/BREAKHIS_KERNEL_RESULTS.md) · [Earlier improvement studies](docs/BREAKHIS_IMPROVEMENT_RESULTS.md).
+**November16 improvement:** our frozen Midnight-12k similarity classifier now reaches **75.7%/75.0%** two-step validation accuracy, up from the first frozen-Phikon65.8%/68.8%. The subsequent three-crop variant scores75.5%/76.8%, with slightly higher macro F1 on both arrangements and mixed accuracy changes; all-four-view accuracy is82.5% on both. [Coverage results](docs/BREAKHIS_COVERAGE_RESULTS.md). The same cases, splits and scoring rules are used. **94–95% final five-category accuracy has not been reached.** [Latest verified result](docs/BREAKHIS_KERNEL_RESULTS.md) · [Earlier improvement studies](docs/BREAKHIS_IMPROVEMENT_RESULTS.md).
 
 ## Current five-category results
 
@@ -19,6 +19,8 @@ Accuracy below averages all15 zoom combinations and five trials within each vali
 | Midnight-12k, field supervision |73.7% /70.0%|.5732 /.5017|
 | **Midnight-12k, similarity dual-step** |**75.7% /75.0%**|**.5897 /.5643**|
 | Midnight adapter recipe |68.3% /59.8%|.4944 /.3754|
+| Fixed equal-probability vote |74.2% /72.2%|.5781 /.5326|
+| Midnight three-crop similarity |75.5% /76.8%|.5925 /.5799|
 
 Midnight case means improve both accuracy and macro F1 on both arrangements; the field method has a higher first-arrangement result but a weaker second one. All20 Midnight direct/dual paired runs and their saved predictions were verified. The complete ten-run similarity comparison also improves accuracy and macro F1 on both arrangements. Malignant subtype errors remain; the completed adapter recipe scored68.3%/59.8%, below the retained similarity model. Its fixed C=1 initialization was already weak, and eight of ten two-step runs selected head-only checkpoints. [Completed adapter result](docs/BREAKHIS_LORA_RESULTS.md). [Current report](paper/breakhis-five-class-report.md) · [First-five reference](docs/BREAKHIS_FIVE_CLASS_RESULTS.md) · [Completed CNN comparison](docs/BREAKHIS_CASEBAG_RESULTS.md).
 

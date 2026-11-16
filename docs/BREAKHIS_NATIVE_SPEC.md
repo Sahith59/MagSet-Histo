@@ -1,0 +1,17 @@
+# Fixed native-pixel reader comparison
+
+Registered November16,2026, before native-input features or performance. Hypothesis: reading a nearly complete field at its original pixel scale may preserve fine tissue details and global context that the resized224-square reader loses. This is one frozen-input intervention; it changes resolution, coverage and attention context together. No95% guarantee or novelty claim is made.
+
+[Feature configuration](../configs/midnight-native-v1.json) pins the existing Midnight weights, dependencies and geometry. Keep the official model configuration image_size518 and its learned37×37 positional grid unchanged. The official DINOv2 implementation automatically interpolates positional embeddings inFP32 to32×50 for a448×700 input; the CLS position stays unchanged. Do not alter checkpoint weights or the old257-token feature helper.
+
+Original images are700×460 or700×456. Center-crop directly to700×448, with no resize. Crop boxes are(0,6,700,454) and(0,4,700,452), retaining97.39%/98.25% of original pixels. NormalizeRGB using mean/std.5. The frozen model returns1CLS plus1,600patch tokens, each1536-dimensional. ConcatenateCLS and the mean of all1,600patch tokens to obtain3,072numbers per original image.
+
+The input has6.25times as many pixels and about6.23times as many tokens as224×224. Attention-matrix terms grow by about38.8times. One native forward is not equivalent in cost to one224crop forward. UseFP32 eager attention, TF32disabled, batch4, no learned adaptation or classifier coefficients.
+
+First run a label-free four-image A40 check, including two examples of each source height. Verify exact crop pixels,1601-token/3072-feature shapes, frozen parameters, repeated/single-batch/fresh-strict-loader parity at fixed absolute/relative1e-4, finite outputs, actualNPZreload and measured memory/time. Sixteen native forwards are used by the check. Only proceed to full extraction if the declared execution fits the allocation and checks pass.
+
+Full extraction has7,909native forwards in four magnification shards, at most four A40GPUs concurrently, four CPUcores/64GBhostRAM/60minutes per shard: maximum4allocatedGPUhours. Actual timing, not the theoretical estimate, determines the ETA. Save original paths/features and provenanceJSONs. An independent CPU audit checks full path/count/shape/dtype/finite coverage, geometry/token/runtime/frozen-base metadata and all file hashes before classifier binding.
+
+The classifier is the unchanged centered-cosine density method with four shared temperatures.01/.03/.1/.3. Retain original46fitting/eightvalidation/28excluded provider roles, true five-category routing, field/case/class/view weighting, and query-case exclusion from support and centering for fitting diagnostics. No new encoder forwards occur during classification. All ten paired runs and80candidates/160archives/64,800dependent records need verification.
+
+Primary comparison is the accepted three-crop reader75.50%/76.83%, F1.5925/.5799; secondary is the single-center reader75.67%/75.00%, F1.5897/.5643. Both are prospectively hash-bound. Use the same four temperature opportunities and report all metrics/tradeoffs, reader cost and negative outcomes. Scores remain reused provider-case development validation with unresolved clinical identity; masks/fields do not create independent patients. [Feasibility and pinned official API references](reviews/MIDNIGHT_NATIVE_FEASIBILITY.md).
