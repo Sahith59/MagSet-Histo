@@ -1,0 +1,91 @@
+{
+  "name": "breakhis-phikon-field-v1",
+  "schema_version": 1,
+  "base_inputs_config": "configs/breakhis-five-class-v1.json",
+  "base_inputs_config_sha256": "d3a5ac3ca581666646d2d1a90dc3bccad72699253dd522f7e964f44daa44345b",
+  "encoder_name": "phikon-v2",
+  "encoder_dimension": 1024,
+  "seeds": [
+    812,
+    813
+  ],
+  "trials": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "arms": [
+    "direct",
+    "dual"
+  ],
+  "C_grid": [
+    0.01,
+    0.1,
+    1.0,
+    10.0
+  ],
+  "training_seed": 812,
+  "solver": "lbfgs",
+  "penalty": "l2",
+  "tol": 0.0001,
+  "max_iter": 2000,
+  "normalization": "reuse accepted fitting-case-only field-moments-v2, equal case mass per view",
+  "input": "standardized single field feature plus four one-hot magnification indicators",
+  "class_weight": null,
+  "field_weight": "N_head/(K_head*n_cases_in_head_class*4*n_fields_in_case_view)",
+  "head_weight_mass": {
+    "direct": 46,
+    "binary": 46,
+    "malignant": 35
+  },
+  "head_labels": {
+    "direct": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "binary": [
+      0,
+      1
+    ],
+    "malignant": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "aggregation": "compose per-field joint five-class probabilities; arithmetic mean within each view; arithmetic mean across available views; derive case binary and conditional malignant probabilities from pooled joint distribution",
+  "numerics": "logsumexp for each probability mean and conditional distribution, finite saved log probabilities, explicit hard routing using exp(case binary log probability)>=0.5",
+  "routing_threshold": 0.5,
+  "routing_tie": "malignant",
+  "selection": "earliest maximum end-to-end five-class mean15-subset macro F1; four C settings per complete arm",
+  "production_runs": 10,
+  "production_head_fits": 120,
+  "technical_head_fits": 0,
+  "new_encoder_forwards": 0,
+  "outer_predictions": 0,
+  "reference_comparison_sha256": "bb97c03d22e4299da5ebd7a629cfd9d8c4693d3454feb05211607f7b80a4a795",
+  "improvement_screen": {
+    "reference": "earlier frozen-Phikon case-mean dual",
+    "each_arrangement_macro_f1_delta": 0.02,
+    "accuracy_not_lower": true,
+    "positive_recall_all_five_classes": true
+  },
+  "dependencies": {
+    "numpy": "1.26.4",
+    "scipy": "1.15.2",
+    "scikit-learn": "1.6.1"
+  },
+  "budget": {
+    "cpus_per_task": 4,
+    "memory_gb": 16,
+    "minutes_per_task": 45,
+    "max_concurrent_tasks": 4
+  },
+  "interpretation": "bundled field-supervision and probability-pooling change, exploratory reused provider-case validation"
+}

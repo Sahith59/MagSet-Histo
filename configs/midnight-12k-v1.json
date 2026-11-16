@@ -1,0 +1,62 @@
+{
+  "name": "midnight-12k-v1",
+  "schema_version": 1,
+  "manifest_sha256": "958893f923a745220fac66f19656bcdbfb38996f70ef8044e1349619f4102e31",
+  "expected_images": 7909,
+  "encoder": {
+    "repository": "kaiko-ai/midnight",
+    "revision": "adc6b15679c981cce6f9b018bbad09d16eeeda9f",
+    "dimension": 3072,
+    "features": "concatenate final CLS token and mean final patch tokens",
+    "weights_file": "model.safetensors",
+    "weights_sha256": "52c14f20386ca17c2af8a7bf32c31c352668a8fbf6aefc88d86be6eaa0c72ca1",
+    "weights_size_bytes": 4546005432,
+    "config_file": "config.json",
+    "config_sha256": "0362e014a3f3b1ad2f2faf115d21cbc05ed48b3a6114bdb4ddec897bc83cc0fd",
+    "config_size_bytes": 879,
+    "model_card_file": "README.md",
+    "model_card_sha256": "7595d9ac11154d804a9e920abae185bd98798ebd4ba375490f1a845dc32d2001",
+    "model_card_size_bytes": 8080,
+    "license": "MIT",
+    "transform": {
+      "resize_shorter_side": 224,
+      "center_crop": 224,
+      "mean": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "std": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "interpolation": "bilinear",
+      "antialias": true
+    }
+  },
+  "dependencies": {
+    "torch": "2.6.0+cu124",
+    "transformers": "4.51.3",
+    "safetensors": "0.5.3",
+    "Pillow": "11.1.0",
+    "torchvision": "0.21.0+cu124"
+  },
+  "execution": {
+    "batch_size": 8,
+    "workers": 0,
+    "dtype": "float32",
+    "tf32": false,
+    "training": false,
+    "technical_smoke_images": 4,
+    "max_concurrent_gpu_tasks": 2,
+    "gpu_family": "A40"
+  },
+  "budget": {
+    "preparation_cpu_minutes": 30,
+    "technical_smoke_gpu_minutes": 10,
+    "extraction_minutes_per_magnification": 30,
+    "full_extraction_gpu_hours_requested": 2
+  },
+  "planned_followup": "same original-eight-derived five-category case-mean direct/dual logistic protocol, four C settings; fit only after full feature cache audit; field supervision considered as a separate predeclared readout comparison"
+}
