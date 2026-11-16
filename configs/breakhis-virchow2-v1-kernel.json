@@ -1,0 +1,66 @@
+{
+  "name": "breakhis-virchow2-v1-kernel",
+  "schema_version": 1,
+  "base_input_config": "configs/breakhis-midnight-five-v1.json",
+  "base_input_config_sha256": "07b14d634f4bbebd1256e7a5c73f2fa4fce7273849e1663d14c688ca57aad6d3",
+  "encoder_name": "virchow2-v1",
+  "dimension": 2560,
+  "arms": [
+    "direct",
+    "dual"
+  ],
+  "temperatures": [
+    0.01,
+    0.03,
+    0.1,
+    0.3
+  ],
+  "normalization": {
+    "centering": "equal support-case raw mean per view",
+    "dtype": "float64",
+    "l2_zero_epsilon": 1e-12,
+    "zero_policy": "divide by max(norm, epsilon); exact zero stays zero"
+  },
+  "support_weights": "per head class, each case has equal mass and each of its same-view fields receives1/(n_cases_class*n_fields_case_view)",
+  "head_priors": "uniform within each head; direct-five1/5 versus dual binary1/2 and conditional malignant1/4",
+  "training_diagnostic": "leave-one-case-out support and centering",
+  "validation_policy": "all46 fitting cases as support, validation and excluded cases contribute neither support nor centering",
+  "aggregation": "compose field joint probabilities then arithmetic means within magnification and across available magnifications",
+  "routing_threshold": 0.5,
+  "routing_tie": "malignant",
+  "production_runs": 10,
+  "candidate_pipelines": 80,
+  "support_classifier_instances": 30,
+  "support_instances_scope": "three full-fit support heads per role, shared across temperatures; additional46 leave-one-case-out support evaluations per role are fitting diagnostics",
+  "optimized_head_fits": 0,
+  "new_encoder_forwards": 0,
+  "outer_predictions": 0,
+  "selection": "earliest maximum end-to-end five-category mean15-subset macroF1 within four shared temperatures",
+  "reference_comparison_sha256": "e6e98fc26b3579261baf39b677e75551f7bbfbc5f3a7fe399db59c7169511274",
+  "reference_readout": "single-center-Midnight-KDE",
+  "improvement_screen": {
+    "each_arrangement_macro_f1_delta": 0.02,
+    "accuracy_not_lower": true,
+    "positive_recall_all_five_classes": true
+  },
+  "budget": {
+    "cpus_per_task": 4,
+    "memory_gb": 16,
+    "minutes_per_task": 15,
+    "max_concurrent_tasks": 4
+  },
+  "interpretation": "frozen approved pathology reader package with its registered transform and official readout; unchanged case-centered cosine KDE and same four temperatures/providerroles; primary C, secondary F, context P; all three encoders reported with12 family settings per arm/role; reused exploratory validation, no95 guarantee",
+  "reference_file": "docs/evidence/BREAKHIS_MIDNIGHT_KERNEL_RESULTS.json",
+  "secondary_reference_file": "docs/evidence/BREAKHIS_COVERAGE_RESULTS.json",
+  "secondary_reference_comparison_sha256": "39d15d949e9fdbf0606b407f1eb364b456cbbec36d896d3fb263e68a9f35699c",
+  "context_reference_file": "docs/evidence/BREAKHIS_PRIOR_CENTERED_RESULTS.json",
+  "context_reference_comparison_sha256": "b9e0616382099a405295a211bae15dab4625091b68620a1e647196a51ebe1e3c",
+  "encoder_dimension": 2560,
+  "extraction_config": "configs/virchow2-v1.json",
+  "extraction_config_sha256": "57141112986cff443b791832d4959094cc41072fda117f9a3794b9c8dd483314",
+  "image_forwards": 7909,
+  "family_candidate_pipelines": 240,
+  "family_encoder_choices": 3,
+  "family_settings_per_arm_role": 12,
+  "status": "registered numerical recipe; actual feature SHA bindings pending accepted full extraction"
+}

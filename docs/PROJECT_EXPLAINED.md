@@ -1,116 +1,80 @@
-# MagSet-Histo in plain language
+# The BreakHis project in plain language
 
-**Current priority:** BreakHis is the main dataset. Finish the [quick project baseline](BREAKHIS_MILESTONE_PLAN.md) first. TCGA and novel-paper follow-up below are deferred research records. The [BreakHis first-results page](BREAKHIS_FIRST_RESULTS.md) is the current deliverable.
+Updated November 16, 2026. The capstone predicts **five categories: pooled benign, ductal carcinoma, lobular carcinoma, mucinous carcinoma and papillary carcinoma**. Its highest observed macro F1 among two-step pipelines is **0.602715 / 0.602512**, with **76.33% / 75.67% final accuracy**. Pairs mean validation arrangements **812 / 813**. **94–95% final accuracy has not been achieved.** [Accepted full scorecard](../paper/breakhis-five-class-report.md).
 
-Updated November 12, 2026. This explains the actual experiments and distinguishes them from proposals. The repository name is a working name; the latest pilot uses a linear classifier rather than a transformer.
+## What goes in and comes out?
 
-## 1. What problem are we solving?
+Input is one provider case's tissue images, grouped by the available 40×, 100×, 200× and 400× magnifications. Each magnification can contain several fields. Image numbers at different magnifications do not establish physical correspondence.
 
-A microscope gives different clues at different zooms. A wide view shows tissue structure; a close view shows finer detail. We want to combine the available views of one tissue case and predict its class, even when some views are unavailable.
+Step 1 predicts benign or malignant. Benign stops with the pooled benign label. Malignant proceeds to a specialist choosing one of four carcinoma types. There is no benign-subtype specialist. **A routing error counts as a final error**, as does the wrong malignant type. A direct-five control predicts the same five labels in one step.
 
-The original task is **eight breast-tumor subtypes**. The research question is whether agreement between views helps beyond a strong average. The secondary dataset asks a broader 16-class tissue question with a separate classifier. It does not independently confirm the same eight-class breast classifier.
+An encoder turns each image into a numerical description. The retained pipeline uses frozen Midnight descriptions from three crops per original image. It compares these with fitting examples, combines evidence within and across available magnifications, and uses separate fitting-derived reference centers for the two decisions. Label-informed centers are supervised preprocessing. This is an evaluated similarity classifier; novelty has not been established. [Task contract](DUAL_STEP_SCOPE.md), [centering explanation](BREAKHIS_PRIOR_CENTERED_RESULTS.md).
 
-## 2. What are the datasets and splits?
+## What data and split do we use?
 
-| Item | BreakHis development experiments | TCGA-MS latest development pilot |
-| --- | --- | --- |
-| Images used |7,909|37,024 selected from 65,312 decoded release images|
-| Views |40×,100×,200×,400×|0.25,0.5,1.0,2.0 microns per pixel|
-| Grouping |82 subtype-qualified provider cases|128 supplied patient IDs, one slide each|
-| Classes |8 breast-tumor subtypes|16 source-defined tissue classes across several organs|
-| Fitting |46 cases per repeated trial|80 patients,5 per class|
-| Validation/development |8 per trial,1 per subtype|16 patients,1 per class|
-| Outer/reserved role |28 per trial|32 patients,2 per class|
+Only **BreakHis's 7,909 images** supply current task fitting/evaluation data. TCGA work is deferred. External pretrained weights provide transfer learning; they do not add TCGA images to this task.
 
-BreakHis uses **five overlapping repeated holdouts**, not disjoint five-fold cross-validation. Each provider trial starts with 54 training and 28 outer-role cases. One case per subtype is selected from those 54 for validation, leaving 46 for fitting. Inner seeds 812 and 813 were checked. Outer outcomes were not scored; however, every one of the 82 cases has entered fitting or validation in some trial. There is no globally fresh BreakHis confirmation set after that development history.
+There are **82 subtype-qualified provider keys**, whose clinical identity relationships remain unresolved. Every trial keeps a key's related fields and magnifications together:
 
-The clinical relationships between some provider identifiers remain unverified. We therefore say “provider cases,” not independently verified patients. The older notebooks' image-based splits and high saved accuracies do not establish unseen-patient performance.
+| Role in each trial | Provider cases | Percentage of 82 | Purpose |
+| --- | ---: | ---: | --- |
+| Fitting | 46 | 56.1% | Learn parameters or construct labeled similarity support |
+| Validation | 8 | 9.8% | Select the registered setting and report development results |
+| Excluded outer role | 28 | 34.1% | Excluded from that trial's fitting, selection and scoring |
 
-TCGA roles were registered before any native classifier fitting. All related fields/resolutions stay together. Six patients missing the 0.25-mpp view are fitting-only. Development and reserved patients have all four views. The reserved group is excluded from classifier fitting, normalization, tuning, and current prediction. Its public labels are procedurally quarantined, not encrypted.
+These are **five overlapping repeated holdouts**, each with two existing validation arrangements, rather than disjoint five-fold cross-validation. The 54 original training-role cases become 46 fitting and eight validation cases before benign labels are pooled. Fitting then has 11 benign / 25 ductal / 2 lobular / 5 mucinous / 3 papillary cases; validation has 4 benign / 1 ductal / 1 lobular / 1 mucinous / 1 papillary.
 
-Microns per pixel measures physical image resolution: a smaller number is finer detail. We do not equate these values directly to BreakHis objective-magnification labels. TCGA-MS is multi-organ; only 32 of its 128 patients are breast-labeled. BRACS access is not approved. The exact secondary class IDs and observed descriptions are recorded in [the native label schema](NATIVE_LABEL_SCHEMA.md); some source groups contain several histology descriptions, so we preserve source targets rather than infer new labels.
+Arrangements 812 and 813 contain 22 and 20 distinct validation keys across trials, with 31 in their union. **All 82 keys have entered development somewhere. The 28 excluded cases in one trial are not a globally untouched final test cohort.** These are provider-case development results, without verified clinical-patient validation.
 
-## 3. What goes in and comes out?
+Every validation case is scored under **all 15 nonempty magnification subsets**. One arrangement has **8 × 15 × 5 = 600 dependent case/subset records**. Accuracy equals correct records divided by 600 because trial sizes are equal. Macro F1 is computed within each subset/trial and then averaged; it is not F1 from one pooled matrix. All-four-view accuracy uses **8 × 5 = 40 dependent records**. Fields, masks and repeated trials do not create new independent cases.
 
-**Input:** several tissue images from one case, grouped by available zoom. Different zooms can have different numbers of fields. We do not assume that image number 1 at one zoom physically matches image number 1 at another.
+## How do the historical numbers compare?
 
-**Output:** a probability vector and its highest-scoring class:8 probabilities for BreakHis,16 for the native TCGA task. The probabilities sum to one; this alone does not make them well calibrated or clinically reliable. The current experiments make a case-level prediction, not one independent prediction per field.
+The notebooks are two different models; their two scores are not arrangements 812 and 813.
 
-BreakHis classes: adenosis, fibroadenoma, phyllodes tumor, tubular adenoma, ductal carcinoma, lobular carcinoma, mucinous carcinoma, and papillary carcinoma. The first four listed are benign categories and the last four malignant categories; the main task distinguishes all eight.
+| Historical experiment | Target and prediction unit | Split and evaluation count | Accuracy |
+| --- | --- | --- | ---: |
+| EfficientNetV2B0 + non-local attention notebook | Eight types; one 40× image | Image-random 80/20: 1,596 fitting / 399 reused validation images; provider separation not enforced | 93.73% = 374/399 |
+| EfficientNetV2B0 + spatial gate notebook | Eight types; one 40× image | Image-random 80/20: 1,596 fitting / 399 reused validation images; provider separation not enforced | 94.99% = 379/399 |
+| Supplied ResNet-50 + XGBoost paper | **Binary** benign/malignant headline; individual images from all magnifications | Author-reported patient-separated approximately 70/30; exact evaluation denominator not independently reconstructed | **86.22% binary**, not final-five accuracy |
+| Our earlier frozen Phikon-v2 reference | Eight types; one case under all 15 subsets | 46 fit / 8 validation / 28 excluded per trial; 600 records per arrangement | 45.67% / 38.33% = 274/600 / 230/600 |
 
-## 4. What is the architecture?
+The notebooks reuse validation for checkpoint/learning-rate choices and reported evaluation. Their saved confusion matrices were checked; training was not independently reproduced, and exact historical case overlap is unknown. Their roughly 95% scores do not measure today's five-label, grouped-case, missing-view task. The older paper's malignant-type recall is another separate measure. This comparison does not demonstrate a measured fall from 95% to 40% on the same task. [Original-artifact audit](reviews/CAPSTONE_ORIGINAL_RESULTS_REVIEW.md), [historical case ledger](evidence/BREAKHIS_ADAPTATION_RESULTS.json).
 
-```mermaid
-flowchart LR
-  A[Available tissue images] --> B[Frozen image encoder]
-  B --> C[One numerical description per image]
-  C --> D[Average within each available view]
-  D --> E[Average views plus availability indicators]
-  C --> F[Optional 32D contrast from available views]
-  E --> G[Regularized linear classifier]
-  F --> G
-  G --> H[Class probabilities and predicted class]
-```
+## What have our five-category experiments achieved?
 
-An **encoder** is the image reader. Phikon-v 2 produces 1,024 numbers per image; ResNet-50 produces 2,048. These externally pretrained weights remain frozen during the completed fusion experiments. Phikon was pretrained on pathology data and its pinned card includes TCGA-source slides; exact overlap with this release is unresolved. The native pilot uses the ImageNet-pretrained ResNet control.
+Every row below is **final-five, two-step case validation across all 15 subsets**, with **46 fit / 8 validation / 28 excluded cases** per trial and **600 scored records per arrangement**. Scores and correct-record counts are ordered **812 / 813**.
 
-The **fusion** stage combines those descriptions. Completed BreakHis controls include averaging, concatenation, late probability averaging, learned gates, and hierarchical field/view attention. In the native pilot, the baseline has 2,048 averaged numbers plus 4 view-availability indicators. The other three arms append 32 numbers, making 2,084 input features.
+| Completed two-step pipeline | Final accuracy | Correct records, each /600 | Macro F1 |
+| --- | ---: | ---: | ---: |
+| First frozen Phikon-v2 case means | 65.83% / 68.83% | 395 / 413 | .4975 / .5325 |
+| Case-supervised EfficientNet CNN | 46.50% / 53.33% | 279 / 320 | .2346 / .3108 |
+| C: frozen Midnight single-center similarity | 75.67% / 75.00% | 454 / 450 | .5897 / .5643 |
+| D: Midnight LoRA | 68.33% / 59.83% | 410 / 359 | .4944 / .3754 |
+| E: fixed equal-probability ensemble | 74.17% / 72.17% | 445 / 433 | .5781 / .5326 |
+| F: frozen Midnight three-crop similarity | 75.50% / 76.83% | 453 / 461 | .5925 / .5799 |
+| N: native global input | 60.00% / 61.00% | 360 / 366 | .4394 / .5014 |
+| P: class-shared centering | 76.17% / 75.33% | 457 / 452 | .5992 / .5778 |
+| P: decision-specific centering | **76.33% / 75.67%** | **458 / 454** | **.6027 / .6025** |
+| GenBio frozen similarity | 70.50% / 75.17% | 423 / 451 | .5837 / .5813 |
+| Whole-case learned mean | 70.17% / 71.83% | 421 / 431 | .5199 / .5094 |
+| Whole-case gated attention | 71.67% / 70.50% | 430 / 423 | .5453 / .5234 |
 
-The **classifier** learns how those numbers relate to labels. A multinomial logistic classifier learns one score per class and converts scores to probabilities using softmax. It is a small trained head; we are not currently training the whole ResNet or a large foundation model from scratch.
+The [full scorecard](../paper/breakhis-five-class-report.md) also retains intermediate field/case controls and all direct-five comparisons. Important qualifications:
 
-## 5. How does training work?
+- P leads two-step macro F1 on both arrangements; F retains higher 813 accuracy. P's **85% / 85% = 34/40 / 34/40 all-four-view accuracy** is a separate endpoint. P also worsens probability errors versus F.
+- GenBio's **direct-five** control scores **71.33% / 77.83%**, F1 **.5960 / .6406**, using 428/600 / 467/600 records under the same roles. Its stronger 813 result is one-stage development evidence, without a consistent two-step gain.
+- LoRA's fixed-C=1 initialization was already **68.17% / 59.50%**; the entire gap from C cannot be attributed to adapter damage. Eight of ten dual runs selected the head-only epoch-2 checkpoint.
+- Whole-case neural models fit their fitting cases at about **99.13%** accuracy but transfer much less well. This does not establish one sole cause. Learned mean also has slightly better Brier error than F despite weaker accuracy/F1, so every metric did not worsen.
 
-1. Encode images once with the fixed pretrained encoder and save checked feature caches.
-2. Learn per-view normalization from fitting cases only, giving each case equal influence regardless of how many fields it has.
-3. Show every nonempty combination of actually available views. Four views give 15 combinations; three give 7. These are augmentations of the same case, not new independent patients.
-4. Give each case total training weight 1 across its combinations. Every native class therefore has fitting weight 5. No extra row-based class balancing is applied.
-5. Fit the classifier by minimizing weighted cross-entropy with an L 2 penalty. Cross-entropy penalizes assigning low probability to the correct label; L 2 discourages excessively large coefficients.
-6. Evaluate the fixed models on development patients only and retain all outcomes.
+Source ledgers: [first five-class](evidence/BREAKHIS_FIVE_CLASS_RESULTS.json), [CNN](evidence/BREAKHIS_CASEBAG_RESULTS.json), [C](evidence/BREAKHIS_MIDNIGHT_KERNEL_RESULTS.json), [LoRA](evidence/BREAKHIS_LORA_RESULTS.json), [ensemble](evidence/BREAKHIS_FIXED_ENSEMBLE_RESULTS.json), [F](evidence/BREAKHIS_COVERAGE_RESULTS.json), [native](evidence/BREAKHIS_NATIVE_RESULTS.json), [P](evidence/BREAKHIS_PRIOR_CENTERED_RESULTS.json), [GenBio](evidence/BREAKHIS_GENBIO_RESULTS.json), [whole-case mean/attention](evidence/BREAKHIS_CASE_MIL_RESULTS.json). Table accuracy, F1, denominators and checkpoint selections were independently recalculated from these saved ledgers; no new fitting or inference was performed for this explanation.
 
-The native pilot has exactly four fits, fixed C 0.1, LBFGS, max_iter 1000, projection seed 812, projection dimension 32, and affinity temperature 0.2. There is no hyperparameter grid. Earlier BreakHis pilots used their own documented small grids; their settings are not silently transferred as new searches.
+## What counts as success, and what remains?
 
-## 6. What is the proposed mechanism?
+The registered descriptive improvement screen requires **at least +0.02 macro F1 on both arrangements**, no accuracy decrease on either, and positive recall for all five labels, against each study's declared fixed reference. C passed its original screen; F, both P modes, GenBio and both whole-case models failed theirs. Passing is development evidence, without independent confirmation or proof of novelty. A technical collector passing means saved outputs satisfy its checks; it does not mean predictive improvement succeeded.
 
-Keep the reliable average and append a small signed contrast describing how an agreement-weighted summary differs from the ordinary summary. A clue that resembles clues in other available views receives more weight. Comparisons use learned image features, not physical image registration or verified biological matching.
+P's binary router scores **94.83% / 93.00%**, while its specialist's accuracy on truly malignant cases is **58.33% / 62.33%**. These answer different questions from final-five accuracy. Mucinous and papillary recognition remains weak. More images from a fitting case cannot supply additional independent cases, and binary accuracy cannot replace subtype performance.
 
-The four arms are:
+The user-approved [UNI2-h, Virchow2 and H-optimus-0 comparison](BREAKHIS_APPROVED_ENCODERS_SPEC.md) is separately registered with the same fixed endpoint and direct-five controls. No scores from those three readers are included above; access approval establishes no measured gain. Selecting among them adds 12 reader/temperature settings per arm/role, which must remain part of the validation-reuse disclosure.
 
-| Arm | What it tests |
-| --- | --- |
-| Mean plus mask | Strong simple baseline |
-| Mean plus projected duplicate mean | Whether adding redundant features changes effective regularization |
-| Mean plus random-partition contrast | Whether any same-sized extra field summary gives a similar benefit |
-| Mean plus affinity-agreement contrast | The specific agreement hypothesis |
-
-All three added blocks have 32 features and use the same fixed projection. For random/affinity arms, the extra block is zero with only one view. Baseline features remain present, but jointly fitting additional features can change coefficients and worsen predictions. This is not a nondegradation guarantee, an OT method, or established novelty.
-
-## 7. How do we compare scores?
-
-The main score is **macro F 1 averaged equally across all 15 view combinations**. Macro F 1 balances correct detections and false alarms within each class, then gives every class equal importance. We want the method to help across missing-view patterns, not only when every view is present.
-
-| Reported measure | Plain meaning |
-| --- | --- |
-| Macro F 1 per subset and mean across 15 | Class-balanced overall performance under availability changes |
-| Full-view F 1 | Performance with every view |
-| Worst-subset F 1 | Weakest availability setting |
-| Accuracy | Fraction of correct case predictions |
-| Balanced accuracy | Average class recall |
-| Per-class recall/confusion matrix | Which tissue classes are missed or confused |
-| Multiclass Brier score | Squared probability error; lower is better |
-| Coefficient count and feature/fit time | How much added model size and computation a mechanism costs |
-
-Native Brier averages the sum of 16 squared errors per patient. The native development group has one patient per class, so accuracy and balanced accuracy coincide there. Its 240 case/subset rows still represent only 16 independent patients. We do not claim significance or use naive row-level confidence intervals. Final uncertainty must retain patient dependence and be specified before confirmation.
-
-Fair comparisons keep the encoder, images, roles, preprocessing, field policy, tuning budget, and metric fixed. Published binary/image-level accuracies cannot be compared directly to our eight-class case-level macro F 1.
-
-## 8. What have we learned, and what comes next?
-
-The 175 BreakHis configurations are exploratory development runs. In the normalization-matched comparison, linear mean achieved mean-subset F 1 of 0.3843/0.3169 for inner seeds 812/813; the highest checked neural controls achieved 0.3636/0.2744. These values summarize overlapping trial estimates. They are not final test accuracy or 175 independent samples.
-
-The fixed native four-arm pilot has now completed. Mean-subset macro F1 was **0.334028 for mean**, **0.339583 for duplicate mean**, **0.334028 for random contrast**, and **0.338194 for affinity contrast**. The affinity arm does not exceed the duplicate control. It changes only one of240 development decisions relative to mean, involving one patient in one availability setting. This pilot does not support an agreement-specific improvement claim. These are16-class development scores and cannot be ranked directly against the eight-class BreakHis values.
-
-The prespecified decision is to stop the improvement claim for this version and preserve all outcomes. We should review the contribution/data direction with Professor Dong and finish compatible prior-work comparisons before registering another mechanism experiment. The 32 reserved patients remain excluded from scoring. The project still needs a defensible novelty distinction, stronger evidence, and manuscript review before submission.
-
-See [the complete native results](NATIVE_DEVELOPMENT_RESULTS.md) for all15 subsets, Brier values, coefficient counts, execution evidence, and limits.
-
-Exact settings: [pilot specification](NATIVE_DEVELOPMENT_PILOT_SPEC.md). Provenance and split hashes: [registered native protocol](TCGA_QUARANTINE_PROTOCOL.md). Meeting materials: [Professor Dong brief](evidence/PROFESSOR_BRIEF.md).
+The five-category capstone report, presentation and demo remain the immediate deliverable. Completed negative results stay visible. New fitting must not change splits or tune routing thresholds to manufacture 95%. TCGA expansion and publication claims remain separate, deferred work.
