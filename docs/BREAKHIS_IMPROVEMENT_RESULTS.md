@@ -1,3 +1,5 @@
+Latest update: the subsequently completed similarity dual-step comparison reaches **75.67%/75.00%**, macro F1.5897/.5643, improving on the72.00%/71.33% frozen case model below. [Complete similarity results](BREAKHIS_KERNEL_RESULTS.md). This document retains the preceding field/encoder studies and their exact evidence.
+
 # BreakHis: completed improvement results
 
 Updated November 16, 2026. The strongest consistent two-step option so far is **frozen Midnight with case-mean pooling: 72.00% / 71.33% five-category validation accuracy**, compared with the original frozen Phikon model's 65.83% / 68.83%. The measured gains are **6.167 / 2.500 percentage points** on arrangements 812 / 813. Its end-to-end macro F1 is **0.5558 / 0.5350**, up from 0.4975 / 0.5325. The 94–95% final-classification target remains unachieved.

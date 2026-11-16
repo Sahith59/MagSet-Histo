@@ -1,3 +1,5 @@
+Latest November16 result: **75.67%/75.00%** final two-step accuracy and macro F1.5897/.5643 for the completed Midnight similarity classifier, on the same splits and15-subset scoring. This supersedes72.00%/71.33% as the best current paired accuracy result. [Verified similarity comparison](docs/BREAKHIS_KERNEL_RESULTS.md). One bounded last-layer adapter comparison is being implemented;94–95% remains unachieved. Earlier execution notes below retain their original scope.
+
 ## November16 measured improvement and current work
 
 The same five-category two-step task now scores **72.0%/71.3%** with frozen Midnight-12k case features, compared with65.8%/68.8% for the first Phikon case baseline. Macro F1 also improves on both arrangements. The field-supervised Midnight alternative scores73.7%/70.0%, a mixed result. All20 Midnight paired runs and complete saved prediction matrix were verified. [Results](docs/BREAKHIS_IMPROVEMENT_RESULTS.md).

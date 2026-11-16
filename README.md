@@ -4,7 +4,7 @@
 
 **Current target:** five final categories: benign, ductal, lobular, mucinous and papillary carcinoma. Step1 predicts benign/malignant; only malignant proceeds to its four-type classifier. We use all four magnifications,40×/100×/200×/400×, and evaluate all15 nonempty combinations. [Architecture and score definitions](docs/DUAL_STEP_SCOPE.md).
 
-**November16 improvement:** the larger frozen Midnight-12k pathology encoder raised two-step validation accuracy to **72.0%/71.3%**, from the first frozen-Phikon result of65.8%/68.8%. The same cases, splits and scoring rules are used. Benign/malignant accuracy is91.2%/94.2%; malignant subtype recognition is the main remaining weakness. **94–95% final five-category accuracy has not been reached.** [Improvement evidence](docs/BREAKHIS_IMPROVEMENT_RESULTS.md).
+**November16 improvement:** our frozen Midnight-12k similarity classifier now reaches **75.7%/75.0%** two-step validation accuracy, up from the first frozen-Phikon65.8%/68.8%. The same cases, splits and scoring rules are used. **94–95% final five-category accuracy has not been reached.** [Latest verified result](docs/BREAKHIS_KERNEL_RESULTS.md) · [Earlier improvement studies](docs/BREAKHIS_IMPROVEMENT_RESULTS.md).
 
 ## Current five-category results
 
@@ -15,10 +15,11 @@ Accuracy below averages all15 zoom combinations and five trials within each vali
 | Phikon-v2, case means |65.8% /68.8%|.4975 /.5325|
 | EfficientNetV2B0, case-supervised |46.5% /53.3%|.2346 /.3108|
 | Phikon-v2, field supervision |66.7% /69.5%|.4975 /.5207|
-| **Midnight-12k, case means** |**72.0% /71.3%**|**.5558 /.5350**|
+| Midnight-12k, case means |72.0% /71.3%|.5558 /.5350|
 | Midnight-12k, field supervision |73.7% /70.0%|.5732 /.5017|
+| **Midnight-12k, similarity dual-step** |**75.7% /75.0%**|**.5897 /.5643**|
 
-Midnight case means improve both accuracy and macro F1 on both arrangements; the field method has a higher first-arrangement result but a weaker second one. All20 Midnight direct/dual paired runs and their saved predictions were verified. The next registered similarity classifier uses this same cached encoder and fitting cases. [Current report](paper/breakhis-five-class-report.md) · [First-five reference](docs/BREAKHIS_FIVE_CLASS_RESULTS.md) · [Completed CNN comparison](docs/BREAKHIS_CASEBAG_RESULTS.md).
+Midnight case means improve both accuracy and macro F1 on both arrangements; the field method has a higher first-arrangement result but a weaker second one. All20 Midnight direct/dual paired runs and their saved predictions were verified. The complete ten-run similarity comparison also improves accuracy and macro F1 on both arrangements. Malignant subtype errors remain; one fixed last-layer adapter experiment is being implemented. [Current report](paper/breakhis-five-class-report.md) · [First-five reference](docs/BREAKHIS_FIVE_CLASS_RESULTS.md) · [Completed CNN comparison](docs/BREAKHIS_CASEBAG_RESULTS.md).
 
 The supplied notebooks saved93.73%/94.99% on eight-type40× individual images with image-random, reused validation. Their task, prediction unit and split differ from this five-category case experiment. [Before/now explanation](docs/CAPSTONE_BEFORE_AND_NOW.md). Original notebooks and earlier results remain historical evidence.
 

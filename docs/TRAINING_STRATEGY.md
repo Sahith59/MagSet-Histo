@@ -1,3 +1,5 @@
+Latest November16 result: **75.67%/75.00%** final two-step accuracy and macro F1.5897/.5643 for the completed Midnight similarity classifier, on the same splits and15-subset scoring. This supersedes72.00%/71.33% as the best current paired accuracy result. [Verified similarity comparison](BREAKHIS_KERNEL_RESULTS.md). One bounded last-layer adapter comparison is being implemented;94–95% remains unachieved. Earlier execution notes below retain their original scope.
+
 # Latest training update — November16
 
 Our best current two-step model uses **frozen Midnight-12k** to turn each tissue image into3072 numbers. Average images within each microscope zoom, normalize using fitting cases only, then average the available zoom descriptions and add four view-availability flags. A small trained binary classifier decides benign/malignant. A second classifier, fitted on35 malignant cases, chooses ductal/lobular/mucinous/papillary. Benign stops at the first decision.

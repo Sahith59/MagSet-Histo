@@ -1,6 +1,6 @@
 # One bounded Midnight adapter comparison
 
-Registered November16,2026, before fitting. Goal: improve the five-category BreakHis capstone model, especially malignant subtype recognition. Current frozen Midnight case-dual accuracy is72.0%/71.3%. This standard LoRA experiment is a candidate improvement, without a94–95% guarantee or novelty claim. [Feasibility review](reviews/MIDNIGHT_LORA_FEASIBILITY.md) · [Fixed configuration](../configs/breakhis-midnight-lora-v1.json).
+Registered November16,2026, before fitting. Goal: improve the five-category BreakHis capstone model, especially malignant subtype recognition. Current frozen Midnight case-dual accuracy is72.0%/71.3%; the subsequently completed similarity dual-step improves to75.67%/75.00%. Both are pinned references before adapter fitting. This standard LoRA experiment is a candidate improvement, without a94–95% guarantee or novelty claim. [Feasibility review](reviews/MIDNIGHT_LORA_FEASIBILITY.md) · [Fixed configuration](../configs/breakhis-midnight-lora-v1.json).
 
 ## Same task and cases
 

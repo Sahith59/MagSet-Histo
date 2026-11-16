@@ -1,3 +1,5 @@
+Latest November16 result: **75.67%/75.00%** final two-step accuracy and macro F1.5897/.5643 for the completed Midnight similarity classifier, on the same splits and15-subset scoring. This supersedes72.00%/71.33% as the best current paired accuracy result. [Verified similarity comparison](BREAKHIS_KERNEL_RESULTS.md). One bounded last-layer adapter comparison is being implemented;94–95% remains unachieved. Earlier execution notes below retain their original scope.
+
 # Next tasks: finish the BreakHis capstone
 
 Updated November16,2026. The November14 timing request gives a working package deadline of November17–18 and presentation around November20. Exact day and rubric are unspecified. **BreakHis remains main; the corrected target is five final categories with four magnifications.** TCGA and novel-paper development are deferred.

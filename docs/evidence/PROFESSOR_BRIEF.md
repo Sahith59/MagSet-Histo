@@ -1,3 +1,5 @@
+Latest November16 result: **75.67%/75.00%** final two-step accuracy and macro F1.5897/.5643 for the completed Midnight similarity classifier, on the same splits and15-subset scoring. This supersedes72.00%/71.33% as the best current paired accuracy result. [Verified similarity comparison](../BREAKHIS_KERNEL_RESULTS.md). One bounded last-layer adapter comparison is being implemented;94–95% remains unachieved. Earlier execution notes below retain their original scope.
+
 # BreakHis five-category capstone: current evidence
 
 Updated November16,2026. We classify breast tissue as benign or one of four malignant types: ductal, lobular, mucinous or papillary carcinoma. The two-step system first predicts benign/malignant, then gives a malignant subtype. Only BreakHis images/labels are fitted/evaluated. TCGA follow-up is deferred.

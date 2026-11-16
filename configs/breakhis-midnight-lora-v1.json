@@ -145,5 +145,7 @@
     "accuracy_not_lower": true,
     "positive_recall_all_five_classes": true
   },
-  "interpretation": "one bounded standard-LoRA adaptation study of a joint initialization/augmentation/adapter recipe on reused provider-case development roles; no LoRA-only causal attribution, novelty or95% guarantee; CPU cached-feature replay is not independent raw-image adapted-encoder reproduction"
+  "interpretation": "one bounded standard-LoRA adaptation study of a joint initialization/augmentation/adapter recipe on reused provider-case development roles; no LoRA-only causal attribution, novelty or95% guarantee; CPU cached-feature replay is not independent raw-image adapted-encoder reproduction",
+  "support_reference_comparison_sha256": "e6e98fc26b3579261baf39b677e75551f7bbfbc5f3a7fe399db59c7169511274",
+  "support_reference_file": "docs/evidence/BREAKHIS_MIDNIGHT_KERNEL_RESULTS.json"
 }
