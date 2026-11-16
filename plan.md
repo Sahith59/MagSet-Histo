@@ -1,3 +1,5 @@
+Approved-reader continuation, November 16. User approval and authenticated cluster access are confirmed for UNI2-h, Virchow2 and H-optimus-0. The separately registered fixed-reader comparison is now being executed. Read [its recipe](docs/BREAKHIS_APPROVED_ENCODERS_SPEC.md) and [the plain-language project guide](docs/PROJECT_EXPLAINED.md). The earlier completed-round results below remain accepted historical evidence. New model scores are pending.
+
 # Completed improvement round — November 16, 2026
 
 The user-requested data/model diagnosis and model search are complete. GenBio dual 70.50%/75.17% and whole-case MIL mean 70.17%/71.83%, attention 71.67%/70.50% do not consistently improve the retained two-step references. P remains the strongest two-step macro-F1 readout, with 76.33%/75.67% accuracy and 85%/85% all-four-view accuracy (separate endpoint). F retains 76.83% second-arrangement accuracy. GenBio’s 77.83%/.6406 one-stage 813 control is recorded separately. 95% remains unachieved.

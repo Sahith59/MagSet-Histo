@@ -62,5 +62,29 @@
   "family_candidate_pipelines": 240,
   "family_encoder_choices": 3,
   "family_settings_per_arm_role": 12,
-  "status": "registered numerical recipe; actual feature SHA bindings pending accepted full extraction"
+  "status": "accepted complete frozen features; registered numerical recipe",
+  "feature_producer_code_sha": "375bcbc499770635dde6c9586c5ce49e2c44300d",
+  "feature_audit_sha256": "7165f9eda9a16790c6a4ec3be95e2454c9fe687a17a5099d2d55ed9ca7be4423",
+  "cache_provenance": {
+    "40": {
+      "npz_sha256": "0eb6812aef04c48f68889503eabc4654cf381db0ef2f4a21ec0ed9b658ec2926",
+      "json_sha256": "072398747f3ac95d8434afe67e3ebc7f0253dd106126cb2c30698f3f35fcb7b0",
+      "images": 1995
+    },
+    "100": {
+      "npz_sha256": "a903e51fdb528436d7869fcbdddb3b5d067e7377382aa6442f5152c0976dd313",
+      "json_sha256": "2840327681d655d63ed9bc8921ca9320da1473f25f19befe6c36cb219d68130b",
+      "images": 2081
+    },
+    "200": {
+      "npz_sha256": "0de8040187f0d7ad22513a8cdc3440f17d51cec2c8271dfe39632ca99b62ca1b",
+      "json_sha256": "1df826ee1b28383cda782fa6bbee551c30d98afea7f531590e8a221030b7936c",
+      "images": 2013
+    },
+    "400": {
+      "npz_sha256": "b4032d7c31e3ba3e18c14d7286b12c4d1c4e6268914c07b18d884ef40b223f3e",
+      "json_sha256": "d5099a850ea89596c36627acffd438f51385a72e3bbbc4f154e80cff88887a7c",
+      "images": 1820
+    }
+  }
 }
