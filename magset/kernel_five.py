@@ -104,12 +104,12 @@ def audit_input(args):
                     'new_forwards': 0, 'outer_predictions': 0, 'checks': checks, **context})
 
 
-def run(args):
+def run(args, inputs=None):
     from .kernel_model import support_summary
     started = time.monotonic(); output = Path(args.output)
     if output.exists():
         raise ValueError('Refusing existing run output')
-    config, context, trusted, cases, bags, z, y5, roles = load_inputs(args)
+    config, context, trusted, cases, bags, z, y5, roles = load_inputs(args) if inputs is None else inputs
     audit_path = Path(args.audit)/'audit.json'
     verify_audit(read_json(audit_path), context, config, bags, y5, roles)
     train, val, excluded = roles[args.seed, args.trial]
