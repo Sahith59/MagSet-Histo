@@ -52,9 +52,30 @@
   "interpretation": "samefourtemperatureKDE/providerroles, one frozen native global-input representation versus accepted3crop andsinglecenter references; no optimized classifiercoefficients or95% guarantee",
   "native_extraction_config": "configs/midnight-native-v1.json",
   "native_extraction_config_sha256": "71528e9b654b94bcfd880267b1640d882637580c17d19f00c8d161d2756cd1dc",
-  "feature_producer_code_sha": null,
-  "feature_audit_sha256": null,
-  "cache_provenance": {},
+  "feature_producer_code_sha": "9eeb4edfad0822cb59518de86376efb687b240f3",
+  "feature_audit_sha256": "51e4680bbffa2262997f23e54ea43191d8f605297e692aba00330d629903b9b9",
+  "cache_provenance": {
+    "40": {
+      "npz_sha256": "33b02128e0dae86de10d429e49ea99c11ebec6a2613baacf3df83d9d50705bc3",
+      "json_sha256": "9f655f16c026ec06094e510f0df84a54844611f4e369c6704ee8aa21636b1956",
+      "images": 1995
+    },
+    "100": {
+      "npz_sha256": "9c643b162ed8897dcdf9077729570d8562ed39a181219cb87b0283055fdcc5d6",
+      "json_sha256": "5fbee27d85e1dbcede2a6257c0b7dbbf60960c12715abb2664e0ab644f7afafc",
+      "images": 2081
+    },
+    "200": {
+      "npz_sha256": "eb829246318605026a45dd93fe3fd9325c5ab25f7910e2338f9bd3df2a75a701",
+      "json_sha256": "4db2df0c5971a440178961f539e8ec11fce26f495d685077b56661b38c0704ee",
+      "images": 2013
+    },
+    "400": {
+      "npz_sha256": "c13a83c91c2d319fb40e1718e9d60090f4a034bbf11cafacd1b43fe2ccff2a08",
+      "json_sha256": "cc9bf136e1a252b5facba871ccb35bf8dd116b6a94b25c48870d245a85b3b257",
+      "images": 1820
+    }
+  },
   "reference_file": "docs/evidence/BREAKHIS_COVERAGE_RESULTS.json",
   "secondary_reference_file": "docs/evidence/BREAKHIS_MIDNIGHT_KERNEL_RESULTS.json",
   "secondary_reference_comparison_sha256": "e6e98fc26b3579261baf39b677e75551f7bbfbc5f3a7fe399db59c7169511274",
