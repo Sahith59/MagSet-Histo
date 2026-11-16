@@ -52,8 +52,33 @@
   "interpretation": "one frozen three-horizontal-crop feature mean versus accepted single-center KDE, same four temperature opportunities and provider roles; no coefficient fits, no novelty or95% guarantee",
   "coverage_extraction_config": "configs/midnight-coverage-v1.json",
   "coverage_extraction_config_sha256": "6caada1cb238a41d483e3e2cd9eb3f2f362c44b9073b07a96456a99599e81e98",
-  "feature_producer_code_sha": null,
-  "feature_audit_sha256": null,
-  "cache_provenance": {},
+  "feature_producer_code_sha": "0ceb91c4036333d5043aa60f769a082e277f1eb6",
+  "feature_audit_sha256": "6547bf186f06b96065d60a87e5eeddbad1a60f784ca3fa140a661891098bfd75",
+  "cache_provenance": {
+    "40": {
+      "npz_sha256": "8a046800aeb9a4370a67f54c80570144fd225aa0308381654637cf2d013b976b",
+      "json_sha256": "3590eb47a29f1301d18b05f35788e764c38684c1677a0a27ec6f57e0ea295034",
+      "components_sha256": "ce4b32bc01e5a0af2b2f6f65da0e4cdca5dc36d274ee5c4fabfc1cf15f98ad80",
+      "images": 1995
+    },
+    "100": {
+      "npz_sha256": "92daaf3aabf798393abaef24d9105dbfb5a4f96bbcae5f3f91fce51076257b8c",
+      "json_sha256": "09ad2349246794fb9e552493f95fd3a2be79bba0566c06630d2b1ba136f981a6",
+      "components_sha256": "2ed782604b00425649835c35f1f921df1488340530d7f76a6921077d5c113001",
+      "images": 2081
+    },
+    "200": {
+      "npz_sha256": "aca2d44df60dfdaef859794e8aa46d9f9607807eecd86dc3cf17e52eaaae3bdc",
+      "json_sha256": "f5af0aedeceb6d1b16fe29e04199a35582f8caf7a3da29d5fb92be93eedcb48c",
+      "components_sha256": "d655d13d1c58105efb72b9a31ef74726ab5939c2d0c0bef5aab8ae45a8c9e87f",
+      "images": 2013
+    },
+    "400": {
+      "npz_sha256": "2695ed3a434fc56fea9707064f36315526de399914ad40285f91f6a63596c2d0",
+      "json_sha256": "e8f30f902d7feae8b4f6a26a604e6ceb84c1be0d84af1c1c60390ae2eeabcba1",
+      "components_sha256": "1d01e78d4ffdcf862f90b80e535b6eec0170fced9d12e00015b8ad1cd5751df0",
+      "images": 1820
+    }
+  },
   "coverage_new_crop_forwards": 15818
 }
