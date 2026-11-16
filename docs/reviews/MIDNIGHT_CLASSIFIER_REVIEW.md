@@ -1,0 +1,37 @@
+# Midnight two-readout classifier: source and collector review
+
+November 15, 2026. Reviewed the new `midnight_five.py` runner and `midnight_collect.py` controller against the parent's predeclared study. This review writes no model/configuration changes and performs no fitting, downloads, scheduler submissions or encoder execution. The fixture coefficients are assigned directly; they establish implementation behavior, not research accuracy.
+
+**Finding:** the two-readout implementation is ready for the parent's remaining source checks and immutable, cache-bound registration. Actual cache acceptance and actual classifier outputs are outstanding. Neither this review nor synthetic fixtures establish a Midnight improvement or a 94–95% result.
+
+## Registered scientific contract
+
+The study uses frozen Midnight-12k 3072-dimensional field descriptors from all four BreakHis magnifications. It retains the original-eight-derived provider-case roles, then applies the final-five map: pooled benign, ductal, lobular, mucinous and papillary carcinoma. Every run has 46 fitting/eight validation/28 excluded cases and fitting support `[11,25,2,5,3]`; validation support remains `[4,1,1,1,1]`. No benign subtype expert is introduced.
+
+Both readouts are declared before classifier fitting. The case readout averages original field features within each view, applies the saved fitting-only field-moments normalization, averages available standardized views and appends four availability flags. It uses the existing per-head balanced case/subset logistic objective. The field readout uses the existing field-supervised objective: normalized field vectors plus one-hot magnification indicators, weights `N_head/(K_head*N_cases_in_class*4*N_fields_in_case_view)`, and head masses 46/46/35. Its specialist fits only true malignant cases.
+
+Field inference composes each field's joint five-class probability vector before averaging within its view and then equally across available views. Case routing and conditional malignant probabilities come from that pooled joint distribution. Both readouts hard-route malignant at probability at least 0.5, then choose the largest malignant subtype. The explicit hard label, rather than the composed five-vector's argmax, controls two-step classification metrics and selection.
+
+Each readout contains ten paired direct/dual runs, four complete C candidates per arm and 120 individual heads. Together the matrix contains 20 paired runs, 160 complete candidates, 240 heads, 160 saved model archives, 320 prediction archives and 129,600 dependent case/subset records. These records reuse the same provider keys across trials, readouts and subsets; they are not independent patients.
+
+## Runner and provenance inspection
+
+`midnight_five.load_inputs` requires the supplied classifier configuration bytes to equal the canonical configuration inside the immutable source snapshot. Only the audited cache bindings are filled after extraction; all recipe choices remain predeclared. The source/archive receipts and dependency-file hashes bind execution, while the new classifier configuration binds the four feature/metadata archives, feature producer revision, extraction configuration, encoder definition, manifest and provider protocol.
+
+The cache loader verifies exact artifact hashes, producer/extraction/source lineage, path coverage, finite features, magnifications and 3072-dimensional representations. It reconstructs original eight-class roles before label pooling and checks exact supports and disjointness. Source files from the frozen extraction producer must remain unchanged in the classifier snapshot because their recorded hashes are part of the cache lineage check.
+
+The common zero-fit audit checks all ten role normalizers and memberships. Common context has no readout. Each run adds its explicit `readout` to that context and preserves the existing case or field run status/schema. This lets the existing dimension-aware verifier check saved models and replay scores without changing historical baseline or field mathematics. No extra gradient-magnitude rejection rule is introduced: finite field objective/gradient diagnostics are recorded and independently replayed, while the declared solver convergence controls remain in force.
+
+## Complete-matrix collector
+
+The new collector checks the canonical two-readout/ten-role/four-C contract before examining results. It refuses incomplete readouts, missing candidates, extra model/prediction files or extra roles before publication. It delegates case verification to the existing case verifier and field verification to the independently written field verifier, passing the mandatory readout context. These check trusted original labels/memberships, bitwise fitting-only normalization, class order, model/prediction hashes, every mean-15 metric, earliest maximum selection and explicit routing. The field verifier also reconstructs field counts, weights, weighted objectives and gradients and independently replays joint-probability pooling.
+
+The fixed old Phikon case-mean two-step comparison is bound by SHA256 `bb97c03d22e4299da5ebd7a629cfd9d8c4693d3454feb05211607f7b80a4a795`. Its manifest, provider protocol, original/final class orders, canonical base configuration, run matrix, C grid, route rule, case supports and subset counts are checked. **Its encoder and feature-cache hashes intentionally differ from Midnight.** Requiring encoder equality would incorrectly reject the representation experiment; the Phikon-specific field collector reference checker is therefore not reused unchanged.
+
+Output separates readout, arrangement and arm, with complete fitting/validation metrics, per-trial candidates and failures retained. Each readout's primary two-step screen requires macro F1 at least 0.02 above the fixed old Phikon dual, raw accuracy no lower and positive recall in every final class, separately on both arrangements. `gate_passed_by_readout` reports those two predeclared screens independently after the whole matrix passes verification. There is no implicit best-of-readouts aggregate or partial-result ranking. Current direct-versus-dual and Midnight field-versus-case deltas are descriptive. Identifier/path guards apply to the complete public comparison.
+
+## Verification and remaining work
+
+Seven collector tests pass under cached offline Python 3.11, NumPy 1.26.4, SciPy 1.15.2, scikit-learn 1.6.1 and Pillow 11.1.0. They cover delegated case/field replay without fitting, required readout identity, a 3072-dimensional saved-head fixture, corrupted field objectives despite updated metadata, complete-matrix counters, separate per-readout gates, missing-readout/extra-role publication rejection, contract tampering, and the deliberate cross-encoder reference comparison with unchanged task/role checks. Complete-controller tests mock already verified per-run results; separate delegated fixtures exercise actual score/coefficient/objective verification.
+
+Before any new performance claim, the parent still needs accepted real feature-cache receipts, the immutable classifier source/configuration, the actual zero-fit audit, all registered fits and complete actual-output verification. All measured outcomes must retain exploratory provider-case validation scope. Rare-class scarcity, unresolved clinical identity and reuse of all 82 provider keys remain unchanged. TCGA follow-up remains deferred.
