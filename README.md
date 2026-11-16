@@ -4,7 +4,7 @@ BreakHis is our main dataset. We are building a breast histology classification 
 
 The system first decides **benign or malignant**. Benign is the final answer; malignant images proceed to a specialist that chooses ductal, lobular, mucinous or papillary carcinoma. We use the available 40×/100×/200×/400× images of each provider case and evaluate all 15 nonempty zoom combinations. [Task and architecture](docs/DUAL_STEP_SCOPE.md) · [Plain-language training guide](docs/TRAINING_STRATEGY.md).
 
-**Latest verified result:** decision-specific centering has our highest observed macro F1 among two-step pipelines, **.6027 / .6025**, with **76.33% / 75.67% final five-category accuracy**. With all four zooms available, accuracy is 85% in both arrangements; that is a separate endpoint. Changes are mixed: the earlier three-crop model still has higher second-arrangement accuracy at 76.83%. **94–95% final accuracy has not been achieved.** [Latest results](docs/BREAKHIS_PRIOR_CENTERED_RESULTS.md) · [Professor brief](docs/evidence/PROFESSOR_BRIEF.md).
+**Current retained reference:** decision-specific Midnight centering scores **76.33% / 75.67% final five-category accuracy**, with **85% / 85%** in the separate all-four-view condition. The newly completed UNI2-h comparison has the highest observed first-arrangement two-step macro F1, **.6642**, and scores **75.83% / 75.17% accuracy**. Midnight centering retains the second-arrangement two-step F1 lead at **.6025**. All three approved-reader comparisons failed their overall paired improvement screens. **94–95% final accuracy remains unachieved.** [Complete approved-reader results](docs/BREAKHIS_APPROVED_ENCODERS_RESULTS.md) · [Plain-language history and metric definitions](docs/PROJECT_EXPLAINED.md).
 
 The complementary GenBio reader and whole-case mean/attention round is complete and verified. Neither consistently improves the requested two-step endpoint. All 40 GPU training trajectories and ten paired GenBio classifier jobs completed; all 370 neural tests passed. [Completed execution and decision](docs/BREAKHIS_NEXT_ROUND_STATUS.md).
 
@@ -29,10 +29,13 @@ Accuracy/F1 below averages all 15 zoom combinations and five overlapping trials 
 | GenBio-PathFM similarity |70.50% /75.17%|.5837 /.5813|
 | Whole-case learned mean |70.17% /71.83%|.5199 /.5094|
 | Whole-case gated attention |71.67% /70.50%|.5453 /.5234|
+| UNI2-h similarity |75.83% /75.17%|**.6642** /.5752|
+| Virchow2 similarity |72.50% /73.00%|.5758 /.5387|
+| H-optimus-0 similarity |73.50% /71.17%|.5097 /.5062|
 
 GenBio's one-stage control scores 71.33%/77.83%, F1 .5960/.6406. Its stronger 813 result is a different readout, with weaker 812 accuracy; it does not establish a two-step gain. [GenBio results](docs/BREAKHIS_GENBIO_RESULTS.md) · [Whole-case results](docs/BREAKHIS_CASE_MIL_RESULTS.md).
 
-All comparisons above are complete and verified. More pixels and extra adapter training did not automatically help. Decision-specific centers produce modest F1 gains, with accuracy and recall tradeoffs; both centering modes fail the registered larger-improvement screen. Their direct-five controls are exact duplicates, leaving four structurally unique direct settings and eight dual settings across the mode family. No novel mechanism or 95% result is established. [Native negative result](docs/BREAKHIS_NATIVE_RESULTS.md) · [Centering evidence](docs/BREAKHIS_PRIOR_CENTERED_RESULTS.md) · [Full scorecard](paper/breakhis-five-class-report.md).
+All comparisons above are complete and verified. The three newly approved readers add frozen-feature comparisons under the same registered roles and decision structure. UNI2-h improves first-arrangement F1, with lower accuracy than the retained reference in both arrangements. Decision-specific centers produce modest F1 gains, with accuracy and recall tradeoffs; both centering modes fail the registered larger-improvement screen. Their direct-five controls are exact duplicates, leaving four structurally unique direct settings and eight dual settings across the mode family. No novel mechanism or 95% result is established. [Native negative result](docs/BREAKHIS_NATIVE_RESULTS.md) · [Centering evidence](docs/BREAKHIS_PRIOR_CENTERED_RESULTS.md) · [Full scorecard](paper/breakhis-five-class-report.md).
 
 The main weakness remains malignant typing. The latest head-specific model scores 94.83%/93.00% on benign/malignant routing, but 58.33%/62.33% on true-malignant subtyping. Binary accuracy is not final five-category accuracy. Only BreakHis images/labels are fitted/evaluated; public pathology pretraining is external transfer learning.
 
