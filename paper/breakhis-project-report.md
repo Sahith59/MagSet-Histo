@@ -1,8 +1,8 @@
-# BreakHis project report: current evidence draft
+# Historical eight-class BreakHis project report
 
-**November15 scope correction:** the requested next system has five final labels: pooled benign plus four malignant types. It makes a binary decision first and applies malignant subtyping only after a malignant decision. This system has not been trained/evaluated. The eight-class results below are the earlier baseline and must not be presented as five-class performance. [Corrected target and score definitions](../docs/DUAL_STEP_SCOPE.md).
+**This is the earlier eight-class report.** For the current five-category project, use [the five-category report](breakhis-five-class-report.md) and [Professor Dong’s current brief](../docs/evidence/PROFESSOR_BRIEF.md). The trained five-category frozen-feature comparison is complete: the dual-step pipeline scored65.8%/68.8% validation accuracy across the two split arrangements. A separately registered EfficientNet comparison is entering technical GPU checks; its results are pending.
 
-Working report for review with Professor Dong, November14,2026. The evidence package is due November17–18 for a presentation around November20; exact day and rubric are unspecified. All planned comparisons and independent artifact reviews are complete. It is not a submission-ready manuscript or a novel-method claim. The older [methods draft](methods-draft.md) records earlier experimental rounds.
+The eight-class results and score definitions below are retained as historical evidence. In that older eight-class validation set there was one case per class, so accuracy equaled balanced accuracy. In the current five-category set there are four benign cases and one case per malignant type: accuracy and balanced accuracy differ. Do not present this report, the earlier eight-class deck, or its replay viewer as the current five-category model or presentation.
 
 ## Question
 

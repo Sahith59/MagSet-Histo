@@ -51,6 +51,8 @@ Open the [verified prediction replay](docs/evidence/CAPSTONE_PREDICTION_REPLAY.h
 
 Earlier eight-class baseline materials (not yet revised for the new five-category target): [ten-slide PDF](output/pdf/BreakHis-Capstone.pdf), [browser presentation](docs/evidence/CAPSTONE_PRESENTATION.html), [report](paper/breakhis-project-report.md) and [plain-language rehearsal guide](paper/capstone-rehearsal.md).
 
+The stronger [EfficientNet five-category experiment](docs/BREAKHIS_CASEBAG_STATUS.md) is registered. Its two A40 technical checks passed independent review; the20 full training runs are launched as array4979622 (four active, sixteen queued at the first check). Results are pending. The earlier decks and replay viewer remain eight-class historical artifacts.
+
 ## Run checks
 
 ```bash

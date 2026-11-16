@@ -14,16 +14,18 @@ The user superseded the earlier eight-type hierarchy choice. Final labels are be
 - No-fit image endpoint bridge complete and independently checked on all ten runs.
 - Retrospective benign/malignant secondary analysis complete: retained accuracy87.0%/80.7%; sensitivity/specificity and all three earlier pipelines reported. This does not replace eight-class evaluation.
 - Fresh raw-image replay4971403 completed in39s:121 fields,15 combinations, maximum probability difference6.05e-08; no fitting or outer scoring.
-- Three GPT-6.1 Sol review streams completed. Full pinned local suite:119 tests passed. Latest queue check: no active MagSet job; unrelated jobs untouched.
+- Three GPT-6.1 Sol review streams completed. The earlier pinned suite had119 tests; the current CNN source passed162 tests. Technical A40 checks4979613 passed independent review;20 full fits are submitted as array4979622. Unrelated jobs remain untouched.
+
+[Current CNN execution record](BREAKHIS_CASEBAG_STATUS.md).
 
 ## Current work queue
 
 | Order | Work | Completion condition |
 | --- | --- | --- |
 | 1 | Preserve first five-class comparison | Complete:147tests,120headfits/fullcollector/independent numeric review; mixed negative result retained |
-| 2 | Fix next case-supervised CNN recipe | One EfficientNetV2B0 direct5/dual pair, same cases; freeze source/config before fitting |
-| 3 | Verify setup and technical execution | Pinned public weight/package bytes, strict source/unit review and two fitting-only A40 smoke fits; production blocked until acceptance |
-| 4 | Run bounded CNN comparison | Twenty fixed50epochfits, four checkpoint opportunities, maxfour A40 GPUs; all outcomes retained |
+| 2 | Fix next case-supervised CNN recipe | Complete: source `b5f0df1` and recipe frozen before fitting;162 tests passed |
+| 3 | Verify setup and technical execution | Preparation and zero-fit audit passed; both fitting-only A40 technical checks completed. Independent actual-output acceptance passed2,512 assertions |
+| 4 | Run bounded CNN comparison | Submitted array4979622:20 fixed50epoch fits, four checkpoint opportunities, maxfour A40 GPUs; all outcomes retained |
 | 5 | Update report/demo/presentation and rehearse | Only accepted measured results; Nov17–18 working materials/~Nov20 presentation; novelty/fresh confirmation later |
 
 
