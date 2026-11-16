@@ -57,7 +57,7 @@
   "secondary_reference_file": "docs/evidence/BREAKHIS_COVERAGE_RESULTS.json",
   "secondary_reference_comparison_sha256": "39d15d949e9fdbf0606b407f1eb364b456cbbec36d896d3fb263e68a9f35699c",
   "genbio_extraction_config": "configs/genbio-pathfm-v1.json",
-  "genbio_extraction_config_sha256": "4ab5fbcaa5714871d49ec41c70f7e3f667ae3802d14585a014a5ca24e3e720ca",
+  "genbio_extraction_config_sha256": "5aade0caf760d44292b085e00569d609e11c06821b6218d48912c09b16205b8a",
   "context_reference_file": "docs/evidence/BREAKHIS_PRIOR_CENTERED_RESULTS.json",
   "context_reference_comparison_sha256": "b9e0616382099a405295a211bae15dab4625091b68620a1e647196a51ebe1e3c",
   "genbio_image_forwards": 7909,

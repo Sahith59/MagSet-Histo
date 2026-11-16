@@ -41,6 +41,9 @@ def audit(config_path, manifest, cache, code_sha):
             'implementation_hashes': {'genbio_features.py': file_hash(producer.__file__), 'audit_genbio_features.py': file_hash(__file__)},
             'input_shape': config['input_shape'], 'token_shape_per_channel': config['expected_token_shape_per_channel'],
             'channels_per_image': 3, 'output_dimension': 4608, 'image_forwards': images, 'channel_forwards': 3*images,
+            'model_image_batch_size': 1, 'host_batch_size': 4,
+            'model_batch_policy': config['execution']['model_batch_policy'],
+            'batch_parity_scope': 'outer host-batch partition invariance under canonical one-image model calls',
             'new_fits': 0, 'new_encoder_forwards': 0, 'image_decodes': 0}
 
 

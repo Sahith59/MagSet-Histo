@@ -18,10 +18,14 @@ from .coverage_features import select_rows
 from .breakhis_predict import load_checked_image
 from .data import MAGNIFICATIONS, file_hash
 
-CONFIG_SHA256 = '4ab5fbcaa5714871d49ec41c70f7e3f667ae3802d14585a014a5ca24e3e720ca'
+CONFIG_SHA256 = '5aade0caf760d44292b085e00569d609e11c06821b6218d48912c09b16205b8a'
 DIMENSION = 4608
 PRECISION = 'FP32 parameters/inputs; official BF16 RoPE; no autocast; TF32 disabled'
 ATTENTION = 'torch_scaled_dot_product_attention'
+MODEL_IMAGE_BATCH_SIZE = 1
+HOST_BATCH_SIZE = 4
+BATCH_POLICY = 'one original image per model call; host batches4 only I/O'
+BATCH_PARITY_SCOPE = 'outer host-batch partition invariance under canonical one-image model calls'
 ARTIFACTS = {
     'model.safetensors': (4534810816, '1bb298ba3431352ad6d7b85a2c34874b42db05ef8749079a7999fa8c37cd4461'),
     'config.json': (993, 'ed5f1ecf200bc3bfcef37270ac73560d2633a7dbe31ec143743c25c120705c1f'),
@@ -46,6 +50,9 @@ def read_config(path):
             or config['input_shape'] != [3, 224, 224]
             or config['expected_token_shape_per_channel'] != [201, 1536]
             or config['channels_per_image'] != 3
+            or config['execution']['batch_size'] != HOST_BATCH_SIZE
+            or config['execution']['model_image_batch_size'] != MODEL_IMAGE_BATCH_SIZE
+            or config['execution']['model_batch_policy'] != BATCH_POLICY
             or config['parity'] != {'atol': 1e-4, 'rtol': 1e-4}):
         raise ValueError('Registered GenBio representation differs')
     return config
@@ -142,14 +149,23 @@ def genbio_pixels(image):
 
 
 def classification_features(model, pixels):
+    """Canonical one-original-image calls, independent of outer I/O partitioning.
+
+    Each official call still expands its one RGB image to three single-channel
+    examples. Native multi-image model batches failed the registered GPU parity
+    smoke; this wrapper makes the permitted execution shape explicit.
+    """
     import torch
-    if (pixels.ndim != 4 or pixels.shape[1:] != (3, 224, 224) or not pixels.is_contiguous()
+    if (pixels.ndim != 4 or not len(pixels) or pixels.shape[1:] != (3, 224, 224) or not pixels.is_contiguous()
             or pixels.dtype != torch.float32 or not torch.isfinite(pixels).all()):
         raise ValueError('GenBio input must be finite contiguous FP32 B3HW')
-    value = model(pixels)
-    if value.shape != (len(pixels), DIMENSION) or value.dtype != torch.float32 or not torch.isfinite(value).all():
-        raise ValueError('Expected finite FP32 official RGB-channel CLS features')
-    return value
+    rows = []
+    for index in range(len(pixels)):
+        value = model(pixels[index:index+1])
+        if value.shape != (1, DIMENSION) or value.dtype != torch.float32 or not torch.isfinite(value).all():
+            raise ValueError('Expected finite FP32 official RGB-channel CLS features')
+        rows.append(value)
+    return torch.cat(rows, dim=0)
 
 
 def encode_batches(encoder, pixels, batch_size=4):
@@ -173,6 +189,8 @@ def metadata(config, paths, magnification, limit, code_sha):
             'token_shape_per_channel': config['expected_token_shape_per_channel'],
             'patch_grid': [14, 14], 'channels_per_image': 3, 'output_dimension': DIMENSION,
             'official_rope_dtype': 'bfloat16', 'frozen_base': True, 'attention_implementation': ATTENTION,
+            'model_image_batch_size': MODEL_IMAGE_BATCH_SIZE, 'host_batch_size': HOST_BATCH_SIZE,
+            'model_batch_policy': BATCH_POLICY, 'batch_parity_scope': BATCH_PARITY_SCOPE,
             'precision': PRECISION, 'transform': config['encoder']['transform'],
             'parity_atol': config['parity']['atol'], 'parity_rtol': config['parity']['rtol'],
             'image_forwards': image_forwards, 'channel_forwards': 3*image_forwards}

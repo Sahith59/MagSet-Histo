@@ -50,6 +50,9 @@ class GenBioArtifactTests(unittest.TestCase):
             self.assertEqual(out['image_forwards'], count)
             self.assertEqual(out['channel_forwards'], count*3)
             self.assertEqual(out['token_shape_per_channel'], [201, 1536])
+            self.assertEqual(out['model_image_batch_size'], 1)
+            self.assertEqual(out['host_batch_size'], 4)
+            self.assertEqual(out['batch_parity_scope'], producer.BATCH_PARITY_SCOPE)
         with tempfile.TemporaryDirectory() as tmp:
             p = Path(tmp)/'other.json'; p.write_text('{}')
             with self.assertRaisesRegex(ValueError, 'configuration bytes'): producer.read_config(p)
@@ -85,7 +88,7 @@ class GenBioArtifactTests(unittest.TestCase):
             producer.verify_output(path, paths, config, code_sha='a'*40)
             with self.assertRaises(ValueError): producer.write_output(path, paths, values, record(config, paths))
             meta = path.with_suffix('.json'); original = json.loads(meta.read_text())
-            for key, value in [('channels_per_image', 1), ('output_dimension', 1536), ('official_rope_dtype', 'float32'), ('channel_forwards', 2), ('elapsed_seconds', 0.)]:
+            for key, value in [('channels_per_image', 1), ('output_dimension', 1536), ('official_rope_dtype', 'float32'), ('channel_forwards', 2), ('elapsed_seconds', 0.), ('model_image_batch_size', 4), ('host_batch_size', 1), ('model_batch_policy', 'native multi-image model batches'), ('batch_parity_scope', 'native multi-image versus single model calls')]:
                 altered = dict(original); altered[key] = value; meta.write_text(json.dumps(altered))
                 with self.assertRaises(ValueError): producer.verify_output(path, paths, config, code_sha='a'*40)
             meta.write_text(json.dumps(original)); changed = values.copy(); changed[0, 0] = np.nan
@@ -140,19 +143,46 @@ class GenBioTensorTests(unittest.TestCase):
             self.assertIsNone(geometry['crop_box']); self.assertEqual(geometry['original'], [700, height])
 
     def test_official_channel_reshape_order_and_output_validation(self):
+        calls = []
         class TinyOfficialForward(torch.nn.Module):
             def forward(self, x):
                 b, _, h, w = x.shape
+                calls.append(b)
                 channels = x.view(b*3, 1, h, w)
                 cls = channels.mean((1, 2, 3))[:, None].repeat(1, 1536).view(b, 3, 1536)
                 return torch.cat([cls[:, 0], cls[:, 1], cls[:, 2]], -1)
         pixels = torch.stack([torch.stack([torch.full((224, 224), float(v)) for v in triple]) for triple in [(1, 2, 3), (4, 5, 6)]])
         values = producer.classification_features(TinyOfficialForward(), pixels)
         self.assertEqual(values[:, ::1536].tolist(), [[1, 2, 3], [4, 5, 6]])
+        self.assertEqual(calls, [1, 1])
         with self.assertRaises(ValueError): producer.classification_features(lambda _: torch.zeros(2, 1536), pixels)
         with self.assertRaises(ValueError): producer.classification_features(lambda _: torch.full((2, 4608), float('nan')), pixels)
         with self.assertRaises(ValueError): producer.classification_features(TinyOfficialForward(), pixels.transpose(2, 3))
         with self.assertRaises(ValueError): producer.classification_features(TinyOfficialForward(), pixels.double())
+
+    def test_batch_sensitive_model_is_canonical_across_host_partitions(self):
+        class BatchSensitive(torch.nn.Module):
+            def __init__(self):
+                super().__init__(); self.calls = []
+            def forward(self, x):
+                self.calls.append(len(x))
+                # Deliberate native-batch dependence catches accidental B>1 calls.
+                channel_means = x.mean((2, 3)).repeat_interleave(1536, dim=1)
+                return channel_means + (.001 if len(x) > 1 else 0.)
+        pixels = torch.stack([torch.stack([torch.full((224, 224), float(v)) for v in triple])
+                              for triple in [(0, 1, 2), (3, 4, 5), (6, 7, 8), (9, 10, 11)]])
+        raw = BatchSensitive()
+        self.assertGreater(float((raw(pixels)-torch.cat([raw(pixels[i:i+1]) for i in range(4)])).abs().max()), .0009)
+        canonical = BatchSensitive(); expected = producer.classification_features(canonical, pixels)
+        self.assertEqual(canonical.calls, [1, 1, 1, 1])
+        for partition in ((1, 3), (2, 2), (3, 1), (1, 1, 1, 1)):
+            model = BatchSensitive(); rows = []; start = 0
+            for count in partition:
+                rows.append(producer.classification_features(model, pixels[start:start+count])); start += count
+            actual = torch.cat(rows)
+            self.assertTrue(torch.equal(actual, expected)); self.assertEqual(model.calls, [1]*4)
+            self.assertEqual(producer.base.assert_parity(expected.numpy(), actual.numpy()), 0.)
+        self.assertEqual(expected[:, ::1536].tolist(), [[0, 1, 2], [3, 4, 5], [6, 7, 8], [9, 10, 11]])
 
     def test_tiny_strict_loader_copies_all_parameters_preserves_bf16_buffer_and_rejects_keys(self):
         class Tiny(torch.nn.Module):

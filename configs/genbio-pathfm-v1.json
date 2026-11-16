@@ -89,7 +89,9 @@
     "training": false,
     "technical_smoke_images": 4,
     "max_concurrent_gpu_tasks": 4,
-    "gpu_family": "A40"
+    "gpu_family": "A40",
+    "model_image_batch_size": 1,
+    "model_batch_policy": "one original image per model call; host batches4 only I/O"
   },
   "budget": {
     "preparation_cpu_minutes": 30,
