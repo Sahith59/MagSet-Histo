@@ -1,0 +1,113 @@
+{
+  "name": "genbio-pathfm-v1",
+  "encoder_name": "genbio-pathfm-v1",
+  "schema_version": 1,
+  "manifest_sha256": "958893f923a745220fac66f19656bcdbfb38996f70ef8044e1349619f4102e31",
+  "expected_images": 7909,
+  "expected_shapes": {
+    "700x460": 7835,
+    "700x456": 74
+  },
+  "input_shape": [
+    3,
+    224,
+    224
+  ],
+  "expected_token_shape_per_channel": [
+    201,
+    1536
+  ],
+  "output_dimension": 4608,
+  "channels_per_image": 3,
+  "frozen_base": true,
+  "encoder": {
+    "repository": "genbio-ai/genbio-pathfm",
+    "revision": "6eab2a4ea6fbaee16e5f193187952042ebe5d3ec",
+    "dimension": 4608,
+    "features": "concatenate final CLS from normalized R, G, B single-channel passes through one shared frozen backbone",
+    "weights_file": "model.safetensors",
+    "weights_sha256": "1bb298ba3431352ad6d7b85a2c34874b42db05ef8749079a7999fa8c37cd4461",
+    "weights_size_bytes": 4534810816,
+    "config_file": "config.json",
+    "config_sha256": "ed5f1ecf200bc3bfcef37270ac73560d2633a7dbe31ec143743c25c120705c1f",
+    "config_size_bytes": 993,
+    "model_card_file": "README.md",
+    "model_card_sha256": "262129d34b6c630d3cd53ae8ba7d71893b28852e795552581eba503ad7a110b3",
+    "model_card_size_bytes": 3228,
+    "license": "GenBio AI Community License",
+    "license_file": "LICENSE.txt",
+    "license_sha256": "d94523de4cd4ce315aec6bcc2efc2ad034cc987a1a36f95dcc57e4986450c2ba",
+    "license_size_bytes": 10678,
+    "source_files": {
+      "configuration_genbio_pathfm.py": {
+        "sha256": "30b13fd9e13f1795f640268ed0b72600762c17e65de897489cfd69e638c2d4f0",
+        "size_bytes": 2222
+      },
+      "modeling_genbio_pathfm.py": {
+        "sha256": "c46e835b83475c86f7e87a11458d35ed55a44c0335916d3467bae57f69c9d6c5",
+        "size_bytes": 25633
+      }
+    },
+    "transform": {
+      "resize": [
+        224,
+        224
+      ],
+      "interpolation": "bilinear",
+      "antialias": true,
+      "mean": [
+        0.697,
+        0.575,
+        0.728
+      ],
+      "std": [
+        0.188,
+        0.24,
+        0.187
+      ],
+      "channel_policy": "normalize RGB then contiguous reshape B3HW to (B*3)1HW in R,G,B order"
+    },
+    "official_rope_dtype": "bfloat16",
+    "patch_grid": [
+      14,
+      14
+    ],
+    "storage_tokens": 4
+  },
+  "dependencies": {
+    "torch": "2.6.0+cu124",
+    "transformers": "4.51.3",
+    "safetensors": "0.5.3",
+    "Pillow": "11.1.0",
+    "torchvision": "0.21.0+cu124"
+  },
+  "execution": {
+    "batch_size": 4,
+    "workers": 0,
+    "dtype": "float32",
+    "tf32": false,
+    "training": false,
+    "technical_smoke_images": 4,
+    "max_concurrent_gpu_tasks": 4,
+    "gpu_family": "A40"
+  },
+  "budget": {
+    "preparation_cpu_minutes": 30,
+    "technical_smoke_gpu_minutes": 10,
+    "extraction_minutes_per_magnification": 45,
+    "full_extraction_gpu_hours_requested": 3
+  },
+  "usage": "noncommercial academic downstream classification; no checkpoint, source code or embedding redistribution; retain required model attribution and license receipt privately",
+  "pretraining_overlap": "official sources list HistAI,TCGA,GTEx,REG; no BreakHis named; absence of upstream overlap not independently established",
+  "planned_followup": "unchanged case-centered cosine KDE, same roles/four temperatures/direct-dual; primary C reference, F/P contextual; no automatic fusion/P-center combination",
+  "parity": {
+    "atol": 0.0001,
+    "rtol": 0.0001
+  },
+  "smoke": {
+    "images": 4,
+    "magnification": 40,
+    "image_forwards": 16,
+    "channel_forwards": 48
+  }
+}
