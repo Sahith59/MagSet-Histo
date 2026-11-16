@@ -13,7 +13,7 @@ The experiment asks whether teaching part of the image reader on the actual case
 | Two-step technical check | Array task 4979613_1 completed successfully in 42 seconds |
 | Independent acceptance of actual GPU checks | Accepted; 2,512 independent assertions passed |
 | Twenty full training runs | Array 4979622: first four tasks confirmed running on A40 GPUs, sixteen queued behind the four-task cap; results pending |
-| Complete-matrix results verification | Being implemented independently of the trainer |
+| Complete-matrix results verification | Collector implemented and independently reviewed; 174 full-suite tests passed; actual execution waits for all 20 fits |
 
 The two technical checks each trained on eight fitting cases for two epochs, using two batches per epoch. They tested a heads-only phase, a partial-backbone adaptation phase, and checkpoint save/reload. Each performed 128 training field forwards plus eight reload-probe forwards, with no validation or excluded-case predictions. Both ran on A40 GPUs, reserved about 1.52 GB of GPU memory, and reported zero feature/probability differences on their fixed reload probes. Scheduler elapsed times include startup; internal model lifecycle times were 11.75 and 30.84 seconds. Actual technical-check accuracy is not a validation result and is not reported.
 
@@ -29,6 +29,8 @@ The first submission attempt was rejected by SLURM because the already-completed
 
 These are reused provider-case development results, not a globally untouched clinical test. The 28 excluded cases are excluded per run; all 82 provider keys have entered development somewhere. Repeated trials and magnification combinations are dependent. Clinical identity remains unresolved. No new method, clinical benefit, paper acceptance or 95% result is established by successful execution.
 
-[Registered recipe](BREAKHIS_CASEBAG_SPEC.md) · [Configuration](../configs/breakhis-casebag-v1.json) · [Checkpoint review](reviews/CASEBAG_CHECKPOINT_REVIEW.md) · [Capstone claims review](reviews/CASEBAG_CAPSTONE_CLAIMS_REVIEW.md).
+[Registered recipe](BREAKHIS_CASEBAG_SPEC.md) · [Configuration](../configs/breakhis-casebag-v1.json) · [Checkpoint review](reviews/CASEBAG_CHECKPOINT_REVIEW.md) · [Actual GPU-check review](reviews/CASEBAG_ACTUAL_SMOKE_REVIEW.md) · [Capstone claims review](reviews/CASEBAG_CAPSTONE_CLAIMS_REVIEW.md).
 
 Actual smoke acceptance is bound by SHA256 `4568db1d88a7aae0f8f55cd4b7385de56026a0a00415a1e06abd2bc9e6730ab4`. Independent review checked pretrained and initial-head fingerprints, actual frozen/BatchNorm tensor equality, adaptive parameter changes, optimizer groups and step counts, paired sampling and fitting-only scope. The fixed GPU probes are checked through recorded errors and immutable source guards; their raw arrays were not archived for separate GPU forward re-execution. Production candidate and selected scores do retain replayable arrays.
+
+The separate CPU collector checks all 20 runs and 80 candidate checkpoints before producing any public aggregate. It verifies the frozen training source independently of its own later checker revision, case assignments, pretrained bytes, optimizer lifecycle, saved feature/head probability replay, explicit two-step decisions and checkpoint selection. It decodes no images and performs no CNN forwards. The 12 focused corruption/selection tests passed independently; the full pinned suite passed 174 tests. [Collector source review](reviews/CASEBAG_COLLECTOR_REVIEW.md).
