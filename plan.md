@@ -1,3 +1,9 @@
+## November16 completed adapter result and next bounded tests
+
+All20 adapter fits and collector finished. Two-step68.33%/59.83%, below retained similarity75.67%/75.00%. FixedC1initialization already68.17%/59.50%, and8/10dualcheckpoints arehead-only. [Measured result](docs/BREAKHIS_LORA_RESULTS.md). Next tests: one fixed50/50probability ensemble (no new fitting/weight choice) and one frozen3horizontalcrop representation with the unchanged KDE classifier/four temperatures. Both preserve original roles and the five-category task;94–95% remains unachieved. [Ensemble registration](docs/BREAKHIS_FIXED_ENSEMBLE_SPEC.md) · [Coverage registration](docs/BREAKHIS_COVERAGE_SPEC.md).
+
+The earlier launch notes below retain their original dates and are superseded by this update.
+
 ## November16 live execution
 
 The fixed adapter comparison is running as20 matched tasks, eight A40 GPUs concurrently at the initial check. Both actual fitting-only technical checks and independent artifact review passed; source277tests and CIpassed. An automatic collector follows the complete array. Current verified best remains75.67%/75.00%; no adapter accuracy is reported yet. [Execution record](docs/BREAKHIS_LORA_STATUS.md).

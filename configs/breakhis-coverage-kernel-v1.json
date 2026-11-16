@@ -1,0 +1,59 @@
+{
+  "name": "breakhis-coverage-kernel-v1",
+  "schema_version": 1,
+  "base_input_config": "configs/breakhis-midnight-five-v1.json",
+  "base_input_config_sha256": "07b14d634f4bbebd1256e7a5c73f2fa4fce7273849e1663d14c688ca57aad6d3",
+  "encoder_name": "midnight-coverage-v1",
+  "dimension": 3072,
+  "arms": [
+    "direct",
+    "dual"
+  ],
+  "temperatures": [
+    0.01,
+    0.03,
+    0.1,
+    0.3
+  ],
+  "normalization": {
+    "centering": "equal support-case raw mean per view",
+    "dtype": "float64",
+    "l2_zero_epsilon": 1e-12,
+    "zero_policy": "divide by max(norm, epsilon); exact zero stays zero"
+  },
+  "support_weights": "per head class, each case has equal mass and each of its same-view fields receives1/(n_cases_class*n_fields_case_view)",
+  "head_priors": "uniform within each head; direct-five1/5 versus dual binary1/2 and conditional malignant1/4",
+  "training_diagnostic": "leave-one-case-out support and centering",
+  "validation_policy": "all46 fitting cases as support, validation and excluded cases contribute neither support nor centering",
+  "aggregation": "compose field joint probabilities then arithmetic means within magnification and across available magnifications",
+  "routing_threshold": 0.5,
+  "routing_tie": "malignant",
+  "production_runs": 10,
+  "candidate_pipelines": 80,
+  "support_classifier_instances": 30,
+  "support_instances_scope": "three full-fit support heads per role, shared across temperatures; additional46 leave-one-case-out support evaluations per role are fitting diagnostics",
+  "optimized_head_fits": 0,
+  "new_encoder_forwards": 0,
+  "outer_predictions": 0,
+  "selection": "earliest maximum end-to-end five-category mean15-subset macroF1 within four shared temperatures",
+  "reference_comparison_sha256": "e6e98fc26b3579261baf39b677e75551f7bbfbc5f3a7fe399db59c7169511274",
+  "reference_readout": "single-center-kernel",
+  "improvement_screen": {
+    "each_arrangement_macro_f1_delta": 0.02,
+    "accuracy_not_lower": true,
+    "positive_recall_all_five_classes": true
+  },
+  "budget": {
+    "cpus_per_task": 4,
+    "memory_gb": 16,
+    "minutes_per_task": 15,
+    "max_concurrent_tasks": 4
+  },
+  "interpretation": "one frozen three-horizontal-crop feature mean versus accepted single-center KDE, same four temperature opportunities and provider roles; no coefficient fits, no novelty or95% guarantee",
+  "coverage_extraction_config": "configs/midnight-coverage-v1.json",
+  "coverage_extraction_config_sha256": "6caada1cb238a41d483e3e2cd9eb3f2f362c44b9073b07a96456a99599e81e98",
+  "feature_producer_code_sha": null,
+  "feature_audit_sha256": null,
+  "cache_provenance": {},
+  "coverage_new_crop_forwards": 15818
+}

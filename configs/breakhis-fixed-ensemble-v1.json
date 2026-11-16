@@ -1,0 +1,45 @@
+{
+  "name": "breakhis-fixed-ensemble-v1",
+  "schema_version": 1,
+  "base_input_config": "configs/breakhis-midnight-five-v1.json",
+  "base_input_config_sha256": "07b14d634f4bbebd1256e7a5c73f2fa4fce7273849e1663d14c688ca57aad6d3",
+  "midnight_reference_file": "docs/evidence/BREAKHIS_MIDNIGHT_RESULTS.json",
+  "midnight_reference_sha256": "c9fdd48763e17c2458aa375797827842d1695e6bdefa3fa5354ca1317bc235fe",
+  "kernel_reference_file": "docs/evidence/BREAKHIS_MIDNIGHT_KERNEL_RESULTS.json",
+  "kernel_reference_sha256": "e6e98fc26b3579261baf39b677e75551f7bbfbc5f3a7fe399db59c7169511274",
+  "midnight_readout": "case",
+  "weight_midnight": 0.5,
+  "weight_kernel": 0.5,
+  "arms": [
+    "direct",
+    "dual"
+  ],
+  "production_run_pairs": 10,
+  "source_selected_prediction_archives": 40,
+  "source_case_subset_records": 4800,
+  "prediction_archives": 20,
+  "case_subset_records": 2400,
+  "new_optimized_coefficients": 0,
+  "new_encoder_forwards": 0,
+  "new_weight_selections": 0,
+  "inherited_selection_opportunities_per_role_per_arm": {
+    "midnight_case_C": 4,
+    "kernel_temperature": 4
+  },
+  "roles": "validation only, same original-eight-derived46/8/28 roles; no fitting ensemble metric because base fitting diagnostics differ",
+  "aggregation": "canonical float64 probabilities =0.5*saved_midnight_probabilities5+0.5*saved_kernel_probabilities5; hard malignant>=.5 from their sum; stable joint logs via logaddexp-log2 for loss; conditional probabilities from canonical mixture, stable fallback only when malignant mass underflows to0",
+  "routing_threshold": 0.5,
+  "routing_tie": "malignant",
+  "selection": "fixed equal weights; no new validation choice among weights/classes/thresholds/epochs",
+  "improvement_screen": {
+    "each_arrangement_macro_f1_delta": 0.02,
+    "accuracy_not_lower": true,
+    "positive_recall_all_five_classes": true
+  },
+  "budget": {
+    "cpus": 4,
+    "memory_gb": 8,
+    "minutes": 10
+  },
+  "interpretation": "standard fixed probability averaging of two previously validation-selected pipelines, eight inherited component selection opportunities per role/arm; reused development validation, not novel or a fresh95% claim"
+}

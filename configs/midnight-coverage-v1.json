@@ -1,0 +1,155 @@
+{
+  "name": "midnight-coverage-v1",
+  "schema_version": 1,
+  "manifest_sha256": "958893f923a745220fac66f19656bcdbfb38996f70ef8044e1349619f4102e31",
+  "expected_images": 7909,
+  "expected_shapes": {
+    "700x460": 7835,
+    "700x456": 74
+  },
+  "base_extraction_config": "configs/midnight-12k-v1.json",
+  "base_extraction_config_sha256": "71da2f7ee8bbfb27876a212f7a2c6dd765ba23f4ca86d7d80e4b2982e7b017ce",
+  "base_classifier_config": "configs/breakhis-midnight-five-v1.json",
+  "base_classifier_config_sha256": "07b14d634f4bbebd1256e7a5c73f2fa4fce7273849e1663d14c688ca57aad6d3",
+  "base_encoder_name": "midnight-12k",
+  "encoder_name": "midnight-coverage-v1",
+  "base_feature_producer_code_sha": "a9a2fda4461aca74e6596a747ab191aefa7a96da",
+  "base_cache_provenance": {
+    "40": {
+      "npz_sha256": "578ff93aeb1c5cf77008b173c9927187b4cd680d09e29b76f648016ba6d270c3",
+      "json_sha256": "d25badeaacb8ad1149f298367dabf92724c8339586f2fdbbbdd9c119132e60ae"
+    },
+    "100": {
+      "npz_sha256": "8b768a19f0e35c1a9f9bcea02d83d2a8d5dd87882d5f900bc27bb64b52e71c08",
+      "json_sha256": "c6f5a9fd7010460e9240c536717500421a45784f23e3d7e1ab71b24a5b660cd2"
+    },
+    "200": {
+      "npz_sha256": "4680d31a9627ffc20a74b3f831906c4a73e4aa55578e1bfcb09280bd01daeb7a",
+      "json_sha256": "f5d2e6875cbc861c5de518bfdf6f17f3fd9324f80976b77eaa5612334a6355aa"
+    },
+    "400": {
+      "npz_sha256": "2d25f482e4f782d138ccc597dcd183d4efe7c0c90200092ce38f199f93ed70fd",
+      "json_sha256": "a875eee0403dc9a70afa1f06ff14fbf26f4e915d6132985790c4188e6f39069c"
+    }
+  },
+  "encoder": {
+    "repository": "kaiko-ai/midnight",
+    "revision": "adc6b15679c981cce6f9b018bbad09d16eeeda9f",
+    "dimension": 3072,
+    "features": "float64 mean of left, official-center and right CLS-plus-mean-patch3072 field embeddings, cast once to float32",
+    "weights_file": "model.safetensors",
+    "weights_sha256": "52c14f20386ca17c2af8a7bf32c31c352668a8fbf6aefc88d86be6eaa0c72ca1",
+    "weights_size_bytes": 4546005432,
+    "config_file": "config.json",
+    "config_sha256": "0362e014a3f3b1ad2f2faf115d21cbc05ed48b3a6114bdb4ddec897bc83cc0fd",
+    "config_size_bytes": 879,
+    "model_card_file": "README.md",
+    "model_card_sha256": "7595d9ac11154d804a9e920abae185bd98798ebd4ba375490f1a845dc32d2001",
+    "model_card_size_bytes": 8080,
+    "license": "MIT",
+    "transform": {
+      "resize_shorter_side": 224,
+      "center_crop": 224,
+      "mean": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "std": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "interpolation": "bilinear",
+      "antialias": true,
+      "crop_policy": "three horizontal224 crops after official shorter-side224 resize",
+      "crop_left_rule": "[0, int(round((resized_width-224)/2)), resized_width-224]",
+      "crop_top_rule": "int(round((resized_height-224)/2))",
+      "fusion": "arithmetic mean of3 raw3072 embeddings in float64, cast once to float32"
+    }
+  },
+  "dependencies": {
+    "torch": "2.6.0+cu124",
+    "transformers": "4.51.3",
+    "safetensors": "0.5.3",
+    "Pillow": "11.1.0",
+    "torchvision": "0.21.0+cu124"
+  },
+  "crop_labels": [
+    "left",
+    "center",
+    "right"
+  ],
+  "new_crop_labels": [
+    "left",
+    "right"
+  ],
+  "fusion": "(left.float64 + center.float64 + right.float64)/3 then float32",
+  "geometry_examples": {
+    "700x460": {
+      "resized": [
+        340,
+        224
+      ],
+      "lefts": [
+        0,
+        58,
+        116
+      ],
+      "top": 0
+    },
+    "700x456": {
+      "resized": [
+        343,
+        224
+      ],
+      "lefts": [
+        0,
+        60,
+        119
+      ],
+      "top": 0
+    }
+  },
+  "smoke": {
+    "images": 4,
+    "magnification": 40,
+    "selection": "first two manifest rows ofheight460 andfirsttwo ofheight456 at40x",
+    "checks": [
+      "exactcenterpixels/tensorsofficialtransform",
+      "actualcenterfeaturesvsacceptedcache",
+      "repeatedfeatures",
+      "single-vs-batch",
+      "freshstrictbase-reloadfeatures",
+      "componentandfusedNPZactualreload"
+    ]
+  },
+  "parity": {
+    "atol": 0.0001,
+    "rtol": 0.0001
+  },
+  "execution": {
+    "precision": "FP32",
+    "attention": "eager",
+    "tf32": false,
+    "batch_size": 8,
+    "workers": 0,
+    "new_full_crop_forwards": 15818,
+    "new_fits": 0,
+    "shards": [
+      40,
+      100,
+      200,
+      400
+    ]
+  },
+  "budget": {
+    "gpu": "A40",
+    "gpus_per_task": 1,
+    "cpus_per_task": 4,
+    "memory_gb": 64,
+    "minutes_per_shard": 30,
+    "max_concurrent_shards": 2
+  },
+  "interpretation": "one fixed frozen input-coverage test; mean3 overlapscrops weighscentralregionsmore andmaywashsignal; no newmodeltraining or95% guarantee"
+}
