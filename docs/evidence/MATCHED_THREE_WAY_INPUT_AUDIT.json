@@ -1,0 +1,116 @@
+{
+  "code_sha": "a6e6a54e4fac090051837df17b0dea14efca3bb3",
+  "source_archive_sha256": "d51f0f95b0bb62743dc4c10072be83a88bb5600443d44d0ce182613bd4f6fb07",
+  "config_sha256": "1cdc7f143941a25be7b595c3b058e545c57c19a3a367df68123d977f757d5d5c",
+  "implementation_sha256": {
+    "magset/matched_data.py": "8088f07f251a5e8403e2f1a2fda82ccc386f1f01c0d14eabbf73c001ee5eb297",
+    "magset/matched_models.py": "8cc6b7934d8b3f3f93422a45280e5ec43addd0f20b86f5d4d81095c67f75952c",
+    "magset/matched_p.py": "4d8b88ecab511693bf1f43b6be4a730befe402633b8309d52459ebde36b6eba8",
+    "magset/swin_compat.py": "091770d215d997208fd0824eb973ce3893829bb30bac084742edc2195b059d0f",
+    "scripts/prepare_matched_three_way.py": "45e0765abcb2b29d3e3975d22ff193eff68a72528e75d47b1d1ff415d5f73e38",
+    "scripts/run_matched_three_way.py": "93e73463ffceb97a168fe4958284e82c85a711b666e197bbc2f90ab9fb440d6a",
+    "scripts/collect_matched_three_way.py": "f3dc6b9f16f55f434f97750b38a1654b8c03fa5bfc384f7f7fdbd21f12216456",
+    "magset/prior_centered_model.py": "b54b8ec37ba7a277ada3a9646f23a2ac9da081855f0b2d93488f41f38e883a08",
+    "magset/kernel_model.py": "e400a8486e00baaa2e8e8461b13015b0c746e23866707c81dd82a20238fb17e9",
+    "magset/field_five.py": "464923ef0cf83151d187d5d7177bcabaadd3367ab0880fef7097e44125aa5e3f",
+    "magset/five_metrics.py": "9715956f5e3af63006ae1bf5a3fa8b94c68843f1093582c167ea5445d14c95e3"
+  },
+  "manifest_sha256": "958893f923a745220fac66f19656bcdbfb38996f70ef8044e1349619f4102e31",
+  "status": "accepted matched grouping and input audit",
+  "role_summary": {
+    "train": {
+      "cases": 49,
+      "groups": 42,
+      "class_cases": [
+        14,
+        24,
+        2,
+        5,
+        4
+      ],
+      "class_groups": [
+        9,
+        24,
+        2,
+        4,
+        4
+      ],
+      "images": 4621,
+      "class_images": [
+        1365,
+        2193,
+        197,
+        513,
+        353
+      ]
+    },
+    "validation": {
+      "cases": 17,
+      "groups": 15,
+      "class_cases": [
+        5,
+        7,
+        2,
+        2,
+        1
+      ],
+      "class_groups": [
+        4,
+        7,
+        1,
+        2,
+        1
+      ],
+      "images": 1584,
+      "class_images": [
+        509,
+        565,
+        326,
+        119,
+        65
+      ]
+    },
+    "test": {
+      "cases": 16,
+      "groups": 13,
+      "class_cases": [
+        5,
+        7,
+        1,
+        2,
+        1
+      ],
+      "class_groups": [
+        3,
+        7,
+        1,
+        1,
+        1
+      ],
+      "images": 1704,
+      "class_images": [
+        606,
+        693,
+        103,
+        160,
+        142
+      ]
+    }
+  },
+  "indices_sha256": "478ff0e471088594aeb9c00b035c2c8556cdb169f1d562328c9ea5b3027b49a0",
+  "training_weights_sha256": "b9fb8cd5b50aaa4a54a71d330446514a43155187e67adb865b8babcf7a5272f5",
+  "new_fits": 0,
+  "new_predictions": 0,
+  "cases": 82,
+  "conservative_groups": 70,
+  "images": 7909,
+  "test_fold": 0,
+  "validation_fold": 1,
+  "group_overlap": {
+    "train_validation": 0,
+    "train_test": 0,
+    "validation_test": 0
+  },
+  "private_audit_sha256": "cec9c0e13f2673046b41e6502154ceb9bed047f44086afbe04d57df562ef0812",
+  "globally_fresh_clinical_cohort": false
+}
