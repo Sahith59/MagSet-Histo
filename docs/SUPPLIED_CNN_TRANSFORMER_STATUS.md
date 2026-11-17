@@ -1,43 +1,54 @@
-# Supplied notebook execution status
+# Supplied CNN–Transformer notebook results
 
-**Faithful execution is complete and independently checked. Input_fixed is still training; the two-variant comparison remains incomplete.** The original file had fifteen unexecuted cells and no saved outputs. Its hardcoded comparison-table entries were earlier reference claims.
+**Both registered runs are complete and independently accepted.** The input-corrected run reaches **97.09% benign/malignant accuracy and 86.41% eight-type image accuracy**. These are different tasks; 97.09% is not a five-category result. The exact original notebook remains unchanged privately. It contained fifteen unexecuted cells and no saved outputs; its hardcoded comparison-table entries were earlier reference claims.
 
-| Faithful notebook metric | Checked value | Correct / total |
+| Checked metric | Faithful input | Input corrected |
 | --- | ---: | ---: |
-| Benign/malignant accuracy |68.58%|1,085 /1,582|
-| Eight-type image accuracy |43.62%|690 /1,582|
-| Eight-type macro F1 |.075924|—|
-| Strict malignant cascade recall |63.59%|690 /1,085 true-malignant images|
+| Benign/malignant accuracy |68.58% (1,085 / 1,582)|97.09% (1,536 / 1,582)|
+| Benign recall |0.00% (0 / 497)|96.58% (480 / 497)|
+| Malignant recall |100.00% (1,085 / 1,085)|97.33% (1,056 / 1,085)|
+| Binary ROC AUC |.538069|.994656|
+| Eight-type image accuracy |43.62% (690 / 1,582)|86.41% (1,367 / 1,582)|
+| Eight-type macro F1 |.075924|.842481|
+| Eight-type macro recall |.125000|.847969|
+| Eight-type macro one-vs-rest ROC AUC |.570418|.984252|
+| Ungated true-malignant subtype accuracy |63.59% (690 / 1,085)|85.99% (933 / 1,085)|
+| Strict malignant cascade recall |63.59% (690 / 1,085)|85.53% (928 / 1,085)|
+| Both heads correct, all eight-type images |43.62% (690 / 1,582)|86.09% (1,362 / 1,582)|
+| Completed / selected epoch |13 / 1|50 / 41|
 
-The selected model predicts **malignant for all 1,582 images and ductal carcinoma for all 1,582 subtype answers**. Thus its accuracy is the majority-label frequency, rather than useful broad/type discrimination. Benign recall is 0%; malignant recall 100%. The checkpoint selected epoch 1; early stopping ended after 13 epochs. The declared input-scaling mismatch is documented; the input_fixed companion is still running, so no outcome for that correction is claimed yet. [Exact accepted faithful snapshot](evidence/SUPPLIED_CNN_TRANSFORMER_FAITHFUL_RESULTS.json). Its outer status remains incomplete because the other fixed variant is pending; the faithful entry itself is accepted.
+[Complete accepted aggregate and artifact hashes](evidence/SUPPLIED_CNN_TRANSFORMER_RESULTS.json) · [Earlier faithful-only snapshot, preserved](evidence/SUPPLIED_CNN_TRANSFORMER_FAITHFUL_RESULTS.json) · [CNN/Swin side-by-side explanation](SUPPLIED_NOTEBOOKS_COMPARISON.md).
 
+The faithful model predicts **malignant for every image and ductal carcinoma for every subtype answer**. Its two accuracies equal the majority-label frequencies. The input-corrected companion removes the external division by 255 to match EfficientNetV2's built-in preprocessing. Both use the same split, architecture, augmentation, optimizer and callback rules, plus the declared common compatibility repairs. The correction improves binary accuracy by 28.51 percentage points and eight-type accuracy by 42.79 points in this fixed pair. Both outcomes are retained; no further variant or split was selected.
 
-| Stage | Job | Observed state |
+## What the model does
+
+It takes one tissue picture at any of the four zoom levels. ImageNet-pretrained EfficientNetV2B0 describes its regions; four Transformer blocks compare those descriptions. Two connected heads predict benign/malignant and one of eight tissue types. The eight-type head sees all fitting images, including benign subtypes, and receives the binary probabilities as extra inputs. This differs from the capstone's benign-stop/four-malignant-type provider-case task.
+
+All **7,909 original BreakHis images** are covered by the audit: **6,327 fitting images and 1,582 reused validation images**. The same accepted image order and indices were used by both variants. All **82 provider keys** and all **70 conservative groups** appear on both sides through different images. These are held-out pictures of familiar cases, rather than a new provider-case test. The checking images also selected the checkpoint and controlled learning-rate reduction and early stopping. [Public input audit](evidence/SUPPLIED_CNN_TRANSFORMER_INPUT_AUDIT.json).
+
+Both runs preserve the authored maximum fifty epochs, batch size 32, seed 812 and best eight-subtype validation checkpoint rule. Faithful ended after thirteen epochs through early stopping; input corrected completed fifty and selected epoch 41. The faithful checkpoint selected epoch 1. Both selected whole-model checkpoints reproduced the scored probabilities on the fixed 32-image reload probe with **0.0 maximum absolute difference for both heads**. The independent saved-prediction checker accepted both results and found no review errors. It performed no new fitting or inference.
+
+## Execution and interpretation
+
+| Stage | Job | Final accepted state |
 | --- | --- | --- |
-| Isolated TensorFlow environment |4985455|Complete, 5m54s |
-| Shared image/label/order/split audit |4985474|Complete, 1m35s |
-| Two synthetic CPU serialization checks |4985475|Both complete, 2m19s / 2m10s |
-| Faithful GPU training |4985476_0|Complete, 13m33s; 13 epochs / selected epoch 1 |
-| Input_fixed GPU training |4985476_1|Running, one visible GPU |
-| Additional faithful saved-output check |4985507|Accepted faithful; input_fixed still incomplete |
-| Independent saved-prediction checker |4985477|Pending completion of the training array |
+| Isolated TensorFlow environment |4985455|Complete |
+| Shared image/label/order/split audit |4985474|Complete |
+| Two synthetic CPU serialization checks |4985475|Both complete |
+| Faithful GPU training |4985476_0|Complete |
+| Input-corrected GPU training |4985476_1|Complete |
+| Independent saved-prediction checker |4985477|Complete; both variants accepted |
+| Plain-language result renderer |4985494|Complete |
 
-The scheduler allocated GPUs sooner than its earlier capacity forecast. Both runs passed their actual prefit image/label/index guards and pinned TensorFlow/Keras/official-weight checks. Each uses the notebook's maximum fifty epochs, best eight-subtype validation checkpoint, learning-rate reduction and early stopping. An epoch progress CSV is saved while fitting; interim epoch scores are not final checked results.
+The synthetic CPU checks used eight artificial images and one optimization batch per variant, with zero real validation predictions. Their H5-weight, original.keras-weight and full-model reload differences were all 0.0. Those scores certify mechanics only. [Technical aggregate](evidence/SUPPLIED_CNN_TRANSFORMER_TECHNICAL.json), [pre-production independent review](reviews/SUPPLIED_CNN_TRANSFORMER_REVIEW.md).
 
-## What this notebook does
+Path, custom-layer serialization and official-weight-cache repairs preserved the registered scientific settings. Faithful keeps the actual one external division by 255; input corrected removes it. The generator's `rescale` metadata was never applied by `standardize()`, so this was not an applied double external division. [Fixed recipe](SUPPLIED_CNN_TRANSFORMER_RUN.md), [registered configuration](../configs/supplied-cnn-transformer-v1.json).
 
-It takes one tissue picture at any of the four zoom levels. EfficientNetV2B0 describes its regions; four Transformer blocks compare those descriptions. Two connected heads predict benign/malignant and one of eight tissue types. This is a conditioned two-head image model, separate from our benign-stop/four-malignant-type provider-case task.
+The notebook's original malignant subtype measure is **ungated**: a correct subtype counts even when the binary route is wrong. Strict malignant cascade recall additionally requires a correct malignant route. Both-head correctness additionally requires the correct binary answer for every eight-type image. None is automatically the capstone's five-category provider-case accuracy. No CNN five-category score is reported here.
 
-The shared audit verifies all 7,909 original images and the exact 6,327 fitting /1,582 reused validation split. All82 provider keys and all 70 conservative groups appear on both sides through different images. Consequently these scores describe held-out pictures of familiar cases, without a new provider-case test. [Exact public input audit](evidence/SUPPLIED_CNN_TRANSFORMER_INPUT_AUDIT.json).
+Both adapted and executed notebooks, histories, progress, selected checkpoints and prediction arrays remain preserved privately. Public evidence contains aggregate metrics, confusion matrices, class supports and hashes. The visualization is a **token-norm proxy**, not attention rollout or causal evidence. In faithful, its raw-pixel visualization input scale differs from scored inputs; input corrected aligns those scales.
 
-Faithful preserves the notebook's actual external division by 255. Input_fixed removes that division to match EfficientNetV2's built-in preprocessing; all other scientific settings and image indices remain fixed. Common compatibility repairs permit paths, shared official-weight caching and complete custom-layer serialization. [Fixed recipe](SUPPLIED_CNN_TRANSFORMER_RUN.md).
+These results do not replace the separate five-category case scorecard or establish 94–95% on that endpoint, clinical validation, novelty or a matched improvement over a published paper. Pooling the four magnifications as independent images does not demonstrate multi-view case fusion or robustness across all fifteen view subsets.
 
-Both actual synthetic CPU checks use eight artificial images and one optimization batch, with zero real validation predictions. H5-weight, original.keras-weight and full-model reload differences are all 0.0 in both runs. These certify mechanics; their synthetic classification scores are not cohort performance. [Technical aggregate](evidence/SUPPLIED_CNN_TRANSFORMER_TECHNICAL.json), [independent review](reviews/SUPPLIED_CNN_TRANSFORMER_REVIEW.md).
-
-## Automatic outputs
-
-Each variant preserves its adapted/executed notebook, best.keras checkpoint, history, progress CSV, split and prediction arrays privately under `runs/supplied-cnn-transformer-v1/`. After both training tasks terminate, the independent CPU checker reconstructs actual binary/eight-type scores and strict cascade diagnostics. Missing or failed runs produce an explicit incomplete status without invented accuracy.
-
-The machine-readable result is `runs/supplied-cnn-transformer-v1/checked/comparison.json`. A plain-language summary is scheduled after that checker at `runs/supplied-cnn-transformer-v1/summary.md`. Both are research artifacts outside public Git until the completed results are reviewed. The notebook's ungated malignant subtype measure remains distinct from actual routed malignant recall. No value here replaces the current five-category case scorecard or establishes 95% on that endpoint.
-
-Numerical producer source: `474bb0199eba585aec3e70bd252a4b840357429d`. Exact original notebook SHA256: `2bb8eac92b33ad81c8a203743d202f8a1866e9cdcf4f71c0259be69b6c9aa709`.
+Numerical producer source: `474bb0199eba585aec3e70bd252a4b840357429d`. Exact original notebook SHA256: `2bb8eac92b33ad81c8a203743d202f8a1866e9cdcf4f71c0259be69b6c9aa709`. Accepted complete comparison SHA256: `d7972fc41c4d4594d606b06111bc3ecb219a7e037061debf61b731a74e3a7f25`.
