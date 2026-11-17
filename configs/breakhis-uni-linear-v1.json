@@ -1,0 +1,101 @@
+{
+  "name": "breakhis-uni-linear-v1",
+  "schema_version": 1,
+  "base_input_config": "configs/breakhis-uni2-h-v1-kernel.json",
+  "base_input_config_sha256": "dfcc1169fbee64cbb402c0205ee504a09a011f8bfd7a2b010a680a7721851889",
+  "encoder_name": "uni2-h-v1",
+  "encoder_dimension": 1536,
+  "seeds": [
+    812,
+    813
+  ],
+  "trials": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "arms": [
+    "direct",
+    "dual"
+  ],
+  "C_grid": [
+    0.01,
+    0.1,
+    1.0,
+    10.0
+  ],
+  "training_seed": 812,
+  "solver": "lbfgs",
+  "penalty": "l2",
+  "tol": 0.0001,
+  "max_iter": 2000,
+  "normalization": "field-moments-v2; fitting46 equal-case per-view first and second raw-field moments in float64; saved mean/std float32; std<=1e-6 replaced by1",
+  "input": "standardized single frozen UNI2-h field feature in float32 plus four one-hot magnification indicators; dimension1540; no L2 or metric scaling",
+  "class_weight": null,
+  "field_weight": "N_head/(K_head*n_cases_in_head_class*4*n_fields_in_case_view)",
+  "head_weight_mass": {
+    "direct": 46,
+    "binary": 46,
+    "malignant": 35
+  },
+  "head_labels": {
+    "direct": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "binary": [
+      0,
+      1
+    ],
+    "malignant": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "aggregation": "compose per-field joint five-class probabilities; arithmetic mean within each view; arithmetic mean across available views; derive case binary and conditional malignant probabilities from pooled joint distribution",
+  "numerics": "logsumexp for each probability mean and conditional distribution, finite saved log probabilities, explicit hard routing using exp(case binary log probability)>=0.5",
+  "routing_threshold": 0.5,
+  "routing_tie": "malignant",
+  "selection": "earliest maximum validation end-to-end five-class mean15-subset macro F1 within four C settings per arm; same C shared by binary and malignant heads",
+  "fitting_evaluation": "in-sample resubstitution; optimizer and normalizer use fitting cases only",
+  "production_runs": 10,
+  "production_head_fits": 120,
+  "technical_head_fits": 12,
+  "candidate_pipelines": 80,
+  "prediction_archives": 160,
+  "case_subset_records": 64800,
+  "new_encoder_forwards": 0,
+  "outer_predictions": 0,
+  "reference_file": "docs/evidence/BREAKHIS_UNI2_H_RESULTS.json",
+  "reference_comparison_sha256": "f85ccff63d84cc3117f30a93b86374f9aad6ad7ac69c22197e8ae561f2ada230",
+  "secondary_reference_file": "docs/evidence/BREAKHIS_PRIOR_CENTERED_RESULTS.json",
+  "secondary_reference_comparison_sha256": "b9e0616382099a405295a211bae15dab4625091b68620a1e647196a51ebe1e3c",
+  "primary_arm": "dual",
+  "primary_comparison": "UNI2-h field logistic dual versus accepted same-reader UNI2-h KDE dual on both arrangements",
+  "improvement_screen": {
+    "each_arrangement_macro_f1_delta": 0.02,
+    "accuracy_not_lower": true,
+    "positive_recall_all_five_classes": true
+  },
+  "dependencies": {
+    "numpy": "1.26.4",
+    "scipy": "1.15.2",
+    "scikit-learn": "1.6.1"
+  },
+  "budget": {
+    "cpus_per_task": 4,
+    "memory_gb": 16,
+    "minutes_per_task": 45,
+    "max_concurrent_tasks": 4,
+    "collector_minutes": 30
+  },
+  "technical_smoke": "812/trial1 full46-fitting support; all four Cs and all three heads; fitting-only score one query per final label across15subsets;12headfits,8archives,600dependentrecords; no validation scoring",
+  "interpretation": "standard frozen UNI2-h probabilistic linear field readout, distinct from the separately registered metric family; changed feature scaling and supervised classifier relative to same-reader KDE; adaptive reader choice and reused provider-case validation; no novelty or95 guarantee"
+}
