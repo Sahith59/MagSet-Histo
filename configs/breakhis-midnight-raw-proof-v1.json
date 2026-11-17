@@ -1,0 +1,36 @@
+{
+  "name": "breakhis-midnight-raw-proof-v1",
+  "scope": "verification of fixed model only; no optimization or candidate selection",
+  "producer_code_sha": "a6e6a54e4fac090051837df17b0dea14efca3bb3",
+  "accepted_result_sha256": "3e8fc1f1ff8b28bc845b39a217bc34597c07c575842f1729fcfbce077c7bcb62",
+  "images": 7909,
+  "crop_forwards": 23727,
+  "view_shards": [
+    40,
+    100,
+    200,
+    400
+  ],
+  "crop_batch": 8,
+  "dtype": "float32",
+  "attention": "eager",
+  "tf32": false,
+  "gpu": "NVIDIA A40",
+  "source_loader_sha256": "cffc7891b617fa2bbac15f4972d925dfab0d76ad6a838dbbb4235cf5699ee80c",
+  "feature_atol": 0.0001,
+  "feature_rtol": 0.0001,
+  "feature_tolerance_basis": "unchanged original midnight-coverage-v1 parity policy",
+  "field_probability_atol": 0.0001,
+  "decision_tolerance": "zero case/subset differences for all four original validation temperatures and fixed selected test temperature",
+  "metric_atol": 1e-12,
+  "selection": "original first-maximum identity must be unchanged; no new selected candidate",
+  "mathematics": "independently implemented NumPy head-specific centers, L2 cosine density weights and pooling; original frozen backbone loader shared",
+  "budget": {
+    "max_gpus": 2,
+    "gpus_per_task": 1,
+    "cpu_per_task": 4,
+    "memory_gb": 64,
+    "minutes_per_gpu_task": 30,
+    "collector_minutes": 30
+  }
+}
