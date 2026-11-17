@@ -1,0 +1,56 @@
+{
+  "code_sha": "a50aeee39a78b3210a5a8c33905f6566a0563875",
+  "source_archive_sha256": "79e447a2fb76fd6b6ded709c268c933e100034360b1ce272d92b364c782e1924",
+  "adapter_sha256": "b2dc14d6ba32b2039ac64d943a6b987c233efbff1efd9feff091ec4f9a7d2aff",
+  "status": "accepted exact original Swin input and split audit",
+  "notebook_sha256": "fd88d851fbd8cf049a0ebbd718ed8757ffe28f629e2472262efca30bbca029af",
+  "config_sha256": "50fe2cb38e6c4517f88b304fe14df9b707b42784447ed7628ada548a9802589d",
+  "manifest_sha256": "958893f923a745220fac66f19656bcdbfb38996f70ef8044e1349619f4102e31",
+  "ordered_csv_sha256": "30f237dd8dba61a45947d199ba2aa3dba37df3cc64b6254fa4618337aa97ff64",
+  "indices_sha256": "468a81aa3fd6d13e22b5ba5cadb09569156a50063329660ec6f023a07a65b98a",
+  "images": 7909,
+  "split_images": {
+    "train": 5104,
+    "val": 689,
+    "test": 2116
+  },
+  "split_bare_ids": {
+    "train": 51,
+    "val": 7,
+    "test": 23
+  },
+  "overlap": {
+    "patient": {
+      "train_val": 0,
+      "train_test": 0,
+      "val_test": 0
+    },
+    "provider_key": {
+      "train_val": 0,
+      "train_test": 0,
+      "val_test": 0
+    },
+    "conservative_group": {
+      "train_val": 1,
+      "train_test": 2,
+      "val_test": 1
+    }
+  },
+  "test_five_support": [
+    589,
+    1017,
+    197,
+    174,
+    139
+  ],
+  "validation_five_support": [
+    189,
+    268,
+    0,
+    90,
+    142
+  ],
+  "secondary_test_id_target_groups": 24,
+  "private_audit_sha256": "c14288e361c877061fd1c542fd8225c23ae4cd5d5ad746c09f05d9a5af087d2c",
+  "interpretation": "filename-ID image holdout with conservative-stem overlaps; not verified clinical identity or globally fresh test"
+}

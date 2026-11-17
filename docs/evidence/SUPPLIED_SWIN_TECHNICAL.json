@@ -1,0 +1,198 @@
+{
+  "code_sha": "a50aeee39a78b3210a5a8c33905f6566a0563875",
+  "source_archive_sha256": "79e447a2fb76fd6b6ded709c268c933e100034360b1ce272d92b364c782e1924",
+  "adapter_sha256": "b2dc14d6ba32b2039ac64d943a6b987c233efbff1efd9feff091ec4f9a7d2aff",
+  "config_sha256": "50fe2cb38e6c4517f88b304fe14df9b707b42784447ed7628ada548a9802589d",
+  "notebook_sha256": "fd88d851fbd8cf049a0ebbd718ed8757ffe28f629e2472262efca30bbca029af",
+  "status": "accepted synthetic technical execution, no research performance",
+  "smoke": {
+    "status": "accepted synthetic Swin train and weight reload",
+    "synthetic_images": 8,
+    "train_batches": 1,
+    "real_test_predictions": 0,
+    "masked_benign_loss": 0.0,
+    "weight_reload_max_abs": 0.0,
+    "all_parameters": 27879180,
+    "trainable_parameters": 26358078,
+    "encoder_stage_trainable": [
+      false,
+      false,
+      true,
+      true
+    ]
+  },
+  "environment": {
+    "python": "3.11.18",
+    "tensorflow": "2.15.1",
+    "tf_keras": "2.15.1",
+    "transformers": "4.46.3",
+    "numpy": "1.26.4",
+    "gpu_count": 0
+  },
+  "pretrained_files": {
+    "config.json": "b99b2d1d80b05ff592979047b4a34fb459dd53b82c8036bae1c2a9d1ea2c5ed3",
+    "preprocessor_config.json": "cf47f0a7c8ff723066a62ca5cf536ba0f530ed1e797a0eab270f1304e2f880db",
+    "tf_model.h5": "613ffde402c38d5626003db04e3578c64a32ddee8c1272333524315faaa4c2c7"
+  },
+  "pretrained_load": {
+    "missing_keys": [
+      "swin/encoder/layers.2/blocks.5/attention/self/relative_position_index:0",
+      "swin/encoder/layers.0/blocks.0/attention/self/relative_position_index:0",
+      "swin/encoder/layers.1/blocks.0/attention/self/relative_position_index:0",
+      "swin/encoder/layers.2/blocks.0/attention/self/relative_position_index:0",
+      "swin/encoder/layers.2/blocks.3/attention/self/relative_position_index:0",
+      "swin/encoder/layers.3/blocks.1/attention/self/relative_position_index:0",
+      "swin/encoder/layers.1/blocks.1/attention/self/relative_position_index:0",
+      "swin/encoder/layers.2/blocks.2/attention/self/relative_position_index:0",
+      "swin/encoder/layers.3/blocks.0/attention/self/relative_position_index:0",
+      "swin/encoder/layers.2/blocks.4/attention/self/relative_position_index:0",
+      "swin/encoder/layers.2/blocks.1/attention/self/relative_position_index:0",
+      "swin/encoder/layers.0/blocks.1/attention/self/relative_position_index:0"
+    ],
+    "unexpected_keys": [
+      "classifier"
+    ],
+    "mismatched_keys": [],
+    "error_msgs": [],
+    "deterministic_relative_position_index_check": {
+      "checked_buffers": 12,
+      "window_size": [
+        7,
+        7
+      ],
+      "shape": [
+        49,
+        49
+      ],
+      "maximum_abs_error": 0,
+      "all_nontrainable": true
+    },
+    "deterministic_relative_position_index_sha256": {
+      "swin/encoder/layers.0/blocks.0/attention/self/relative_position_index:0": "146d178a603c3a1c98a8100a70fe396369b281782f599312dde58016be6f7db2",
+      "swin/encoder/layers.0/blocks.1/attention/self/relative_position_index:0": "146d178a603c3a1c98a8100a70fe396369b281782f599312dde58016be6f7db2",
+      "swin/encoder/layers.1/blocks.0/attention/self/relative_position_index:0": "146d178a603c3a1c98a8100a70fe396369b281782f599312dde58016be6f7db2",
+      "swin/encoder/layers.1/blocks.1/attention/self/relative_position_index:0": "146d178a603c3a1c98a8100a70fe396369b281782f599312dde58016be6f7db2",
+      "swin/encoder/layers.2/blocks.0/attention/self/relative_position_index:0": "146d178a603c3a1c98a8100a70fe396369b281782f599312dde58016be6f7db2",
+      "swin/encoder/layers.2/blocks.1/attention/self/relative_position_index:0": "146d178a603c3a1c98a8100a70fe396369b281782f599312dde58016be6f7db2",
+      "swin/encoder/layers.2/blocks.2/attention/self/relative_position_index:0": "146d178a603c3a1c98a8100a70fe396369b281782f599312dde58016be6f7db2",
+      "swin/encoder/layers.2/blocks.3/attention/self/relative_position_index:0": "146d178a603c3a1c98a8100a70fe396369b281782f599312dde58016be6f7db2",
+      "swin/encoder/layers.2/blocks.4/attention/self/relative_position_index:0": "146d178a603c3a1c98a8100a70fe396369b281782f599312dde58016be6f7db2",
+      "swin/encoder/layers.2/blocks.5/attention/self/relative_position_index:0": "146d178a603c3a1c98a8100a70fe396369b281782f599312dde58016be6f7db2",
+      "swin/encoder/layers.3/blocks.0/attention/self/relative_position_index:0": "146d178a603c3a1c98a8100a70fe396369b281782f599312dde58016be6f7db2",
+      "swin/encoder/layers.3/blocks.1/attention/self/relative_position_index:0": "146d178a603c3a1c98a8100a70fe396369b281782f599312dde58016be6f7db2"
+    }
+  },
+  "window_reverse_check": {
+    "status": "accepted exact integer window reversal",
+    "cases": [
+      {
+        "height": 7,
+        "width": 7,
+        "batch": 1,
+        "channels": 3
+      },
+      {
+        "height": 7,
+        "width": 7,
+        "batch": 2,
+        "channels": 3
+      },
+      {
+        "height": 7,
+        "width": 7,
+        "batch": 8,
+        "channels": 3
+      },
+      {
+        "height": 7,
+        "width": 7,
+        "batch": 32,
+        "channels": 3
+      },
+      {
+        "height": 14,
+        "width": 14,
+        "batch": 1,
+        "channels": 3
+      },
+      {
+        "height": 14,
+        "width": 14,
+        "batch": 2,
+        "channels": 3
+      },
+      {
+        "height": 14,
+        "width": 14,
+        "batch": 8,
+        "channels": 3
+      },
+      {
+        "height": 14,
+        "width": 14,
+        "batch": 32,
+        "channels": 3
+      },
+      {
+        "height": 28,
+        "width": 28,
+        "batch": 1,
+        "channels": 3
+      },
+      {
+        "height": 28,
+        "width": 28,
+        "batch": 2,
+        "channels": 3
+      },
+      {
+        "height": 28,
+        "width": 28,
+        "batch": 8,
+        "channels": 3
+      },
+      {
+        "height": 28,
+        "width": 28,
+        "batch": 32,
+        "channels": 3
+      },
+      {
+        "height": 56,
+        "width": 56,
+        "batch": 1,
+        "channels": 3
+      },
+      {
+        "height": 56,
+        "width": 56,
+        "batch": 2,
+        "channels": 3
+      },
+      {
+        "height": 56,
+        "width": 56,
+        "batch": 8,
+        "channels": 3
+      },
+      {
+        "height": 56,
+        "width": 56,
+        "batch": 32,
+        "channels": 3
+      }
+    ],
+    "maximum_reconstruction_abs": 0.0,
+    "maximum_eager_graph_abs": 0.0,
+    "maximum_gradient_abs": 0.0,
+    "original_graph_reproduced_failure": false,
+    "training_math_change": false
+  },
+  "artifacts": {
+    "environment.json": "acfa34ad7c6084a89d4d60db413c136ba5bec7cf1b05c94f03d6b142b2ca8f6e",
+    "pretrained_load.json": "f5daea8181131c1f6802089165d533c93f8deba5e1d34782c513ae627b674c89",
+    "pretrained_weights.json": "1b1808406c2f25dd8110ad3066b1ea58399eafc8bc317ddfb22115dd646a7d59",
+    "smoke.json": "9c669b59cb2ed0b6a871f460c1ac9f9e22e44b816cd30ca43c59e5b27e0433ca",
+    "window_reverse_check.json": "2163ee9d8f2df0f27069fa67374c8d8729336c75c1fe614b54274ea84b5ba601"
+  }
+}
