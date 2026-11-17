@@ -37,12 +37,12 @@ def check_window_reverse():
     rows=[]; original_failed=False
     for height in (7, 14, 28, 56):
         for batch in (1, 2, 8, 32):
-            x = tf.constant((np.arange(batch*height*height*3) % 251).reshape(batch,height,height,3),tf.float32)
+            x = tf.constant(np.arange(batch*height*height*3).reshape(batch,height,height,3),tf.float32)
             window=tf.constant(7,tf.int32)
             def roundtrip(value):
                 shape=tf.shape(value)
                 return repaired(module.window_partition(value,window),window,shape[1],shape[2])
-            graph=tf.function(roundtrip,input_signature=[tf.TensorSpec([None,height,height,3],tf.float32)])
+            graph=tf.function(roundtrip,input_signature=[tf.TensorSpec([None,None,None,3],tf.float32)])
             eager=roundtrip(x); traced=graph(x)
             raw=original(module.window_partition(x,window),window,tf.shape(x)[1],tf.shape(x)[2])
             assert np.array_equal(raw.numpy(),x.numpy()),'Original eager inverse differs'
@@ -63,7 +63,7 @@ def check_window_reverse():
                 shape=tf.shape(value)
                 return original(module.window_partition(value,window),window,shape[1],shape[2])
             try:
-                old_graph=tf.function(old_roundtrip,input_signature=[tf.TensorSpec([None,height,height,3],tf.float32)])
+                old_graph=tf.function(old_roundtrip,input_signature=[tf.TensorSpec([None,None,None,3],tf.float32)])
                 if not np.array_equal(old_graph(x).numpy(),x.numpy()):original_failed=True
             except (tf.errors.InvalidArgumentError,ValueError):
                 original_failed=True
