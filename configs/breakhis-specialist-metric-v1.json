@@ -60,7 +60,10 @@
     "tf32": false,
     "deterministic": true,
     "checkpoint_selection": "fixed final step200 only",
-    "validation_selection": false
+    "validation_selection": false,
+    "factor_storage": "float64 arrays containing exact final FP32 Torch tanh/exp values; saved theta float32; inference uses stored factors in float64",
+    "state_formula_atol": 1e-06,
+    "state_formula_rtol": 1e-06
   },
   "router_policy": "inherit exact prior selected UNI dual temperature; fixed >=0.5 malignant; no threshold fitting",
   "identity_policy": "replay accepted selected UNI dual validation probabilities within1e-10, labels and metric integers exactly; bypass scaling and re-normalization for identity",
@@ -88,5 +91,6 @@
     "binary_only",
     "malignant_only"
   ],
-  "technical_smoke": "two full200-step fitting-only head optimizations on812/trial1, then first two fitting queries; no validation scoring"
+  "technical_smoke": "two full200-step fitting-only head optimizations on812/trial1, then first two fitting queries; no validation scoring",
+  "technical_objective_atol": 1e-05
 }

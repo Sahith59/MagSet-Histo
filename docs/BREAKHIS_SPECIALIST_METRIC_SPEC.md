@@ -20,6 +20,8 @@ Within each magnification, apply the bounded diagonal scale and normalize again.
 
 Train each head independently for exactly 200 full-batch Adam steps with learning rate 0.01, weight decay zero and seed 812. Use FP32, deterministic execution and disabled TF32. Save the final step only. There is one fixed configuration for each head. The binary and malignant objectives are separate training losses.
 
+Compute fitting-case field means, the full fitting center and initial normalization in FP64 before casting normalized training vectors to FP32. Store final theta in FP32 and the actual final FP32 Torch log scales and scales as exactly representable FP64 arrays. Canonical inference uses these stored scales in FP64. An independent FP64 formula check uses fixed absolute and relative tolerances of 1e-6 for FP32 activation rounding. Identity bypasses scaling and re-normalization.
+
 This is an adapted neighborhood metric-learning objective. The original NCA work establishes supervised distance learning as prior art. The case-mean training objective and field-level inference definition are deliberate implementation choices whose effect requires measurement. [Neighbourhood Components Analysis](https://proceedings.neurips.cc/paper_files/paper/2004/hash/42fe880812925e520249e808937738d2-Abstract.html).
 
 ## Prediction and diagnostic contract
