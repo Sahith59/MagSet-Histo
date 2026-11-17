@@ -1,0 +1,92 @@
+{
+  "name": "breakhis-specialist-metric-v1",
+  "schema_version": 1,
+  "base_input_config": "configs/breakhis-uni2-h-v1-kernel.json",
+  "base_input_config_sha256": "dfcc1169fbee64cbb402c0205ee504a09a011f8bfd7a2b010a680a7721851889",
+  "reference_file": "docs/evidence/BREAKHIS_UNI2_H_RESULTS.json",
+  "reference_comparison_sha256": "f85ccff63d84cc3117f30a93b86374f9aad6ad7ac69c22197e8ae561f2ada230",
+  "arms": [
+    "identity",
+    "binary_only",
+    "malignant_only",
+    "both"
+  ],
+  "production_runs": 10,
+  "metric_fits": 20,
+  "technical_metric_fits": 2,
+  "candidate_pipelines": 40,
+  "prediction_archives": 80,
+  "case_subset_records": 32400,
+  "encoder_name": "uni2-h-v1",
+  "dimension": 1536,
+  "new_encoder_forwards": 0,
+  "outer_predictions": 0,
+  "inherited_temperatures": {
+    "812": {
+      "1": 0.1,
+      "2": 0.3,
+      "3": 0.1,
+      "4": 0.3,
+      "5": 0.03
+    },
+    "813": {
+      "1": 0.1,
+      "2": 0.1,
+      "3": 0.1,
+      "4": 0.03,
+      "5": 0.1
+    }
+  },
+  "metric": {
+    "dimension": 1536,
+    "parameterization": "factors=exp(0.5*tanh(theta)); theta starts at zero",
+    "log_factor_bound": 0.5,
+    "identity_penalty": 10.0,
+    "penalty_reduction": "mean squared log factors",
+    "heads": [
+      "binary",
+      "malignant"
+    ],
+    "case_representation": "mean original field descriptors within each fitting case and magnification",
+    "centering": "same full46 equal-case per-view raw center for both heads",
+    "normalization": "L2 before and after bounded diagonal scaling; epsilon1e-12",
+    "objective": "same-view cross-case class-balanced leave-anchor-case-out density cross-entropy on case means; class densities divide by remaining class case count; anchor weights1/(K*n_class); mean over four views",
+    "steps": 200,
+    "optimizer": "Adam",
+    "learning_rate": 0.01,
+    "weight_decay": 0.0,
+    "training_seed": 812,
+    "training_dtype": "float32",
+    "tf32": false,
+    "deterministic": true,
+    "checkpoint_selection": "fixed final step200 only",
+    "validation_selection": false
+  },
+  "router_policy": "inherit exact prior selected UNI dual temperature; fixed >=0.5 malignant; no threshold fitting",
+  "identity_policy": "replay accepted selected UNI dual validation probabilities within1e-10, labels and metric integers exactly; bypass scaling and re-normalization for identity",
+  "fitting_evaluation": "in-sample learned metric with whole query omitted from density support and support centering; metric trained on fitting query labels",
+  "validation_policy": "fitting-only learned metrics, centers and density support; validation and excluded cases never train metric",
+  "family_selection": "all four prespecified arms reported; no validation hyperparameter or checkpoint selection; choosing an arm is an adaptive reused-validation choice",
+  "improvement_screen": {
+    "each_arrangement_macro_f1_delta": 0.02,
+    "accuracy_not_lower": true,
+    "positive_recall_all_five_classes": true
+  },
+  "secondary_reference_file": "docs/evidence/BREAKHIS_PRIOR_CENTERED_RESULTS.json",
+  "secondary_reference_comparison_sha256": "b9e0616382099a405295a211bae15dab4625091b68620a1e647196a51ebe1e3c",
+  "budget": {
+    "cpus_per_task": 4,
+    "memory_gb": 16,
+    "minutes_per_task": 15,
+    "max_concurrent_gpu_tasks": 4,
+    "collector_minutes": 30
+  },
+  "interpretation": "bounded supervised per-head feature geometry on frozen UNI2-h, after adaptive reader choice; standard metric learning hypothesis, case-mean training and field-level inference differ; no novelty or95 guarantee; same original role/mask evaluation; no fresh final clinical test",
+  "primary_arm": "both",
+  "primary_comparison": "both versus identity on each validation arrangement",
+  "ablation_arms": [
+    "binary_only",
+    "malignant_only"
+  ],
+  "technical_smoke": "two full200-step fitting-only head optimizations on812/trial1, then first two fitting queries; no validation scoring"
+}
