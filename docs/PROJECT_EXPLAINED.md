@@ -1,6 +1,10 @@
 # The BreakHis project in plain language
 
-Updated November 16, 2026. The capstone predicts **five categories: pooled benign, ductal carcinoma, lobular carcinoma, mucinous carcinoma and papillary carcinoma**. The retained two-step reference is P, with **76.33% / 75.67% final accuracy** and macro F1 **.602715 / .602512**. The new UNI2-h reader has higher 812 F1 (**.664180**) and a higher simple two-arrangement F1 average, but lower 813 F1 and lower accuracy than P on both arrangements; it fails the paired improvement screen. Pairs mean validation arrangements **812 / 813**. **94–95% final accuracy has not been achieved.** [Accepted full scorecard](../paper/breakhis-five-class-report.md).
+Updated November 17, 2026. We predict **five categories: pooled benign, ductal, lobular, mucinous and papillary carcinoma**. The new two-head feature-learning study gives **76.17% / 75.83% final accuracy** and macro F1 **.668624 / .587323**. This is a small improvement over its same-reader control, and it fails the registered larger-improvement screen. **94–95% final accuracy has not been achieved.** [New verified result](BREAKHIS_SPECIALIST_METRIC_RESULTS.md), [full scorecard](../paper/breakhis-five-class-report.md).
+
+**What does 75.83% / 75.17% mean?** Imagine giving the earlier UNI2-h model two sets of quizzes. The pictures come from the same BreakHis dataset, but the fitting/validation arrangement differs. It answered **455 of 600 checks** correctly in arrangement 812 and **451 of 600** in arrangement 813. The slash separates those two validation results. Both measure the final five-category answer. They are not a training/test pair or the two decisions' scores. Each case appears in several zoom combinations and overlapping trials, so 600 checks do not mean 600 different people. Training both feature-adjustment heads now gives **457/600 and 455/600** on those same quizzes.
+
+The separate malignant-only ablation reaches .672180 F1 on 812, the highest observed two-step 812 F1 so far; the retained Midnight reference P still leads 813 F1 at .602512. P accuracy is 76.33% / 75.67%, and F retains higher 813 raw accuracy at 76.83%. All-four-view scores are a separate endpoint. The next registered standard supervised UNI2-h classifier is undergoing fitting-only checks before full evaluation.
 
 ## What goes in and comes out?
 

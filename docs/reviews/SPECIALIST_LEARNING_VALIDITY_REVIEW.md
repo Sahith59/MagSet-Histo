@@ -2,7 +2,7 @@
 
 November 17, 2026. This review evaluates the next proposed malignant-type learning study against the accepted five-category provider-case protocol. It independently reads the existing approved-reader ledgers and source, without fitting a model, decoding an image, running an encoder or submitting a scheduler job. A prospective review is not acceptance of an implementation or a future result.
 
-**Current status: accept the registered recipe and reviewed source scope; actual technical-smoke and outcome acceptance remain pending.** Before any fitting or new validation outcome, the proposal was fixed as four factorial UNI2-h geometry arms: identity, binary-only, malignant-only and both. Two independently trained head-specific metrics supply the learned arms; temperatures and final training step stay fixed. The [approved-reader actual-results review](APPROVED_ENCODER_ACTUAL_RESULTS_REVIEW.md) remains the accepted account of the preceding round.
+**Current status: accept the complete metric family's recorded technical receipts, source bindings and result-ledger arithmetic. The registered primary improvement screen fails.** Both learned heads score **76.17% / 75.83%**, with macro F1 **.668624 / .587323**. These are small gains over the exact UNI2-h identity control; neither reaches the registered +.02 F1 improvement. The malignant-only ablation has the highest observed 812 two-step F1, **.672180**; P retains the 813 lead, **.602512**. These observations must not be combined into one pipeline. The [approved-reader actual-results review](APPROVED_ENCODER_ACTUAL_RESULTS_REVIEW.md) remains the accepted account of the preceding round.
 
 ## What 75.83% and 75.17% mean
 
@@ -83,4 +83,37 @@ The reviewer authored `scripts/review_specialist_smoke.py` as a NumPy-only actua
 
 The original technical attempt (job 4983923) completed its two head optimizations but failed when its first-two-query sample could not supply all five labels required by the existing summary function. This is a technical query-selection defect, not a measured model failure. The failed attempt remains counted and preserved; no validation outcome or optimizer/hyperparameter change motivated the retry. The corrected selection covers all five fitting classes. Two independently executed no-fit regression tests reproduce the old incomplete-class failure, confirm all four corrected arm summaries total 300 records, and reject missing fitting classes before replay. The technical objective tolerance remains unchanged at 1e-5.
 
-**Verdict:** no remaining scientific-validity or inspected-source blocker for the bounded fitting-only technical check. Full source tests, actual smoke acceptance, all original-role outputs and complete numerical replay are separate evidence requirements before any performance result can be accepted. No new performance is claimed by this review.
+The prospective source verdict above supported the bounded technical check. The actual review below supersedes its pending-execution status.
+
+## Actual technical and complete-result acceptance
+
+The corrected technical check, numerical technical reviewer, all ten production roles and complete collector finished at immutable source **`da7f169013590366f4284de2de690c1c6e980e23`**. Independent reading of the accepted technical/result ledgers, the exact local source archive and committed source bytes passed **229,233 arithmetic/provenance assertions**, including **3,840 confusion matrices** across all 40 pipelines and fitting/validation roles. These comprise 3,600 subset matrices and 240 pooled matrices, covering final-five, binary and true-malignant conditional tasks. All 32,400 dependent candidate records, 80 prediction archives and 20 production metrics remain represented.
+
+This actual review independently recalculates saved confusion-matrix metrics, subset/trial aggregates, counts, reference identity, deltas/screens, conditional accounting and probability-loss decomposition. It matches all 24 recorded implementation hashes, the configuration, reviewer script, original dataset/protocol/feature bindings and source archive. It does **not** independently load the private NPZ factor/feature arrays, original images or raw prediction JSONL here. The cluster collector's literal cached-field prediction replay and technical review are separate execution evidence. Probability losses and AUROC/AP are accepted as saved aggregates/decomposition checks, rather than reconstructed here from raw probability records.
+
+| Accepted artifact | SHA256 |
+| --- | --- |
+| Complete metric result ledger | `a298435b5f373003b72c302f8ee9f093a92510d2345340b6439f16b706e4a9cb` |
+| Actual fitting-only technical review | `fa4ff0fdc28c28f28cb7ed93086f828b44c04dfa7319d15cb52c332891b65677` |
+| Immutable source archive | `308ee5cef62b64e4ac77c6e546f394def2a303813589f3c8cc5625e7a83156d7` |
+
+The real accepted smoke records two completed 200-update fits, five fitting queries, 300 fitting-only records, zero validation records and zero reviewer optimizations. Binary/malignant maximum gradient norms are .007397/.048743; maximum FP32/float64 objective errors are **9.32e-8 / 1.80e-7**, below the unchanged 1e-5 tolerance. Both center hashes agree, factors stay within their registered bounds, and the smoke theta hashes/factor statistics reproduce the later 812/trial-1 production fits exactly. Four cumulative technical fits include the two preserved fits in the failed original attempt; there are still twenty production fits.
+
+All values below are ordered **812 / 813**. Every accuracy denominator is 600 dependent validation records; each all-four-view denominator is separately 40.
+
+| Fixed two-step arm | Final accuracy | Correct /600 | Mean subset/trial macro F1 | Separate all-four-view accuracy |
+| --- | ---: | ---: | ---: | ---: |
+| Identity UNI2-h | 75.83% / 75.17% | 455 / 451 | .664180 / .575175 | 77.50% / 75.00% |
+| Binary-only metric | 75.67% / 75.33% | 454 / 452 | .660624 / .578434 | 77.50% / 75.00% |
+| Malignant-only metric | 76.33% / 75.50% | 458 / 453 | .672180 / .581397 | 80.00% / 75.00% |
+| **Both metrics: registered primary** | **76.17% / 75.83%** | **457 / 455** | **.668624 / .587323** | **80.00% / 77.50%** |
+
+The primary gains over identity are **+2/+4 correct dependent records**, **+.33/+.67 percentage points accuracy**, and **+.004444/+.012148 F1**. Both F1 gains are below +.02. All three learned arms fail their paired identity improvement screens. The malignant-only ablation improves both arrangements modestly and has the best 812 F1, but it was not the prespecified primary arm. Binary-only is mixed and does not establish that learning a router helps both arrangements.
+
+Against contextual P, the primary arm's accuracy changes by **−.17/+.17 points**, and F1 by **+.065909/−.015189**. P therefore retains the stronger second-arrangement F1 and its separate 85%/85% all-four-view endpoint. The malignant-only ablation ties P's 812 accuracy and exceeds its 812 F1, while remaining below P's 813 accuracy/F1. No consistent replacement, cross-arrangement winner mixture or 95% result is established.
+
+The primary router accuracy is **83.33%/90.67%**, versus identity **83.33%/90.33%**. True-malignant conditional type accuracy is **73.33%/61.67%**, versus **72.00%/60.67%**. Malignant-only binary summaries equal identity exactly. Primary final recalls, ordered benign/ductal/lobular/mucinous/papillary, are **84.67/65.33/100.00/80.00/25.33%** and **95.33/54.67/93.33/44.00/33.33%**. The modest gains leave substantial ductal, mucinous and papillary transfer weaknesses; numerous dependent field/subset events do not add rare independent cases.
+
+Both primary proper losses improve over identity on both arrangements: cross-entropy deltas **−.007724/−.006380**, Brier deltas **−.004086/−.002671**. Versus P, cross-entropy improves on both (**−.028713/−.239467**), while Brier worsens on 812 (**+.010286**) and improves on 813 (**−.124240**). Classification and probability-loss comparisons should remain separate.
+
+**Actual verdict:** accept the complete fixed comparison's recorded execution and independently checked arithmetic/source bindings. The primary descriptive improvement screen fails despite small measured gains. The 94–95% objective, clinical validation and novelty remain unachieved. This closes this metric recipe without a post-hoc threshold, split, regularization or checkpoint search.

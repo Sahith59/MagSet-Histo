@@ -1,0 +1,83 @@
+{
+  "code_sha": "da7f169013590366f4284de2de690c1c6e980e23",
+  "source_archive_sha256": "308ee5cef62b64e4ac77c6e546f394def2a303813589f3c8cc5625e7a83156d7",
+  "implementation_hashes": {
+    "five_class.py": "99416f28087304199290059d08a5d0ab87e071c01d73d1d80020f940991f0574",
+    "five_metrics.py": "50738aefd433a0c0b54b55fe1065e20883c53df31942ea47ef908d97956756a7",
+    "bags.py": "f572b9fa79946de9254181c259bc1f416782e58504fb27ebb1267fc14b1aa6bb",
+    "baseline.py": "f6de8639645201294e5bc1ca7a1bbe2a3430763061c901c0b0627dac71b2f8ed",
+    "capstone_binary.py": "bf40cf92af10fa134cc281e941636bf4292e185bd4dce127b6634c7800bbb26b",
+    "collect.py": "907d99f16a3d525026b24fa8ab543d845c757bdaa30d70c05b5ecafd64746c99",
+    "data.py": "0ef5758778183874523ce91ca48da824838b44ed4f24646bd337c9ecbcb7c5d5",
+    "five_collect.py": "01b2750d96e4644d7afd1be4d75c6f3b88dd035484e1bc19e1f255d95be5718f",
+    "field_five.py": "464923ef0cf83151d187d5d7177bcabaadd3367ab0880fef7097e44125aa5e3f",
+    "field_collect.py": "b39a65a15c77795b6eda42b2ec6178e90704711783a623968330d3cdbb4b9c87",
+    "midnight_five.py": "456481524dd8f5b0b59e64e80281b66ceb6fd4ab9fd28536f7912232129f2b0f",
+    "midnight_collect.py": "9f9f80476d9969cc05f6ac99438f1168d533acb80fb281f490ffad1753bc1bf1",
+    "midnight_features.py": "cffc7891b617fa2bbac15f4972d925dfab0d76ad6a838dbbb4235cf5699ee80c",
+    "kernel_five.py": "ff582c0cca8e2dee67f52fc19c6d189903d0c5dd32c83f3d3eb6d351ace9e21d",
+    "kernel_collect.py": "fccddb2f7e85bb9946e455b17cb9b85d79442804a6f8f0aaaf17a90ab10ad181",
+    "kernel_model.py": "e400a8486e00baaa2e8e8461b13015b0c746e23866707c81dd82a20238fb17e9",
+    "native_collect.py": "bc250391e5953c4c964151b5ae80d985fb1fa3961f67e45bd2175861cd4fdb7c",
+    "genbio_collect.py": "6e9eb7e9612d5235a0cb8715f764180ba9376aae358b7dccb5fe3ba34c93f8bb",
+    "approved_features.py": "e9f638e78a5ca41bea7a5a7477ebac4db7a4280b006155d8c7b8f0547c38b89f",
+    "approved_five.py": "1f5e2eab80586613d99d81a20e5216fc53a85e991272e30067a2f1cf15690fcd",
+    "approved_collect.py": "8c4b8b18d37db1ed08743b70dd7557ce6cffffb1a27dadbc6b79a9980b0cc994",
+    "specialist_metric.py": "8db18be1022021da0e35caf28dae7d8847af47febc92c65a53698dcf96740bfc",
+    "specialist_five.py": "39cecb852940a7a784c9b8156c6e480a3ba3974e40e4bc4e55e45ef3a490e975",
+    "specialist_collect.py": "409f22a383d504129da14899bb31e662b0991179c1239311731511532339a6e5"
+  },
+  "config_sha256": "a188b13940c48dba2b48bddba27421747a7b14416273a4d17b9d1db28bf8f1fd",
+  "manifest_sha256": "958893f923a745220fac66f19656bcdbfb38996f70ef8044e1349619f4102e31",
+  "protocol_sha256": "dca9a93bb570fd7cfec9fe72e5cad9ac76f838725b03c7a7a593824fecd51134",
+  "feature_audit_sha256": "9f5895589bad5fc29a9d2c77378ca72e98ea26da9a98ee1512dc25ae166051ff",
+  "status": "accepted independent NumPy fitting-only specialist technical smoke",
+  "seed": 812,
+  "trial": 1,
+  "metric_fits": 2,
+  "fitting_queries": 5,
+  "fitting_prediction_records": 300,
+  "validation_prediction_records": 0,
+  "registered_cumulative_technical_metric_fits": 4,
+  "reviewer_metric_fits": 0,
+  "outer_predictions": 0,
+  "new_encoder_forwards": 0,
+  "dimension": 1536,
+  "temperature": 0.1,
+  "objective_atol": 1e-05,
+  "prediction_atol": 1e-12,
+  "audit_sha256": "a1f5a53c513e84e55772e6b067010945519884b32714a403acc1e700371149df",
+  "smoke_run_sha256": "dae167018d1befe72e3c68bb8ca16dc997476e2a4c058cad8f5502ca846a3cfc",
+  "model_sha256": "fb219687fe3a96314edf530e89c8e189dc0768fa2e5233a374c1d99ad1d42187",
+  "head_artifacts": {
+    "binary": {
+      "metric_sha256": "ab638b53bf3c49c4625f8c7114155082507d7829825df59c058311eaad19eff1",
+      "training_sha256": "2dc924e4851b2fc1d41943ffcc9a462be6eac44a7d0f5944234566393df2313e"
+    },
+    "malignant": {
+      "metric_sha256": "dc1c0e806f33b2e573a8607825531ac67c3cde65cb3fac9ec1033a44815f8315",
+      "training_sha256": "7f2034e69f2879c601b3a0008dc1386e66719f00f2ba898a623796227fe8e043"
+    }
+  },
+  "technical_diagnostics": {
+    "binary": {
+      "updates": 200,
+      "maximum_gradient_l2": 0.007396655157208443,
+      "maximum_objective_parity_error": 9.323734820321228e-08,
+      "theta_sha256": "3348b85ef69fdd141da63782d38b0831e09139e1568a637b305639df89f7bf85",
+      "centers_sha256": "626a0bc2932e42b6ebaf4261502da15ec25be9c3dfd6dc4a1e4be314e86641e0",
+      "factor_min": 0.8710933923721313,
+      "factor_max": 1.2423619031906128
+    },
+    "malignant": {
+      "updates": 200,
+      "maximum_gradient_l2": 0.04874315857887268,
+      "maximum_objective_parity_error": 1.795467856613442e-07,
+      "theta_sha256": "d710ee42bef96ca712c2f169941476c10ae164b49bdfd22a1fbd8e94d540908e",
+      "centers_sha256": "626a0bc2932e42b6ebaf4261502da15ec25be9c3dfd6dc4a1e4be314e86641e0",
+      "factor_min": 0.7035210728645325,
+      "factor_max": 1.5578728914260864
+    }
+  },
+  "reviewer_script_sha256": "cb38067fd9dde0add1ebdbbeac864803f4848efe476af1c0d06c43858eefdac6"
+}
