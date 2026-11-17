@@ -205,7 +205,8 @@
   "compatibility_repairs": [
     "replace Kaggle-specific dataset/CSV/output paths with audited task paths without altering ordered membership",
     "serialize all TransformerEncoderBlock constructor arguments d_model,num_heads,dff,dropout_rate and use stored values instead of assuming MultiHeadAttention exposes public key_dim",
-    "verify whole-model checkpoint reload and scored probabilities before accepting outcome"
+    "verify whole-model checkpoint reload and scored probabilities before accepting outcome",
+    "force internal Keras2.15 get_file cache_dir to existing project KERAS_HOME; retain official weight URL/internal MD5 validation and model parameters, avoiding default missing-home-cache fallback to node-local/tmp"
   ],
   "scoring": {
     "authored_eight_class_metrics": [
@@ -239,13 +240,35 @@
     "tensorflow": "2.15.1",
     "keras": "2.15.0",
     "installation": "isolated environment; preserve existing project environment",
-    "runtime_and_pretrained_weight_receipts_required": true
+    "runtime_and_pretrained_weight_receipts_required": true,
+    "imagenet_weights_filename": "efficientnetv2-b0_notop.h5",
+    "imagenet_weights_url": "https://storage.googleapis.com/tensorflow/keras-applications/efficientnet_v2/efficientnetv2-b0_notop.h5",
+    "imagenet_weights_official_md5": "893217f2bb855e2983157299931e43ff",
+    "imagenet_weights_sha256": "fd2529efca107725477325b0a3de53521c37873ba2910a2600a6b26209d95285",
+    "imagenet_weights_size_bytes": 24274472,
+    "keras_get_file_cache_policy": "force internal Keras2.15 get_file cache_dir to existing shared project KERAS_HOME; preserve official URL and internal hash validation; preupload verified bit-identical weights before concurrent checks",
+    "backbone_parameters": 5919312
   },
   "acceptance": {
     "zero_fit_data_order_and_split_audit_before_training": true,
     "synthetic_cpu_model_and_serialization_check_before_gpu_dependency": true,
     "both_variants_reported": true,
-    "no_saved_performance_in_supplied_notebook": true
+    "no_saved_performance_in_supplied_notebook": true,
+    "selected_production_checkpoint_reload": {
+      "model": "selected whole-model .keras checkpoint",
+      "loader": "keras.models.load_model with custom layers",
+      "compile": false,
+      "query_count": 32,
+      "batch_size": 32,
+      "inputs": "same first full batch of already variant-correct X_test_norm used for selected-checkpoint scoring; do not rescale again",
+      "absolute_probability_tolerance": 1e-05,
+      "relative_probability_tolerance": 0.0,
+      "outputs": [
+        "binary_output",
+        "subtype_output"
+      ],
+      "acceptance": "both probability arrays finite and within fixed absolute tolerance of original selected-model predictions"
+    }
   },
   "budget": {
     "production_models": 2,
