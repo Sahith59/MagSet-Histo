@@ -9,7 +9,7 @@ set -euo pipefail
 : "${MAGSET_ROOT:?}" "${MAGSET_SOURCE:?}" "${MAGSET_CODE_SHA:?}" "${MAGSET_SWIN_ACTION:?}"
 [[ "$(cat "$MAGSET_SOURCE/.source-sha")" == "$MAGSET_CODE_SHA" ]]
 TASK_ENV="$MAGSET_ROOT/envs/swin-tf215-v1"
-TASK_RUNS="$MAGSET_ROOT/runs/supplied-swin-v1"
+TASK_RUNS="$MAGSET_ROOT/runs/supplied-swin-v1/attempt-2"
 test -f "$TASK_ENV/prepared.json"
 export HF_HOME="$MAGSET_ROOT/cache/hf-supplied-swin" HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 TF_USE_LEGACY_KERAS=1
 export MPLCONFIGDIR="$MAGSET_ROOT/cache/matplotlib-swin-tf215"

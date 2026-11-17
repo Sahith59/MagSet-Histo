@@ -195,16 +195,42 @@ class SwinCollectorTests(unittest.TestCase):
             self.assertEqual(result['private_review_sha256'], m.file_hash(args.output/'private_review.json'))
             with self.assertRaisesRegex(ValueError, 'existing'): m.collect(args)
 
-    def test_pretrained_load_rejects_uninitialized_backbone_and_allows_only_unused_classifier(self):
+    def test_pretrained_load_rejects_uninitialized_backbone_and_allows_only_proven_indices(self):
+        proof = {'checked_buffers': 12, 'window_size': [7, 7], 'shape': [49, 49],
+                 'maximum_abs_error': 0, 'all_nontrainable': True}
         clean = {'missing_keys': [], 'mismatched_keys': [], 'error_msgs': [],
-                 'unexpected_keys': ['classifier/kernel:0', 'classifier/bias:0']}
-        self.assertEqual(m.verify_pretrained_load(clean)['unused_classifier_keys'], 2)
-        for key in ('missing_keys', 'mismatched_keys', 'error_msgs'):
+                 'unexpected_keys': ['classifier'],
+                 'deterministic_relative_position_index_check': proof}
+        exact = [f'swin/encoder/layers.{stage}/blocks.{block}/attention/self/relative_position_index:0'
+                 for stage, depth in enumerate((2, 2, 6, 2)) for block in range(depth)]
+        clean['deterministic_relative_position_index_sha256'] = {key: '146d178a603c3a1c98a8100a70fe396369b281782f599312dde58016be6f7db2' for key in exact}
+        self.assertEqual(m.verify_pretrained_load(clean)['unused_classifier_keys'], 1)
+        native = {**clean, 'missing_keys': exact}
+        accepted = m.verify_pretrained_load(native)
+        self.assertEqual(accepted['missing_keys'], 12)
+        self.assertEqual(accepted['unresolved_missing_keys'], 0)
+        for missing in (['backbone learned weight'], exact[:-1], exact+[exact[0]],
+                        exact+['swin/encoder/layers.0/blocks.0/attention/self/relative_position_bias_table:0'],
+                        [key.replace('layers.0/', 'layers.4/') for key in exact]):
+            with self.subTest(missing=missing), self.assertRaisesRegex(ValueError, 'loading failed'):
+                m.verify_pretrained_load({**clean, 'missing_keys': missing})
+        for key in ('mismatched_keys', 'error_msgs'):
             with self.subTest(key=key), self.assertRaisesRegex(ValueError, 'loading failed'):
-                m.verify_pretrained_load({**clean, key: ['backbone problem']})
+                m.verify_pretrained_load({**native, key: ['backbone problem']})
+        for changed in ({'checked_buffers': 11}, {'window_size': [8, 8]}, {'shape': [48, 48]},
+                        {'maximum_abs_error': 1}, {'all_nontrainable': False}):
+            with self.subTest(proof=changed), self.assertRaisesRegex(ValueError, 'index proof'):
+                m.verify_pretrained_load({**native, 'deterministic_relative_position_index_check': {**proof, **changed}})
+        hashes = clean['deterministic_relative_position_index_sha256']
+        for bad_hashes in ({key: 'a'*64 for key in exact}, {key: hashes[key] for key in exact[:-1]},
+                           {**hashes, 'extra': next(iter(hashes.values()))}):
+            with self.subTest(hashes=bad_hashes), self.assertRaisesRegex(ValueError, 'buffer hashes'):
+                m.verify_pretrained_load({**native, 'deterministic_relative_position_index_sha256': bad_hashes})
+        without_proof = {key: value for key, value in native.items() if key != 'deterministic_relative_position_index_check'}
+        with self.assertRaisesRegex(ValueError, 'index proof'): m.verify_pretrained_load(without_proof)
         for unexpected in (['swin/embeddings/kernel:0'], ['notclassifier/kernel:0'], None):
             with self.subTest(unexpected=unexpected), self.assertRaisesRegex(ValueError, 'non-classifier'):
-                m.verify_pretrained_load({**clean, 'unexpected_keys': unexpected})
+                m.verify_pretrained_load({**native, 'unexpected_keys': unexpected})
 
     def test_cli_contract_and_no_tensorflow_import(self):
         args = m.parser().parse_args(['--run', 'r', '--audit', 'a', '--config', 'c', '--code-sha', 'a'*40, '--output', 'o'])

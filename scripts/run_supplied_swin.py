@@ -153,7 +153,13 @@ for _name,_sha in _prepared['files'].items():
     assert _hashlib.sha256((_snapshot/_name).read_bytes()).hexdigest()==_sha, 'Official Swin weights changed'
 _Path('pretrained_weights.json').write_text(json.dumps(_prepared,indent=2))
 _load_info=json.loads(_Path('pretrained_load.json').read_text())
-assert not _load_info.get('missing_keys') and not _load_info.get('mismatched_keys') and not _load_info.get('error_msgs'), _load_info
+_index_keys={'swin/encoder/layers.%d/blocks.%d/attention/self/relative_position_index:0'%(s,b)
+ for s,d in enumerate([2,2,6,2])for b in range(d)}
+assert set(_load_info['missing_keys']) in (set(),_index_keys), _load_info
+assert not _load_info['mismatched_keys'] and not _load_info['error_msgs'], _load_info
+assert _load_info['deterministic_relative_position_index_check']=={'checked_buffers':12,'window_size':[7,7],
+ 'shape':[49,49],'maximum_abs_error':0,'all_nontrainable':True}
+assert _load_info['deterministic_relative_position_index_sha256']=={k:'146d178a603c3a1c98a8100a70fe396369b281782f599312dde58016be6f7db2'for k in _index_keys}
 _gpu_count=len(tf.config.list_physical_devices('GPU'))
 '''+("assert _gpu_count>=1, 'Production run requires allocated GPU'\n" if gpu else '')+'''
 _Path('environment.json').write_text(json.dumps({'python':_platform.python_version(),'tensorflow':tf.__version__,
@@ -258,11 +264,30 @@ def run(args):
     import nbformat
     output.mkdir(parents=True);nbformat.write(notebook,output/'adapted.ipynb')
     # Separate process: never advance the original notebook kernel's seeded RNG.
-    probe='''import json,sys
+    probe='''import json,sys,re,hashlib
 from pathlib import Path
+import numpy as np, tensorflow as tf
 from transformers import TFSwinModel
 model,info=TFSwinModel.from_pretrained(sys.argv[1],local_files_only=True,use_safetensors=False,output_loading_info=True)
-assert not info.get('missing_keys') and not info.get('mismatched_keys') and not info.get('error_msgs'),info
+info.setdefault('error_msgs',[])
+allowed={'swin/encoder/layers.%d/blocks.%d/attention/self/relative_position_index:0'%(s,b)for s,d in enumerate([2,2,6,2])for b in range(d)}
+assert set(info['missing_keys']) in (set(),allowed),info
+assert not info['mismatched_keys'] and not info['error_msgs'],info
+coords=np.stack(np.meshgrid(np.arange(7),np.arange(7),indexing='ij')).reshape(2,-1)
+delta=coords[:,:,None]-coords[:,None,:]
+expected=((delta[0]+6)*13+(delta[1]+6)).astype(np.int32)
+found=set(); hashes={}
+for weight in model.weights:
+    match=re.search(r'(swin/encoder/layers\\.\\d+/blocks\\.\\d+/attention/self/relative_position_index:0)$',weight.name)
+    if match:
+        assert not weight.trainable and weight.dtype==tf.int32
+        assert np.array_equal(weight.numpy(),expected)
+        assert match.group(1) not in found
+        found.add(match.group(1))
+        hashes[match.group(1)]=hashlib.sha256(weight.numpy().astype('<i4').tobytes(order='C')).hexdigest()
+assert found==allowed,(found,allowed)
+info['deterministic_relative_position_index_check']={'checked_buffers':12,'window_size':[7,7],'shape':[49,49],'maximum_abs_error':0,'all_nontrainable':True}
+info['deterministic_relative_position_index_sha256']=hashes
 Path(sys.argv[2]).write_text(json.dumps(info,indent=2))
 '''
     receipt=dict(source_receipt(args.code_sha),notebook_sha256=NOTEBOOK_SHA,config_sha256=file_hash(args.config),

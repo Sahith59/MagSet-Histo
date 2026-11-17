@@ -311,14 +311,35 @@ def class_weights(labels, classes):
 
 def verify_pretrained_load(info):
     require(isinstance(info, dict), 'Pretrained loading diagnostics missing')
-    for key in ('missing_keys', 'mismatched_keys', 'error_msgs'):
+    # Native TF checkpoint omits these deterministic integer lookup buffers.
+    # Their post-load values/nontrainability must be exhaustively verified in
+    # the isolated producer probe; learned relative-position bias is never exempt.
+    expected_indices = {
+        f'swin/encoder/layers.{stage}/blocks.{block}/attention/self/relative_position_index:0'
+        for stage, depth in enumerate((2, 2, 6, 2)) for block in range(depth)}
+    missing = info.get('missing_keys')
+    require(isinstance(missing, list) and all(isinstance(key, str) for key in missing)
+            and len(missing) == len(set(missing))
+            and (not missing or set(missing) == expected_indices),
+            'Pretrained backbone loading failed: missing learned or unexpected keys')
+    for key in ('mismatched_keys', 'error_msgs'):
         require(info.get(key) == [], 'Pretrained backbone loading failed: '+key)
+    proof = {'checked_buffers': 12, 'window_size': [7, 7], 'shape': [49, 49],
+             'maximum_abs_error': 0, 'all_nontrainable': True}
+    require_equal(info.get('deterministic_relative_position_index_check'), proof,
+                  'deterministic relative position index proof', 0)
+    index_digest = '146d178a603c3a1c98a8100a70fe396369b281782f599312dde58016be6f7db2'
+    require_equal(info.get('deterministic_relative_position_index_sha256'),
+                  {key: index_digest for key in expected_indices},
+                  'deterministic relative position index buffer hashes', 0)
     unexpected = info.get('unexpected_keys')
     require(isinstance(unexpected, list) and all(isinstance(key, str)
             and re.search(r'(^|/)classifier(?:/|$)', key) is not None for key in unexpected),
             'Unexpected non-classifier pretrained keys')
-    return {'missing_keys': 0, 'mismatched_keys': 0, 'error_msgs': 0,
-            'unused_classifier_keys': len(unexpected)}
+    return {'missing_keys': len(missing), 'unresolved_missing_keys': 0,
+            'mismatched_keys': 0, 'error_msgs': 0, 'unused_classifier_keys': len(unexpected),
+            'deterministic_relative_position_index_check': proof,
+            'deterministic_relative_position_index_sha256': index_digest}
 
 
 def verify_runtime(root, hashes, config, audit, split, audit_sha):
