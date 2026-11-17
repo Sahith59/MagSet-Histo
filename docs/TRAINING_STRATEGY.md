@@ -1,6 +1,6 @@
 # How the current BreakHis system learns
 
-Updated November 16, 2026. The system first asks whether tissue is benign or malignant. A benign answer stops there; a malignant answer proceeds to ductal, lobular, mucinous or papillary carcinoma. These are **five final categories**, with no benign subtype expert. Only BreakHis supplies current fitting and evaluation images and labels; external pretrained reader weights are transfer learning. TCGA work remains deferred.
+Updated November 17, 2026. The system first asks whether tissue is benign or malignant. A benign answer stops there; a malignant answer proceeds to ductal, lobular, mucinous or papillary carcinoma. These are **five final categories**, with no benign subtype expert. Only BreakHis supplies current fitting and evaluation images and labels; external pretrained reader weights are transfer learning. TCGA work remains deferred.
 
 ## Images, cases and available zooms
 
@@ -34,15 +34,19 @@ All accuracy/F1 pairs below are arrangement 812 / 813, averaged over five trials
 | Three-crop Midnight similarity, F | 75.50% / 76.83% | .592510 / .579947 | Small F1 gains; mixed raw accuracy |
 | Native-pixel Midnight similarity, N | 60.00% / 61.00% | .439405 / .501395 | Completed; no improvement |
 | Class-balanced shared center, P | 76.17% / 75.33% | .599196 / .577788 | Completed; mixed against F |
-| Head-specific centers, P | 76.33% / 75.67% | .602715 / .602512 | Highest measured two-step F1 on both arrangements; screen fails |
+| Head-specific centers, P | 76.33% / 75.67% | .602715 / .602512 | Retained reference; earlier F1 lead superseded on 812; screen fails |
 | GenBio similarity, G | 70.50% / 75.17% | .583661 / .581348 | Better typing, weaker routing; mixed result |
 | Whole-case MIL, mean | 70.17% / 71.83% | .519915 / .509386 | Strong fitting, weak validation |
 | Whole-case MIL, gated attention | 71.67% / 70.50% | .545323 / .523416 | Mixed versus learned mean; below F/P |
 | UNI2-h frozen similarity | 75.83% / 75.17% | .664180 / .575175 | Highest observed 812 two-step F1; paired screen fails |
 | Virchow2 frozen similarity | 72.50% / 73.00% | .575767 / .538743 | Paired screen fails |
 | H-optimus-0 frozen similarity | 73.50% / 71.17% | .509710 / .506235 | Paired screen fails |
+| UNI2-h binary metric only | 75.67% / 75.33% | .660624 / .578434 | Mixed ablation; screen fails |
+| UNI2-h malignant metric only | 76.33% / 75.50% | .672180 / .581397 | Highest observed812F1; ablation |
+| UNI2-h both metrics, primary | 76.17% / 75.83% | .668624 / .587323 | Small gain; screen fails |
+| UNI2-h supervised field heads | 73.83% / 73.67% | .575342 / .535412 | Strong fitting; weak transfer |
 
-F improves macro F1 slightly over C on both arrangements, but accuracy falls 0.17 percentage points on 812 and rises 1.83 on 813. UNI2-h now has the highest measured two-step F1 on 812. Head-specific P retains the 813 F1 lead, while its 813 accuracy is below F's 76.83%. Neither P mode passes the registered screen against F, which requires at least +.02 macro F1, nondecreasing accuracy and positive recall for every final class in both arrangements. Keep C, F and both P modes visible. Head-specific P's all-four-zoom accuracy is 85% on both arrangements; this is a separate endpoint from the 15-subset average. [C evidence](BREAKHIS_KERNEL_RESULTS.md) · [F evidence](BREAKHIS_COVERAGE_RESULTS.md) · [Accepted P comparison](evidence/BREAKHIS_PRIOR_CENTERED_RESULTS.json).
+F improves macro F1 slightly over C on both arrangements, but accuracy falls 0.17 percentage points on 812 and rises 1.83 on 813. The newer UNI2-h malignant-only metric ablation has the highest measured two-step F1 on 812. Head-specific P retains the 813 F1 lead, while its 813 accuracy is below F's 76.83%. Neither P mode passes the registered screen against F, which requires at least +.02 macro F1, nondecreasing accuracy and positive recall for every final class in both arrangements. Keep C, F and both P modes visible. Head-specific P's all-four-zoom accuracy is 85% on both arrangements; this is a separate endpoint from the 15-subset average. [C evidence](BREAKHIS_KERNEL_RESULTS.md) · [F evidence](BREAKHIS_COVERAGE_RESULTS.md) · [Accepted P comparison](evidence/BREAKHIS_PRIOR_CENTERED_RESULTS.json).
 
 Head-specific P's binary decision is 94.83%/93.00% correct, while true-malignant typing is only 58.33%/62.33%. Final mucinous recall is 49.33%/36.00% and papillary recall 20.00%/45.33%, showing uneven subtype effects. Malignant typing remains the main weakness. F's corresponding typing accuracy is 57.00%/59.33%. E reaches 95% binary accuracy on 813 while final accuracy is only 72.17%; binary accuracy is not five-category accuracy. [Fixed-vote evidence](BREAKHIS_FIXED_ENSEMBLE_RESULTS.md).
 
@@ -63,3 +67,11 @@ The completed LoRA study trained heads for two epochs and then adapters/heads fo
 All registered jobs and collectors are complete and accepted; no project run is active. Next freeze the verified evidence and finish the **five-class** deck/demo and report. Any further malignant-specialist objective or complementary-encoder intervention needs a separate registration and matched controls. Access to UNI2-h, Virchow2 and H-optimus-0 is confirmed, and their complete fixed-reader comparison is accepted. Each reader stays frozen and supplies its registered numerical description to the same case-centered density classifier. UNI2-h improves 812 F1, but all three overall paired screens fail. [Complete approved-reader results](BREAKHIS_APPROVED_ENCODERS_RESULTS.md). No automatic router/expert hybrid, N+P combination, resplit or tuning sweep follows.
 
 Standard transfer learning, density classification, masking, probability pooling, LoRA and supervised centering are existing methods. The capstone contribution is the implemented, audited comparison under the corrected task and its clearly reported limits. The highest descriptive F1 does not establish novelty or fresh generalization. **94–95% final accuracy remains unachieved.**
+
+## November 17: what the two new training methods did
+
+**Bounded feature learning:** keep UNI2-h frozen and learn one list of 1,536 positive feature scales per head. The class-balanced different-case density objective uses fitting-case means; inference uses field densities. Both heads train for 200 fixed Adam steps, with an identity penalty and inherited temperatures. Four prespecified arms isolate binary, malignant and combined effects. Twenty production metric fits and four technical fits completed, including the preserved first reporting failure. Primary both-head accuracy is 76.17% / 75.83%, F1 .668624 / .587323. The objective decreases and the validation gain is small; the paired screen fails. [Complete method/results](BREAKHIS_SPECIALIST_METRIC_RESULTS.md).
+
+**Standard supervised UNI2-h readout:** keep the same frozen features and learn L2 logistic field heads using fitting-only field-moment standardization plus four zoom flags. Manual class/case/view/field weights keep total head weights at 46 / 46 / 35. Compare direct-five with binary-plus-malignant-four using four C values (.01 / .1 / 1 / 10), fixed L-BFGS tolerance 1e-4 and maximum 2,000 iterations. The dual heads share C; select the earliest maximum mean-subset validation macro F1. All 120 production head fits and 12 fitting-only technical fits completed. Independent coefficient, objective, gradient and prediction replay accepts every candidate. Dual validation accuracy is 73.83% / 73.67%, versus about 98.5% on fitting cases. Both reference screens fail. [Complete results](BREAKHIS_UNI_LINEAR_RESULTS.md).
+
+These recipes were fixed before their outcomes. The linear family fills a missing conventional UNI2-h baseline and changes normalization/classifier as a complete package versus KDE. Its 96.17% binary score on 813 remains separate from 73.67% final accuracy. Neither family reaches 94–95% final accuracy. Training is complete. A read-only audit now traces errors to distinct provider cases before choosing another intervention.

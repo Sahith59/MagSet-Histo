@@ -4,7 +4,7 @@ Updated November 17, 2026. We predict **five categories: pooled benign, ductal, 
 
 **What does 75.83% / 75.17% mean?** Imagine giving the earlier UNI2-h model two sets of quizzes. The pictures come from the same BreakHis dataset, but the fitting/validation arrangement differs. It answered **455 of 600 checks** correctly in arrangement 812 and **451 of 600** in arrangement 813. The slash separates those two validation results. Both measure the final five-category answer. They are not a training/test pair or the two decisions' scores. Each case appears in several zoom combinations and overlapping trials, so 600 checks do not mean 600 different people. Training both feature-adjustment heads now gives **457/600 and 455/600** on those same quizzes.
 
-The separate malignant-only ablation reaches .672180 F1 on 812, the highest observed two-step 812 F1 so far; the retained Midnight reference P still leads 813 F1 at .602512. P accuracy is 76.33% / 75.67%, and F retains higher 813 raw accuracy at 76.83%. All-four-view scores are a separate endpoint. The next registered standard supervised UNI2-h classifier is undergoing fitting-only checks before full evaluation.
+The separate malignant-only ablation reaches .672180 F1 on 812, the highest observed two-step 812 F1 so far; the retained Midnight reference P still leads 813 F1 at .602512. P accuracy is 76.33% / 75.67%, and F retains higher 813 raw accuracy at 76.83%. All-four-view scores are a separate endpoint. The standard supervised UNI2-h classifier also completed: **73.83% / 73.67%**, below its reference. Both new studies are fully replayed; 95% is still unmet.
 
 ## What goes in and comes out?
 
@@ -66,16 +66,20 @@ Every row below is **final-five, two-step case validation across all 15 subsets*
 | UNI2-h frozen similarity | 75.83% / 75.17% | 455 / 451 | .6642 / .5752 |
 | Virchow2 frozen similarity | 72.50% / 73.00% | 435 / 438 | .5758 / .5387 |
 | H-optimus-0 frozen similarity | 73.50% / 71.17% | 441 / 427 | .5097 / .5062 |
+| UNI2-h binary metric only | 75.67% / 75.33% | 454 / 452 | .6606 / .5784 |
+| UNI2-h malignant metric only | 76.33% / 75.50% | 458 / 453 | .6722 / .5814 |
+| UNI2-h both metrics, primary | 76.17% / 75.83% | 457 / 455 | .6686 / .5873 |
+| UNI2-h supervised field heads | 73.83% / 73.67% | 443 / 442 | .5753 / .5354 |
 
 The [full scorecard](../paper/breakhis-five-class-report.md) also retains intermediate field/case controls and all direct-five comparisons. Important qualifications:
 
-- P remains the current reference under the registered paired criteria. UNI2-h leads observed two-step F1 on 812 and its simple two-arrangement F1 average is .619677 versus P's .602614; P has higher 813 F1 and higher accuracy on both arrangements. There is no universal F1 leader. F retains higher 813 accuracy. P's **85% / 85% = 34/40 / 34/40 all-four-view accuracy** is a separate endpoint. P also worsens probability errors versus F.
+- P remains the current reference under the registered paired criteria. The newer malignant-only metric ablation leads observed two-step F1 on 812. The earlier frozen UNI2-h similarity model's simple two-arrangement F1 average is .619677 versus P's .602614; P has higher 813 F1 and higher accuracy on both arrangements. There is no universal F1 leader. F retains higher 813 accuracy. P's **85% / 85% = 34/40 / 34/40 all-four-view accuracy** is a separate endpoint. P also worsens probability errors versus F.
 - GenBio's **direct-five** control scores **71.33% / 77.83%**, F1 **.5960 / .6406**, using 428/600 / 467/600 records under the same roles. Its stronger 813 result is one-stage development evidence, without a consistent two-step gain.
 - The approved readers' direct-five controls are also separate one-stage evidence: UNI2-h **75.17% / 77.67%**, F1 **.6486 / .6345**, counts **451 / 466**; Virchow2 **72.83% / 75.00%**, F1 **.5901 / .5877**, counts **437 / 450**; H-optimus-0 **77.33% / 75.17%**, F1 **.6036 / .6067**, counts **464 / 451**, each out of 600. H-optimus-0's direct all-four-view score **87.50% / 82.50% = 35/40 / 33/40** is another separate endpoint.
 - LoRA's fixed-C=1 initialization was already **68.17% / 59.50%**; the entire gap from C cannot be attributed to adapter damage. Eight of ten dual runs selected the head-only epoch-2 checkpoint.
 - Whole-case neural models fit their fitting cases at about **99.13%** accuracy but transfer much less well. This does not establish one sole cause. Learned mean also has slightly better Brier error than F despite weaker accuracy/F1, so every metric did not worsen.
 
-Source ledgers: [first five-class](evidence/BREAKHIS_FIVE_CLASS_RESULTS.json), [CNN](evidence/BREAKHIS_CASEBAG_RESULTS.json), [C](evidence/BREAKHIS_MIDNIGHT_KERNEL_RESULTS.json), [LoRA](evidence/BREAKHIS_LORA_RESULTS.json), [ensemble](evidence/BREAKHIS_FIXED_ENSEMBLE_RESULTS.json), [F](evidence/BREAKHIS_COVERAGE_RESULTS.json), [native](evidence/BREAKHIS_NATIVE_RESULTS.json), [P](evidence/BREAKHIS_PRIOR_CENTERED_RESULTS.json), [GenBio](evidence/BREAKHIS_GENBIO_RESULTS.json), [whole-case mean/attention](evidence/BREAKHIS_CASE_MIL_RESULTS.json), [UNI2-h](evidence/BREAKHIS_UNI2_H_RESULTS.json), [Virchow2](evidence/BREAKHIS_VIRCHOW2_RESULTS.json), [H-optimus-0](evidence/BREAKHIS_H_OPTIMUS_0_RESULTS.json). Table accuracy, F1, denominators and checkpoint selections were independently recalculated from these saved ledgers; no new fitting or inference was performed for this explanation.
+Source ledgers: [first five-class](evidence/BREAKHIS_FIVE_CLASS_RESULTS.json), [CNN](evidence/BREAKHIS_CASEBAG_RESULTS.json), [C](evidence/BREAKHIS_MIDNIGHT_KERNEL_RESULTS.json), [LoRA](evidence/BREAKHIS_LORA_RESULTS.json), [ensemble](evidence/BREAKHIS_FIXED_ENSEMBLE_RESULTS.json), [F](evidence/BREAKHIS_COVERAGE_RESULTS.json), [native](evidence/BREAKHIS_NATIVE_RESULTS.json), [P](evidence/BREAKHIS_PRIOR_CENTERED_RESULTS.json), [GenBio](evidence/BREAKHIS_GENBIO_RESULTS.json), [whole-case mean/attention](evidence/BREAKHIS_CASE_MIL_RESULTS.json), [UNI2-h](evidence/BREAKHIS_UNI2_H_RESULTS.json), [Virchow2](evidence/BREAKHIS_VIRCHOW2_RESULTS.json), [H-optimus-0](evidence/BREAKHIS_H_OPTIMUS_0_RESULTS.json). [Metric study](BREAKHIS_SPECIALIST_METRIC_RESULTS.md) and [supervised UNI2-h study](BREAKHIS_UNI_LINEAR_RESULTS.md) add complete fixed comparisons. Table accuracy, F1, denominators and checkpoint selections were independently recalculated from these saved ledgers; no new fitting or inference was performed for this explanation.
 
 ## What counts as success, and what remains?
 
@@ -88,3 +92,11 @@ The completed [approved-reader comparison](BREAKHIS_APPROVED_ENCODERS_SPEC.md) p
 All three readers and both arms remain visible. Selecting among them adds **12 reader/temperature settings per arm/role**, rather than four, and no reader is chosen separately for each arrangement to manufacture a combined headline. Their mixed accuracy, F1 and probability-quality outcomes do not establish one universal winner or authorize an automatic hybrid.
 
 The five-category capstone report, presentation and demo remain the immediate deliverable. Completed negative results stay visible. New fitting must not change splits or tune routing thresholds to manufacture 95%. TCGA expansion and publication claims remain separate, deferred work.
+
+## What did the latest training change?
+
+The metric study learns two lists of feature weights, one for each decision, while keeping UNI2-h frozen. The primary both-head arm adds only two/four correct checks compared with its exact identity control. All four predefined arms remain reported. The malignant-only ablation supplies diagnosis, rather than a newly selected primary winner.
+
+The standard linear classifier learns boundaries between labels using the same frozen UNI2-h descriptions. It reaches about 98.5% on fitting cases, but 73.83% / 73.67% on validation cases. Its benign/malignant accuracy is 91.83% / 96.17%, while true-malignant typing is 63.67% / 54.67%. Think of a pupil recognizing practice cards but struggling with different cards. The measured gap points to weak transfer; it does not prove one sole cause. The fitting support has only two lobular and three papillary cases.
+
+Both studies finished and passed saved-state checks. Both fail their declared larger-improvement screens. They establish no 95% final score. A read-only case-error audit now supports the five-category evidence package and the choice of a justified future experiment.

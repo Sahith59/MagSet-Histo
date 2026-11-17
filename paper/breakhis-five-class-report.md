@@ -1,8 +1,8 @@
 # BreakHis five-category dual-step project report
 
-Working capstone report, updated November 16, 2026. **UNI2-h now has the highest observed arrangement-812 two-step macro F1, 0.664180, at 75.83% final five-category accuracy**, but scores 0.575175 / 75.17% on 813. Head-specific centering, P, retains the 813 two-step F1 lead at **0.602512 / 75.67%**; its 812 result is 0.602715 / 76.33%. Three-crop Midnight, F, retains higher 813 two-step raw accuracy at **76.83%**. GenBio's one-stage control reaches **77.83% / F1 0.640603** on 813. All remain on the scorecard; there is no uniform winner. **94–95% final accuracy is not achieved.**
+Updated November 17, 2026. The new metric primary gives **76.17% / 75.83% final accuracy**, macro F1 **.668624 / .587323**, with a small gain over its exact UNI2-h control. The malignant-only ablation has the highest observed 812 two-step F1, **.672180**; retained P leads 813 at **.602512** and scores **76.33% / 75.67%** accuracy. F retains higher 813 raw accuracy at **76.83%**. Standard supervised UNI2-h field heads score **73.83% / 73.67%**, a completed negative result. Both new complete studies fail their declared larger-improvement screens. **94–95% final five-category accuracy remains unachieved.**
 
-The approved UNI2-h, Virchow2 and H-optimus-0 reader comparisons are complete and independently reviewed, alongside GenBio and whole-case mean/attention. UNI2-h passes the descriptive improvement screen on 812 but not 813; none of the new readers passes the complete two-arrangement screen. All classification runs and collectors in these studies have finished. [Approved-reader execution and outcomes](../docs/BREAKHIS_APPROVED_ENCODERS_RESULTS.md).
+Both metric-learning and standard-linear production arrays, fitting-only technical checks and complete prediction collectors have finished. The metric study verifies 40 pipelines, 20 production metric fits and 32,400 dependent records; the linear study verifies 80 pipelines, 120 production head fits and 64,800 records. These counts are repeated computation, not independent cases. [Metric results](../docs/BREAKHIS_SPECIALIST_METRIC_RESULTS.md) · [Linear results](../docs/BREAKHIS_UNI_LINEAR_RESULTS.md).
 
 These are exploratory provider-case development results. Execution completion, predictive improvement and clinical/research claims are reported separately. All completed negative outcomes are retained; no novelty or fresh clinical generalization is established.
 
@@ -38,6 +38,10 @@ The arrangements contain 22 and 20 distinct validation keys, with 31 in their un
 | UNI2-h frozen similarity | 75.83% / 75.17% | 0.6642 / 0.5752 |
 | Virchow2 frozen similarity | 72.50% / 73.00% | 0.5758 / 0.5387 |
 | H-optimus-0 frozen similarity | 73.50% / 71.17% | 0.5097 / 0.5062 |
+| UNI2-h binary metric only | 75.67% / 75.33% | 0.6606 / 0.5784 |
+| UNI2-h malignant metric only | 76.33% / 75.50% | 0.6722 / 0.5814 |
+| UNI2-h both metrics, primary | 76.17% / 75.83% | 0.6686 / 0.5873 |
+| UNI2-h supervised field heads | 73.83% / 73.67% | 0.5753 / 0.5354 |
 
 Direct-five controls provide the following same-target comparisons:
 
@@ -56,8 +60,9 @@ Direct-five controls provide the following same-target comparisons:
 | UNI2-h frozen similarity | 75.17% / 77.67% | 0.6486 / 0.6345 |
 | Virchow2 frozen similarity | 72.83% / 75.00% | 0.5901 / 0.5877 |
 | H-optimus-0 frozen similarity | 77.33% / 75.17% | 0.6036 / 0.6067 |
+| UNI2-h supervised field heads | 73.00% / 73.50% | 0.5666 / 0.5284 |
 
-Two-step prediction is not uniformly better than direct-five prediction across all studies. The first Phikon comparison had mixed arrangement-level gains; the LoRA, ensemble, GenBio, gated-attention, Virchow2 and H-optimus-0 direct controls outperform their two-step counterparts in raw accuracy. UNI2-h's hierarchy improves its 812 accuracy/F1 but loses both on 813. GenBio's 813 one-stage F1 exceeds P's two-step score; P's F1 lead is now limited to arrangement-813 two-step pipelines, with UNI2-h leading 812. Each comparison describes its complete declared objective and readout, rather than isolating hierarchy or a threshold change alone.
+Two-step prediction is not uniformly better than direct-five prediction across all studies. The first Phikon comparison had mixed arrangement-level gains; the LoRA, ensemble, GenBio, gated-attention, Virchow2 and H-optimus-0 direct controls outperform their two-step counterparts in raw accuracy. UNI2-h's hierarchy improves its 812 accuracy/F1 but loses both on 813. GenBio's 813 one-stage F1 exceeds P's two-step score; P's F1 lead is limited to arrangement-813 two-step pipelines, with the newer UNI2-h malignant-only metric ablation leading 812. Each comparison describes its complete declared objective and readout, rather than isolating hierarchy or a threshold change alone.
 
 ## Methods and what the completed studies show
 
@@ -137,3 +142,13 @@ Accepted ledgers retain all source/configuration revisions, hashes, candidates, 
 The supplied notebooks saved 93.73% / 94.99% for eight-type, single-40× images under image-random, reused validation. Earlier case-based eight-class accuracy was 45.7% / 38.3%; the retrospective binary analysis gave 87.0% / 80.7%. Those numbers retain their original targets and units. Pooling benign labels changes the task and supports; it does not retrospectively improve the eight-class model or turn a binary score into five-category accuracy. [Historical evidence](../docs/CAPSTONE_BEFORE_AND_NOW.md).
 
 The project has produced reproducible baseline execution, measured improvements and informative negative comparisons, including UNI2-h's substantial 812 F1 gain that does not repeat uniformly on 813. Reliable 94–95% final five-category accuracy, fresh clinical generalization, a novel method and conference acceptance remain unestablished. Access to UNI2-h, Virchow2 and H-optimus-0 is confirmed, and their comparisons are complete. The immediate deliverable is the five-category capstone presentation/demo, including the specialist's generalization limits and the full outcome tradeoffs. No automatic reader fusion or further setting search follows from this round.
+
+## Latest specialist diagnosis
+
+The metric study gives small descriptive gains: primary both-head learning adds two/four correct dependent checks per 600, with both F1 gains below +.02. Its learned-arm fitting diagnostics remain in-sample even with whole-query support exclusion. All four arms are reported and none passes the paired screen.
+
+Supervised UNI2-h field heads fit 98.58% / 98.43% but validate 73.83% / 73.67%. The router is 91.83% / 96.17% correct, while true-malignant typing is 63.67% / 54.67%, weaker than the same-reader similarity control's 72.00% / 60.67%. Final lobular recall is 54.67% in both arrangements and papillary recall 21.33% / 14.67%. Correct convergence and strong fitting leave a substantial transfer gap. There are only two lobular and three papillary fitting cases; fields are correlated, and validation has an adaptive reuse history. None is proven the sole cause.
+
+The metric family was registered first. The separate four-C standard linear family was chosen before metric outcomes and registered before fitting. All failed outcomes and the direct-linear control remain visible. No new encoder calls, excluded-role predictions, threshold changes, split changes or automatic combinations occurred. No 95% final score, clinical validation or novelty is established.
+
+Next perform a descriptive provider-case malignant-error audit, preserving the accepted scores and tracing routing/type errors to distinct cases. This audit supports the capstone explanation and a justified future experiment; it adds no fitting or independent evaluation cohort.

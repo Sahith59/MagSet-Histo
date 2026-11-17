@@ -4,7 +4,7 @@ BreakHis is our main dataset. We are building a breast histology classification 
 
 The system first decides **benign or malignant**. Benign is the final answer; malignant images proceed to a specialist that chooses ductal, lobular, mucinous or papillary carcinoma. We use the available 40×/100×/200×/400× images of each provider case and evaluate all 15 nonempty zoom combinations. [Task and architecture](docs/DUAL_STEP_SCOPE.md) · [Plain-language training guide](docs/TRAINING_STRATEGY.md).
 
-**Current retained reference:** decision-specific Midnight centering scores **76.33% / 75.67% final five-category accuracy**, with **85% / 85%** in the separate all-four-view condition. The newly completed UNI2-h comparison has the highest observed first-arrangement two-step macro F1, **.6642**, and scores **75.83% / 75.17% accuracy**. Midnight centering retains the second-arrangement two-step F1 lead at **.6025**. All three approved-reader comparisons failed their overall paired improvement screens. **94–95% final accuracy remains unachieved.** [Complete approved-reader results](docs/BREAKHIS_APPROVED_ENCODERS_RESULTS.md) · [Plain-language history and metric definitions](docs/PROJECT_EXPLAINED.md).
+**Latest completed studies:** learning both UNI2-h feature metrics gives **76.17% / 75.83% final accuracy**, with macro F1 **.668624 / .587323**. This is a small gain over its matched frozen control, below the registered larger-improvement screen. Standard supervised UNI2-h field heads score **73.83% / 73.67%**, a completed negative result. The retained Midnight reference P remains **76.33% / 75.67%**, with **85% / 85%** in the separate all-four-view condition. The malignant-only metric ablation leads observed 812 two-step F1 at **.672180**; P leads 813 at **.602512**. **94–95% final accuracy remains unachieved.** [Metric results](docs/BREAKHIS_SPECIALIST_METRIC_RESULTS.md) · [Linear results](docs/BREAKHIS_UNI_LINEAR_RESULTS.md) · [Plain-language explanation](docs/PROJECT_EXPLAINED.md).
 
 The complementary GenBio reader and whole-case mean/attention round is complete and verified. Neither consistently improves the requested two-step endpoint. All 40 GPU training trajectories and ten paired GenBio classifier jobs completed; all 370 neural tests passed. [Completed execution and decision](docs/BREAKHIS_NEXT_ROUND_STATUS.md).
 
@@ -32,12 +32,16 @@ Accuracy/F1 below averages all 15 zoom combinations and five overlapping trials 
 | UNI2-h similarity |75.83% /75.17%|**.6642** /.5752|
 | Virchow2 similarity |72.50% /73.00%|.5758 /.5387|
 | H-optimus-0 similarity |73.50% /71.17%|.5097 /.5062|
+| UNI2-h binary metric only |75.67% /75.33%|.6606 /.5784|
+| UNI2-h malignant metric only |76.33% /75.50%|.6722 /.5814|
+| UNI2-h both metrics, primary |76.17% /75.83%|.6686 /.5873|
+| UNI2-h supervised field heads |73.83% /73.67%|.5753 /.5354|
 
 GenBio's one-stage control scores 71.33%/77.83%, F1 .5960/.6406. Its stronger 813 result is a different readout, with weaker 812 accuracy; it does not establish a two-step gain. [GenBio results](docs/BREAKHIS_GENBIO_RESULTS.md) · [Whole-case results](docs/BREAKHIS_CASE_MIL_RESULTS.md).
 
 All comparisons above are complete and verified. The three newly approved readers add frozen-feature comparisons under the same registered roles and decision structure. UNI2-h improves first-arrangement F1, with lower accuracy than the retained reference in both arrangements. Decision-specific centers produce modest F1 gains, with accuracy and recall tradeoffs; both centering modes fail the registered larger-improvement screen. Their direct-five controls are exact duplicates, leaving four structurally unique direct settings and eight dual settings across the mode family. No novel mechanism or 95% result is established. [Native negative result](docs/BREAKHIS_NATIVE_RESULTS.md) · [Centering evidence](docs/BREAKHIS_PRIOR_CENTERED_RESULTS.md) · [Full scorecard](paper/breakhis-five-class-report.md).
 
-The main weakness remains malignant typing. The latest head-specific model scores 94.83%/93.00% on benign/malignant routing, but 58.33%/62.33% on true-malignant subtyping. Binary accuracy is not final five-category accuracy. Only BreakHis images/labels are fitted/evaluated; public pathology pretraining is external transfer learning.
+The main weakness remains malignant typing. The retained P model scores 94.83%/93.00% on benign/malignant routing, but 58.33%/62.33% on true-malignant subtyping. Binary accuracy is not final five-category accuracy. Only BreakHis images/labels are fitted/evaluated; public pathology pretraining is external transfer learning.
 
 The supplied notebooks saved 93.73%/94.99% on eight-type 40× individual images with image-random, reused validation. Their task, prediction unit and split differ from the current case experiment. [Before/now explanation](docs/CAPSTONE_BEFORE_AND_NOW.md). Original notebooks and earlier results remain historical evidence.
 
@@ -65,7 +69,7 @@ python3 -m pip install numpy==1.26.4 scipy==1.15.2 scikit-learn==1.6.1 Pillow==1
 python3 -m unittest discover -s tests -v
 ```
 
-The full neural checks additionally need torch==2.6.0 and torchvision==0.21.0. The latest full pinned suite passed277 tests. The real raw-image replay uses the existing pinned GPU environment, original dataset, pretrained encoder and saved baseline head; these artifacts are not bundled in Git. Submit heavy work through SLURM using [the cluster guide](docs/CLUSTER_SETUP.md). The replay entry point is `python -m magset.breakhis_predict --help`; its validation-only guard excludes fitting and outer-role inputs.
+The full neural checks additionally need torch==2.6.0 and torchvision==0.21.0. The latest linear source passed all 415 full pinned neural tests, including the metric and readout checks. The real raw-image replay uses the existing pinned GPU environment, original dataset, pretrained encoder and saved baseline head; these artifacts are not bundled in Git. Submit heavy work through SLURM using [the cluster guide](docs/CLUSTER_SETUP.md). The replay entry point is `python -m magset.breakhis_predict --help`; its validation-only guard excludes fitting and outer-role inputs.
 
 ## Evidence and research record
 

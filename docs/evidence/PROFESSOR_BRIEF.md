@@ -1,8 +1,8 @@
 # BreakHis five-category capstone: current evidence
 
-Updated November 16, 2026. **UNI2-h now has the highest observed arrangement-812 two-step macro F1, 0.6642, at 75.83% accuracy**, but scores 0.5752 / 75.17% on 813. Head-specific centering, P, retains the 813 two-step F1 lead at 0.6025 / 75.67%; three-crop Midnight, F, retains higher 813 two-step raw accuracy at 76.83%. GenBio's one-stage 813 result is 77.83% / F1 .6406. These are uneven benefits across endpoints, without a uniform winner. **94–95% final five-category accuracy remains unachieved.**
+Updated November 17, 2026. The new metric primary gives **76.17% / 75.83% final accuracy**, macro F1 **.668624 / .587323**, with a small gain over its exact UNI2-h control. The malignant-only ablation has the highest observed 812 two-step F1, **.672180**; retained P leads 813 at **.602512** and scores **76.33% / 75.67%** accuracy. F retains higher 813 raw accuracy at **76.83%**. Standard supervised UNI2-h field heads score **73.83% / 73.67%**, a completed negative result. Both new complete studies fail their declared larger-improvement screens. **94–95% final five-category accuracy remains unachieved.**
 
-The newly approved UNI2-h, Virchow2 and H-optimus-0 comparisons are complete and independently reviewed, alongside GenBio and whole-case mean/attention. UNI2-h passes the descriptive improvement screen on 812 but not 813; none of the three new readers passes the complete two-arrangement screen. All classification runs and collectors in these studies have finished. [Approved-reader comparison](../BREAKHIS_APPROVED_ENCODERS_RESULTS.md).
+Both metric-learning and standard-linear production arrays, fitting-only technical checks and complete prediction collectors have finished. The metric study verifies 40 pipelines, 20 production metric fits and 32,400 dependent records; the linear study verifies 80 pipelines, 120 production head fits and 64,800 records. These counts are repeated computation, not independent cases. [Metric results](../BREAKHIS_SPECIALIST_METRIC_RESULTS.md) · [Linear results](../BREAKHIS_UNI_LINEAR_RESULTS.md).
 
 We predict pooled benign or ductal, lobular, mucinous or papillary carcinoma. The two-step system first decides benign/malignant; only malignant predictions receive a subtype. Only BreakHis images and labels are fitted/evaluated. TCGA follow-up remains deferred.
 
@@ -26,6 +26,10 @@ We predict pooled benign or ductal, lobular, mucinous or papillary carcinoma. Th
 | UNI2-h frozen similarity | 75.83% / 75.17% | 0.6642 / 0.5752 |
 | Virchow2 frozen similarity | 72.50% / 73.00% | 0.5758 / 0.5387 |
 | H-optimus-0 frozen similarity | 73.50% / 71.17% | 0.5097 / 0.5062 |
+| UNI2-h binary metric only | 75.67% / 75.33% | 0.6606 / 0.5784 |
+| UNI2-h malignant metric only | 76.33% / 75.50% | 0.6722 / 0.5814 |
+| UNI2-h both metrics, primary | 76.17% / 75.83% | 0.6686 / 0.5873 |
+| UNI2-h supervised field heads | 73.83% / 73.67% | 0.5753 / 0.5354 |
 
 The latest one-stage controls predict the same five labels directly:
 
@@ -37,6 +41,7 @@ The latest one-stage controls predict the same five labels directly:
 | UNI2-h frozen similarity | 75.17% / 77.67% | 0.6486 / 0.6345 |
 | Virchow2 frozen similarity | 72.83% / 75.00% | 0.5901 / 0.5877 |
 | H-optimus-0 frozen similarity | 77.33% / 75.17% | 0.6036 / 0.6067 |
+| UNI2-h supervised field heads | 73.00% / 73.50% | 0.5666 / 0.5284 |
 
 These headline scores average five overlapping trials and all **15 nonempty magnification subsets**. With all four views present, head-specific centering retains the highest observed two-step accuracy, **85.00% / 85.00%**, versus F's 82.50% / 82.50%; these are separate endpoints. H-optimus-0's 87.50% / 82.50% full-view result uses the one-stage control. P's binary router scores 94.83% / 93.00%, while true-malignant typing scores 58.33% / 62.33%. The ensemble's 95.00% binary score on 813 is also separate from its 72.17% final five-category score.
 
@@ -58,6 +63,18 @@ Head-specific centering also has worse cross-entropy and Brier probability error
 
 The supplied notebooks' 93.73% / 94.99% concerned historical eight-type, single-40× images with image-random, reused validation. They do not establish 95% accuracy for this five-category case task.
 
-Next finish the five-category presentation/demo and explain the specialist's generalization limits and UNI2-h's uneven benefit. Access to the three named readers is confirmed, and all three comparisons are complete. No automatic reader fusion or additional setting search follows from these results.
+Next finish the five-category presentation/demo and explain the specialist's generalization limits and the complete metric/linear outcomes. Access to the three named readers is confirmed, and all three comparisons are complete. No automatic reader fusion or additional setting search follows from these results.
 
 [Approved-reader results](../BREAKHIS_APPROVED_ENCODERS_RESULTS.md) · [Independent result review](../reviews/APPROVED_ENCODER_ACTUAL_RESULTS_REVIEW.md) · [GenBio results](../BREAKHIS_GENBIO_RESULTS.md) · [Whole-case mean/attention results](../BREAKHIS_CASE_MIL_RESULTS.md) · [Centering results](../BREAKHIS_PRIOR_CENTERED_RESULTS.md) · [Native-input results](../BREAKHIS_NATIVE_RESULTS.md) · [Three-crop results](../BREAKHIS_COVERAGE_RESULTS.md) · [Single-center similarity](../BREAKHIS_KERNEL_RESULTS.md) · [Completed LoRA](../BREAKHIS_LORA_RESULTS.md) · [Fixed ensemble](../BREAKHIS_FIXED_ENSEMBLE_RESULTS.md) · [Project report](../../paper/breakhis-five-class-report.md).
+
+## Latest specialist diagnosis
+
+The metric study gives small descriptive gains: primary both-head learning adds two/four correct dependent checks per 600, with both F1 gains below +.02. Its learned-arm fitting diagnostics remain in-sample even with whole-query support exclusion. All four arms are reported and none passes the paired screen.
+
+Supervised UNI2-h field heads fit 98.58% / 98.43% but validate 73.83% / 73.67%. The router is 91.83% / 96.17% correct, while true-malignant typing is 63.67% / 54.67%, weaker than the same-reader similarity control's 72.00% / 60.67%. Final lobular recall is 54.67% in both arrangements and papillary recall 21.33% / 14.67%. Correct convergence and strong fitting leave a substantial transfer gap. There are only two lobular and three papillary fitting cases; fields are correlated, and validation has an adaptive reuse history. None is proven the sole cause.
+
+The metric family was registered first. The separate four-C standard linear family was chosen before metric outcomes and registered before fitting. All failed outcomes and the direct-linear control remain visible. No new encoder calls, excluded-role predictions, threshold changes, split changes or automatic combinations occurred. No 95% final score, clinical validation or novelty is established.
+
+Next perform a descriptive provider-case malignant-error audit, preserving the accepted scores and tracing routing/type errors to distinct cases. This audit supports the capstone explanation and a justified future experiment; it adds no fitting or independent evaluation cohort.
+
+The complete linear source passed all **415** pinned neural tests in CI, without skips, and the lightweight suite also passed. These checks and actual fitted-model replay support execution correctness; the registered predictive screens still fail.
