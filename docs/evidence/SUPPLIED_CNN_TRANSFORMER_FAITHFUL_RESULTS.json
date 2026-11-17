@@ -1,0 +1,256 @@
+{
+  "status": "incomplete supplied-notebook two-variant comparison",
+  "variants": {
+    "faithful": {
+      "status": "accepted",
+      "result_sha256": "e7e9c45694b1de719bc7f8b5f383ac3c6683824a55664740c9eb1c2029bda166",
+      "artifacts": {
+        "adapted.ipynb": "0209d584f55a7e462036562853fae645cb68df90ffa8d9d933fc0ea871ad1d06",
+        "breakhis_dataset.csv": "b5181810c1687baade9d074e24ad043b25fbc0148d398fde4c524b837feff1d8",
+        "cnn_transformer_dualhd.keras": "d8d792e3bfa3b2256798763b8c71b95ce4b22188b183c52642578587ae005490",
+        "environment.json": "3a9e7d698f2b3bf2e123ec7920578336ee8c54ae680060598c7fa173d500065d",
+        "executed.ipynb": "98088e955356d70f958169dc033a4d2f85ea61d979f7dd524027fbc7634df2a8",
+        "history.json": "908a659892a29107d74d0ca8c6f28b355eb99f960151c8b9f1112ac045bcd856",
+        "metrics.json": "66e382819b6e9a9ef8d7fe322dd45b1aa59cea2590cd6fa4b1773dc688639f30",
+        "predictions.npz": "11e827b408dfa8e1a83321be51152ef40975eb49576595ea9ec52ff1d276fd09",
+        "prefit.json": "029386caf5e4b705a879ec6341115884d7e46647e4c11a793375491fe7bd3c68",
+        "prefit_split.npz": "a0c29d18cf5d202e3cdbcc02d39207e9ba9ffc235a1d3dd31d864bce26c78e81",
+        "pretrained_weights.json": "97e5a177d45968c6522045416375976f7a682762f4263d6f2734afe0cd66338c",
+        "progress.csv": "8bf966746b154e67b117be918ec222108d804c0572982b2d6ff4c0a881f42f1a",
+        "training_curves_dual_head.png": "c075d5ebe8a6acf4c4c4cf861ae926712aa44e2fde6f23bc7540d1a2f036e1c2"
+      },
+      "epochs_completed": 13,
+      "selected_epoch": 1,
+      "environment": {
+        "python": "3.11.18",
+        "tensorflow": "2.15.1",
+        "keras": "2.15.0",
+        "numpy": "1.26.4",
+        "scikit-learn": "1.6.1",
+        "gpu_count": 1,
+        "keras_cache_policy": "common I/O wrapper forces get_file cache_dir to existing project KERAS_HOME; original URL and hash validation preserved"
+      },
+      "keras_cached_weight_sha256": {
+        "efficientnetv2-b0_notop.h5": "fd2529efca107725477325b0a3de53521c37873ba2910a2600a6b26209d95285"
+      },
+      "checkpoint_reload": {
+        "images": 32,
+        "batch_size": 32,
+        "atol": 1e-05,
+        "binary_max_abs": 0.0,
+        "subtype_max_abs": 0.0,
+        "checkpoint_sha256": "d8d792e3bfa3b2256798763b8c71b95ce4b22188b183c52642578587ae005490",
+        "input_policy": "reuse exact existing X_test_norm from original cell10; no additional normalization"
+      },
+      "metrics": {
+        "binary": {
+          "records": 1582,
+          "correct": 1085,
+          "accuracy": 0.6858407079646017,
+          "macro_precision": 0.34292035398230086,
+          "macro_recall": 0.5,
+          "macro_f1": 0.4068241469816273,
+          "quadratic_kappa": 0.0,
+          "confusion_matrix": [
+            [
+              0,
+              497
+            ],
+            [
+              0,
+              1085
+            ]
+          ],
+          "class_support": [
+            497,
+            1085
+          ],
+          "class_recall": [
+            0.0,
+            1.0
+          ],
+          "roc_auc": 0.5380689667961687
+        },
+        "eight_class": {
+          "records": 1582,
+          "correct": 690,
+          "accuracy": 0.4361567635903919,
+          "macro_precision": 0.05451959544879899,
+          "macro_recall": 0.125,
+          "macro_f1": 0.07592429577464789,
+          "quadratic_kappa": 0.0,
+          "confusion_matrix": [
+            [
+              0,
+              89,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              690,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              203,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              125,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              158,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              112,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              91,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              114,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ],
+          "class_support": [
+            89,
+            690,
+            203,
+            125,
+            158,
+            112,
+            91,
+            114
+          ],
+          "class_recall": [
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "macro_ovr_roc_auc": 0.5704183695837962
+        },
+        "ungated_true_malignant": {
+          "correct": 690,
+          "records": 1085,
+          "accuracy": 0.6359447004608295
+        },
+        "strict_malignant_cascade": {
+          "correct": 690,
+          "records": 1085,
+          "recall": 0.6359447004608295
+        },
+        "strict_joint_eight_head_correctness": {
+          "correct": 690,
+          "records": 1582,
+          "accuracy": 0.4361567635903919
+        }
+      },
+      "original_code_metrics": {
+        "binary_accuracy": 0.6858407079646017,
+        "binary_malignant_recall": 1.0,
+        "binary_benign_recall": 0.0,
+        "binary_auc": 0.5380689667961687,
+        "eight_class_accuracy": 0.4361567635903919,
+        "eight_class_macro_precision": 0.05451959544879899,
+        "eight_class_macro_recall": 0.125,
+        "eight_class_macro_f1": 0.07592429577464789,
+        "eight_class_quadratic_kappa": 0.0,
+        "eight_class_macro_ovr_auc": 0.5704183695837962,
+        "ungated_true_malignant_subtype_accuracy": 0.6359447004608295,
+        "strict_true_malignant_cascade_recall": 0.6359447004608295,
+        "strict_cascade_correct_malignant_images": 690,
+        "true_malignant_images": 1085
+      }
+    },
+    "input_fixed": {
+      "status": "incomplete",
+      "reason": "result_artifact_missing",
+      "partial_notebook_preserved": true
+    }
+  },
+  "collector_new_fits": 0,
+  "collector_new_inference": 0,
+  "interpretation": "eight-subtype single-image reused image-random validation; original and strict cascade metrics are separate; not provider-case five-class performance or a fresh clinical test",
+  "code_sha": "474bb0199eba585aec3e70bd252a4b840357429d",
+  "source_archive_sha256": "2ad8f54d02e3ffc32d15069585a5f4a480505c2c844df6f92228aff8c32d752b",
+  "adapter_sha256": "6368de912091db95ee7505a2b53078f2c52365da9b58e90913883d338fdfde8c",
+  "collector_sha256": "a94b010245fb334656ccb8f679cd1821a81600d1d0d5d5aa3d383e1f91e59a5b",
+  "config_sha256": "df81d26d562b931d80964d962251772f4932f32eef353123f55a59c2406e9c7b",
+  "notebook_sha256": "2bb8eac92b33ad81c8a203743d202f8a1866e9cdcf4f71c0259be69b6c9aa709",
+  "shared_audit": {
+    "private_audit_sha256": "1bda23121c0e244e66e602ebe9dc48bec88246bfc23672f7ddf290a8410ecc66",
+    "indices_sha256": "c0d73380e623b6b4243fd2747d442d788554b6ac384a95892e11d0cacb594148",
+    "ordered_csv_sha256": "26e288eba9a791a49423f399f977217f045e02027d5c89c49da29e78494a60d1",
+    "manifest_sha256": "958893f923a745220fac66f19656bcdbfb38996f70ef8044e1349619f4102e31",
+    "images": 7909,
+    "fitting_images": 6327,
+    "reused_validation_images": 1582,
+    "provider_overlap": {
+      "provider_key": {
+        "fitting_keys": 82,
+        "validation_keys": 82,
+        "overlap_keys": 82
+      },
+      "conservative_group": {
+        "fitting_keys": 70,
+        "validation_keys": 70,
+        "overlap_keys": 70
+      }
+    }
+  },
+  "private_review_sha256": "5b521f3f57a1029a5bf0b3ae28ee9aff4a78244270249b38912e6700689143e5"
+}

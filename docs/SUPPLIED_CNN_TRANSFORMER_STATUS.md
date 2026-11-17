@@ -1,16 +1,28 @@
 # Supplied notebook execution status
 
-Snapshot: November 17, 2026, 07:10 AM EST. **Both GPU variants are training. No final notebook accuracy is available yet.** The original file had fifteen unexecuted cells and no saved outputs; its comparison-table constants are earlier reference claims.
+**Faithful execution is complete and independently checked. Input_fixed is still training; the two-variant comparison remains incomplete.** The original file had fifteen unexecuted cells and no saved outputs. Its hardcoded comparison-table entries were earlier reference claims.
+
+| Faithful notebook metric | Checked value | Correct / total |
+| --- | ---: | ---: |
+| Benign/malignant accuracy |68.58%|1,085 /1,582|
+| Eight-type image accuracy |43.62%|690 /1,582|
+| Eight-type macro F1 |.075924|—|
+| Strict malignant cascade recall |63.59%|690 /1,085 true-malignant images|
+
+The selected model predicts **malignant for all 1,582 images and ductal carcinoma for all 1,582 subtype answers**. Thus its accuracy is the majority-label frequency, rather than useful broad/type discrimination. Benign recall is 0%; malignant recall 100%. The checkpoint selected epoch 1; early stopping ended after 13 epochs. The declared input-scaling mismatch is documented; the input_fixed companion is still running, so no outcome for that correction is claimed yet. [Exact accepted faithful snapshot](evidence/SUPPLIED_CNN_TRANSFORMER_FAITHFUL_RESULTS.json). Its outer status remains incomplete because the other fixed variant is pending; the faithful entry itself is accepted.
+
 
 | Stage | Job | Observed state |
 | --- | --- | --- |
 | Isolated TensorFlow environment |4985455|Complete, 5m54s |
 | Shared image/label/order/split audit |4985474|Complete, 1m35s |
 | Two synthetic CPU serialization checks |4985475|Both complete, 2m19s / 2m10s |
-| Faithful and input_fixed GPU training |4985476_0 /4985476_1|Both running, one visible GPU each |
+| Faithful GPU training |4985476_0|Complete, 13m33s; 13 epochs / selected epoch 1 |
+| Input_fixed GPU training |4985476_1|Running, one visible GPU |
+| Additional faithful saved-output check |4985507|Accepted faithful; input_fixed still incomplete |
 | Independent saved-prediction checker |4985477|Pending completion of the training array |
 
-The scheduler allocated GPUs sooner than its earlier capacity forecast. Both runs have passed their actual prefit image/label/index guards and pinned TensorFlow/Keras/official-weight checks. Each uses the notebook's maximum fifty epochs, best eight-subtype validation checkpoint, learning-rate reduction and early stopping. An epoch progress CSV is saved while fitting; interim epoch scores are not final checked results.
+The scheduler allocated GPUs sooner than its earlier capacity forecast. Both runs passed their actual prefit image/label/index guards and pinned TensorFlow/Keras/official-weight checks. Each uses the notebook's maximum fifty epochs, best eight-subtype validation checkpoint, learning-rate reduction and early stopping. An epoch progress CSV is saved while fitting; interim epoch scores are not final checked results.
 
 ## What this notebook does
 

@@ -1,6 +1,6 @@
 # Independent review: supplied CNN-transformer notebook
 
-November 17, 2026. **Accept the inspected source, recorded common-data audit and both actual CPU synthetic technical checks. GPU cohort outcomes remain pending.** The supplied original notebook has fifteen unexecuted code cells and no saved outputs. Its exact private original SHA256 is `2bb8eac92b33ad81c8a203743d202f8a1866e9cdcf4f71c0259be69b6c9aa709`. No accuracy in its comments or hardcoded comparison rows is a measured result from this file.
+November 17, 2026. **Accept the inspected source, common-data/CPU checks and the completed faithful run's recorded outcome. The paired input-fixed outcome remains pending.** Faithful eight-subtype accuracy is **43.62% (690/1,582)**, with all hard subtype predictions ductal carcinoma; its binary head predicts malignant for every held image. The supplied original notebook itself has fifteen unexecuted code cells and no saved outputs. Its exact private original SHA256 is `2bb8eac92b33ad81c8a203743d202f8a1866e9cdcf4f71c0259be69b6c9aa709`. The new measured faithful run must not be confused with the original file's hardcoded comparison rows.
 
 This reviewer performs read-only notebook/runner inspection and authors the separately requested read-only CPU collector. No fitting, scheduler action, original-image inspection or runner-source edit is performed here. The user requested execution of the supplied notebook; its original image-based endpoint must remain visible rather than being silently replaced by the project's five-category provider-case benchmark.
 
@@ -95,3 +95,26 @@ Before and after the synthetic batch, both variants bind the same official `effi
 This review independently checks the downloaded recorded receipts, source archive and committed source bytes. It does **not** rerun TensorFlow locally or independently load the private synthetic checkpoint arrays/notebooks or all 7,909 original images here. In particular, the native zero reload differences are accepted recorded technical evidence, not a second local numerical reproduction. The shared-order/indices hashes are verified as recorded bindings; actual source enforces them again before either GPU fit.
 
 **Actual technical verdict:** accept both CPU checks and the recorded common-data contract as support for the two declared GPU executions. Synthetic batch losses/accuracies are not research results and are deliberately omitted here. No final cohort accuracy, paper superiority, 95% result, clinical validation or novelty is established by these checks. The completed GPU notebooks, saved 1,582-row probabilities and independent CPU collector still determine the actual reported numbers.
+
+## Actual faithful-only outcome acceptance
+
+The faithful GPU execution completed thirteen epochs and selected **epoch one**, followed by twelve epochs without improvement under the supplied early-stopping rule. The native CPU partial checker accepted its completed artifacts while correctly leaving the **two-variant family incomplete**, with `input_fixed` still lacking a completed result at this snapshot. The exact partial ledger is [the published faithful result](../evidence/SUPPLIED_CNN_TRANSFORMER_FAITHFUL_RESULTS.json), SHA256 **`629055dca1e89b6b0bc9a3beb79d73340bce40d9383dc05832d854fe189369dc`**.
+
+Read-only verification of this accepted ledger passed **111 arithmetic/source/receipt checks**. Its exact public bytes match the downloaded checker output; the source/archive/configuration/original-notebook and official pretrained weight bindings still match source `474bb0199eba585aec3e70bd252a4b840357429d`. The recorded GPU runtime has one visible GPU and the pinned TensorFlow 2.15.1/Keras 2.15.0 environment. Full-checkpoint reload on the fixed first 32 held images records **0.0** maximum absolute error for both heads and matches checkpoint digest `d8d792e3bfa3b2256798763b8c71b95ce4b22188b183c52642578587ae005490`.
+
+| Faithful measured endpoint | Correct / denominator | Value |
+| --- | ---: | ---: |
+| Binary image accuracy | 1,085 / 1,582 | 68.5841% |
+| Original ungated eight-subtype accuracy | 690 / 1,582 | 43.6157% |
+| Original eight-subtype macro F1 | — | .0759243 |
+| Original ungated true-malignant subtype accuracy | 690 / 1,085 | 63.5945% |
+| Strict binary-AND-subtype malignant recall | 690 / 1,085 | 63.5945% |
+| Joint binary-and-eight-head correctness | 690 / 1,582 | 43.6157% |
+
+The binary confusion matrix is `[[0,497],[0,1085]]`: every held image is predicted malignant, giving zero benign recall and 100% malignant recall. The eight-subtype confusion matrix has all 1,582 predictions in the ductal column. Only its 690 true ductal images are correct; recall is zero for the other seven subtype labels, and the eight-class macro recall is .125. These are collapsed hard decisions at the majority labels. Constant hard labels do not imply constant softmax probabilities: the reported binary AUROC is .538069 and eight-class macro OVR AUROC .570418.
+
+The strict and ungated malignant numbers happen to coincide because this binary head rejects no image. Their 63.59% therefore does not establish successful four-type malignant recognition or a fair improvement over the notebook's hardcoded paper value. The original eight-class accuracy remains the notebook result; neither it nor its binary/malignant diagnostics is the project's five-category provider-case endpoint.
+
+The native partial checker reconstructed these values from actual saved probability arrays and verified shared indices/truths, full executed-source/artifact bindings and earliest-best history selection. This reviewer authored that CPU checker and here separately verifies its accepted ledger arithmetic/receipts; the private prediction NPZ, epoch history and trained checkpoint are **not independently loaded again locally** in this faithful-only review. No new fitting, inference or image inspection occurs here.
+
+**Faithful-only verdict:** accept the negative recorded faithful outcome and its explicit hard-prediction collapse. The known input-scaling mismatch is a plausible contributor, but the completed faithful run alone does not isolate its causal effect or reject CNN-transformer architectures generally. The input-fixed companion and final paired collector remain pending. No corrected-run score, paired winner, 95% result, paper superiority or new-case clinical generalization is claimed.
