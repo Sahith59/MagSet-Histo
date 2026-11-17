@@ -1,0 +1,16 @@
+# One model for both BreakHis decisions
+
+The capstone uses one image reader across all four magnifications and one jointly trained classifier for the entire case. A single forward pass produces both decisions. If the case is benign, the answer is complete. If it is malignant, the same network chooses ductal, lobular, mucinous or papillary carcinoma. The objective is greater than 90% correct **final answers** across all 15 available-zoom conditions, with 95% as a stretch objective.
+
+Lang et al. describe a shared ResNet-50 feature extractor and two XGBoost classifiers, a binary first pass and a four-type second pass. Their direct five-way XGBoost classifier is the single-pass comparison. Table 6 gives 86.22% binary accuracy and 57.06% malignant-subtype recall for their dual-step method. They classify individual images. This experiment adopts the decision order and adds the requirement for one jointly fitted classifier per case. [Lang et al., methods and Table 6](https://doi.org/10.1117/12.2582299).
+
+## Fixed experiment
+
+- Use BreakHis only. Reuse the audited 49 training cases in 42 conservative groups and 17 validation cases in 15 groups. The 16 remaining cases already appeared in prior project evaluations. This experiment is a development comparison on validation.
+- One frozen UNI2-h reader has already described each original field from its center crop. Average the field descriptions within each magnification. Standardize each view using training cases. Average only the available standardized views, normalize that vector to length one, multiply by the square root of its width, and append four availability flags.
+- Use one shared 32-unit hidden layer, GELU activation, dropout of 0.2 and one five-number output layer. Its first number gives the malignant score. Its other four numbers rank malignant subtypes. A nonnegative first score routes to malignant, where the largest of the four scores names the type.
+- Fit everything trainable together with one AdamW optimizer. Use a class-balanced binary loss on every training case and a class-balanced subtype loss on malignant cases. Average these two losses equally. Every case appears under exactly 15 masks. All 15 masks share that case's labels.
+- Fix seed 812, learning rate 0.001 and weight decay 0.01. Run 40 full-batch updates. At updates 10, 20, 30 and 40 compute the mean of the 15 five-category macro F1 scores on validation. Save the first maximum. This selection rule gives each subtype a say even when ductal cases are more common. Report all four checkpoints, the selected final-five and binary accuracy, class recalls, and the all-four-zoom result separately.
+- For a matched validation reference use the previously selected dual-head CNN–Transformer and Swin on the same 17 cases and zoom masks. The pipelines differ in pretraining and image cropping. The scores compare complete systems. No additional encoder, threshold, seed, split or checkpoint search is part of this experiment.
+
+In an earlier experiment H combined a Midnight reader for the first decision with a UNI2-h reader for the second. Its observed 82.92% on the reused 16 cases is a historical two-reader result. The earlier matched CNN–Transformer and Swin each used one jointly trained model. [Matched comparison](MATCHED_THREE_WAY_RESULTS.md) · [Historical specialist results](DEEP_DIAGNOSIS_AND_PROOF.md).

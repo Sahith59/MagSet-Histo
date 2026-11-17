@@ -1,0 +1,20 @@
+{
+  "study": "breakhis-shared-hierarchy-v1",
+  "reader": "MahmoodLab/UNI2-h",
+  "reader_revision": "d517a8dd47902dd7c308b3c36f63bce47e7b9a43",
+  "weights_sha256": "6e077eda234bebc595868d918d3458d9dd32a050199b0ff04443b2f46a0a3b1e",
+  "manifest_sha256": "958893f923a745220fac66f19656bcdbfb38996f70ef8044e1349619f4102e31",
+  "audit_sha256": "cec9c0e13f2673046b41e6502154ceb9bed047f44086afbe04d57df562ef0812",
+  "case_views_sha256": "ff1046f22a993bccaea03975388714be77960056735c7c10780e0fcfd24cc992",
+  "magnifications": [40, 100, 200, 400],
+  "labels": ["benign", "ductal", "lobular", "mucinous", "papillary"],
+  "seed": 812,
+  "hidden": 32,
+  "dropout": 0.2,
+  "learning_rate": 0.001,
+  "weight_decay": 0.01,
+  "epochs": 40,
+  "validation_epochs": [10, 20, 30, 40],
+  "selection": "first maximum mean per-subset five-category macro F1",
+  "evaluation_role": "validation only"
+}
