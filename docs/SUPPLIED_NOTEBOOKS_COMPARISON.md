@@ -1,10 +1,26 @@
 # Supplied CNN–Transformer and Swin notebooks
 
-November 17, 2026. The CNN–Transformer experiment is **complete in both registered versions**. The newly supplied Swin notebook has **no accepted measured outcome yet**. The existing multi-view capstone is parked while this separate supplied-notebook work is handled; its completed results remain preserved.
+November 17, 2026. The CNN–Transformer experiment is **complete in both registered versions**. Swin production training has **not started** while its technical compatibility checks are pending; it has **no accepted measured outcome**. The existing multi-view capstone is parked while this separate supplied-notebook work is handled; its completed results remain preserved.
+
+## Three approaches at a glance
+
+The main-project column describes its retained reference P. Other completed main-project models, including the UNI2-h learned-metric comparison, remain separate entries in the preserved scorecard.
+
+| Item | Main capstone, retained P | Supplied CNN–Transformer | Supplied Swin, default `dual` |
+| --- | --- | --- | --- |
+| Input and prediction unit | Available images of one provider case, summarized into one case answer | One image, one answer per head | One image, one routed final answer |
+| Final output | Five categories: benign stops; malignant proceeds to four cancer types | Benign/malignant plus eight tissue types, including benign subtypes | Five categories: benign stops; malignant proceeds to four cancer types |
+| Role counts | 46 fitting / 8 validation / 28 excluded provider cases per trial; five trials in each of two arrangements | 6,327 fitting / 1,582 reused validation images; all 82 provider keys on both sides | Literal split: 5,104 fitting / 689 validation / 2,116 test images; 51 / 7 / 23 bare IDs; conservative-stem overlap remains |
+| Zoom handling | 40×/100×/200×/400× case views; all 15 nonempty subsets evaluated | Four zooms pooled as separate images | Four zooms pooled as separate images |
+| Model | Frozen Midnight-12k reader, three crops per image; decision-specific centers and class-balanced cosine-density router/specialist | ImageNet EfficientNetV2B0 plus four added Transformer blocks; binary and eight-type heads | ImageNet Swin-Tiny; binary and malignant-four heads |
+| What learns from BreakHis | Fitting labels define support distributions and centers; validation selects temperature. No encoder or classifier-coefficient optimization in retained P. | Last 60 backbone layers, added Transformer blocks and both heads train jointly | Last two Swin stages and both heads are intended to train; malignant loss is masked for benign images |
+| Current status | Completed and parked; five-category case accuracy 76.33% / 75.67% across all 15 subsets | Both runs accepted; corrected binary 97.09%, eight-type 86.41% | Production not started; technical checks pending; no measured score |
+
+These columns describe different prediction units and splits. Their headline accuracies cannot establish a matched winner. In particular, CNN's 97.09% binary result is not five-category accuracy.
 
 In plain language, the CNN notebook learns from individual pictures and gives two answers: benign/malignant and one of eight tissue types. Its corrected input scale gives **97.09% for the broad question and 86.41% for the eight-type question**. The Swin notebook is designed to answer benign first and, only if malignant, choose one of four cancer types. Its five final labels match the capstone's label hierarchy, while its image-based input and split still differ from the capstone. We must finish and check Swin before giving it a result or naming a winner.
 
-## Side by side
+## Supplied notebooks in detail
 
 | Item | Supplied CNN–Transformer | Supplied Swin, default `dual` run |
 | --- | --- | --- |
@@ -25,7 +41,7 @@ In plain language, the CNN notebook learns from individual pictures and gives tw
 | Training | Adam 1e-4; batch 32; seed 812; maximum 50 epochs; binary/type losses .3/.7; no class weights | Adam 1e-5; batch 32; seed 812; maximum 40 epochs; binary/malignant losses .5/.5; fitting-derived class weights |
 | Selection rule | Best validation eight-type accuracy; LR patience 4; early-stop patience 12 | Best average of validation binary accuracy and strict malignant subtype recall; LR patience 4; early-stop patience 10 |
 | Actual completed fitting | Faithful 13 epochs, selected 1; corrected 50 epochs, selected 41 | Pending |
-| Current status | Both saved-prediction checks accepted; selected checkpoints reload exactly on fixed probe | Supplied original unexecuted; production result pending |
+| Current status | Both saved-prediction checks accepted; selected checkpoints reload exactly on fixed probe | Original preserved; production not started pending technical checks |
 
 Both use training rotations up to ±90°, horizontal/vertical flips and reflection fill. Neither notebook combines the different magnifications of a provider case into one multi-view prediction or evaluates all fifteen nonempty zoom subsets. Swin's optional `single5` mode and repeated seeds are additional notebook capabilities, not completed runs or results in this comparison. [Fixed Swin execution and split limitations](SUPPLIED_SWIN_RUN.md).
 
@@ -55,6 +71,8 @@ The capstone uses 46 fitting / eight validation / 28 excluded provider-role case
 ## Limits that govern the eventual comparison
 
 The Swin notebook describes its split as patient-level and directly comparable with the Lang et al. paper. Those are authored claims, not accepted findings. Literal reconstruction finds four conservative identifier stems crossing roles: two fitting/test, one validation/test and one fitting/validation. Keep the declared roles and disclose that grouping limit. Its authored validation quotas omit lobular, adenosis and phyllodes identifier groups; there are no lobular validation images. Its secondary vote groups by identifier **and true label**, giving 24 test voting groups from 23 bare test IDs. This is not 24 established independent patients. Production membership, pretrained-weight revision and scoring/reload behavior still require acceptance before performance is reported.
+
+Swin's declared compatibility adaptations use the pinned official **native TensorFlow weights**; equivalence to an implicit PyTorch-to-TensorFlow conversion is not established. Loading omits twelve deterministic `relative_position_index` buffers. Acceptance requires every actual buffer to equal the expected 49×49 integer matrix, with int32 dtype and nontrainable status; missing learned parameters, including learned relative-position biases, remain fatal. A separate graph-mode window-reversal failure requires exact integer window counting, `(height // window_size) * (width // window_size)`, in place of floating division and truncation. The repair preserves the original reshapes, transposes and learned operations. Exact eager/graph reconstruction and gradient agreement across sixteen spatial/batch cases, followed by synthetic training and weight reload, must pass before production. Earlier failed technical attempts remain preserved and supply no classification metrics. [Compatibility review](reviews/SUPPLIED_SWIN_REVIEW.md), [fixed execution](SUPPLIED_SWIN_RUN.md). Current execution source: `a50aeee39a78b3210a5a8c33905f6566a0563875`; its third technical attempt is pending acceptance.
 
 Both notebooks' maps use feature/token norms, which are qualitative proxies rather than attention rollout or proof of a causal tissue region. CNN retains its declared path, serialization and official-cache repairs and the one declared scaling companion. Preserve the exact private originals and every outcome; do not promote printed paper “Beat?” flags or historical hardcoded numbers into verified results.
 
