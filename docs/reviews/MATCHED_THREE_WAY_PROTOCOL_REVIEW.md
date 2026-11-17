@@ -1,0 +1,58 @@
+# Matched three-way comparison: independent protocol review
+
+November 17, 2026. **Conditional static approval** of the [registered configuration](../../configs/breakhis-matched-three-way-v1.json) for one prespecified development holdout comparing Midnight P, CNN–Transformer and Swin. The common target, grouping, field coverage, prediction unit, pooling, validation score and candidate count make their resulting case scores meaningfully comparable within this experiment. Runtime/input audits, model smoke checks and independent saved-output verification remain required. No model performance is established by this review.
+
+This compares complete pipelines. Pretraining, model capacity, computational cost, augmentation, magnification use and fitting algorithms differ deliberately. It is not a controlled backbone-only experiment or a faithful execution of the original supplied notebooks. Preserve those notebook outcomes and the earlier provider-case results as separate evidence.
+
+## Registered grouping and roles
+
+The prediction unit remains each of the 82 subtype-qualified provider specimens, with its original label preserved. The split unit is the 70 existing conservative identifier stems. All related fields, magnifications, crops and provider specimens sharing a stem must occupy one role. A mixed-label stem retains separate specimen targets; no majority label is assigned to the stem. Clinical identity is unresolved, and earlier project development involved all available provider keys. This is not a globally fresh clinical cohort.
+
+Sort provider cases and the unique stems. Assign the seed-812 `RandomState` permutation to the sorted stems as temporary integer group codes, then run pinned scikit-learn 1.6.1 `StratifiedGroupKFold(5, shuffle=False)` using one row per specimen and its final-five target. This avoids shuffling group count profiles independently of the group mapping. Select the first lexicographic test/validation fold pair with all five targets in every role and at least two fitting stems per target. The remaining three folds fit. These decisions use labels only and must be hash-frozen before outcomes; no alternative seed or fallback split follows a disappointing score. [Pinned splitter implementation](https://github.com/scikit-learn/scikit-learn/blob/1.6.1/sklearn/model_selection/_split.py).
+
+An independent manifest-only replay matched the following registered roles. No image pixels, inference or fitting entered that replay.
+
+| Role | Specimens | Stems | Images | Benign / DC / LC / MC / PC specimens |
+| --- | ---: | ---: | ---: | --- |
+| Fitting | 49 | 42 | 4,621 | 14 / 24 / 2 / 5 / 4 |
+| Validation | 17 | 15 | 1,584 | 5 / 7 / 2 / 2 / 1 |
+| Test | 16 | 13 | 1,704 | 5 / 7 / 1 / 2 / 1 |
+
+The selected pair is test fold 0, validation fold 1. Fitting has 9/24/2/4/4 distinct stems per final category. This is one holdout assembled from five folds, not a completed fivefold cross-validation study. Validation has only one papillary specimen; test has one lobular and one papillary specimen. Their class metrics and method ranking will be sensitive to individual cases.
+
+## Common information and representation differences
+
+All three pipelines use the same original fields and four magnifications. The common inference pixels are three RGB crops after Pillow bilinear short-side-224 resizing: a 700×460 field becomes 340×224 with horizontal crop starts 0/58/116; a 700×456 field becomes 343×224 with starts 0/60/119. Preserve these integer dimensions, crop coordinates and interpolation. A resize implemented differently in OpenCV or TensorFlow would invalidate the pixel match.
+
+The accepted Midnight cache averages three 3,072-dimensional crop descriptors; it does not concatenate three crops. Each native Midnight descriptor itself concatenates its CLS token and patch-token mean. The neural adaptations average three descriptors at their registered points before their heads: CNN after its 512-dimensional CLS normalization, Swin after its added 768-dimensional normalization. Use model-native normalization: Midnight's existing normalization, raw 0–255 input for EfficientNetV2's included preprocessing, and exactly one divide-by-255 plus ImageNet normalization for Swin. Descriptor dimensions and numerical representations are intentionally different.
+
+CNN and Swin share deterministic field/epoch geometric augmentation parameters during fitting, including the same transform for a field's three crops. P remains a frozen-cache method without augmentation. P also uses magnification identity for same-view support and centering, while the neural heads are shared across magnifications. These are disclosed pipeline differences; “matched” does not imply identical training inputs, explicit metadata use or pretraining. No cross-magnification field correspondence is assumed.
+
+## Fitting objective and selection budget
+
+For a field in fitting specimen `i`, view `v`, let `n_iv` be that specimen/view's field count, `n_b` its binary class's specimen count, and `n_c` its malignant subtype's specimen count. The unit-total-mass field weights are:
+
+- Binary: `1 / (2 * n_b * 4 * n_iv)`.
+- Malignant subtype: `1 / (4 * n_c * 4 * n_iv)` on true malignant fields, zero on benign fields.
+
+Each head has total mass one, with equal class mass, equal specimens within class, equal views within specimen and equal fields within view. Multiply each by the fixed number of fitting fields, sum weighted cross-entropies, divide each minibatch by the configured 16-field denominator, including partial batches, and combine heads with coefficients 0.5/0.5. Do not divide by a random minibatch mask count or weight sum. The independent replay verified both head masses, equal class masses and the benign subtype mask in the shared weighting implementation. Native registered regularizers remain additional terms.
+
+Each neural trajectory starts from the pinned original ImageNet weights and fresh added layers, never a prior BreakHis-finetuned checkpoint. Native architecture distinctions remain: CNN fine-tunes the final 60 backbone layers and permits subtype gradients through the binary condition; Swin freezes embeddings/stages 0–1 and stops that direct conditioning gradient. Both still share representations between tasks. Their target is binary-two plus malignant-four; the CNN's earlier eight-type output is adapted explicitly.
+
+Train exactly 40 epochs with the registered Adam settings, learning rates and fixed cosine schedule. Validation is inspected only at epochs 10/20/30/40; no validation-driven stopping or learning-rate change is allowed. P recomputes its fitting-only head-specific centers/support and evaluates exactly four shared binary/subtype temperatures: 0.01/0.03/0.1/0.3. Do not add a centering mode, direct-five arm or independent temperature per head. Select the first maximum mean-15-subset case macro F1, with all five labels fixed. Four temperatures and four correlated checkpoints are equal visible candidate counts, not equal compute or identical search capacity.
+
+Seal all three selected-candidate identities and hashes before any test inference. Evaluate only each selected candidate on test. Do not refit on fitting plus validation, adjust thresholds, add seeds or change recipes after seeing test results. No leave-case-out fitting diagnostic is part of this comparison.
+
+## Common decisions and reporting
+
+Compose each field's joint distribution as `[P(B), P(M)*P(DC|M), …, P(M)*P(PC|M)]` before pooling. Average fields within each view, then average the available views equally. Derive binary and conditional subtype probabilities from that pooled joint distribution. Route malignant at pooled probability at least 0.5, then select the malignant argmax; otherwise output benign. Averaging heads independently, averaging hard field labels, pooling unequal view sizes together or replacing the cascade by a five-way argmax would change the protocol.
+
+Score all 15 nonempty magnification subsets for every specimen. Report mean-subset final-five macro F1 and accuracy, all-four-view and worst-subset results, class supports/recalls/confusions and routing performance. Report conditional malignant typing separately from strict end-to-end correctness among true malignant specimens. The shared historical malignant summary measures conditional subtype predictions; it must not be relabeled strict routed malignant recall. Preserve original eight-type truth metadata alongside the pooled five-type target. The test role requires explicit metric-API opt-in; historical default guards remain fitting/validation only.
+
+The paired bootstrap samples the same 13 test stems for all methods in each of 2,000 seed-812 replicates, preserving every associated specimen and all 15 subsets. Keep all five labels in scoring even when a resample omits a class. Use the registered linear 2.5/97.5 percentiles and label these intervals descriptive. Neither 240 test specimen/subset records nor repeated bootstrap draws create new independent patients.
+
+## Acceptance conditions
+
+The shared core's split counts, head weights, canonical truth mapping and test-role metric path were independently replayed; a synthetic perfect predictor produced the expected 240 records and unit macro F1/accuracy. That is a technical check, not model performance. Static inspection of the new model definitions found the registered descriptor means, head outputs, conditioning gradients, normalization and freeze policies represented correctly. The original-label mapping issue found during review has been corrected. The 19 then-current matched checks and 11 historical five-category metric checks passed; the reviewed core/model/readout/audit/collector files compiled and diff formatting passed. These checks did not import TensorFlow for fitting or execute a real model.
+
+Before accepting execution, verify manifest/image/cache/model hashes, identical crop pixels, exact disjoint roles and complete field coverage. Technical smokes must demonstrate finite meaningful gradients, correct frozen/trainable behavior, crop/field-order invariance, unused-view invariance, numerical stability and checkpoint replay. Preserve the Swin deterministic-buffer and integer-window-reversal checks. Independently verify four candidate receipts per method, first-tie validation selection, all selections sealed before test access, saved probabilities, pooling, metrics and paired bootstrap. All outcomes, including failures and negative comparisons, remain in the record. No 95% or novelty claim follows from protocol approval.

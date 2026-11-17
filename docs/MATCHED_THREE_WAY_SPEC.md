@@ -1,0 +1,35 @@
+# Matched BreakHis comparison
+
+November 17, 2026. The user explicitly requested the same five targets, training/validation/test groups, prediction unit and magnification conditions for the retained main approach, CNN–Transformer and Swin. This is a **new matched development study**. Earlier notebook and main-project scores remain unchanged; none can be copied into its result table. No model-performance result exists at registration.
+
+All three get the same original fields and the same left/center/right crops. They produce one five-category answer per provider case for each of the 15 nonempty zoom combinations. Benign stops after the binary decision; malignant proceeds to ductal, lobular, mucinous or papillary typing. Only BreakHis supplies fitting/evaluation data. TCGA remains deferred.
+
+| Role | Provider cases | Conservative identifier groups | Original images | Five-class case counts: benign/DC/LC/MC/PC |
+| --- | ---: | ---: | ---: | --- |
+| Fitting | 49 | 42 | 4,621 | 14 / 24 / 2 / 5 / 4 |
+| Validation | 17 | 15 | 1,584 | 5 / 7 / 2 / 2 / 1 |
+| Test | 16 | 13 | 1,704 | 5 / 7 / 1 / 2 / 1 |
+
+Related identifier stems stay in one role, including stems with several provider cases or labels. Labels of those cases are retained individually. Clinical identity is unresolved; a conservative group is not a verified patient. All available cases already appeared in prior project development, so this is not a globally fresh clinical test. The single test lobular and papillary cases make estimates uncertain.
+
+The fixed procedure sorts the 82 provider keys, maps their 70 conservative groups to a seeded permutation of integer codes (seed 812), and uses unshuffled five-fold stratified group assignment in scikit-learn 1.6.1. It takes the first lexicographic test/validation fold pair with all five classes in every role and at least two fitting groups per class; the other three folds fit. The chosen pair is test fold 0, validation fold 1. This is one fixed holdout, not five-fold cross-validation. Role choice uses labels and identifiers only, before model outcomes. Its group-code permutation avoids the pinned implementation's problematic shuffled count/group association. [Pinned splitter documentation](https://scikit-learn.org/1.6/modules/generated/sklearn.model_selection.StratifiedGroupKFold.html), [independent protocol review](reviews/MATCHED_THREE_WAY_PROTOCOL_REVIEW.md).
+
+Each original RGB field is resized with Pillow bilinear interpolation to shorter side 224, preserving aspect ratio. The two raw sizes 700×460 and 700×456 become 340×224 and 343×224; left/center/right 224 squares start at 0/58/116 or 0/60/119. Pixel parity is checked against the exact operators used by the accepted frozen Midnight coverage cache. Each reader averages its three crop descriptors before field heads: native Midnight 3,072 dimensions, CNN post-CLS-normalization 512, and Swin post-added-LayerNorm 768. Native model input normalization is retained.
+
+| Arm | Fixed model and adaptation | Four validation choices |
+| --- | --- | --- |
+| Midnight P | Original frozen pathology reader; recompute fitting-only head-specific centers and class/case/field-balanced cosine densities | One shared binary/malignant temperature: .01, .03, .1, .3 |
+| CNN–Transformer | Original ImageNet EfficientNetV2B0 and four Transformer blocks; last 60 backbone layers learn; replace eight-type head with malignant-four, mask benign subtype loss | Epochs 10, 20, 30, 40 |
+| Swin | Original ImageNet Swin-Tiny; embeddings/stages 0–1 frozen, stages 2–3 and heads learn; malignant head receives stopped-gradient binary probabilities | Epochs 10, 20, 30, 40 |
+
+Both neural arms start from original pretrained weights. Previous BreakHis-finetuned checkpoints are forbidden because their fitting groups differ. Both use 40 epochs, 16 original fields per batch (48 crops), class/case/view/field-balanced two-head losses with equal .5/.5 weights, and the fixed cosine learning-rate schedule. Initial Adam rates are 1e-4 for CNN and 1e-5 for Swin, with beta .9/.999 and epsilon 1e-7. There is no validation-driven learning-rate change, early stopping, threshold fitting, train-plus-validation refit or extra head/model sweep. Both share deterministic field/epoch augmentation; P retains its native frozen-reference fitting without augmentation. Full and partial-batch GPU technical checks precede real fitting.
+
+For a field in a case with `n` same-zoom fields, binary objective mass is `1/(2 × cases_in_binary_class × 4 × n)`. Malignant mass is `1/(4 × cases_in_malignant_subtype × 4 × n)` on malignant fields and zero on benign fields. Each head's global mass is one. Uniform field minibatches multiply this mass by the fitting-field count and divide their summed weighted cross-entropy by the configured batch size 16, including the final partial batch. No random minibatch weight normalization changes the objective. Original model L2 regularization stays part of each neural method.
+
+For all three, form field joint probabilities `[p(benign), p(malignant) × p(four types)]`. Average fields within a zoom, then average active zooms equally. Route the pooled malignant probability at ≥ .5; benign stops, malignant takes the largest malignant component. All 15 subsets use exactly the same cases. No equal-numbered cross-zoom field matching, true-label voting groups or selection of favorable zoom conditions is allowed.
+
+Select each arm's first maximum **validation mean-15-subset five-class macro F1** among its four choices. Save every candidate's probabilities, settings and checkpoint hashes. Seal all three selections together before **any selected-model test query**. Only then score the selected candidate of each model on the common test cases. Shared label-independent pixel/feature caching is allowed; test cases never enter supports, centers, learned weights or selection. Four choices equalize visible selection counts, not training compute or search capacity. Pretraining, reader size, optimization, and P's use of known magnification for same-view supports remain deliberate whole-pipeline differences. This is not a pure backbone ablation or a claim of equal pretraining.
+
+Primary reporting is mean-15 case macro F1, with accuracy, all-four and worst-subset scores, per-class confusion/recall, binary routing and strict malignant typing. Paired descriptive bootstrap intervals resample the same 13 conservative test groups for all three models (2,000 draws, seed 812), retaining every case and mask together and keeping the five-label metric definition even when a draw omits a class. Fields and masks are not independent sample sizes. An independent CPU checker reconstructs splits, weighting, pooling, selections and every final metric, verifies artifacts and replays P's fitting-only geometry. Native checkpoint reload is checked on validation fields before selected-model test inference.
+
+The [machine-readable configuration](../configs/breakhis-matched-three-way-v1.json) fixes the recipe. No 95% outcome or winning model is promised. Preserve all outcomes and the earlier historical comparisons.
