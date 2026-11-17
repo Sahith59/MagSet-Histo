@@ -232,6 +232,23 @@ class SwinCollectorTests(unittest.TestCase):
             with self.subTest(unexpected=unexpected), self.assertRaisesRegex(ValueError, 'non-classifier'):
                 m.verify_pretrained_load({**native, 'unexpected_keys': unexpected})
 
+    def test_integer_window_reversal_requires_full_output_and_gradient_proof(self):
+        cases = [{'height': h, 'width': h, 'batch': b, 'channels': 3}
+                 for h in (7, 14, 28, 56) for b in (1, 2, 8, 32)]
+        proof = {'status': 'accepted exact integer window reversal', 'cases': cases,
+                 'maximum_reconstruction_abs': 0.0, 'maximum_eager_graph_abs': 0.0,
+                 'maximum_gradient_abs': 0.0, 'original_graph_reproduced_failure': True,
+                 'training_math_change': False}
+        self.assertEqual(m.verify_window_reverse(proof), proof)
+        self.assertEqual(m.verify_window_reverse({**proof, 'original_graph_reproduced_failure': False})['cases'], cases)
+        changed = [{'status': 'partial check'}, {'cases': cases[:-1]}, {'cases': cases+[cases[0]]},
+                   {'maximum_reconstruction_abs': 1e-8}, {'maximum_eager_graph_abs': 1e-8},
+                   {'maximum_gradient_abs': 1e-8}, {'training_math_change': True},
+                   {'original_graph_reproduced_failure': 1}, {'maximum_gradient_abs': float('nan')}]
+        for mutation in changed:
+            with self.subTest(mutation=mutation), self.assertRaises(ValueError):
+                m.verify_window_reverse({**proof, **mutation})
+
     def test_cli_contract_and_no_tensorflow_import(self):
         args = m.parser().parse_args(['--run', 'r', '--audit', 'a', '--config', 'c', '--code-sha', 'a'*40, '--output', 'o'])
         self.assertEqual(args.run, Path('r'))

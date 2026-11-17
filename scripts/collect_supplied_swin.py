@@ -29,7 +29,7 @@ ROLES = ('train', 'val', 'test')
 REQUIRED_ARTIFACTS = frozenset((
     'predictions.npz', 'metrics.json', 'history.json', 'prefit.json', 'environment.json',
     'pretrained_weights.json', 'checkpoint_reload.json', 'executed.ipynb', 'adapted.ipynb',
-    'progress.csv', 'pretrained_load.json', 'swin_dual_split0.weights.h5'))
+    'progress.csv', 'pretrained_load.json', 'window_reverse_check.json', 'swin_dual_split0.weights.h5'))
 PREDICTION_KEYS = frozenset(('test_indices', 'y5_true', 'y5_pred', 'p_mal',
                             'binary_output', 'subtype_output'))
 CONTEXT_KEYS = ('code_sha', 'source_archive_sha256', 'adapter_sha256', 'config_sha256', 'notebook_sha256')
@@ -342,6 +342,21 @@ def verify_pretrained_load(info):
             'deterministic_relative_position_index_sha256': index_digest}
 
 
+def verify_window_reverse(info):
+    require(isinstance(info, dict), 'Window reversal diagnostic missing')
+    expected_cases = [{'height': height, 'width': height, 'batch': batch, 'channels': 3}
+                      for height in (7, 14, 28, 56) for batch in (1, 2, 8, 32)]
+    require(type(info.get('original_graph_reproduced_failure')) is bool,
+            'Window reversal original graph diagnostic is not boolean')
+    expected = {'status': 'accepted exact integer window reversal', 'cases': expected_cases,
+                'maximum_reconstruction_abs': 0.0, 'maximum_eager_graph_abs': 0.0,
+                'maximum_gradient_abs': 0.0,
+                'original_graph_reproduced_failure': info['original_graph_reproduced_failure'],
+                'training_math_change': False}
+    require_equal(info, expected, 'exact integer window reversal proof', 0)
+    return info
+
+
 def verify_runtime(root, hashes, config, audit, split, audit_sha):
     prefit = read_json(root/'prefit.json')
     require(prefit.get('status') == 'accepted exact original Swin split and labels', 'Prefit guard did not pass')
@@ -371,13 +386,14 @@ def verify_runtime(root, hashes, config, audit, split, audit_sha):
     for name, digest in files.items():
         require_equal(file_hash(snapshot/name), digest, 'cached pretrained file/'+name, 0)
     loading = verify_pretrained_load(read_json(root/'pretrained_load.json'))
+    window_reverse = verify_window_reverse(read_json(root/'window_reverse_check.json'))
     reload = read_json(root/'checkpoint_reload.json')
     for key, wanted in {'images': 32, 'atol': 1e-5, 'checkpoint_sha256': hashes['swin_dual_split0.weights.h5']}.items():
         require_equal(reload.get(key), wanted, 'checkpoint reload/'+key, 0)
     require(all(isinstance(reload.get(k), (float, int)) and not isinstance(reload[k], bool)
                 and math.isfinite(reload[k]) and 0 <= reload[k] <= 1e-5
                 for k in ('binary_max_abs', 'subtype_max_abs')), 'Checkpoint reload parity failed')
-    return {key: environment[key] for key in ('python', *config['runtime'], 'gpu_count')}, files, loading, reload
+    return {key: environment[key] for key in ('python', *config['runtime'], 'gpu_count')}, files, loading, window_reverse, reload
 
 
 def verify_notebooks(root, result, audit, args):
@@ -442,7 +458,7 @@ def review_run(args, context, config, audit, split, table):
     parameters = metrics.get('model_parameters', {})
     require(set(parameters) == {'all', 'trainable'} and all(type(v) is int and v > 0 for v in parameters.values())
             and parameters['trainable'] < parameters['all'], 'Frozen/total model parameter receipt differs')
-    environment, pretrained, loading, reload = verify_runtime(root, hashes, config, audit, split,
+    environment, pretrained, loading, window_reverse, reload = verify_runtime(root, hashes, config, audit, split,
                                                     file_hash(Path(args.audit)/'private.json'))
     with np.load(root/'predictions.npz', allow_pickle=False) as saved:
         scalar, numbers, per_mag, voting = prediction_metrics({k: saved[k].copy() for k in saved.files}, split, table)
@@ -453,7 +469,7 @@ def review_run(args, context, config, audit, split, table):
             'epochs_completed': completed, 'selected_epoch': best,
             'validation_max_score_percent': metrics['validation_max_score'],
             'model_parameters': parameters, 'environment': environment, 'pretrained_files': pretrained,
-            'pretrained_loading': loading,
+            'pretrained_loading': loading, 'window_reverse_check': window_reverse,
             'checkpoint_reload': reload, 'original_code_metrics': scalar, 'metrics': numbers,
             'per_magnification': per_mag, 'majority_vote': voting}
 

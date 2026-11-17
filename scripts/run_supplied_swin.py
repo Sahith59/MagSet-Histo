@@ -160,6 +160,12 @@ assert not _load_info['mismatched_keys'] and not _load_info['error_msgs'], _load
 assert _load_info['deterministic_relative_position_index_check']=={'checked_buffers':12,'window_size':[7,7],
  'shape':[49,49],'maximum_abs_error':0,'all_nontrainable':True}
 assert _load_info['deterministic_relative_position_index_sha256']=={k:'146d178a603c3a1c98a8100a70fe396369b281782f599312dde58016be6f7db2'for k in _index_keys}
+import sys as _sys
+_sys.path.insert(0,'''+repr(str(Path(__file__).resolve().parents[1]))+''')
+from magset.swin_compat import install_integer_window_reverse as _install_window_reverse
+_install_window_reverse()
+_window_check=json.loads(_Path('window_reverse_check.json').read_text())
+assert _window_check['status']=='accepted exact integer window reversal'
 _gpu_count=len(tf.config.list_physical_devices('GPU'))
 '''+("assert _gpu_count>=1, 'Production run requires allocated GPU'\n" if gpu else '')+'''
 _Path('environment.json').write_text(json.dumps({'python':_platform.python_version(),'tensorflow':tf.__version__,
@@ -268,6 +274,9 @@ def run(args):
 from pathlib import Path
 import numpy as np, tensorflow as tf
 from transformers import TFSwinModel
+sys.path.insert(0,sys.argv[3])
+from magset.swin_compat import check_window_reverse
+Path(sys.argv[4]).write_text(json.dumps(check_window_reverse(),indent=2))
 model,info=TFSwinModel.from_pretrained(sys.argv[1],local_files_only=True,use_safetensors=False,output_loading_info=True)
 info.setdefault('error_msgs',[])
 allowed={'swin/encoder/layers.%d/blocks.%d/attention/self/relative_position_index:0'%(s,b)for s,d in enumerate([2,2,6,2])for b in range(d)}
@@ -303,7 +312,8 @@ Path(sys.argv[2]).write_text(json.dumps(info,indent=2))
         comparison_caution='authored paper Beat printouts are not endorsed matched comparisons; token-norm map is not attention rollout')
     write_json(output/'metadata.json',receipt)
     try:
-        subprocess.run([sys.executable,'-c',probe,prepared['snapshot_path'],str((output/'pretrained_load.json').resolve())],check=True)
+        subprocess.run([sys.executable,'-c',probe,prepared['snapshot_path'],str((output/'pretrained_load.json').resolve()),
+                        str(Path(__file__).resolve().parents[1]),str((output/'window_reverse_check.json').resolve())],check=True)
         execute_notebook(notebook,output)
         expected='smoke.json'if args.action=='smoke' else'checkpoint_reload.json'
         if not(output/expected).exists(): raise ValueError('Missing required Swin execution output')
