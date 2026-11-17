@@ -1,0 +1,141 @@
+{
+  "status": "all listed jobs completed; accepted evidence separately hash-bound",
+  "scheduler_time_note": "Start/end strings are as reported by sacct; no unverified timezone interpretation",
+  "jobs": [
+    {
+      "job_id": "4987338_0",
+      "task": "raw_neural_proof",
+      "code_sha": "9f80dde93efdb91a3d7bea569eccb42c4de1cf8d",
+      "scheduler_state": "COMPLETED",
+      "exit_code": "0:0",
+      "elapsed": "00:01:12",
+      "start_as_reported": "2026-11-17T20:01:46",
+      "end_as_reported": "2026-11-17T20:02:58"
+    },
+    {
+      "job_id": "4987338_1",
+      "task": "raw_neural_proof",
+      "code_sha": "9f80dde93efdb91a3d7bea569eccb42c4de1cf8d",
+      "scheduler_state": "COMPLETED",
+      "exit_code": "0:0",
+      "elapsed": "00:01:15",
+      "start_as_reported": "2026-11-17T20:01:46",
+      "end_as_reported": "2026-11-17T20:03:01"
+    },
+    {
+      "job_id": "4987377_0",
+      "task": "raw_midnight_features",
+      "code_sha": "fc15fb97c5ac29bbdf6362ffd86a8443b89f2cce",
+      "scheduler_state": "COMPLETED",
+      "exit_code": "0:0",
+      "elapsed": "00:05:43",
+      "start_as_reported": "2026-11-17T20:09:32",
+      "end_as_reported": "2026-11-17T20:15:15"
+    },
+    {
+      "job_id": "4987377_1",
+      "task": "raw_midnight_features",
+      "code_sha": "fc15fb97c5ac29bbdf6362ffd86a8443b89f2cce",
+      "scheduler_state": "COMPLETED",
+      "exit_code": "0:0",
+      "elapsed": "00:05:55",
+      "start_as_reported": "2026-11-17T20:09:32",
+      "end_as_reported": "2026-11-17T20:15:27"
+    },
+    {
+      "job_id": "4987377_2",
+      "task": "raw_midnight_features",
+      "code_sha": "fc15fb97c5ac29bbdf6362ffd86a8443b89f2cce",
+      "scheduler_state": "COMPLETED",
+      "exit_code": "0:0",
+      "elapsed": "00:05:17",
+      "start_as_reported": "2026-11-17T20:15:18",
+      "end_as_reported": "2026-11-17T20:20:35"
+    },
+    {
+      "job_id": "4987377_3",
+      "task": "raw_midnight_features",
+      "code_sha": "fc15fb97c5ac29bbdf6362ffd86a8443b89f2cce",
+      "scheduler_state": "COMPLETED",
+      "exit_code": "0:0",
+      "elapsed": "00:04:46",
+      "start_as_reported": "2026-11-17T20:15:32",
+      "end_as_reported": "2026-11-17T20:20:18"
+    },
+    {
+      "job_id": "4987378",
+      "task": "raw_midnight_collector",
+      "code_sha": "fc15fb97c5ac29bbdf6362ffd86a8443b89f2cce",
+      "scheduler_state": "COMPLETED",
+      "exit_code": "0:0",
+      "elapsed": "00:00:11",
+      "start_as_reported": "2026-11-17T20:20:48",
+      "end_as_reported": "2026-11-17T20:20:59"
+    },
+    {
+      "job_id": "4987392",
+      "task": "specialist_reader_run",
+      "code_sha": "842b3b83024a2ab78012f356296d1682a0e590e3",
+      "scheduler_state": "COMPLETED",
+      "exit_code": "0:0",
+      "elapsed": "00:00:28",
+      "start_as_reported": "2026-11-17T20:20:18",
+      "end_as_reported": "2026-11-17T20:20:46"
+    },
+    {
+      "job_id": "4987393",
+      "task": "specialist_reader_check",
+      "code_sha": "842b3b83024a2ab78012f356296d1682a0e590e3",
+      "scheduler_state": "COMPLETED",
+      "exit_code": "0:0",
+      "elapsed": "00:00:07",
+      "start_as_reported": "2026-11-17T20:20:48",
+      "end_as_reported": "2026-11-17T20:20:55"
+    },
+    {
+      "job_id": "4987394",
+      "task": "router_groups_diagnosis",
+      "code_sha": "842b3b83024a2ab78012f356296d1682a0e590e3",
+      "scheduler_state": "COMPLETED",
+      "exit_code": "0:0",
+      "elapsed": "00:00:25",
+      "start_as_reported": "2026-11-17T20:20:18",
+      "end_as_reported": "2026-11-17T20:20:43"
+    },
+    {
+      "job_id": "4987465",
+      "task": "uni_case_svm_run",
+      "code_sha": "13fe4ae1dc7f377a9d36f78f0e005eb2f6da2b0a",
+      "scheduler_state": "COMPLETED",
+      "exit_code": "0:0",
+      "elapsed": "00:00:21",
+      "start_as_reported": "2026-11-17T20:57:22",
+      "end_as_reported": "2026-11-17T20:57:43"
+    },
+    {
+      "job_id": "4987466",
+      "task": "uni_case_svm_check",
+      "code_sha": "13fe4ae1dc7f377a9d36f78f0e005eb2f6da2b0a",
+      "scheduler_state": "COMPLETED",
+      "exit_code": "0:0",
+      "elapsed": "00:00:06",
+      "start_as_reported": "2026-11-17T20:57:52",
+      "end_as_reported": "2026-11-17T20:57:58"
+    }
+  ],
+  "evidence_sha256": {
+    "MATCHED_NEURAL_RAW_PROOF.json": "be070e4027897dfd581bc34068e1d724c7c202d0e39d0d3b55c2372a4be1814e",
+    "MATCHED_MIDNIGHT_RAW_PROOF.json": "db1aa20aca8f09ebf5c48e87e221a05bf092519388556b07438e1a1b8c34edbc",
+    "BREAKHIS_SPECIALIST_READER_RESULTS.json": "b17a23e5804b8d721c7e251e7ca76ddf33371a4c04128fa9f68b67494659be9e",
+    "BREAKHIS_ROUTER_GROUP_DIAGNOSIS.json": "1b3d833dc0a0ddf92b79c7f140f42c3f7573b73411ce45dfeaf13efc7e94ef70",
+    "BREAKHIS_UNI_CASE_SVM_RESULTS.json": "2ee058a20cab04ba16efece2e111c7fd2d56ea9eb55edf15133e3dddf682a355"
+  },
+  "case_svm_outer_inventory": {
+    "producer_status": "complete case-SVC family",
+    "inventory_files": 61,
+    "hash_errors": [],
+    "head_fits_declared": 16,
+    "new_encoder_forwards": 0,
+    "outer_receipt_sha256": "4a67da0be21904a567126753f606cf50e673280f2168cad383edef543aa094cb"
+  }
+}

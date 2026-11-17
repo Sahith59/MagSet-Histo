@@ -1,6 +1,6 @@
 # Deep diagnosis and proof of the reported runs
 
-November 17, 2026. **The original three results are reproducible under the stated BreakHis protocol.** The extra raw-image verification found no numerical scoring discrepancy. The scores describe this small reused-development experiment; reproducibility does not establish clinical accuracy or independent patient identity.
+November 17, 2026. **Selected-checkpoint inference and the reported metrics for all three original methods were reproduced from raw images under the stated BreakHis protocol.** The extra raw-image verification found no numerical scoring discrepancy. The scores describe this small reused-development experiment; reproducibility does not establish clinical accuracy or independent patient identity.
 
 | Original method | Correct final answers / 240 case/subset events | Final-five accuracy | Correct binary answers / 240 | Binary accuracy |
 | --- | ---: | ---: | ---: | ---: |
@@ -13,7 +13,7 @@ Every row uses the same 16 provider cases, 13 conservative identifier groups and
 ## What the new proof actually executed
 
 - **CNN and Swin:** separately reopened all 1,704 original test PNGs per model; checked every file hash, filename/directory label and crop; rebuilt the selected checkpoint; and independently composed probabilities, pooled case/views and calculated scores. Every field probability matched exactly, with zero changed case decisions. The frozen architecture builder is shared; image I/O, crop construction and score arithmetic are separate executions. [Neural raw-replay evidence](evidence/MATCHED_NEURAL_RAW_PROOF.json).
-- **Midnight P:** reopened all **7,909** PNGs, including every fitting support, validation and test field; re-encoded all **23,727** crops through the frozen original reader; and rebuilt the centers, cosine densities, case/class/field weighting and pooling with an independent NumPy implementation. Maximum feature difference was **1.49e-6**, within the original feature-replay tolerance. Maximum field-probability difference across the four validation settings was **8.56e-7**; selected-test field difference was approximately **7.77e-16**. Every original case decision, score and validation selection remained unchanged. [All-field raw P proof](evidence/MATCHED_MIDNIGHT_RAW_PROOF.json).
+- **Midnight P:** reopened all **7,909** PNGs, including every fitting support, validation and test field; re-encoded all **23,727** crops through the frozen original reader; and rebuilt the centers, cosine densities, case/class/field weighting and pooling with an independent NumPy implementation. Maximum feature difference was **1.49e-6**, within the original feature-replay tolerance. Maximum field-probability difference across the four validation settings was **8.56e-7**; selected-test field difference was approximately **7.77e-16**. Every original hard case decision, aggregate classification metric and validation selection remained unchanged. [All-field raw P proof](evidence/MATCHED_MIDNIGHT_RAW_PROOF.json).
 - **Source and execution:** independent audits matched original archive/code/configuration/cache/checkpoint hashes, exact fitting weights, pinned split implementation, saved candidate selection and actual scheduler chronology. Both selections and test execution were checked rather than inferring success from an exit code. [Original forensic audit](reviews/MATCHED_PROOF_AUDIT.md) · [completed actual proof review](reviews/DEEP_PROOF_RESULTS_REVIEW.md).
 
 The raw proof involved 11,317 image visits—7,909 unique images, with the neural test images revisited—and 33,951 crop evaluations. It did not create new cases or performance estimates. No model parameter, split, score definition or tolerance was changed to obtain a higher reported accuracy.
@@ -52,8 +52,17 @@ A separate diagnostic excludes the **entire conservative group** for each fittin
 
 The validation ranking is stronger than its fixed-threshold accuracy, suggesting that calibration is worth investigating. Training-group-out ranking is imperfect, and the role is small; calibration alone is not established as a transferable rescue and does not repair the malignant expert. [Complete binary diagnostic](evidence/BREAKHIS_ROUTER_GROUP_DIAGNOSIS.json).
 
-## How the next bounded test addresses both decisions
+## The completed whole-case classifier comparison
 
-The next registered development probe learns from whole-case summaries rather than assigning a subtype lesson to each individual field. It compares compact linear and RBF SVCs on the same frozen UNI2 features, with the same four C choices per arm, training-only normalization and true benign/malignant → malignant-four routing. This can change both decisions. It remains a hypothesis test, with a strong linear control and the previous case-learning failures retained as counterevidence. The fixed budget must not expand after outcomes are seen. [Case-SVC plan](BREAKHIS_UNI_CASE_SVM_PLAN.md).
+The final bounded probe fits linear and RBF SVCs to frozen UNI2-h case/view means, with four shared-C choices for each arm. Both select C=10 by validation mean15 final-five macro F1 before either selected follow-up. It changes both decisions while retaining the same roles and all 15 subsets.
+
+| Arm | Validation final accuracy / F1 | Reused follow-up final accuracy / F1 | Follow-up binary accuracy |
+| --- | ---: | ---: | ---: |
+| Linear SVC | 76.47% / .476316 | 74.58% / .513007 | 92.08% |
+| RBF SVC | 76.47% / .486149 | 69.17% / .380729 | 92.08% |
+
+The RBF validation gain is .009833 F1, below the fixed .02 screen, with tied accuracy: **screen fails**. Its validation binary accuracy is 99.22%, but the same selected model reaches only 92.08% on the reused follow-up. That contrast is evidence against treating a validation headline as a final result. Both selected models still have zero lobular and papillary recall on validation. More nonlinear capacity did not resolve the observed subtype-transfer problem in this family. No extra setting was added after these outcomes. [Complete result and all eight validation candidates](BREAKHIS_UNI_CASE_SVM_RESULTS.md) · [actual-result review](reviews/UNI_CASE_SVM_ACTUAL_RESULTS_REVIEW.md).
+
+All 12 new scheduler tasks completed successfully. The retained evidence includes original hashes, raw replay outputs, every validation candidate, selected models, per-case/subset decisions and the independent checks. [Execution times and artifact hashes](evidence/DEEP_DIAGNOSIS_EXECUTION.json).
 
 **Over 90% final-five and over 97% binary accuracy remain unachieved objectives.** Neither a larger model nor more GPU time guarantees either score. All subsequent follow-ups on the already-viewed cases are development observations. Independent new cases would be needed for fresh confirmation before a strong research-generalization claim.

@@ -1,6 +1,6 @@
 # Deep proof and specialist follow-up: actual-result review
 
-November 17, 2026. **All three original matched scores now reproduce through raw-image execution, with unchanged final decisions.** The new fixed-router specialist reaches 82.92% on the already viewed follow-up set, but fails its validation progression screen. Neither >90% final-five nor >97% mean15 binary accuracy has been achieved.
+November 17, 2026. **Selected-checkpoint inference and reported metrics for all three original methods now reproduce through raw-image execution, with unchanged final decisions.** The new fixed-router specialist reaches 82.92% on the already viewed follow-up set, but fails its validation progression screen. Neither >90% final-five nor >97% mean15 binary accuracy has been achieved.
 
 This review checked the completed proof/diagnosis receipts, their source and artifact hashes, and independently replayed all newly saved probability arrays and statistics. Its private machine receipt has no errors and SHA-256 `22d334445997c9a9ae938254f737084727da561b3fe19aaa9b5db5b350460103`. No fitting, job submission or scientific-code change was performed for this review.
 
