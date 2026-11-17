@@ -2,13 +2,13 @@
 
 Both new specialist studies are complete. Learning the two UNI2-h feature metrics gives 76.17% / 75.83% final accuracy, with small gains over the exact identity control. Standard supervised UNI2-h field heads give 73.83% / 73.67%, below their reference. Both declared improvement screens fail. The malignant-only metric ablation leads observed 812 two-step F1 at .672180; P leads 813 at .602512. P's separate all-four-view accuracy remains 85% / 85%. **94–95% final accuracy is still unachieved.** [Metric results](BREAKHIS_SPECIALIST_METRIC_RESULTS.md), [linear results](BREAKHIS_UNI_LINEAR_RESULTS.md).
 
-## Trace malignant errors to distinct cases
+## Review the persistent malignant errors
 
-Complete a read-only audit of the saved validation predictions. Join the same original case/trial/zoom records across identity, binary-only, malignant-only, both metrics and linear dual. Count routing errors, wrong malignant types after correct routing, corrections and regressions, and distinct provider keys affected. Keep all-four-view scores separate. Retain identifiers and original-image inspection paths privately; publish only safe aggregate counts.
+The read-only case audit is complete. It joins the same original case/trial/zoom records across all four metric arms and linear dual: 6,000 saved events across five pipelines, each reusing 31 validation provider keys. The metric primary corrects eight events and regresses on two versus identity, for a net six. It still misses 106/150 papillary events, including 75 routed to benign. Three keys remain wrong in every observed event, covering benign, ductal and papillary. These counts locate persistent cases; they do not establish a morphological or label cause. [Complete audit](BREAKHIS_SPECIALIST_ERROR_AUDIT.md).
 
-This is descriptive diagnosis on reused validation. It adds no training, selection, new cohort or performance improvement. Representative original fields need appropriate review before attributing failures to labels, morphology, stain or image coverage. The existing training gap supports a transfer problem without proving one cause.
+The private inspection index retains original manifest paths and fixed first/middle/last field examples per view. These are uninspected case-bag examples, not fields proven to cause the pooled prediction. Review them with appropriate expertise before choosing a label, coverage, stain or representation intervention. The audit adds no fitting, predictions, model selection or independent cohort.
 
-Use an observed finding to justify any subsequent mechanism. Do not launch another generic model sweep, combine a favorable router with a favorable expert after seeing outcomes, change splits, or replace final-five accuracy with the stronger binary score. The latest linear router is 96.17% on 813 while final accuracy is 73.67%; subtype errors still count.
+Use a specific finding to justify the next fixed comparison. Preserve all-four-view scores as a separate endpoint and distinguish unequal-exposure event counts from clearly labeled equal-key descriptive averages. Avoid another generic model sweep, post-hoc combinations of favorable heads, split changes or substitution of binary accuracy for final-five accuracy. The latest linear router is 96.17% on 813 while final accuracy is 73.67%; subtype errors still count.
 
 ## Finish the five-category capstone package
 

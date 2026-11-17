@@ -75,6 +75,6 @@ Supervised UNI2-h field heads fit 98.58% / 98.43% but validate 73.83% / 73.67%. 
 
 The metric family was registered first. The separate four-C standard linear family was chosen before metric outcomes and registered before fitting. All failed outcomes and the direct-linear control remain visible. No new encoder calls, excluded-role predictions, threshold changes, split changes or automatic combinations occurred. No 95% final score, clinical validation or novelty is established.
 
-Next perform a descriptive provider-case malignant-error audit, preserving the accepted scores and tracing routing/type errors to distinct cases. This audit supports the capstone explanation and a justified future experiment; it adds no fitting or independent evaluation cohort.
+The descriptive case-error audit is complete: five pipelines, 6,000 saved events and 31 reused provider keys. The metric primary corrects eight events and regresses on two, with 288 final errors partitioned into 156 routing and 132 post-route subtype errors across both arrangements. Papillary accounts for 106/150 errors, including 75 routed to benign. Original-field paths and fixed inspection examples remain private and uninspected. The audit locates cases for appropriate review; it adds no fitting, predictions, independent cohort or morphological diagnosis.
 
 The complete linear source passed all **415** pinned neural tests in CI, without skips, and the lightweight suite also passed. These checks and actual fitted-model replay support execution correctness; the registered predictive screens still fail.

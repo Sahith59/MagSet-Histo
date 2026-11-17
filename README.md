@@ -41,7 +41,7 @@ GenBio's one-stage control scores 71.33%/77.83%, F1 .5960/.6406. Its stronger 81
 
 All comparisons above are complete and verified. The three newly approved readers add frozen-feature comparisons under the same registered roles and decision structure. UNI2-h improves first-arrangement F1, with lower accuracy than the retained reference in both arrangements. Decision-specific centers produce modest F1 gains, with accuracy and recall tradeoffs; both centering modes fail the registered larger-improvement screen. Their direct-five controls are exact duplicates, leaving four structurally unique direct settings and eight dual settings across the mode family. No novel mechanism or 95% result is established. [Native negative result](docs/BREAKHIS_NATIVE_RESULTS.md) · [Centering evidence](docs/BREAKHIS_PRIOR_CENTERED_RESULTS.md) · [Full scorecard](paper/breakhis-five-class-report.md).
 
-The main weakness remains malignant typing. The retained P model scores 94.83%/93.00% on benign/malignant routing, but 58.33%/62.33% on true-malignant subtyping. Binary accuracy is not final five-category accuracy. Only BreakHis images/labels are fitted/evaluated; public pathology pretraining is external transfer learning.
+The retained P model's main weakness is malignant typing. It scores 94.83%/93.00% on benign/malignant routing, but 58.33%/62.33% on true-malignant subtyping. Binary accuracy is not final five-category accuracy. Only BreakHis images/labels are fitted/evaluated; public pathology pretraining is external transfer learning.
 
 The supplied notebooks saved 93.73%/94.99% on eight-type 40× individual images with image-random, reused validation. Their task, prediction unit and split differ from the current case experiment. [Before/now explanation](docs/CAPSTONE_BEFORE_AND_NOW.md). Original notebooks and earlier results remain historical evidence.
 
@@ -55,6 +55,8 @@ The supplied notebooks saved 93.73%/94.99% on eight-type 40× individual images 
 These are exploratory provider-case validation results, averaged over five overlapping trials with46 fitting/8 validation/28 excluded outer-role cases each. F1 is not accuracy. Both splits together involve 31 distinct validation cases; 1,200 saved case/subset records do not represent 1,200 independent patients. All 82 provider cases entered development somewhere, and some clinical identifier relationships remain unresolved. No globally fresh BreakHis confirmation cohort remains.
 
 The [complete first-results report](docs/BREAKHIS_FIRST_RESULTS.md) shows every trial, class weaknesses, provenance and execution checks. The baseline uses a frozen Phikon-v2 image reader, within-view mean pooling, saved fitting-only normalization, available-view mean plus mask, and a logistic classifier. The working repository name does not imply that this baseline is a novel transformer.
+
+The completed [case-error audit](docs/BREAKHIS_SPECIALIST_ERROR_AUDIT.md) traces the five selected pipelines to 31 reused provider keys. The metric primary corrects eight repeated events and regresses on two, for a net six; persistent papillary errors remain. Its private original-field index is ready for appropriate review and makes no morphological conclusion.
 
 ## Immediate deliverable
 
