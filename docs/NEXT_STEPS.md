@@ -1,5 +1,7 @@
 # Next BreakHis tasks
 
+The user has now requested execution of a separate supplied CNN–Transformer notebook. Its shared data audit, synthetic checks, two GPU runs and independent after-any score checker are submitted. Preserve both declared input variants and their eight-subtype image endpoint. [Notebook status](SUPPLIED_CNN_TRANSFORMER_STATUS.md). Accuracy remains pending; the completed five-category studies below are unchanged.
+
 Both new specialist studies are complete. Learning the two UNI2-h feature metrics gives 76.17% / 75.83% final accuracy, with small gains over the exact identity control. Standard supervised UNI2-h field heads give 73.83% / 73.67%, below their reference. Both declared improvement screens fail. The malignant-only metric ablation leads observed 812 two-step F1 at .672180; P leads 813 at .602512. P's separate all-four-view accuracy remains 85% / 85%. **94–95% final accuracy is still unachieved.** [Metric results](BREAKHIS_SPECIALIST_METRIC_RESULTS.md), [linear results](BREAKHIS_UNI_LINEAR_RESULTS.md).
 
 ## Review the persistent malignant errors

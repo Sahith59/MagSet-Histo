@@ -1,6 +1,6 @@
 # Independent review: supplied CNN-transformer notebook
 
-November 17, 2026. **Accept the two declared variants' inspected source and CPU collector mechanics; actual technical/cohort execution acceptance remains pending.** The supplied notebook has fifteen unexecuted code cells and no saved outputs. Its exact private original SHA256 is `2bb8eac92b33ad81c8a203743d202f8a1866e9cdcf4f71c0259be69b6c9aa709`. No accuracy in its comments or hardcoded comparison rows is a measured result from this file.
+November 17, 2026. **Accept the inspected source, recorded common-data audit and both actual CPU synthetic technical checks. GPU cohort outcomes remain pending.** The supplied original notebook has fifteen unexecuted code cells and no saved outputs. Its exact private original SHA256 is `2bb8eac92b33ad81c8a203743d202f8a1866e9cdcf4f71c0259be69b6c9aa709`. No accuracy in its comments or hardcoded comparison rows is a measured result from this file.
 
 This reviewer performs read-only notebook/runner inspection and authors the separately requested read-only CPU collector. No fitting, scheduler action, original-image inspection or runner-source edit is performed here. The user requested execution of the supplied notebook; its original image-based endpoint must remain visible rather than being silently replaced by the project's five-category provider-case benchmark.
 
@@ -74,4 +74,24 @@ Reviewed SHA256 snapshots:
 | Notebook run adapter | `6368de912091db95ee7505a2b53078f2c52365da9b58e90913883d338fdfde8c` |
 | Independent CPU collector | `a94b010245fb334656ccb8f679cd1821a81600d1d0d5d5aa3d383e1f91e59a5b` |
 
-**Source verdict:** no remaining inspected-source blocker for the common zero-fit audit and bounded CPU technical checks. Real technical receipts, GPU execution, both declared outcomes and saved-output verification remain required. Queue placement, synthetic checks and a compatible environment establish no new accuracy.
+**Source verdict:** no remaining inspected-source blocker for the common zero-fit audit and bounded CPU technical checks. The recorded preflight acceptance below supersedes its pending-execution status. GPU cohort outcomes and saved-output verification remain required; queue placement, synthetic checks and a compatible environment establish no new accuracy.
+
+## Actual common-data and CPU technical acceptance
+
+The common zero-fit data audit and both native TensorFlow CPU technical checks completed at source **`474bb0199eba585aec3e70bd252a4b840357429d`**. Independent review passed **238 source/configuration/notebook/artifact/receipt assertions**, including reconstruction of both synthetic notebooks' five executed-cell source digests and all fifteen original/compatibility patch receipts. The immutable source archive SHA256 is `2ad8f54d02e3ffc32d15069585a5f4a480505c2c844df6f92228aff8c32d752b`; its actual bytes, committed adapter and configuration match the recorded receipts and the reviewed snapshots above.
+
+| Actual accepted receipt | SHA256 |
+| --- | --- |
+| Common input audit, public | `4bd1a3cc5e6f5dbdd7b2c6e11a32c1fe0e5e806b060d345a6e660add3e9b6752` |
+| Faithful CPU technical result | `f81296104c0b4dfc064a9fd498970538d7b11cef31e4492a00d2a510bad0eacf` |
+| Input-fixed CPU technical result | `296ca9741caa3b5816f91c27a43d39924f7579897966b8650d8e02c01510c9e2` |
+
+The common audit records exact full 7,909-image membership, pinned canonical manifest, current unsorted image order, label encodings and shared **6,327 fitting/1,582 reused-validation indices**. All **82 provider keys** and all **70 conservative identifier groups** occur in **both** image roles. This is measured overlap in this supplied-notebook split, not a provider-case-disjoint or independently verified clinical-patient test. The notebook's original image endpoint remains separate from the project's existing case/subset endpoint.
+
+Both CPU technical receipts use Python 3.11.18, TensorFlow 2.15.1, Keras 2.15.0, NumPy 1.26.4 and scikit-learn 1.6.1. Their visible GPU count is zero: these are CPU compatibility checks, not GPU execution evidence. Each processes eight generated images with one synthetic training batch, verifies inline plotting, and records zero real validation predictions. All three maximum absolute reload errors are **0.0** in both variants: H5 weights, existing-graph loading of the `.keras` file, and full-model reconstruction. Their saved environment/technical/weight JSON hashes match the execution artifact receipts.
+
+Before and after the synthetic batch, both variants bind the same official `efficientnetv2-b0_notop.h5`, exactly **24,274,472 bytes** with SHA256 **`fd2529efca107725477325b0a3de53521c37873ba2910a2600a6b26209d95285`**. The common explicit project-cache I/O override is disclosed; no alternate weights, model, loss or dataset protocol was substituted.
+
+This review independently checks the downloaded recorded receipts, source archive and committed source bytes. It does **not** rerun TensorFlow locally or independently load the private synthetic checkpoint arrays/notebooks or all 7,909 original images here. In particular, the native zero reload differences are accepted recorded technical evidence, not a second local numerical reproduction. The shared-order/indices hashes are verified as recorded bindings; actual source enforces them again before either GPU fit.
+
+**Actual technical verdict:** accept both CPU checks and the recorded common-data contract as support for the two declared GPU executions. Synthetic batch losses/accuracies are not research results and are deliberately omitted here. No final cohort accuracy, paper superiority, 95% result, clinical validation or novelty is established by these checks. The completed GPU notebooks, saved 1,582-row probabilities and independent CPU collector still determine the actual reported numbers.

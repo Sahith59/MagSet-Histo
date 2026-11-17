@@ -1,3 +1,7 @@
+# Current supplied-notebook task
+
+November 17: the user explicitly supplied `cnn-transformer-dualhead-breakhis.ipynb` and requested cluster execution and a brief explanation/numbers. This bounded separate experiment is authorized alongside the existing capstone. Run the original eight-subtype image protocol with declared path/serialization/cache repairs and a single declared input-scaling companion. Preserve the exact private original and both outcomes. Do not relabel its image-random scores as the existing five-category provider-case results. [Execution status](docs/SUPPLIED_CNN_TRANSFORMER_STATUS.md), [fixed recipe](docs/SUPPLIED_CNN_TRANSFORMER_RUN.md). Latest private state has exact jobs/source; no actual notebook accuracy is known at this checkpoint.
+
 # Project working instructions
 
 Current checkpoint, November 17, 2026. The bounded UNI2-h metric-learning family is complete and independently checked. Primary both-head accuracy is **76.17% / 75.83%**, macro F1 **.668624 / .587323**, compared with the exact identity control **75.83% / 75.17%**. Its registered larger-improvement screen fails. The malignant-only ablation reaches 812 F1 .672180; P retains 813 F1 .602512 and separate all-four-view accuracy 85% / 85%. These observations do not establish a consistent replacement or 95%. [Complete result](docs/BREAKHIS_SPECIALIST_METRIC_RESULTS.md), [independent review](docs/reviews/SPECIALIST_LEARNING_VALIDITY_REVIEW.md).
