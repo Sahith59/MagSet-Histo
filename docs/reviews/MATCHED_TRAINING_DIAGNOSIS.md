@@ -1,0 +1,81 @@
+# Matched study: training, data and architecture diagnosis
+
+November 17, 2026. The accepted experiment exposes a large gap between successful optimization on fitting images and generalization to validation specimens. **This audit found no demonstrated label-map, input-scale, loss-mask or probability-pooling bug that explains the weak five-category results.** The strongest supported next model question is a bounded replacement of the malignant picture representation while retaining the stronger frozen router, rather than further fitting the same CNN/Swin architectures. Expert review of shared mucinous validation failures is the strongest complementary data action. Neither action guarantees >90% final accuracy or >97% binary accuracy.
+
+This diagnosis uses frozen source `a6e6a54e4fac090051837df17b0dea14efca3bb3`, the accepted input audit, both fitting-loss histories and all twelve saved **validation** candidates. No test prediction/metric archive was opened by the diagnostic program. It performed zero fits, encoder/model forwards or parameter searches. The already accepted final study and its limitations remain in the [results report](../MATCHED_THREE_WAY_RESULTS.md); these diagnostic numbers are validation evidence, not replacement final results.
+
+## Label and grouping audit
+
+An independent scalar parser checked all 7,909 audited filenames against the subtype code, canonical eight-type and final-five targets, benign/malignant flag, raw case suffix, qualified case key, magnification, view index, sequence number, directory labels and conservative group. All **126,544 metadata comparisons** agreed. Sequence identifiers were compared numerically because the manifest stores unpadded numbers and filenames retain zero padding. There were **zero exact image-byte hashes shared across roles**.
+
+The mapping is adenosis/fibroadenoma/phyllodes/tubular adenoma → pooled benign, and ductal/lobular/mucinous/papillary → final labels 1–4. Malignant-head targets are `max(final_label - 1, 0)`; benign examples receive zero malignant loss weight. The canonical eight-type target remains separately recorded, preventing confusion between pooled labels and original subtype indices. Case keys are subtype-qualified provider specimens. Conservative stems define split groups, including mixed-label stems whose specimen labels remain separate. No related crop, field, magnification or provider specimen crosses those conservative-group roles.
+
+| Role | Specimens / conservative groups | Benign / ductal / lobular / mucinous / papillary specimens | Distinct groups per final class |
+| --- | ---: | --- | --- |
+| Fitting |49 / 42|14 / 24 / 2 / 5 / 4|9 / 24 / 2 / 4 / 4|
+| Validation |17 / 15|5 / 7 / 2 / 2 / 1|4 / 7 / 1 / 2 / 1|
+
+The 197 lobular fitting images represent only **two fitting groups**. The two lobular validation specimens share **one validation group**. Geometric augmentation and three overlapping crops do not increase these independent source counts. This scarcity is a measured limitation, not a proven explanation for an individual error.
+
+Metadata agreement and byte hashes cannot establish biological label correctness, diagnostic tissue content or clinical identity. No pathologist adjudication or original-field morphological conclusion was made here. [Grouping and pixels](../../magset/matched_data.py), [preparation audit](../../scripts/prepare_matched_three_way.py), [protocol review](MATCHED_THREE_WAY_PROTOCOL_REVIEW.md).
+
+## Fitting objective and execution
+
+An independently reconstructed scalar weight calculation matches the saved binary and malignant training weights with maximum absolute differences **4.44e-16 / 8.88e-16**. Each binary class has total unit mass .5; each malignant subtype has .25. Within a head class, cases receive equal mass, then each of four views receives equal mass, then fields within that case/view share it. Benign malignant-head mass is exactly zero.
+
+The saved global weights equal `4,621 × unit_mass`. The trainer passes those weights divided by the configured batch size **16** into sparse cross-entropy with **SUM** reduction, then weights both heads .5. The final batch has thirteen fields and retains denominator sixteen. It is not normalized by that batch's malignant count or weight sum. There are 289 batches per epoch and 11,560 updates over forty epochs. With a hypothetical fixed model, the simple mean of batch data losses would differ from the full unit-mass loss by the factor 4,621/4,624 = **.999351**; this tiny reporting factor cannot explain the observed validation gap. Real online losses also change with weights, dropout and augmentation throughout an epoch.
+
+The objective is a case/class/view-balanced **field** surrogate, not direct optimization of case-level macro F1. Separately balancing binary and malignant classes also differs from imposing five equal joint class priors. Those are declared design choices. The current evidence does not justify relabeling them as weighting bugs or tuning priors/thresholds after seeing outcomes. [Trainer](../../scripts/run_matched_three_way.py), [weight calculation and pooling](../../magset/matched_data.py).
+
+## Optimization versus validation
+
+The table compares online augmented fitting data cross-entropies from the selected epoch with independently reconstructed validation-field cross-entropies. Validation uses the same class → case → view → field unit-mass construction within its own role. This makes the weighting explicit, but the measurements still differ: fitting loss is online, stochastic and measured during updates; validation is fixed-checkpoint, unaugmented inference. **No fitting accuracy was saved or inferred from these losses.** All selected validation true-label probabilities were positive, so no zero-probability floor affected these CE values.
+
+| Model / selected setting | Online fitting binary / malignant CE | Validation balanced-field binary / malignant CE | Validation mean-subset final accuracy / macro F1 |
+| --- | --- | --- | --- |
+| P, temperature .1|Not optimized; no corresponding fitting CE|.272372 / 1.228704|79.61% / .577663|
+| CNN, epoch 40|.021690 / .092758|1.537456 / 4.062871|59.22% / .484162|
+| Swin, epoch 20|.005475 / .082645|1.750877 / 3.940683|59.61% / .393336|
+
+Both neural learners optimize their fitting surrogate successfully. CNN data losses fall from **.340532 / 1.078470** in epoch one to **.021690 / .092758** in epoch forty. Swin falls from **.356593 / 1.220861** to **.001602 / .055260**. The remaining total loss contains L2 regularization; it is not all classification failure. At epoch forty, the inferred regularization components are .124493 for CNN and .075174 for Swin.
+
+Additional fitting does not resolve Swin's validation behavior: its malignant validation CE is **3.4045, 3.9407, 4.5955, 4.8271** at epochs 10/20/30/40, while online malignant fitting CE falls **.16129, .08264, .06027, .05526**. Its registered macro-F1 rule selects epoch twenty. CNN validation macro F1 improves across its four candidates, but malignant validation CE also worsens from **2.7839** at epoch ten to **4.0629** at epoch forty. Classification selection and probability quality need not move together. These observations support a generalization/transfer problem; they do not identify its biological cause or authorize a different retrospective checkpoint rule.
+
+## Confidence and field heterogeneity
+
+Among 1,075 true-malignant validation fields, the selected CNN assigns at least .9 maximum subtype probability to **822**; **384** of those predictions are wrong. Swin does so for **830**, with **382** wrong. Their mean maximum subtype probability on all wrong malignant fields is **.9103 / .9096**. P at its selected temperature has ten such high-confidence predictions, one wrong, and mean maximum probability **.5084** on wrong malignant fields. The .9 cutoff is a descriptive posthoc diagnostic, not a selected threshold or formal calibration test. These dependent fields are not independent patients.
+
+The sharper neural probabilities are not simply better field decisions: case/class-balanced malignant field accuracy is **41.10% P, 44.86% CNN and 36.14% Swin**, while P has the strongest selected case/subset result. Confidence, case aggregation and representation all matter. This audit does not claim P is calibrated or that softening alone would fix recognition.
+
+Predictions also vary within cases and between zooms. Across the 48 true-malignant validation case/view groups, median modal subtype shares are **63.85% P, 67.54% CNN and 80.91% Swin**. Single-view final labels conflict within **7 / 8 / 7** of the seventeen validation cases. These are prediction disagreements, not proof of tissue heterogeneity. Equal field/view pooling can average inconsistent evidence, but it also helps: **5 / 5 / 4** cases have a correct all-four-view answer despite at least one wrong single-view answer. Only **1 / 0 / 0** cases have a wrong all-four answer with some correct single view. The evidence therefore does not support abandoning all-view means or selecting a favorable magnification.
+
+Both mucinous validation specimens are wrong in all three models' all-four-view answers. One is called benign at every individual magnification by every model; even its pooled conditional subtype argmax is papillary in all three. A router-only fix would not give that specimen the correct mucinous label. On current hard predictions, an oracle choosing a correct model whenever one exists reaches **15/17 all-four cases** and **226/255 case/subset events**. This describes only these three existing hard decisions: it is not a bound on a new reader, probability combination or future model. There are 29 events where all three are wrong, including 24 mucinous events. This shared validation failure is a concrete target for original-field expert review.
+
+## Architecture and information audit
+
+| Component | Finding | Interpretation |
+| --- | --- | --- |
+| Native normalization | CNN receives raw float 0–255 with EfficientNetV2 preprocessing included. Swin divides once by 255, applies ImageNet mean/std, then transposes to NCHW. | The old supplied faithful CNN scaling failure is not present in this matched run. |
+| Frozen layers | CNN early backbone frozen, final sixty layers trainable; 11,629,254 total trainable parameters including the added Transformer/heads. Swin embeddings/stages 0–1 frozen, stages 2–3 trainable; 26,358,078 trainable parameters. | Large adaptive capacity is fitted using 49 specimens/42 groups; a plausible overfitting risk, not proof that parameter count alone caused failure. |
+| Conditional heads | CNN malignant loss can backpropagate through its binary-probability input. Swin uses stopped-gradient probabilities there; both losses still reach the shared reader. | This deliberate architecture difference is implemented as declared. Similar failure patterns in both do not establish this connection as the cause. |
+| Three crops | Shared Pillow bilinear resize/crops have pixel parity with the P cache. Per-crop normalized descriptors are averaged before heads. | Common information coverage is matched; crops overlap and do not constitute three independent images or cross-zoom physical matches. |
+| Resolution | Most 700×460 originals become 340×224 before 224-square crops; the 700×456 geometry becomes 343×224. | Native detail is reduced. Earlier native-input comparisons failed, so more pixels are not a supported automatic rescue. |
+| Magnification | P uses same-view supports/centers. Neural heads share weights across views without an explicit magnification input. | A declared full-pipeline difference. Possible scale specialization is not isolated by these results. |
+| Inference state | Training flags are explicitly false for saved validation/test inference; CNN BN follows frozen/trainable Keras semantics. Swin has no CNN BN. A40 selected-checkpoint validation replay is exact for both heads/models. | No demonstrated BN/dropout or persistence mismatch explains accepted scores. The preserved A30 guard failure is a hardware-numerical execution limitation, not a demonstrated accuracy root cause. |
+| Pooling | Field binary/malignant probabilities form joint five-way probabilities, then average fields within view and active views equally, followed by the fixed .5 route. | No majority vote, true-label-dependent inference or separately pooled-head substitution enters the primary score. Field-level CE versus case-level deployment remains a design mismatch. |
+
+All original fields remain represented, but assigning each field/crop the specimen subtype assumes its pixels support that diagnosis. No field-level tumor-content or diagnostic-region annotations validate that assumption. Non-diagnostic tissue, stain variation, specimen-specific cues and valid morphological diversity are hypotheses requiring original-image review. The current probability disagreements cannot distinguish them. [Model builders](../../magset/matched_models.py), [P readout](../../magset/prior_centered_model.py), [field-to-case pooling](../../magset/matched_data.py).
+
+## Prioritized action and counterarguments
+
+1. **Do not spend another unrestricted CNN/Swin fitting round on this evidence.** The fitting objective is already low while validation proper losses remain high. More epochs, a larger backbone, generic LoRA or a generic attention/MIL rerun is not a specific response to the measured gap.
+2. **The strongest bounded model intervention is to retain the better frozen P router and test one frozen pathology-reader malignant specialist against an identical P-specialist control.** Use the same fitting/validation cases, field/view pooling, four declared specialist-temperature choices and selection budget; require the control identity to reproduce P. This changes subtype information without adding millions of fitting parameters. UNI2-h is a concrete available candidate, not an established winner. A fixed router cannot improve its binary score or establish >97% binary accuracy; this intervention addresses typing only.
+3. **Review the shared mucinous validation failures and the rare-subtype fitting groups with a qualified histopathology reviewer.** Record whether labels and diagnostic content are adequate before proposing a region-supervision or stain intervention. If a genuine field-label/content mismatch is found, one fitting-only annotation-guided subtype-loss comparison would address a specific finding; it is not yet justified as an implemented correction. Preserve all original examples and labels unless an adjudicated correction is explicitly approved.
+
+The counterevidence is substantial. Earlier supervised UNI2-h field heads scored 73.83%/73.67% despite about 98.5% fitting accuracy; learned metrics gave only small gains; LoRA and whole-case MIL did not consistently improve their registered comparisons. Those studies used the original 46/8/excluded roles and do not predict the new role's result. A frozen specialist may still fail the same rare morphologies, and probability geometry/crop differences prevent calling a positive result a novel mechanism. The new family would remain additional adaptive development on reused data, not fresh confirmation. [UNI linear result](../BREAKHIS_UNI_LINEAR_RESULTS.md), [metric result](../BREAKHIS_SPECIALIST_METRIC_RESULTS.md), [LoRA result](../BREAKHIS_LORA_RESULTS.md), [whole-case result](../BREAKHIS_CASE_MIL_RESULTS.md).
+
+## Provenance and limits
+
+Accepted input-audit SHA256: `cec9c0e13f2673046b41e6502154ceb9bed047f44086afbe04d57df562ef0812`. Config SHA256: `1cdc7f143941a25be7b595c3b058e545c57c19a3a367df68123d977f757d5d5c`. The private CPU diagnostic code has SHA256 `3a452503b6715d39224f1922eaaf29e9085fb5a195b5ff6d40735d21e0813215`; its private numerical output has SHA256 `321985ad847c948ff9ff2f5197dc4a4b68b2d39283f0af14c423138dc823bb3d`. It retains validation-case details privately. Public text contains aggregates only.
+
+Loss, confidence and error analyses reuse fitted models and their selection validation set. They generate hypotheses; they do not establish generalization causality, diagnostic correctness, clinical utility or a guaranteed accuracy target. No new training, inference, threshold, class prior, checkpoint or subset choice was made by this audit.

@@ -1,0 +1,45 @@
+{
+  "name": "breakhis-matched-raw-replay-v1",
+  "role": "verification only, no fitting or model selection",
+  "producer_code_sha": "a6e6a54e4fac090051837df17b0dea14efca3bb3",
+  "accepted_result_sha256": "3e8fc1f1ff8b28bc845b39a217bc34597c07c575842f1729fcfbce077c7bcb62",
+  "original_config_sha256": "1cdc7f143941a25be7b595c3b058e545c57c19a3a367df68123d977f757d5d5c",
+  "models": [
+    "cnn",
+    "swin"
+  ],
+  "raw_test_fields": 1704,
+  "test_cases": 16,
+  "subsets": 15,
+  "field_probability_atol": 1e-05,
+  "metric_atol": 1e-12,
+  "case_decisions": "exact match required",
+  "pixel_parity": "exact uint8 equality from separately decoded original PNGs",
+  "runtime": {
+    "tensorflow": "2.15.1",
+    "tf_keras": "2.15.1",
+    "transformers": "4.46.3",
+    "numpy": "1.26.4",
+    "scikit-learn": "1.6.1",
+    "Pillow": "11.1.0"
+  },
+  "hardware": "NVIDIA A40",
+  "test_artifacts": {
+    "cnn": {
+      "test_receipt_sha256": "232054dfee303978c690275b74affb37714c138c180a3629cdf7363bc6223f2d",
+      "field_npz_sha256": "22912cfd65e7355efb0d37b9d613d984bb922515887aa9df023b7ab820b5c2e5"
+    },
+    "swin": {
+      "test_receipt_sha256": "a7a9a70522f944478399ade703a9c0836a4ae665cf0e6d57fc9f69640b37f9d2",
+      "field_npz_sha256": "73d55f65a45df5dbcfd142fb716baf566751dafd4ab70273356e0c132ee30563"
+    }
+  },
+  "budget": {
+    "concurrent_gpus": 2,
+    "gpus_per_task": 1,
+    "minutes_per_task": 30,
+    "cpu_per_task": 4,
+    "memory_gb": 48
+  },
+  "scope": "Independent raw PNG I/O, three-crop pixels, fresh selected-checkpoint execution and separate probability composition/case metrics. The architecture builder is the unchanged frozen producer; this is not an independently reimplemented backbone. P raw-support/encoder replay is a separately registered proof."
+}

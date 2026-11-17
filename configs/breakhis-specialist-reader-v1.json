@@ -1,0 +1,270 @@
+{
+  "name": "breakhis-specialist-reader-v1",
+  "schema_version": 1,
+  "status": "registered before specialist-family evaluation",
+  "arms": [
+    "p_control",
+    "uni2_specialist"
+  ],
+  "primary_arm": "uni2_specialist",
+  "primary_comparison": "validation-selected uni2_specialist versus validation-selected p_control; both have four malignant-temperature choices and the identical fixed P binary router",
+  "matched_reference": {
+    "file": "docs/evidence/MATCHED_THREE_WAY_RESULTS.json",
+    "sha256": "3e8fc1f1ff8b28bc845b39a217bc34597c07c575842f1729fcfbce077c7bcb62",
+    "producer_code_sha": "a6e6a54e4fac090051837df17b0dea14efca3bb3",
+    "config": "configs/breakhis-matched-three-way-v1.json",
+    "config_sha256": "1cdc7f143941a25be7b595c3b058e545c57c19a3a367df68123d977f757d5d5c",
+    "validation_file": "docs/evidence/MATCHED_THREE_WAY_VALIDATION.json",
+    "validation_sha256": "71a3d0e4cbe7b40192638a0574be7e0df71bfa175459b79ed5179ee0021600df"
+  },
+  "input_audit": {
+    "public_file": "docs/evidence/MATCHED_THREE_WAY_INPUT_AUDIT.json",
+    "public_sha256": "7848f22bee22a736c85b4353c07fc6b35c6900faa93053fb23be5ed03e0beaf8",
+    "private_sha256": "cec9c0e13f2673046b41e6502154ceb9bed047f44086afbe04d57df562ef0812",
+    "indices_sha256": "478ff0e471088594aeb9c00b035c2c8556cdb169f1d562328c9ea5b3027b49a0",
+    "policy": "reuse exact parent roles, case order, field membership and original truth8/truth5; no new fold or seed"
+  },
+  "manifest_sha256": "958893f923a745220fac66f19656bcdbfb38996f70ef8044e1349619f4102e31",
+  "labels": [
+    "benign",
+    "ductal_carcinoma",
+    "lobular_carcinoma",
+    "mucinous_carcinoma",
+    "papillary_carcinoma"
+  ],
+  "expected_roles": {
+    "train": {
+      "cases": 49,
+      "groups": 42,
+      "images": 4621,
+      "class_cases": [
+        14,
+        24,
+        2,
+        5,
+        4
+      ]
+    },
+    "validation": {
+      "cases": 17,
+      "groups": 15,
+      "images": 1584,
+      "class_cases": [
+        5,
+        7,
+        2,
+        2,
+        1
+      ]
+    },
+    "test": {
+      "cases": 16,
+      "groups": 13,
+      "images": 1704,
+      "class_cases": [
+        5,
+        7,
+        1,
+        2,
+        1
+      ]
+    }
+  },
+  "field_alignment": {
+    "key": "canonical relative_path",
+    "required_equal": [
+      "relative_path",
+      "image SHA256",
+      "provider case",
+      "conservative group",
+      "magnification",
+      "canonical original label"
+    ],
+    "coverage": "all 7909 canonical fields; unique bijection for both caches, including all four views for every case",
+    "cache_order": "lookup by path; never zip cache positions",
+    "no_cross_zoom_field_correspondence": true
+  },
+  "router": {
+    "reader": "Midnight P",
+    "mode": "head_specific",
+    "temperature": 0.1,
+    "threshold": 0.5,
+    "tie": "malignant",
+    "fitting": "current 49 training cases only; per-view binary center is equal mean of benign-case and malignant-case group means; class/case/field-balanced binary KDE",
+    "fixed_for_all_arms_and_temperatures": true,
+    "older_role_fitted_statistics_reused": false
+  },
+  "references": {
+    "p_feature_config": "configs/breakhis-coverage-kernel-v1.json",
+    "p_feature_config_sha256": "a18a4bfe210265d7ca9a59a75cd8cd797e562c275f665b690cddfaebbdfd0c9b",
+    "p_readout_config": "configs/breakhis-prior-centered-v1.json",
+    "p_readout_config_sha256": "4f13430d458561964186b0a154ffcaa6a51d8fea49aecc9e8251d7c40eda6f7e",
+    "uni_feature_config": "configs/breakhis-uni2-h-v1-kernel.json",
+    "uni_feature_config_sha256": "dfcc1169fbee64cbb402c0205ee504a09a011f8bfd7a2b010a680a7721851889",
+    "uni_extraction_config": "configs/uni2-h-v1.json",
+    "uni_extraction_config_sha256": "6595d4d0460d076d0c2bc782818304bc4f47865441af813abf6469f7ca3da74a",
+    "uni_previous_result": "docs/evidence/BREAKHIS_UNI2_H_RESULTS.json",
+    "uni_previous_result_sha256": "f85ccff63d84cc3117f30a93b86374f9aad6ad7ac69c22197e8ae561f2ada230",
+    "pin_policy": "resolve every cache shard, metadata, encoder revision and extraction provenance through these exact hashed configurations; no large pin-list duplication"
+  },
+  "specialists": {
+    "p_control": {
+      "encoder": "midnight-coverage-v1",
+      "dimension": 3072,
+      "crop": "accepted mean of three crop descriptors",
+      "center": "per view: fitting raw-field mean per malignant case, equal mean of case means within each malignant subtype, then equal mean over four subtype centers",
+      "support": "current 35 malignant training cases only",
+      "normalization": "subtract current malignant head-specific center; L2 normalize in float64"
+    },
+    "uni2_specialist": {
+      "encoder": "uni2-h-v1",
+      "dimension": 1536,
+      "crop": "accepted single center crop",
+      "center": "per view: raw-field mean per each of 49 fitting cases in float64, then equal mean over all 49 case means; retain accepted UNI2 C geometry",
+      "support": "current 35 malignant training cases only",
+      "normalization": "subtract current equal-case center; L2 normalize in float64"
+    }
+  },
+  "density": {
+    "malignant_temperatures": [
+      0.01,
+      0.03,
+      0.1,
+      0.3
+    ],
+    "same_temperature_all_views": true,
+    "subtype_order": [
+      "ductal_carcinoma",
+      "lobular_carcinoma",
+      "mucinous_carcinoma",
+      "papillary_carcinoma"
+    ],
+    "support_class_cases": [
+      24,
+      2,
+      5,
+      4
+    ],
+    "weights": "within each same-view subtype density, every support case receives equal mass and each field mass 1/(n_cases_subtype*n_fields_case_view)",
+    "head_priors": "uniform over four malignant types",
+    "compute_dtype": "float64",
+    "l2_epsilon": 1e-12,
+    "cosine_clip": [
+      -1,
+      1
+    ],
+    "exponential_stabilization": true,
+    "learned_metric": false,
+    "standardization": false,
+    "query_statistics": false
+  },
+  "prediction": {
+    "unit": "provider case",
+    "magnifications": [
+      40,
+      100,
+      200,
+      400
+    ],
+    "subsets": "all 15 nonempty magnification subsets",
+    "field_joint": "[fixed P(B), fixed P(M)*specialist four-type probabilities]",
+    "pooling": "arithmetic mean of joint probabilities over fields within a view, then equal mean over available views",
+    "routing": "pooled P(M)>=0.5 then malignant argmax, otherwise benign",
+    "five_class_argmax": false
+  },
+  "selection": {
+    "role": "validation only",
+    "metric": "mean15 final-five macro F1 with all five labels",
+    "candidate_order": [
+      0.01,
+      0.03,
+      0.1,
+      0.3
+    ],
+    "tie": "first maximum",
+    "opportunities_per_arm": 4,
+    "total_validation_pipelines": 8,
+    "primary_arm_fixed_before_outcomes": true,
+    "seal": "seal selected index, temperature, artifacts and source/config/cache/input hashes for BOTH arms before any retrospective test query",
+    "parent_selection_history": "parent P used four shared binary/malignant temperatures; this family fixes binary 0.1 and adds four malignant-only choices for EACH arm"
+  },
+  "identity": {
+    "arm": "p_control",
+    "role": "validation only before selection; retrospective test compares fixed binary marginals without evaluating another specialist candidate",
+    "malignant_temperature": 0.1,
+    "candidate_index": 2,
+    "parent": "selected matched Midnight P pipeline",
+    "field_probability_atol": 1e-10,
+    "field_probability_rtol": 0,
+    "case_probability_atol": 1e-10,
+    "decisions_and_confusion_counts_exact": true,
+    "require_before_selection": true
+  },
+  "numerical_guards": {
+    "probability_row_sum_atol": 1e-12,
+    "binary_field_marginal_atol": 1e-12,
+    "binary_case_marginal_atol": 1e-12,
+    "binary_decisions_exact": true,
+    "metric_atol": 1e-12,
+    "all_values_finite": true,
+    "save_reload_exact": true,
+    "tolerance_relaxation": false
+  },
+  "progression_screen": {
+    "scope": "prospective development validation screen only",
+    "mean15_macro_f1_delta_at_least": 0.02,
+    "final5_accuracy_not_lower": true,
+    "comparator": "separately validation-selected p_control",
+    "all_class_recalls_reported": true,
+    "no_test_based_progression": true
+  },
+  "follow_up": {
+    "role": "existing viewed test; retrospective reused-development only",
+    "selected_arms": 2,
+    "one_query_per_selected_arm": true,
+    "all15_subsets": true,
+    "unchanged_old_results": true,
+    "new_independent_confirmation": false,
+    "test_outcome_must_not_change_method_or_settings": true
+  },
+  "counts": {
+    "malignant_support_heads": 2,
+    "shared_binary_support_heads": 1,
+    "optimized_head_fits": 0,
+    "new_encoder_forwards": 0,
+    "new_image_decodes": 0,
+    "validation_prediction_archives": 8,
+    "validation_case_subset_records": 2040,
+    "selected_retrospective_prediction_archives": 2,
+    "retrospective_case_subset_records": 480
+  },
+  "runtime": {
+    "numpy": "1.26.4",
+    "scipy": "1.15.2",
+    "scikit-learn": "1.6.1"
+  },
+  "budget": {
+    "tasks": 1,
+    "cpus_per_task": 4,
+    "memory_gb": 24,
+    "minutes_per_task": 30,
+    "gpus": 0,
+    "collector_cpus": 4,
+    "collector_memory_gb": 24,
+    "collector_minutes": 30
+  },
+  "artifacts": [
+    "immutable source/configuration receipts",
+    "parent result/config/audit bindings",
+    "cache shard and metadata hashes",
+    "path/label/view alignment digest",
+    "fitting case/support/center hashes",
+    "eight validation candidate probability archives and metrics",
+    "parent identity replay",
+    "binary marginal/decision invariance receipts",
+    "both sealed selections",
+    "two selected retrospective follow-up archives if executed",
+    "independent checker report including every negative outcome"
+  ],
+  "interpretation": "A bounded frozen specialist-reader package comparison, motivated by pre-matched reader evidence. P three-crop versus UNI2 center coverage, pretraining, feature dimensions and centering differ. Not a pure backbone ablation, optimized learning method, novelty claim or fresh clinical test. Binary performance is fixed for both arms and cannot improve toward >97%; >90% final-five remains an unmet objective until correctly measured."
+}
