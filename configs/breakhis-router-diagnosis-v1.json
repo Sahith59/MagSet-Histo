@@ -1,0 +1,21 @@
+{
+  "name": "breakhis-router-diagnosis-v1",
+  "purpose": "Diagnose first-step generalization and calibration before choosing a binary intervention",
+  "parent_result_sha256": "3e8fc1f1ff8b28bc845b39a217bc34597c07c575842f1729fcfbce077c7bcb62",
+  "producer_code_sha": "a6e6a54e4fac090051837df17b0dea14efca3bb3",
+  "density_temperature": 0.1,
+  "training_queries": 49,
+  "training_groups": 42,
+  "cross_fitting": "For each fitting query, remove every case in its conservative group before all support, class weights and head centers",
+  "validation": "Recompute binary pooling only from the already-saved selected parent validation field probabilities",
+  "magnifications": [40,100,200,400],
+  "subsets": 15,
+  "threshold": 0.5,
+  "calibration_bins": [0,0.2,0.4,0.6,0.8,1.0],
+  "metrics": ["accuracy","balanced_accuracy","roc_auc","brier","cross_entropy","probability_calibration_bins"],
+  "new_optimized_heads": 0,
+  "new_threshold_choices": 0,
+  "test_queries": 0,
+  "budget": {"cpus":4,"memory_gb":24,"minutes":30},
+  "interpretation": "Training-group-out and validation-only descriptive diagnosis, not a new model or a measured97% improvement; no calibration coefficient or threshold search"
+}
