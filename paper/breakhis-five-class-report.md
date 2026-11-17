@@ -1,5 +1,12 @@
 # BreakHis five-category dual-step project report
 
+The latest matched comparison, completed November 17, is **independently accepted**. On the same 16 test provider cases, 13 conservative groups and all 15 zoom subsets, final-five accuracy / macro F1 is **67.50% / .375675 for Midnight P**, **56.67% / .348180 for CNN–Transformer**, and **59.17% / .304947 for Swin**. P’s first-step benign/malignant accuracy is **94.58%**, separate from its final-five score. P leads the mean-15 point estimates; CNN leads all-four-view macro F1 and Swin leads worst-subset performance. Every paired uncertainty interval includes zero. The rare malignant types remain weak, and 94–95% final accuracy and clinical superiority are unestablished. [Complete matched results and evidence](../docs/MATCHED_THREE_WAY_RESULTS.md).
+
+The shared roles contain 49 training, 17 validation and 16 test cases. All cases appeared in earlier project development, so this is not a globally fresh clinical cohort. The accepted independent checker verifies all three selected models and saved prediction arithmetic. Both original-hardware A40 replay errors are zero; the failed A30 attempt and all earlier outcomes are preserved. This new holdout is separate from the historical 46/8/28 trial arrangements below.
+
+## Earlier paired development studies
+
+
 Updated November 17, 2026. The new metric primary gives **76.17% / 75.83% final accuracy**, macro F1 **.668624 / .587323**, with a small gain over its exact UNI2-h control. The malignant-only ablation has the highest observed 812 two-step F1, **.672180**; retained P leads 813 at **.602512** and scores **76.33% / 75.67%** accuracy. F retains higher 813 raw accuracy at **76.83%**. Standard supervised UNI2-h field heads score **73.83% / 73.67%**, a completed negative result. Both new complete studies fail their declared larger-improvement screens. **94–95% final five-category accuracy remains unachieved.**
 
 Both metric-learning and standard-linear production arrays, fitting-only technical checks and complete prediction collectors have finished. The metric study verifies 40 pipelines, 20 production metric fits and 32,400 dependent records; the linear study verifies 80 pipelines, 120 production head fits and 64,800 records. These counts are repeated computation, not independent cases. [Metric results](../docs/BREAKHIS_SPECIALIST_METRIC_RESULTS.md) · [Linear results](../docs/BREAKHIS_UNI_LINEAR_RESULTS.md).

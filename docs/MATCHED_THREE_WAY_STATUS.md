@@ -1,6 +1,18 @@
-# Matched comparison: training complete, test comparison pending
+# Matched comparison: complete and independently checked
 
-November 17, 2026, 18:53 UTC. **Both neural models completed all 40 epochs successfully. There is no accepted three-way test result or final winner yet.** The selected-checkpoint replay safeguard stopped the A30 test attempts before either neural model scored test images. The original A40 evaluation and a new independent checker are queued.
+November 17, 2026. **The matched three-way test comparison is complete and accepted.** Selected A40 test array 4987130 completed in 1m24s / 1m28s with zero validation reload error for both models; independent checker 4987131 completed in 1m20s with an accepted JSON and no private review errors.
+
+| Method | Final-five test accuracy, mean of 15 zoom subsets | Test macro F1 | Benign/malignant test accuracy only |
+| --- | ---: | ---: | ---: |
+| Midnight P | 67.50% | 0.375675 | 94.58% |
+| CNN–Transformer adaptation | 56.67% | 0.348180 | 86.25% |
+| Swin adaptation | 59.17% | 0.304947 | 82.50% |
+
+All rows use the same 16 test provider cases, 13 conservative groups and 1,704 original images. **The 94.58% binary score is not the final-five score.** P leads the registered mean-15 point estimates; CNN leads all-four-view macro F1 and Swin leads worst-subset performance. Every paired interval includes zero. This small reused-development benchmark does not establish population superiority, clinical validation or 95% final accuracy. [Complete results and limitations](MATCHED_THREE_WAY_RESULTS.md) · [accepted evidence](evidence/MATCHED_THREE_WAY_RESULTS.json) · [independent final review](reviews/MATCHED_THREE_WAY_RESULTS_REVIEW.md).
+
+The dated execution history below preserves the completed training, validation selection and failed A30 attempt. Its pending states were true at that checkpoint and are superseded by the completed A40 result above.
+
+## Earlier checkpoint: November 17, 18:53 UTC
 
 These are the independently replayed **validation results used to select settings**, averaged over all 15 zoom combinations on the same 17 provider cases:
 
@@ -36,10 +48,10 @@ The [fixed recipe](MATCHED_THREE_WAY_SPEC.md) was registered before model outcom
 | Selected A30 neural test attempts | 4987098 | Both failed validation reload; no neural test forward |
 | First independent checker | 4986299 | Fail-closed JSON: incomplete, no accepted model metrics; scheduler exit 0 is not acceptance |
 | A30 validation-only diagnostics | 4987127 | Both complete, exit 0; confirmed replay differences |
-| Selected A40 neural test retry | 4987130 | Pending resources |
-| New independent checker | 4987131 | Pending after the A40 test array |
+| Selected A40 neural test retry | 4987130 | Subsequently complete, exit 0; both reload errors zero |
+| New independent checker | 4987131 | Subsequently complete, accepted result JSON; no errors |
 
-At the latest scheduler check, the A40 array was estimated to start at **22:12 UTC / 5:12 p.m. Eastern on November 17**. This is a queue estimate, not a promised completion time. The jobs will perform only the already-selected test evaluation, without another training run, refit, selection change or extra candidate.
+At the earlier scheduler check, the A40 array was estimated to start at **22:12 UTC / 5:12 p.m. Eastern on November 17**. That was a queue estimate, not a promised completion time. A40 resources became available earlier; both selected-only evaluations and the checker subsequently completed. No training run, refit, selection change or extra candidate was added.
 
 The A30 move preserved the frozen recipe: the pending test array and checker were held and verified before rebinding the checker and canceling only the unstarted original array. Both A30 attempts stopped at the registered first-16-validation-field replay guard, before constructing test indices or running a test forward pass. Their empty output directories, logs and failed checker are archived privately.
 
