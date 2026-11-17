@@ -1,0 +1,133 @@
+{
+  "status": "validation-selection results only; complete selected-test comparison pending",
+  "role": "validation",
+  "cases": 17,
+  "conservative_groups": 15,
+  "images": 1584,
+  "case_subset_events": 255,
+  "subsets_per_case": 15,
+  "labels": [
+    "benign",
+    "ductal_carcinoma",
+    "lobular_carcinoma",
+    "mucinous_carcinoma",
+    "papillary_carcinoma"
+  ],
+  "code_sha": "a6e6a54e4fac090051837df17b0dea14efca3bb3",
+  "config_sha256": "1cdc7f143941a25be7b595c3b058e545c57c19a3a367df68123d977f757d5d5c",
+  "input_audit_sha256": "cec9c0e13f2673046b41e6502154ceb9bed047f44086afbe04d57df562ef0812",
+  "test_gate_sha256": "c0a70bdb8ded8327b744b82f2f913707868c9f0595040dab91cdb07f30934b54",
+  "models": {
+    "midnight_p": {
+      "selected_setting": 0.1,
+      "selection_sha256": "f617b458a0398d0d0dac122b49fa7c374426a0a046bc4c9e7ebfe0703d795f72",
+      "selected_validation_fields_sha256": "9afe395e967f989853c642cc3f1b4fae7a6aa32cb5e936b86487a7775ad71f08",
+      "selected_validation_metrics_sha256": "0c2e0034dc3983bcc51969e07b4db066e505517d2548aa1d1e34d4df393c48ef",
+      "mean_subset_accuracy": 0.7960784313725491,
+      "mean_subset_macro_f1": 0.5776627816627816,
+      "all_four_accuracy": 0.8235294117647058,
+      "all_four_macro_f1": 0.5818181818181818,
+      "distinct_class_support": [
+        5,
+        7,
+        2,
+        2,
+        1
+      ]
+    },
+    "cnn": {
+      "selected_setting": 40,
+      "selection_sha256": "55c9b5be828bcd5484e758e8a7a7534812df23219bc5a0996f289d211da18fd3",
+      "selected_validation_fields_sha256": "1a1e5664e5a1475b77a530cd3ebd7536e12f05f9256becadd6843bc0e9a09633",
+      "selected_validation_metrics_sha256": "b0149995d1df2dfb8dcf434e145c44cd8ee80a25df7f2c8795454fa10767bfa9",
+      "mean_subset_accuracy": 0.592156862745098,
+      "mean_subset_macro_f1": 0.4841616161616161,
+      "all_four_accuracy": 0.6470588235294118,
+      "all_four_macro_f1": 0.5366666666666666,
+      "distinct_class_support": [
+        5,
+        7,
+        2,
+        2,
+        1
+      ]
+    },
+    "swin": {
+      "selected_setting": 20,
+      "selection_sha256": "ae1984b3dac318196cadb155bf159bc88149e2b76bedc30e882483c3e43982d9",
+      "selected_validation_fields_sha256": "d10e43655c8bf7e7bfe841f8298255d8fb9f9d9afe8bb3a37c9cd0fac0571406",
+      "selected_validation_metrics_sha256": "ca78c64f4f0a99504c74ca4533350da2e2422afbf732e005d5fcfcf766f23f6f",
+      "mean_subset_accuracy": 0.596078431372549,
+      "mean_subset_macro_f1": 0.3933355119825708,
+      "all_four_accuracy": 0.6470588235294118,
+      "all_four_macro_f1": 0.4222222222222222,
+      "distinct_class_support": [
+        5,
+        7,
+        2,
+        2,
+        1
+      ]
+    }
+  },
+  "interpretation": "These validation cases selected the candidates. They are not final test results. Fifteen zoom subsets within each case are dependent. All cases were used previously in project development; clinical identity is unresolved.",
+  "native_reload_diagnostics": {
+    "status": "both A30 validation-only probes complete; original tolerance retained",
+    "gpu": "NVIDIA A30",
+    "training_gpu": "NVIDIA A40",
+    "validation_fields_per_model": 16,
+    "new_fits": 0,
+    "test_image_forwards": 0,
+    "registered_atol": 1e-05,
+    "models": {
+      "cnn": {
+        "receipt_sha256": "2e399df50cd841f5cffd84e83a34f0f7b83dd1a9c24af58aec985e7c159611cf",
+        "diagnostic_sha256": "9d05a2af92f19cf21cd56c1f83c3ec7b42c5c26d8bb1de9cd666dc4577400bc6",
+        "native": {
+          "maximum_binary_abs": 1.0468182153999805e-05,
+          "maximum_subtype_abs": 0.0020158588886260986,
+          "mean_binary_abs": 9.90950294266213e-07,
+          "mean_subtype_abs": 0.00021144571747999663,
+          "binary_argmax_disagreements": 0,
+          "subtype_argmax_disagreements": 0
+        },
+        "second_native_replay": {
+          "binary": 0.0,
+          "subtype": 0.0
+        },
+        "compiled": {
+          "maximum_binary_abs": 1.0468182153999805e-05,
+          "maximum_subtype_abs": 0.0020158588886260986,
+          "mean_binary_abs": 9.90950294266213e-07,
+          "mean_subtype_abs": 0.00021144571747999663,
+          "binary_argmax_disagreements": 0,
+          "subtype_argmax_disagreements": 0
+        }
+      },
+      "swin": {
+        "receipt_sha256": "1481125c30232e320506097927d136501fe0c31bc61e92eb516710842ad14979",
+        "diagnostic_sha256": "9d05a2af92f19cf21cd56c1f83c3ec7b42c5c26d8bb1de9cd666dc4577400bc6",
+        "native": {
+          "maximum_binary_abs": 3.5762786865234375e-07,
+          "maximum_subtype_abs": 0.00016099214553833008,
+          "mean_binary_abs": 2.112250963026696e-08,
+          "mean_subtype_abs": 9.580025789546198e-06,
+          "binary_argmax_disagreements": 0,
+          "subtype_argmax_disagreements": 0
+        },
+        "second_native_replay": {
+          "binary": 0.0,
+          "subtype": 0.0
+        },
+        "compiled": {
+          "maximum_binary_abs": 3.5762786865234375e-07,
+          "maximum_subtype_abs": 0.00016099214553833008,
+          "mean_binary_abs": 2.112250963026696e-08,
+          "mean_subtype_abs": 9.580025789546198e-06,
+          "binary_argmax_disagreements": 0,
+          "subtype_argmax_disagreements": 0
+        }
+      }
+    }
+  }
+}
