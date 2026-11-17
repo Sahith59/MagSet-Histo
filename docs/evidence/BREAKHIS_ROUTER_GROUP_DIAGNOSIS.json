@@ -1,0 +1,111 @@
+{
+  "status": "complete training-group-out and validation-only router diagnosis",
+  "test_queries": 0,
+  "new_optimized_heads": 0,
+  "new_threshold_choices": 0,
+  "script_sha256": "06bd63d8789240567c04f8dc013ea373235ac21c0a071093a90cd11e75adda6e",
+  "config_sha256": "bed300c1fd5fa713d926e8e1e459caa9ba2ab149d53c5e2394bcdcc92468299a",
+  "parent_result_sha256": "3e8fc1f1ff8b28bc845b39a217bc34597c07c575842f1729fcfbce077c7bcb62",
+  "input_audit_sha256": "cec9c0e13f2673046b41e6502154ceb9bed047f44086afbe04d57df562ef0812",
+  "fixed_temperature": 0.1,
+  "training_group_count": 42,
+  "support_case_count_range": [
+    46,
+    48
+  ],
+  "whole_group_exclusion": true,
+  "training_group_out": {
+    "cases": 49,
+    "dependent_case_subset_events": 735,
+    "mean_accuracy": 0.8761904761904763,
+    "mean_balanced_accuracy": 0.8519047619047619,
+    "mean_roc_auc": 0.9521088435374149,
+    "brier": 0.103022306426089,
+    "cross_entropy": 0.3575853285023645,
+    "calibration_bins": [
+      {
+        "low": 0.0,
+        "high": 0.2,
+        "events": 72,
+        "mean_probability": 0.1297616104952988,
+        "malignant_fraction": 0.041666666666666664
+      },
+      {
+        "low": 0.2,
+        "high": 0.4,
+        "events": 80,
+        "mean_probability": 0.29759139111511634,
+        "malignant_fraction": 0.2
+      },
+      {
+        "low": 0.4,
+        "high": 0.6,
+        "events": 133,
+        "mean_probability": 0.5028325822264796,
+        "malignant_fraction": 0.5037593984962406
+      },
+      {
+        "low": 0.6,
+        "high": 0.8,
+        "events": 211,
+        "mean_probability": 0.7173039301819939,
+        "malignant_fraction": 0.95260663507109
+      },
+      {
+        "low": 0.8,
+        "high": 1.0,
+        "events": 239,
+        "mean_probability": 0.8557142388244456,
+        "malignant_fraction": 0.99581589958159
+      }
+    ]
+  },
+  "validation": {
+    "cases": 17,
+    "dependent_case_subset_events": 255,
+    "mean_accuracy": 0.9333333333333335,
+    "mean_balanced_accuracy": 0.952777777777778,
+    "mean_roc_auc": 1.0,
+    "brier": 0.0719614472977196,
+    "cross_entropy": 0.27447126787476217,
+    "calibration_bins": [
+      {
+        "low": 0.0,
+        "high": 0.2,
+        "events": 61,
+        "mean_probability": 0.10923634745841634,
+        "malignant_fraction": 0.0
+      },
+      {
+        "low": 0.2,
+        "high": 0.4,
+        "events": 23,
+        "mean_probability": 0.2739171492153684,
+        "malignant_fraction": 0.391304347826087
+      },
+      {
+        "low": 0.4,
+        "high": 0.6,
+        "events": 27,
+        "mean_probability": 0.522662355154538,
+        "malignant_fraction": 1.0
+      },
+      {
+        "low": 0.6,
+        "high": 0.8,
+        "events": 68,
+        "mean_probability": 0.732836958092053,
+        "malignant_fraction": 1.0
+      },
+      {
+        "low": 0.8,
+        "high": 1.0,
+        "events": 76,
+        "mean_probability": 0.88219374348368,
+        "malignant_fraction": 1.0
+      }
+    ]
+  },
+  "elapsed_seconds": 21.64532044529915,
+  "private_array_sha256": "605e4bf17a4ed65cfd33d4f48cf549bcd53877387b8339c5fbc25bc29ef65438"
+}

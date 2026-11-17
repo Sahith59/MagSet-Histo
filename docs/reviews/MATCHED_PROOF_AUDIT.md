@@ -1,5 +1,7 @@
 # Matched study: forensic proof audit
 
+**Later checkpoint:** the raw-image replays proposed below have now completed and reproduced the original three scores. See the [actual proof review](DEEP_PROOF_RESULTS_REVIEW.md) and [plain diagnosis](../DEEP_DIAGNOSIS_AND_PROOF.md). Earlier pending rows below are the preserved pre-execution audit, not the current status.
+
 November 17, 2026. **The three published scores are correct for the archived predictions and the frozen evaluation rules.** A fresh independent arithmetic pass, source-archive comparison, exact split reconstruction and scheduler audit found no discrepancy. This establishes the saved-result calculation and recorded workflow; the remaining raw-image execution checks are listed explicitly below.
 
 The audited [complete result](../evidence/MATCHED_THREE_WAY_RESULTS.json) has SHA-256 `3e8fc1f1ff8b28bc845b39a217bc34597c07c575842f1729fcfbce077c7bcb62`. Its private error record is empty. The scientific producer remains `a6e6a54e4fac090051837df17b0dea14efca3bb3`, not a newly trained revision. The private machine audit completes with no errors; its receipt SHA-256 is `4a09816e44ccf5175acba0b7d7bd14107b9a56c1fe78c711261b3eee029a2133`.

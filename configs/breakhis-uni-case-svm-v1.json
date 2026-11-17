@@ -1,0 +1,287 @@
+{
+  "name": "breakhis-uni-case-svm-v1",
+  "schema_version": 1,
+  "status": "registered before case-SVC family fitting or validation scoring",
+  "arms": [
+    "linear",
+    "rbf"
+  ],
+  "primary_arm": "rbf",
+  "question": "Does a bounded nonlinear max-margin readout improve over its matched linear SVC control when both fit the actual case/mask target on the same frozen UNI2-h case-view means?",
+  "rationale": "Training/validation field-surrogate generalization gap motivates a case-unit readout probe; nonlinear benefit and field diagnostic-label inadequacy remain hypotheses. No motivation or setting is chosen from the already viewed retrospective test gain of the prior specialist.",
+  "matched_reference": {
+    "file": "docs/evidence/MATCHED_THREE_WAY_RESULTS.json",
+    "sha256": "3e8fc1f1ff8b28bc845b39a217bc34597c07c575842f1729fcfbce077c7bcb62",
+    "producer_code_sha": "a6e6a54e4fac090051837df17b0dea14efca3bb3",
+    "config": "configs/breakhis-matched-three-way-v1.json",
+    "config_sha256": "1cdc7f143941a25be7b595c3b058e545c57c19a3a367df68123d977f757d5d5c",
+    "validation_file": "docs/evidence/MATCHED_THREE_WAY_VALIDATION.json",
+    "validation_sha256": "71a3d0e4cbe7b40192638a0574be7e0df71bfa175459b79ed5179ee0021600df"
+  },
+  "contextual_specialist_reference": {
+    "file": "docs/evidence/BREAKHIS_SPECIALIST_READER_RESULTS.json",
+    "sha256": "b17a23e5804b8d721c7e251e7ca76ddf33371a4c04128fa9f68b67494659be9e",
+    "status": "fixed contextual reference only; its registered validation progression screen failed; no selection or fitting data"
+  },
+  "input_audit": {
+    "public_file": "docs/evidence/MATCHED_THREE_WAY_INPUT_AUDIT.json",
+    "public_sha256": "7848f22bee22a736c85b4353c07fc6b35c6900faa93053fb23be5ed03e0beaf8",
+    "private_sha256": "cec9c0e13f2673046b41e6502154ceb9bed047f44086afbe04d57df562ef0812",
+    "indices_sha256": "478ff0e471088594aeb9c00b035c2c8556cdb169f1d562328c9ea5b3027b49a0",
+    "policy": "reuse exact parent roles, case order, field membership and original truth8/truth5; no new fold or seed"
+  },
+  "manifest_sha256": "958893f923a745220fac66f19656bcdbfb38996f70ef8044e1349619f4102e31",
+  "labels": [
+    "benign",
+    "ductal_carcinoma",
+    "lobular_carcinoma",
+    "mucinous_carcinoma",
+    "papillary_carcinoma"
+  ],
+  "expected_roles": {
+    "train": {
+      "cases": 49,
+      "groups": 42,
+      "images": 4621,
+      "class_cases": [
+        14,
+        24,
+        2,
+        5,
+        4
+      ]
+    },
+    "validation": {
+      "cases": 17,
+      "groups": 15,
+      "images": 1584,
+      "class_cases": [
+        5,
+        7,
+        2,
+        2,
+        1
+      ]
+    },
+    "test": {
+      "cases": 16,
+      "groups": 13,
+      "images": 1704,
+      "class_cases": [
+        5,
+        7,
+        1,
+        2,
+        1
+      ]
+    }
+  },
+  "references": {
+    "uni_feature_config": "configs/breakhis-uni2-h-v1-kernel.json",
+    "uni_feature_config_sha256": "dfcc1169fbee64cbb402c0205ee504a09a011f8bfd7a2b010a680a7721851889",
+    "uni_extraction_config": "configs/uni2-h-v1.json",
+    "uni_extraction_config_sha256": "6595d4d0460d076d0c2bc782818304bc4f47865441af813abf6469f7ca3da74a"
+  },
+  "features": {
+    "encoder_name": "uni2-h-v1",
+    "source_dimension": 1536,
+    "source": "accepted frozen CLS field features; existing single center crop; no encoder forward or update",
+    "field_alignment": "unique canonical relative_path bijection to the hash-bound original-image manifest, provider specimen, conservative group, original truth8, final truth5 and magnification; no cache-position zip",
+    "case_view_means": "float64 arithmetic mean of all original field features within each provider case and each view",
+    "case_view_shape": [
+      82,
+      4,
+      1536
+    ],
+    "magnifications": [
+      40,
+      100,
+      200,
+      400
+    ],
+    "cross_zoom_field_correspondence": false
+  },
+  "normalizer": {
+    "scope": "shared binary/malignant transform fitted once on exactly 49 TRAIN case-view means, with a separate mean and std per view and coordinate",
+    "dtype": "float64",
+    "mean": "elementwise population mean over the 49 TRAIN case means within each view",
+    "std": "elementwise population standard deviation over those same 49 TRAIN means; ddof=0",
+    "std_ddof": 0,
+    "std_threshold": 1e-06,
+    "small_std_replacement": 1.0,
+    "small_std_rule": "std < 1e-6 is replaced by 1.0; do not divide by 1e-6",
+    "held_out_statistics": false,
+    "per_mask_refit": false,
+    "older_role_statistics_reused": false
+  },
+  "fusion": {
+    "sample_unit": "one provider case and one nonempty available magnification subset",
+    "subset_order": "increasing cardinality, then lexicographic combinations of view indices 0,1,2,3",
+    "sample_order": "case-major in canonical role case order, then fixed subset order",
+    "view_transform": "subtract fixed TRAIN per-view mean then divide by fixed TRAIN per-view replaced std",
+    "active_view_pooling": "arithmetic mean of transformed vectors of active views only",
+    "embedding_normalization": "divide fused 1536-vector by max(L2 norm,1e-12)",
+    "l2_epsilon": 1e-12,
+    "availability_flags": "append four binary active-view indicators multiplied by 0.5",
+    "availability_scale": 0.5,
+    "final_dimension": 1540,
+    "normalization_after_flags": false,
+    "inactive_view_invariance_required": true
+  },
+  "svc": {
+    "estimator": "sklearn.svm.SVC for BOTH arms; linear is SVC(kernel=linear), not LinearSVC",
+    "C_values": [
+      0.1,
+      1.0,
+      10.0,
+      100.0
+    ],
+    "shared_C_across_binary_and_malignant": true,
+    "gamma": "scale",
+    "resolved_gamma": "independently per head from unweighted fitting rows: 1/(1540*X.var(ddof=0)), with sklearn zero-variance fallback; save both resolved values for every candidate",
+    "class_weight": "balanced",
+    "sample_weight": 0.06666666666666667,
+    "sample_weight_rule": "exactly one factor 1/15 per TRAIN case/mask row; no second inverse-class factor",
+    "binary_classes": [
+      0,
+      1
+    ],
+    "binary_class_meaning": [
+      "benign",
+      "malignant"
+    ],
+    "malignant_classes": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "malignant_class_meaning": [
+      "ductal_carcinoma",
+      "lobular_carcinoma",
+      "mucinous_carcinoma",
+      "papillary_carcinoma"
+    ],
+    "probability": false,
+    "decision_function_shape": "ovr",
+    "break_ties": true,
+    "random_state": 812,
+    "tol": 0.0001,
+    "shrinking": true,
+    "max_iter": 100000,
+    "cache_size": 256,
+    "fit_status_required": 0,
+    "binary_train_rows": 735,
+    "malignant_train_rows": 525,
+    "binary_train_cases": 49,
+    "malignant_train_cases": 35,
+    "internal_multiclass": "Mal4 uses six one-versus-one binary problems; exposed OVR scores combine votes with transformed confidence, not four independently fitted OVR margins",
+    "class_mass": "sample weights total49 binary/35 malignant before class weighting; balanced effective total class mass49/2 and35/4 respectively"
+  },
+  "decision": {
+    "binary": "binary decision_function margin >= 0 routes malignant; exact zero ties are malignant",
+    "malignant": "first argmax of four exposed OVR decision scores in fixed DC,LC,MC,PC order",
+    "five_class_argmax": false,
+    "score_transform": "b=expit(binary margin); q=stable softmax of four OVR scores at fixed temperature1; joint=[1-b,b*q]",
+    "score_temperature": 1.0,
+    "score_interpretation": "uncalibrated normalized scores, not fitted/calibrated probabilities; no internal probability CV or external calibration",
+    "no_field_probability_pooling": true,
+    "one_descriptor_per_case_mask": true,
+    "floating_route_guard": "require transformed binary-score route and margin route to agree on evaluated records; otherwise fail closed rather than nudge a score or change the threshold"
+  },
+  "selection": {
+    "role": "validation only",
+    "metric": "mean over all15 subsets of final-five macro F1 with fixed five labels",
+    "opportunities_per_arm": 4,
+    "candidate_order": [
+      0.1,
+      1.0,
+      10.0,
+      100.0
+    ],
+    "tie": "first maximum",
+    "total_validation_pipelines": 8,
+    "primary_arm_fixed_before_outcomes": true,
+    "seal": "hash-seal BOTH selected arm candidates, every candidate/model/feature/normalizer/source/config/input receipt and successful validation reload guards before either selected retrospective test query",
+    "no_test_based_selection": true
+  },
+  "progression_screen": {
+    "scope": "prospective development validation screen only",
+    "comparator": "separately validation-selected linear SVC control",
+    "mean15_macro_f1_delta_at_least": 0.02,
+    "final5_accuracy_not_lower": true,
+    "all_class_recalls_reported": true,
+    "no_test_based_progression": true
+  },
+  "follow_up": {
+    "role": "unchanged already viewed 16-case role; retrospective reused-development follow-up only",
+    "selected_arms": 2,
+    "one_query_per_selected_arm": true,
+    "all15_subsets": true,
+    "all_outcomes_reported": true,
+    "new_independent_confirmation": false,
+    "settings_cannot_change_after_test": true
+  },
+  "numerical_guards": {
+    "all_values_finite": true,
+    "normalizer_replay_atol": 1e-12,
+    "model_validation_reload_margin_atol": 1e-10,
+    "independent_margin_replay_atol": 1e-10,
+    "score_row_sum_atol": 1e-12,
+    "metric_atol": 1e-12,
+    "decision_labels_exact": true,
+    "normalizer_and_input_array_reload_exact": true,
+    "tolerance_relaxation": false
+  },
+  "counts": {
+    "head_estimator_fits": 16,
+    "binary_optimization_subproblems": 56,
+    "binary_training_rows_per_candidate": 735,
+    "malignant_training_rows_per_candidate": 525,
+    "validation_prediction_archives": 8,
+    "validation_case_subset_records": 2040,
+    "selected_retrospective_prediction_archives": 2,
+    "retrospective_case_subset_records": 480,
+    "new_encoder_forwards": 0,
+    "new_encoder_updates": 0,
+    "new_image_decodes": 0,
+    "new_splits": 0,
+    "additional_gamma_or_threshold_choices": 0
+  },
+  "runtime": {
+    "numpy": "1.26.4",
+    "scipy": "1.15.2",
+    "scikit-learn": "1.6.1",
+    "joblib": "1.6.0"
+  },
+  "budget": {
+    "tasks": 1,
+    "cpus_per_task": 4,
+    "memory_gb": 24,
+    "minutes_per_task": 30,
+    "gpus": 0,
+    "collector_cpus": 4,
+    "collector_memory_gb": 24,
+    "collector_minutes": 30
+  },
+  "artifacts": [
+    "immutable source/archive/config and actual runtime receipts",
+    "exact parent result, contextual specialist, manifest/audit and cache pins",
+    "canonical field path/label/view alignment hash",
+    "case-view means, normalizer mean/std/replaced scales and transformed TRAIN input hashes",
+    "per-head TRAIN row/label/sample-weight/class-weight/gamma receipts",
+    "all16 fitted head bundles and independent dense support-vector/dual/intercept exports with hashes",
+    "all8 validation margin/score archives, records and metrics",
+    "candidate validation save/reload margin guards before seal",
+    "both selected candidate seals and common family gate",
+    "only2 selected retrospective archives if execution completes",
+    "independent feature/margin/routing/selection/metric replay including every negative result"
+  ],
+  "objectives": {
+    "final_five_accuracy_strictly_greater_than": 0.9,
+    "binary_accuracy_strictly_greater_than": 0.97,
+    "status": "unmet objectives; not forecasts or promised outcomes",
+    "scope": "all15-subset mean remains primary; no favorable subset or test-driven promotion"
+  },
+  "interpretation": "One bounded standard frozen-feature readout comparison on reused development data. Case-unit fitting, normalization and readout differ from prior field/KDE pipelines; only the linear-versus-RBF contrast shares this exact package. Previous whole-case MIL and logistic negatives remain counterevidence. All original roles and prior results remain unchanged; no novel mechanism, clinical validation or guaranteed90/97 result. Stop at this registered budget; no automatic expansion after results."
+}

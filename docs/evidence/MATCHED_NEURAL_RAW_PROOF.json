@@ -1,0 +1,96 @@
+{
+  "status": "both neural raw-image replays accepted",
+  "original_comparison_sha256": "3e8fc1f1ff8b28bc845b39a217bc34597c07c575842f1729fcfbce077c7bcb62",
+  "models": {
+    "cnn": {
+      "receipt_sha256": "692daff18b14f355408306e74666e33e286dc80b4d65299fd4fbfa9f7f88d336",
+      "status": "accepted independent raw-image selected-model replay",
+      "model": "cnn",
+      "new_fits": 0,
+      "new_selections": 0,
+      "producer_code_sha": "a6e6a54e4fac090051837df17b0dea14efca3bb3",
+      "verifier_sha256": "256287120f2c211b2d148a302afdb9d06b8fb551b5c491f7dd5b3c63e156849c",
+      "proof_config_sha256": "3ba1727fbabe2188ba59d91a187b6d1e949a554cf8468079005cc5ab3e9e64a5",
+      "runtime": {
+        "tensorflow": "2.15.1",
+        "tf_keras": "2.15.1",
+        "transformers": "4.46.3",
+        "numpy": "1.26.4",
+        "scikit-learn": "1.6.1",
+        "Pillow": "11.1.0"
+      },
+      "original_test_receipt_sha256": "232054dfee303978c690275b74affb37714c138c180a3629cdf7363bc6223f2d",
+      "original_field_probability_sha256": "22912cfd65e7355efb0d37b9d613d984bb922515887aa9df023b7ab820b5c2e5",
+      "replay_npz_sha256": "1159cf62aa99bd575efa06e43854dc1d75f0c97df5fa7d6380696b1779763996",
+      "original_comparison_sha256": "3e8fc1f1ff8b28bc845b39a217bc34597c07c575842f1729fcfbce077c7bcb62",
+      "input_audit_sha256": "cec9c0e13f2673046b41e6502154ceb9bed047f44086afbe04d57df562ef0812",
+      "selection_sha256": "55c9b5be828bcd5484e758e8a7a7534812df23219bc5a0996f289d211da18fd3",
+      "raw_images": 1704,
+      "raw_byte_hashes_checked": 1704,
+      "filename_directory_labels_checked": 1704,
+      "pixel_cache_equal_fields": 1704,
+      "field_probability_max_abs": 0.0,
+      "case_subset_disagreements": 0,
+      "summary": {
+        "cases": 16,
+        "events": 240,
+        "mean_subset_accuracy": 0.5666666666666667,
+        "mean_subset_macro_f1": 0.3481798941798942,
+        "mean_binary_accuracy": 0.8625,
+        "all_four_accuracy": 0.5625
+      },
+      "environment": {
+        "gpu": "NVIDIA A40",
+        "tensorflow": "2.15.1",
+        "tf_keras": "2.15.1",
+        "checkpoint_sha256": "4cb5ab59ddc3c7a64df7402807f7b245966e6f99296e6d2aa1cb15e0d450ea66"
+      },
+      "elapsed_seconds": 69.4100009854883
+    },
+    "swin": {
+      "receipt_sha256": "94b4bf3cc71a91d775d03c8868bd4d4480509746e17bd20b82f0a832157e80ef",
+      "status": "accepted independent raw-image selected-model replay",
+      "model": "swin",
+      "new_fits": 0,
+      "new_selections": 0,
+      "producer_code_sha": "a6e6a54e4fac090051837df17b0dea14efca3bb3",
+      "verifier_sha256": "256287120f2c211b2d148a302afdb9d06b8fb551b5c491f7dd5b3c63e156849c",
+      "proof_config_sha256": "3ba1727fbabe2188ba59d91a187b6d1e949a554cf8468079005cc5ab3e9e64a5",
+      "runtime": {
+        "tensorflow": "2.15.1",
+        "tf_keras": "2.15.1",
+        "transformers": "4.46.3",
+        "numpy": "1.26.4",
+        "scikit-learn": "1.6.1",
+        "Pillow": "11.1.0"
+      },
+      "original_test_receipt_sha256": "a7a9a70522f944478399ade703a9c0836a4ae665cf0e6d57fc9f69640b37f9d2",
+      "original_field_probability_sha256": "73d55f65a45df5dbcfd142fb716baf566751dafd4ab70273356e0c132ee30563",
+      "replay_npz_sha256": "b8a7c49c4053a5b48887e6980c2a624fc531cae13d745b179b4c718a5d374be4",
+      "original_comparison_sha256": "3e8fc1f1ff8b28bc845b39a217bc34597c07c575842f1729fcfbce077c7bcb62",
+      "input_audit_sha256": "cec9c0e13f2673046b41e6502154ceb9bed047f44086afbe04d57df562ef0812",
+      "selection_sha256": "ae1984b3dac318196cadb155bf159bc88149e2b76bedc30e882483c3e43982d9",
+      "raw_images": 1704,
+      "raw_byte_hashes_checked": 1704,
+      "filename_directory_labels_checked": 1704,
+      "pixel_cache_equal_fields": 1704,
+      "field_probability_max_abs": 0.0,
+      "case_subset_disagreements": 0,
+      "summary": {
+        "cases": 16,
+        "events": 240,
+        "mean_subset_accuracy": 0.5916666666666667,
+        "mean_subset_macro_f1": 0.30494677871148457,
+        "mean_binary_accuracy": 0.825,
+        "all_four_accuracy": 0.5625
+      },
+      "environment": {
+        "gpu": "NVIDIA A40",
+        "tensorflow": "2.15.1",
+        "tf_keras": "2.15.1",
+        "checkpoint_sha256": "4117081b4457fc6dfcbd89e7b7b93d9498d53a0ec4f25983f00712cf4272fd35"
+      },
+      "elapsed_seconds": 72.01296505331993
+    }
+  }
+}
