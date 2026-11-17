@@ -147,6 +147,27 @@ class SpecialistSavedRunTests(unittest.TestCase):
                 self.assertEqual(verified['metric_fits'], 2)
                 self.assertEqual(set(verified['arms']), set(runner.ARMS))
                 self.assertEqual(verified['arms']['both']['validation']['pooled']['records'], 120)
+                # Reuse these synthetic trained states to exercise the full smoke
+                # entry point without an additional optimization trajectory.
+                states = {}
+                for head in ('binary', 'malignant'):
+                    states[head] = runner.load_factors(args.output/(head+'-metric.npz'))
+                    training = runner.read_json(args.output/(head+'-training.json'))
+                    states[head].update(training)
+                def fitted_state(*unused, head, **kwargs):
+                    return states[head]
+                smoke_args = SimpleNamespace(**vars(args)); smoke_args.output = root/'smoke'
+                with patch.object(runner, 'load_inputs', return_value=inputs), patch.object(runner, 'verify_input_audit'), patch.object(runner, 'verify_identity', side_effect=AssertionError('Smoke must not score validation')), patch('magset.specialist_metric.fit_metric', side_effect=fitted_state):
+                    smoke = runner.run(smoke_args, smoke=True)
+                self.assertEqual(smoke['status'], 'complete specialist fitting-only technical smoke')
+                self.assertEqual(runner.smoke_query_indices(labels, train).tolist(), [0, 11, 36, 38, 43])
+                for arm in runner.ARMS:
+                    self.assertEqual(smoke['arms'][arm]['fitting']['pooled']['records'], 75)
+                    self.assertNotIn('validation', smoke['arms'][arm])
+                    path = smoke_args.output/arm/'train-predictions.jsonl'
+                    rows = [json.loads(line) for line in path.read_text().splitlines()]
+                    self.assertEqual({row['truth5'] for row in rows}, set(range(5)))
+                    self.assertFalse((smoke_args.output/arm/'validation-predictions.jsonl').exists())
                 report['arms']['both']['validation']['mean_subset_accuracy'] += .1
                 runner.write_json(args.output/'run.json', report)
                 with self.assertRaisesRegex(ValueError, 'factorial both/validation'):

@@ -14,11 +14,20 @@ from magset.five_collect import assert_public_safe, read_json, require_equal, ve
 from magset.five_metrics import FINAL5
 
 
+def fitting_queries(train, labels):
+    """Independently choose the first fitting key per final label for metrics."""
+    values = [next((int(i) for i in train if labels[i] == label), None) for label in range(5)]
+    if any(value is None for value in values):
+        raise ValueError('Technical fitting queries must cover all five final labels')
+    return np.asarray(values, dtype=int)
+
+
 def review(args):
     if Path(args.out).exists():
         raise ValueError('Refusing an existing smoke-review output')
     config, context, _, cases, bags, _, labels, roles, reference = runner.load_inputs(args)
     require_equal(config.get('technical_objective_atol'), 1e-5, 'registered technical objective tolerance', 0)
+    require_equal(config.get('technical_metric_fits'), 4, 'registered cumulative technical fits', 0)
     audit = Path(args.audit)/'audit.json'
     runner.verify_input_audit(audit, context, config, bags, labels, roles, reference)
     root = Path(args.smoke_root)
@@ -33,6 +42,7 @@ def review(args):
     for key, value in expected.items():
         require_equal(report.get(key), value, 'smoke/'+key, 0)
     train, validation, excluded = roles[812, 1]
+    queries = fitting_queries(train, labels)
     wanted_ids = {name: [cases[i]['case_id'] for i in indices] for name, indices in
                   [('train', train), ('validation', validation), ('excluded', excluded)]}
     require_equal(report.get('case_ids'), wanted_ids, 'original smoke roles', 0)
@@ -80,10 +90,10 @@ def review(args):
             raise ValueError('Smoke arm contains validation or unexpected output')
         names = () if arm == 'identity' else ('binary', 'malignant') if arm == 'both' else (arm.removesuffix('_only'),)
         factors = {head: states[head]['factors'] for head in names}
-        wanted = collector.replay_records(bags, labels, train, train[:2], cases, 'train', temperature, factors)
+        wanted = collector.replay_records(bags, labels, train, queries, cases, 'train', temperature, factors)
         path = root/arm/'train-predictions.jsonl'
         require_equal(file_hash(path), saved['train_predictions_sha256'], 'smoke prediction bytes', 0)
-        summary = verify_records(path, wanted, cases, train[:2], 'train', 'dual')
+        summary = verify_records(path, wanted, cases, queries, 'train', 'dual')
         require_equal(saved['fitting'], summary, 'smoke fitting summary')
         actual = [collector.read_json_line(line) for line in path.read_text().splitlines()]
         if arm == 'identity':
@@ -95,11 +105,12 @@ def review(args):
                     require_equal(row[key], old[key], 'exact smoke router preservation', 0)
                 require_equal(row['prediction'] == 0, old['prediction'] == 0, 'unchanged smoke route', 0)
         count += len(wanted)
-    require_equal(count, 120, 'complete fitting-only smoke record count', 0)
+    require_equal(count, 300, 'complete fitting-only smoke record count', 0)
     result = {key: context[key] for key in ('code_sha', 'source_archive_sha256', 'implementation_hashes',
               'config_sha256', 'manifest_sha256', 'protocol_sha256', 'feature_audit_sha256')}
     result.update(status='accepted independent NumPy fitting-only specialist technical smoke', seed=812, trial=1,
-                  metric_fits=2, fitting_queries=2, fitting_prediction_records=count, validation_prediction_records=0,
+                  metric_fits=2, fitting_queries=5, fitting_prediction_records=count, validation_prediction_records=0,
+                  registered_cumulative_technical_metric_fits=config['technical_metric_fits'],
                   reviewer_metric_fits=0, outer_predictions=0, new_encoder_forwards=0, dimension=1536, temperature=temperature,
                   objective_atol=config['technical_objective_atol'], prediction_atol=1e-12,
                   audit_sha256=file_hash(audit), smoke_run_sha256=file_hash(root/'run.json'),

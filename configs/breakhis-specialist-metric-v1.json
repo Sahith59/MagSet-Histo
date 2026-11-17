@@ -13,7 +13,7 @@
   ],
   "production_runs": 10,
   "metric_fits": 20,
-  "technical_metric_fits": 2,
+  "technical_metric_fits": 4,
   "candidate_pipelines": 40,
   "prediction_archives": 80,
   "case_subset_records": 32400,
@@ -91,6 +91,10 @@
     "binary_only",
     "malignant_only"
   ],
-  "technical_smoke": "two full200-step fitting-only head optimizations on812/trial1, then first two fitting queries; no validation scoring",
-  "technical_objective_atol": 1e-05
+  "technical_smoke": "two full200-step fitting-only head optimizations on812/trial1, then first fitting query per final class; no validation scoring",
+  "technical_objective_atol": 1e-05,
+  "technical_metric_fits_by_attempt": {
+    "initial_reporting_failure": 2,
+    "five_class_retry": 2
+  }
 }

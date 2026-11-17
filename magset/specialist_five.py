@@ -247,6 +247,7 @@ def run(args, smoke=False):
     if not smoke:
         verify_identity(args, reference, *key, cases, bags, y5, train, val)
     index, temperature, _ = selected_reference(reference, *key)
+    smoke_indices = smoke_query_indices(y5, train) if smoke else None
     # The optimizer receives only the fitting cases; no validation/excluded tensors.
     from .specialist_metric import fit_metric
     output.mkdir(parents=True); states = {}; receipts = {}; hashes = {}
@@ -264,7 +265,7 @@ def run(args, smoke=False):
         names = () if arm == 'identity' else ('binary', 'malignant') if arm == 'both' else (arm.removesuffix('_only'),)
         factors = {head: states[head]['factors'] for head in names}
         summaries, prediction_hashes = {}, {}
-        items = [('train', train[:2] if smoke else train, 'fitting')]
+        items = [('train', smoke_indices if smoke else train, 'fitting')]
         if not smoke: items.append(('validation', val, 'validation'))
         for role, indices, label in items:
             records = score_records(bags, y5, train, indices, cases, role, temperature, factors)
@@ -292,6 +293,23 @@ def run(args, smoke=False):
         elapsed_seconds=time.monotonic()-started, slurm_job_id=os.environ.get('SLURM_JOB_ID'))
     write_json(output/'run.json', report)
     return report
+
+
+def smoke_query_indices(y5, train):
+    """Use the first fitting case of each final class for complete smoke metrics."""
+    labels = np.asarray(y5)
+    train = np.asarray(train)
+    if (labels.ndim != 1 or labels.dtype.kind not in 'iu' or train.ndim != 1
+            or train.dtype.kind not in 'iu' or len(set(train.tolist())) != len(train)
+            or np.any((train < 0) | (train >= len(labels)))):
+        raise ValueError('Technical smoke needs valid unique fitting indices')
+    result = []
+    for label in range(5):
+        eligible = train[labels[train] == label]
+        if not len(eligible):
+            raise ValueError('Technical smoke needs fitting support for every final class')
+        result.append(int(eligible[0]))
+    return np.asarray(result, dtype=int)
 
 
 def fitting_centroids(bags, train):
