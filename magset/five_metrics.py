@@ -114,8 +114,11 @@ def _record_metrics(records, malignant=False):
         [row['log_probabilities5'] for row in records])
 
 
-def summarize_records(records, decision_rule):
-    """Validate one complete fitting/validation role and summarize every subset.
+def summarize_records(records, decision_rule, *, allowed_roles=('train', 'validation')):
+    """Validate one complete role and summarize every subset.
+
+    Historical callers permit fitting/validation only. A separately registered
+    test experiment must explicitly opt in through ``allowed_roles``.
 
     Records retain original truth, pooled truth, an explicit prediction, stable
     five-way probabilities, a malignant score and conditional malignant scores.
@@ -124,6 +127,9 @@ def summarize_records(records, decision_rule):
     """
     if decision_rule not in ('direct', 'dual'):
         raise ValueError('Expected direct or dual decision rule')
+    if (not isinstance(allowed_roles,tuple)or not allowed_roles or len(set(allowed_roles))!=len(allowed_roles)
+            or not set(allowed_roles)<= {'train','validation','test'}):
+        raise ValueError('Explicit allowed evaluation roles required')
     records = list(records)
     if not records:
         raise ValueError('Expected complete nonempty case/subset records')
@@ -139,7 +145,7 @@ def summarize_records(records, decision_rule):
     for row in records:
         if not isinstance(row, dict) or not required.issubset(row):
             raise ValueError('Case/subset record fields are incomplete')
-        if (row['role'] not in ('train', 'validation')
+        if (row['role'] not in allowed_roles
                 or not isinstance(row['case_id'], str) or not row['case_id']
                 or type(row['truth']) is not int or row['truth'] not in range(8)
                 or type(row['truth5']) is not int or row['truth5'] != MAP8_TO5[row['truth']]
