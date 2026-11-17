@@ -239,7 +239,7 @@ def adapted_notebook(original, args, prepared):
         selected=sources[2:]
     import nbformat
     if args.action=='run':
-        notebook=nbformat.from_dict(copy.deepcopy(original))
+        notebook=nbformat.reads(json.dumps(original),as_version=4)
         notebook.cells[1].metadata['tags']=['skip-execution']
         for i,s in enumerate(selected,start=2):
             notebook.cells[i].source=s

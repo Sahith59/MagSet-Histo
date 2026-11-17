@@ -1,6 +1,7 @@
 """Private-intake and immutable adapter checks; no model fitting."""
 import ast
 import copy
+import hashlib
 import importlib.util
 import json
 from pathlib import Path
@@ -57,6 +58,19 @@ class SuppliedSwinTests(unittest.TestCase):
         self.assertIn("assert _gpu_count>=1",m.runtime('/x',True))
         self.assertNotIn("assert _gpu_count>=1",m.runtime('/x',False))
         self.assertIn("'real_test_predictions':0",m.SMOKE)
+
+    def test_raw_json_list_sources_normalize_in_all_fifteen_retained_cells(self):
+        original=fixture()
+        for cell in original['cells']:cell['source']=cell['source'].splitlines(keepends=True)
+        args=SimpleNamespace(action='run',dataset_root='/synthetic/data',output='/synthetic/out',
+                             audit='/synthetic/audit',prepared='/synthetic/prepared.json')
+        notebook=m.adapted_notebook(original,args,{'snapshot_path':'/synthetic/weights'})
+        self.assertEqual(len(notebook.cells),15)
+        self.assertTrue(all(isinstance(c.source,str)for c in notebook.cells))
+        hashes=[hashlib.sha256(c.source.encode()).hexdigest()for c in notebook.cells]
+        self.assertEqual(len(hashes),15)
+        for i in (0,1):self.assertEqual(notebook.cells[i].source,''.join(original['cells'][i]['source']))
+        self.assertEqual(notebook.cells[1].metadata.tags,['skip-execution'])
 
 
 if __name__=='__main__':unittest.main()
