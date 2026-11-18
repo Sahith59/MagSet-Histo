@@ -1,0 +1,18 @@
+{
+  "study": "breakhis-single-output-retrospective-v1",
+  "source_checkpoint_sha256": "ddc648d1baf210282e4466c7c837d72b7b627b5282c252163b0f944f22c25144",
+  "fit_config_sha256": "2aa6cb7dbc234353a252b5fda88c421ca5a18b36fdfdabdcb32e8d279c46d930",
+  "fit_result_sha256": "981e0d78506a4e0fcc3edf11347b7cc2e89148ea869cb0d093b22a184a3edd6a",
+  "original_checkpoint_update": 10,
+  "comparator_record_sha256": {
+    "midnight_p": "4df6eb561eb8a6c2e7a602078ff3744d52d11a14fc120a863a0df839923385ba",
+    "cnn": "25cdf22f3c4dbe896f8a765dfbbe9e3f67ec2a254d423285ac93779a54f72d8d",
+    "swin": "f9df5b9f37831c32755a561f3f9b9d5d904ab47b8fca5ffc737919c0a87d54a7"
+  },
+  "matched_result_sha256": "3e8fc1f1ff8b28bc845b39a217bc34597c07c575842f1729fcfbce077c7bcb62",
+  "group_result_sha256": "643848180b1f9cc30d6f385c75b2cca898e9bdc8e35ea6cf138f26c2f22bdace",
+  "bootstrap_draws": 10000,
+  "bootstrap_seed": 20261117,
+  "final_correct_needed": 217,
+  "binary_correct_needed": 229
+}
