@@ -30,7 +30,7 @@ def roles_and_views(args, config):
     return train, views, truth, groups
 
 
-def fit_fold(views, truth, fitting, held, config, masks):
+def fit_fold(views, truth, fitting, held, config, masks, class_masses=None):
     raw = views[fitting]
     center = raw.mean(axis=0)
     std = raw.std(axis=0)
@@ -43,9 +43,12 @@ def fit_fold(views, truth, fitting, held, config, masks):
     counts = torch.bincount(labels, minlength=5)
     require(bool((counts > 0).all()), "All classes must occur in each fitting fold")
     targets = labels[:, None].expand(-1, len(masks)).reshape(-1)
+    weights = counts.float().reciprocal()
+    if class_masses is not None:
+        weights = weights * torch.as_tensor(class_masses, dtype=weights.dtype)
     for _ in range(10):
         optimizer.zero_grad()
-        loss = F.cross_entropy(model(inputs, masks).reshape(-1, 5), targets, weight=counts.float().reciprocal())
+        loss = F.cross_entropy(model(inputs, masks).reshape(-1, 5), targets, weight=weights)
         require(bool(torch.isfinite(loss)), "Nonfinite fitting loss")
         loss.backward()
         optimizer.step()

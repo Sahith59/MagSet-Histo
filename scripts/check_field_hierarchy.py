@@ -306,7 +306,7 @@ def numpy_logits(arm, state, inputs):
         else:
             hidden = field_projection * factor[inputs["case"]] + flag_bias
             activated = hidden * ndtr(hidden)
-            view_latent = np.zeros((17, 4, 32), dtype=np.float64)
+            view_latent = np.zeros((len(standardized_views), 4, 32), dtype=np.float64)
             np.add.at(view_latent, (inputs["case"], inputs["zoom"]), activated)
             view_latent /= inputs["counts"][..., None]
             latent = view_latent[:, mask].mean(axis=1)

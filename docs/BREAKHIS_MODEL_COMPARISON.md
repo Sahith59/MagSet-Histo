@@ -1,0 +1,7 @@
+# BreakHis models compared on the same cases
+
+## Additional checks fixed before execution
+
+For the two older UNI2-h comparators, replay both fixed update-10 checkpoints with their original center features and original decision rules on the same 16 cases as the established benchmark. Check their saved validation results, the four input shard commitments, the training normalizers and every predicted label with a separate NumPy implementation. Retain all 15 zoom conditions and the original five diagnoses. These historical comparators do not participate in model selection.
+
+For improvement, change only the relative class weights in the single five-output classifier. The previous equal-class loss gave the four cancer categories four times the combined weight of benign. In the earlier leave-one-group-out development check, it called 70 of 210 benign answers malignant. Give benign half the total fitting weight, leaving each malignant type one eighth. Use the same single linear layer, ten updates, seed, frozen input, 42 training-group exclusions and 0.5 routing rule. Only the original 49 training cases enter these fits and predictions. Compare with the committed predictions from the earlier 42-group study. Progress requires both accuracy counts to increase and mean per-zoom-combination macro F1 to hold or improve. Training groups were used in prior development. The frozen 16-case benchmark stays fixed. [Locked settings](../configs/breakhis-matched-scorecard-v1.json).

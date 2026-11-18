@@ -1,0 +1,28 @@
+{
+  "study": "matched-scorecard-v1",
+  "arms": {
+    "control": {
+      "report_sha256": "c7b62dd534e6db32217e1c13f21a56e047e6e706e9f26f6bf03d2d06a35d92b1",
+      "checkpoint_sha256": "3c73f48dd473b50a418862e3831bf2c055d46e54347e4906e9cf45fb7b0f9ac3",
+      "selected_epoch": 10
+    },
+    "field": {
+      "report_sha256": "a541a829f2ad2e01003c77cd4cfef81ae47ab489b2e463f5a4579062ab256fbc",
+      "checkpoint_sha256": "2792f4f86b4761deec6a9b6baeb5cc3bc87050a26053be7421632ce17468c9ac",
+      "selected_epoch": 10
+    }
+  },
+  "field_config_sha256": "5572ba96108d6729e8345375d9c8fe92424bab9542116ec1b6e0ff7bb451e681",
+  "single_config_sha256": "2aa6cb7dbc234353a252b5fda88c421ca5a18b36fdfdabdcb32e8d279c46d930",
+  "old_group_predictions_sha256": "626edc424c40d32664d71ce8cb2aea81dec094b4bb676a736234d3f1c533dda5",
+  "training_class_masses": [
+    4,
+    1,
+    1,
+    1,
+    1
+  ],
+  "updates_per_fold": 10,
+  "development_role": "original 49 training cases only",
+  "required_for_progression": "increase both correct counts and maintain mean per-subset macro F1 on the same 42 group exclusions"
+}
