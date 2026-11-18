@@ -111,6 +111,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     for name in ("audit", "views", "output"):
         parser.add_argument("--" + name, type=Path, required=True)
+    parser.add_argument("--stability-check", action="store_true",
+                        help="Compare three additional fixed seeds on training groups only")
     args = parser.parse_args()
     source = (ROOT / ".source-sha").read_text().strip()
     require(source == os.environ["MAGSET_CODE_SHA"], "Immutable source revision differs")
@@ -121,7 +123,7 @@ def main():
     audit = json.loads(args.audit.read_text())
     train, validation = fixed_roles(audit)
     require(audit["manifest_sha256"] == config["manifest_sha256"], "Manifest differs")
-    development = np.r_[train, validation]
+    development = train if args.stability_check else np.r_[train, validation]
     with np.load(args.views, allow_pickle=False) as archive:
         require(np.array_equal(archive["case_indices"], np.arange(82)) and
                 np.array_equal(archive["train_case_indices"], train) and
@@ -141,6 +143,26 @@ def main():
               **{k: config[k] for k in ("audit_sha256", "case_views_sha256", "manifest_sha256",
                                         "reader_revision", "weights_sha256", "seed")},
               "updates": 10, "followup_predictions": 0}
+    if args.stability_check:
+        report.pop("seed")
+        report["validation_predictions"] = 0
+        report["by_seed"] = {}
+        for seed in (813, 814, 815):
+            directory = args.output / str(seed)
+            directory.mkdir()
+            report["by_seed"][seed] = evaluate(
+                "group_check", views, labels, groups, fit_rows, val_rows, development,
+                {**config, "seed": seed}, directory)
+        pairs = list(report["by_seed"].values())
+        def deltas(metric):
+            return np.array([pair["subtype_initialized"][metric] - pair["original"][metric]
+                             for pair in pairs])
+        exact = deltas("correct_final")
+        report["stability_screen_passed"] = bool(
+            (exact > 0).sum() >= 2 and exact.mean() > 0 and
+            deltas("correct_binary").mean() >= 0 and deltas("mean_subset_macro_f1").mean() >= 0)
+        (args.output / "aggregate.json").write_text(json.dumps(report, indent=2, allow_nan=False) + "\n")
+        return
     for role in ("group_check", "validation"):
         report[role] = evaluate(role, views, labels, groups, fit_rows, val_rows, development, config, args.output)
         print(role, {arm: report[role][arm]["correct_final"] for arm in ARMS}, flush=True)
