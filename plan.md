@@ -1,5 +1,9 @@
 ## Current checkpoint and next action
 
+One frozen UNI2-h reader now gives five class scores through a single fitted output layer. The same scores answer both questions. On 17 validation cases it reached **80.39% five-category and 99.22% binary** (205 and 253 of 255 answers). On the separate 42-group training check it reached **63.81% and 89.39%** (469 and 657 of 735). Each case supplies 15 zoom conditions. These are development results. The combined target remains open. All 84 center crops and GPU descriptors reproduced. Obtain blinded expert observations on the full-field/crop pairs, then decide whether to test wider coverage or prioritize additional independent rare cases. [Verified experiment and next decision](docs/SINGLE_OUTPUT_CENTER.md).
+
+## Earlier field-pooling checkpoint
+
 The field-pooling comparison and 42-group follow-up are complete. The original shared classifier remains the reference. Field-first tied at 75.69% five-category validation accuracy and improved binary accuracy to 90.59%, while recognizing fewer lobular answers. The targets are above 90% final and above 95% binary together.
 
 The next task is a blinded expert review of the 84 original fields and their 224-pixel center crops. Record whether a distinguishing feature is visible in the full image and at the model's input size. If cues are repeatedly cropped out, evaluate wider coverage with the same single reader under a protocol fixed before fitting. Seek additional independent rare cases for a separate confirmation cohort. [Numbers, evidence and review rationale](docs/FIELD_HIERARCHY.md).

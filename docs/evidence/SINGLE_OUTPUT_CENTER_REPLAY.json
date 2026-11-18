@@ -1,0 +1,131 @@
+{
+  "accepted": true,
+  "selected_epoch": 10,
+  "max_absolute_logit_error": 1.5058989113470034e-06,
+  "validation": {
+    "cases": 17,
+    "events": 255,
+    "correct_final": 205,
+    "correct_binary": 253,
+    "accuracy": 0.803921568627451,
+    "binary_accuracy": 0.9921568627450981,
+    "mean_subset_macro_f1": 0.6336945276945277,
+    "all_four_correct": 14,
+    "all_four_accuracy": 0.8235294117647058,
+    "worst_subset_accuracy": 0.6470588235294118,
+    "worst_subset_macro_f1": 0.47619047619047616,
+    "class_recall": [
+      0.9733333333333334,
+      0.8,
+      0.5666666666666667,
+      1.0,
+      0.06666666666666667
+    ],
+    "aggregate_confusion_true_rows": [
+      [
+        73,
+        0,
+        0,
+        0,
+        2
+      ],
+      [
+        0,
+        84,
+        15,
+        6,
+        0
+      ],
+      [
+        0,
+        13,
+        17,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        30,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        14,
+        1
+      ]
+    ],
+    "routing_errors": 2,
+    "subtype_errors_after_correct_route": 48
+  },
+  "selected_fitting_diagnostic": {
+    "cases": 49,
+    "events": 735,
+    "correct_final": 671,
+    "correct_binary": 734,
+    "accuracy": 0.9129251700680272,
+    "binary_accuracy": 0.998639455782313,
+    "mean_subset_macro_f1": 0.8824332824901356,
+    "all_four_correct": 47,
+    "all_four_accuracy": 0.9591836734693877,
+    "worst_subset_accuracy": 0.7959183673469388,
+    "worst_subset_macro_f1": 0.7575498575498575,
+    "class_recall": [
+      0.9952380952380953,
+      0.825,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "aggregate_confusion_true_rows": [
+      [
+        209,
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        297,
+        26,
+        37,
+        0
+      ],
+      [
+        0,
+        0,
+        30,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        75,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        60
+      ]
+    ],
+    "routing_errors": 1,
+    "subtype_errors_after_correct_route": 63
+  },
+  "test_predictions": 0,
+  "joint_targets_met": false,
+  "checkpoint_sha256": "ddc648d1baf210282e4466c7c837d72b7b627b5282c252163b0f944f22c25144",
+  "validation_sha256": "ed4224653f512f6fab22df745cf820da7caff1da56affbfd11aca221b829110d",
+  "result_sha256": "981e0d78506a4e0fcc3edf11347b7cc2e89148ea869cb0d093b22a184a3edd6a",
+  "config_sha256": "2aa6cb7dbc234353a252b5fda88c421ca5a18b36fdfdabdcb32e8d279c46d930",
+  "verifier_sha256": "1381877172e4450e2715ad31dc84d2bc93448c434925cbad09ce618db98858a5",
+  "code_sha": "15392ea32bf0831e2fefc53f3bd6f1a32cb87ae9"
+}

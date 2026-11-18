@@ -1,0 +1,428 @@
+{
+  "study": "breakhis-single-output-center-v1",
+  "code_sha": "15392ea32bf0831e2fefc53f3bd6f1a32cb87ae9",
+  "config_sha256": "2aa6cb7dbc234353a252b5fda88c421ca5a18b36fdfdabdcb32e8d279c46d930",
+  "inputs": {
+    "manifest_sha256": "958893f923a745220fac66f19656bcdbfb38996f70ef8044e1349619f4102e31",
+    "audit_sha256": "cec9c0e13f2673046b41e6502154ceb9bed047f44086afbe04d57df562ef0812",
+    "case_views_sha256": "ff1046f22a993bccaea03975388714be77960056735c7c10780e0fcfd24cc992",
+    "reader": "MahmoodLab/UNI2-h",
+    "reader_revision": "d517a8dd47902dd7c308b3c36f63bce47e7b9a43",
+    "weights_sha256": "6e077eda234bebc595868d918d3458d9dd32a050199b0ff04443b2f46a0a3b1e"
+  },
+  "role": "validation",
+  "train_cases": 49,
+  "test_predictions": 0,
+  "source_archive_sha256": "3f6851441c41a4676fda010ca6eb20ed0c0cc245e928f26c8d700a876c4cd829",
+  "slurm_job": "4988160",
+  "torch": "2.6.0+cu124",
+  "history": [
+    {
+      "epoch": 10,
+      "cases": 17,
+      "events": 255,
+      "correct_final": 205,
+      "correct_binary": 253,
+      "accuracy": 0.803921568627451,
+      "binary_accuracy": 0.9921568627450981,
+      "mean_subset_macro_f1": 0.6336945276945277,
+      "all_four_correct": 14,
+      "all_four_accuracy": 0.8235294117647058,
+      "class_recall": [
+        0.9733333333333334,
+        0.8,
+        0.5666666666666667,
+        1.0,
+        0.06666666666666667
+      ],
+      "aggregate_confusion_true_rows": [
+        [
+          73,
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          84,
+          15,
+          6,
+          0
+        ],
+        [
+          0,
+          13,
+          17,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          30,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          14,
+          1
+        ]
+      ],
+      "routing_errors": 2,
+      "subtype_errors_after_correct_route": 48
+    },
+    {
+      "epoch": 20,
+      "cases": 17,
+      "events": 255,
+      "correct_final": 194,
+      "correct_binary": 241,
+      "accuracy": 0.7607843137254902,
+      "binary_accuracy": 0.9450980392156862,
+      "mean_subset_macro_f1": 0.4735497835497836,
+      "all_four_correct": 13,
+      "all_four_accuracy": 0.7647058823529411,
+      "class_recall": [
+        0.9733333333333334,
+        0.9714285714285714,
+        0.03333333333333333,
+        0.6,
+        0.0
+      ],
+      "aggregate_confusion_true_rows": [
+        [
+          73,
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          102,
+          3,
+          0,
+          0
+        ],
+        [
+          0,
+          29,
+          1,
+          0,
+          0
+        ],
+        [
+          12,
+          0,
+          0,
+          18,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          15,
+          0
+        ]
+      ],
+      "routing_errors": 14,
+      "subtype_errors_after_correct_route": 47
+    },
+    {
+      "epoch": 30,
+      "cases": 17,
+      "events": 255,
+      "correct_final": 197,
+      "correct_binary": 241,
+      "accuracy": 0.7725490196078432,
+      "binary_accuracy": 0.9450980392156862,
+      "mean_subset_macro_f1": 0.4938831168831169,
+      "all_four_correct": 13,
+      "all_four_accuracy": 0.7647058823529411,
+      "class_recall": [
+        0.9733333333333334,
+        0.9809523809523809,
+        0.1,
+        0.6,
+        0.0
+      ],
+      "aggregate_confusion_true_rows": [
+        [
+          73,
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          103,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          27,
+          3,
+          0,
+          0
+        ],
+        [
+          12,
+          0,
+          0,
+          18,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          15,
+          0
+        ]
+      ],
+      "routing_errors": 14,
+      "subtype_errors_after_correct_route": 44
+    },
+    {
+      "epoch": 40,
+      "cases": 17,
+      "events": 255,
+      "correct_final": 199,
+      "correct_binary": 242,
+      "accuracy": 0.7803921568627451,
+      "binary_accuracy": 0.9490196078431372,
+      "mean_subset_macro_f1": 0.5054016354016355,
+      "all_four_correct": 13,
+      "all_four_accuracy": 0.7647058823529411,
+      "class_recall": [
+        0.9866666666666667,
+        0.9809523809523809,
+        0.13333333333333333,
+        0.6,
+        0.0
+      ],
+      "aggregate_confusion_true_rows": [
+        [
+          74,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          103,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          26,
+          4,
+          0,
+          0
+        ],
+        [
+          12,
+          0,
+          0,
+          18,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          15,
+          0
+        ]
+      ],
+      "routing_errors": 13,
+      "subtype_errors_after_correct_route": 43
+    }
+  ],
+  "selected_epoch": 10,
+  "selected": {
+    "cases": 17,
+    "events": 255,
+    "correct_final": 205,
+    "correct_binary": 253,
+    "accuracy": 0.803921568627451,
+    "binary_accuracy": 0.9921568627450981,
+    "mean_subset_macro_f1": 0.6336945276945277,
+    "all_four_correct": 14,
+    "all_four_accuracy": 0.8235294117647058,
+    "class_recall": [
+      0.9733333333333334,
+      0.8,
+      0.5666666666666667,
+      1.0,
+      0.06666666666666667
+    ],
+    "aggregate_confusion_true_rows": [
+      [
+        73,
+        0,
+        0,
+        0,
+        2
+      ],
+      [
+        0,
+        84,
+        15,
+        6,
+        0
+      ],
+      [
+        0,
+        13,
+        17,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        30,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        14,
+        1
+      ]
+    ],
+    "routing_errors": 2,
+    "subtype_errors_after_correct_route": 48
+  },
+  "trainable_parameters": 7705,
+  "reload_max_absolute_error": 0.0,
+  "checkpoint_sha256": "ddc648d1baf210282e4466c7c837d72b7b627b5282c252163b0f944f22c25144",
+  "validation_sha256": "ed4224653f512f6fab22df745cf820da7caff1da56affbfd11aca221b829110d",
+  "fitting_loss_before_each_update": [
+    1.675864815711975,
+    1.1366243362426758,
+    0.7740347385406494,
+    0.5553548336029053,
+    0.4224960505962372,
+    0.33604520559310913,
+    0.2752580940723419,
+    0.22956791520118713,
+    0.19364959001541138,
+    0.16475854814052582,
+    0.1412707418203354,
+    0.12203642725944519,
+    0.10620912164449692,
+    0.09321147203445435,
+    0.0826793685555458,
+    0.07437565177679062,
+    0.06808829307556152,
+    0.06351792812347412,
+    0.06019587069749832,
+    0.057528313249349594,
+    0.055002473294734955,
+    0.05240247771143913,
+    0.04982985183596611,
+    0.04752539470791817,
+    0.045668791979551315,
+    0.04429326206445694,
+    0.04331309720873833,
+    0.04259234666824341,
+    0.042000383138656616,
+    0.041440051048994064,
+    0.04085509106516838,
+    0.04022717475891113,
+    0.03956852853298187,
+    0.038913000375032425,
+    0.038305286318063736,
+    0.03778811916708946,
+    0.03738798946142197,
+    0.037103068083524704,
+    0.036900151520967484,
+    0.03672586381435394
+  ],
+  "selected_fitting_diagnostic": {
+    "cases": 49,
+    "events": 735,
+    "correct_final": 671,
+    "correct_binary": 734,
+    "accuracy": 0.9129251700680272,
+    "binary_accuracy": 0.998639455782313,
+    "mean_subset_macro_f1": 0.8824332824901356,
+    "all_four_correct": 47,
+    "all_four_accuracy": 0.9591836734693877,
+    "class_recall": [
+      0.9952380952380953,
+      0.825,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "aggregate_confusion_true_rows": [
+      [
+        209,
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        297,
+        26,
+        37,
+        0
+      ],
+      [
+        0,
+        0,
+        30,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        75,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        60
+      ]
+    ],
+    "routing_errors": 1,
+    "subtype_errors_after_correct_route": 63
+  },
+  "train_class_counts": [
+    14,
+    24,
+    2,
+    5,
+    4
+  ],
+  "validation_class_counts": [
+    5,
+    7,
+    2,
+    2,
+    1
+  ]
+}

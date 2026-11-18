@@ -1,0 +1,80 @@
+{
+  "study": "breakhis-single-output-center-group-check",
+  "code_sha": "bfa4ec14612cd3fd07ddb64e8797ac865c2d1b93",
+  "archive_sha256": "9e29f52b97b161876e513db0f8c9f83586f83b1347aa30e110f71b76a0fc58dc",
+  "slurm_job": "4988168",
+  "source_roles": "49 original training cases",
+  "folds": 42,
+  "updates_per_fold": 10,
+  "validation_predictions": 0,
+  "test_predictions": 0,
+  "config_sha256": "2aa6cb7dbc234353a252b5fda88c421ca5a18b36fdfdabdcb32e8d279c46d930",
+  "inputs": {
+    "audit_sha256": "cec9c0e13f2673046b41e6502154ceb9bed047f44086afbe04d57df562ef0812",
+    "case_views_sha256": "ff1046f22a993bccaea03975388714be77960056735c7c10780e0fcfd24cc992",
+    "reader_revision": "d517a8dd47902dd7c308b3c36f63bce47e7b9a43",
+    "weights_sha256": "6e077eda234bebc595868d918d3458d9dd32a050199b0ff04443b2f46a0a3b1e"
+  },
+  "weights_archive_sha256": "4f2b4a8aa0ffe3bf0b66357878ad6d64188511b56fed88a5ee91a318f113c929",
+  "predictions_sha256": "626edc424c40d32664d71ce8cb2aea81dec094b4bb676a736234d3f1c533dda5",
+  "max_absolute_replay_error": 1.437305950702239e-06,
+  "held_out": {
+    "cases": 49,
+    "events": 735,
+    "correct_final": 469,
+    "correct_binary": 657,
+    "accuracy": 0.638095238095238,
+    "binary_accuracy": 0.8938775510204081,
+    "mean_subset_macro_f1": 0.5106806055574866,
+    "all_four_correct": 32,
+    "all_four_accuracy": 0.6530612244897959,
+    "worst_subset_accuracy": 0.5918367346938775,
+    "worst_subset_macro_f1": 0.4369082125603865,
+    "class_recall": [
+      0.6666666666666666,
+      0.6666666666666666,
+      0.8,
+      0.7333333333333333,
+      0.16666666666666666
+    ],
+    "aggregate_confusion_true_rows": [
+      [
+        140,
+        16,
+        13,
+        7,
+        34
+      ],
+      [
+        0,
+        240,
+        51,
+        61,
+        8
+      ],
+      [
+        0,
+        6,
+        24,
+        0,
+        0
+      ],
+      [
+        0,
+        14,
+        1,
+        55,
+        5
+      ],
+      [
+        8,
+        14,
+        0,
+        28,
+        10
+      ]
+    ],
+    "routing_errors": 78,
+    "subtype_errors_after_correct_route": 188
+  }
+}

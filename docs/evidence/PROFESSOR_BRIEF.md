@@ -2,6 +2,10 @@
 
 ## Current capstone result
 
+One frozen UNI2-h reader now gives five class scores through a single fitted output layer. The same scores answer both questions. On 17 validation cases it reached **80.39% five-category and 99.22% binary** (205 and 253 of 255 answers). On the separate 42-group training check it reached **63.81% and 89.39%** (469 and 657 of 735). Each case supplies 15 zoom conditions. These are development results. The combined target remains open. The main remaining confusion is papillary versus mucinous. [Verified results](../SINGLE_OUTPUT_CENTER.md).
+
+## Earlier shared-classifier reference
+
 One model makes both decisions on BreakHis. Of 255 answers across 17 validation cases and 15 zoom combinations, our shared UNI2-h network got 229 benign/malignant decisions right (89.80%) and 193 complete five-category answers right (75.69%, macro F1 0.4982). Swin scored 59.61% and CNN–Transformer 59.22% on the same validation exercise. The new network called 25 of 30 lobular views of two cases ductal, and correctly named the single papillary case under zero of 15 zoom conditions. There were only two lobular and four papillary cases in training. The greater-than-90% objective remains open. We verified every selected validation answer from the saved weights. [Evidence and matched comparison](../SINGLE_MODEL_DUAL_STEP.md).
 
 **Field-level follow-up.** A single classifier that reads field patterns before averaging reached the same 75.69% final-five accuracy, with 90.59% binary accuracy and 0.4738 macro F1. In a separate check across 42 training groups, with each group hidden from fitting once, this candidate reached 68.84% final-five and 93.88% binary. Both models struggled with papillary cases. The goal requires over 90% final-five and over 95% binary at the same selected checkpoint. A blinded full-field versus center-crop review is ready for an expert. [Checked comparison](../FIELD_HIERARCHY.md).

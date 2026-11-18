@@ -2,6 +2,10 @@
 
 ## Current single-model experiment
 
+One frozen UNI2-h reader now gives five class scores through a single fitted output layer. The same scores answer both questions. On 17 validation cases it reached **80.39% five-category and 99.22% binary** (205 and 253 of 255 answers). On the separate 42-group training check it reached **63.81% and 89.39%** (469 and 657 of 735). Each case supplies 15 zoom conditions. These are development results. The combined target remains open. [Detailed method, subtype counts and evidence](../docs/SINGLE_OUTPUT_CENTER.md).
+
+## Earlier single-reader comparisons
+
 One UNI2-h feature extractor and a jointly trained classifier implement the two-step, five-category task. On the matched 17-case validation role the selected network scored 75.69% final-five accuracy, macro F1 0.4982 and 89.80% binary accuracy. The earlier one-model Swin and CNN–Transformer scored 59.61% and 59.22% final-five accuracy on these cases. The new candidate was evaluated on validation only. We retain 82.92% as a historical observation from a two-reader pipeline evaluated on a different role. [Methods, selection, class counts and independent replay](../docs/SINGLE_MODEL_DUAL_STEP.md).
 
 The subsequent parameter-matched study moved the same shared nonlinear layer before field pooling. This gave 193/255 final-five (75.69%) and 231/255 binary (90.59%) correct, with lower macro F1 of 0.4738. A separate ten-update leave-one-group-out check over all 42 original training groups modestly favored field-first classification (68.84% final-five and 93.88% binary, versus 65.85% and 91.56%). All 84 fold checkpoints replayed exactly. The comparison leaves both simultaneous accuracy targets open. [Per-class results, scope and reproducible evidence](../docs/FIELD_HIERARCHY.md).

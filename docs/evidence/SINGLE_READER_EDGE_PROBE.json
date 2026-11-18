@@ -1,0 +1,53 @@
+{
+  "left_center": {
+    "min": 0.7024239631099373,
+    "q1": 0.8560032265526332,
+    "median": 0.8928332532937576,
+    "q3": 0.9164214788097933,
+    "max": 0.9623196348868406,
+    "count": 84
+  },
+  "right_center": {
+    "min": 0.781537120166684,
+    "q1": 0.8706292044652069,
+    "median": 0.902332009168165,
+    "q3": 0.9226278100395029,
+    "max": 0.9618033098397246,
+    "count": 84
+  },
+  "different_box_same_zoom_center_pairs": {
+    "min": 0.05427269501621134,
+    "q1": 0.159517514114261,
+    "median": 0.21352844065470275,
+    "q3": 0.28084832599621556,
+    "max": 0.605502990172116,
+    "count": 840
+  },
+  "boxes": 21,
+  "fields": 84,
+  "code_sha": "e94793e22c3448f227d1f59cf7ac0a351a0c4811",
+  "source_archive_sha256": "3e6a498768d34e80ae36073f9f505c1cbe12b45c20c7f6287bef24e2a7fb3289",
+  "slurm_job": "4988161",
+  "image_forwards": 252,
+  "center_pixel_matches": 84,
+  "center_feature_parity_matches": 84,
+  "center_feature_max_abs_error": 0.0,
+  "center_feature_parity_tolerance": {
+    "atol": 0.0001,
+    "rtol": 0.0001
+  },
+  "encoder_revision": "d517a8dd47902dd7c308b3c36f63bce47e7b9a43",
+  "weights_sha256": "6e077eda234bebc595868d918d3458d9dd32a050199b0ff04443b2f46a0a3b1e",
+  "config_sha256": "6595d4d0460d076d0c2bc782818304bc4f47865441af813abf6469f7ca3da74a",
+  "probe_sha256": "1cab6d3c756efd5ed4d8ccee3484d131400115c0f712284e50a6170d3ffadb40",
+  "dependencies": {
+    "torch": "2.6.0+cu124",
+    "torchvision": "0.21.0+cu124",
+    "timm": "1.0.15",
+    "Pillow": "11.1.0",
+    "safetensors": "0.5.3"
+  },
+  "gpu": "NVIDIA A40",
+  "measure": "Cosine between raw FP32 CLS vectors computed in FP64; same-field windows overlap.",
+  "scope": "Descriptive representation sensitivity. Distinct-box pairs share fields across comparisons. No clinical cue, predictive benefit or independent patient comparison is established."
+}

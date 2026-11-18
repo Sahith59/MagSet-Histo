@@ -1,5 +1,9 @@
 ## Current single-model capstone requirement
 
+Use one frozen UNI2-h reader with one five-category trainable output for the current user requirement. The same five scores determine both decisions. Completed validation and training-group scores are 80.39% / 99.22% and 63.81% / 89.39% respectively (five-category / binary). Qualified expert review of the blinded fields is pending. Keep the prior architectures as historical controls. [Current experiment and next step](docs/SINGLE_OUTPUT_CENTER.md).
+
+## Earlier shared-classifier requirement
+
 Use one image reader and one jointly fitted classifier to make both the benign/malignant decision and the malignant subtype decision. The shared UNI2-h pilot is complete at 193/255 (75.69%) final-five and 229/255 (89.80%) binary on the matched 17-case validation role. The frozen encoder supplied the same features to one shared trainable network. Keep the historical two-reader H result, the earlier 16-case comparisons and training accuracy identified by their original roles. The abandoned two-reader crop follow-up was never launched. The greater-than-90% final-five target remains open. Use the fixed training and validation fields for expert review and seek additional rare-type cases for fresh confirmation. [Current scope and evidence](docs/SINGLE_MODEL_DUAL_STEP.md).
 
 Updated joint goals are >90% final five and >95% binary at one selected checkpoint. The parameter-matched field-first study is complete. Its validation final-five is 75.69%, binary 90.59% and macro F1 0.4738. Its TRAIN-only leave-one-group-out scores (42 groups) are 68.84% and 93.88% respectively. The original shared classifier remains the reference. Use the blinded 84-field full-versus-center-crop packet for expert review before choosing another architecture change. [Latest evidence](docs/FIELD_HIERARCHY.md).
