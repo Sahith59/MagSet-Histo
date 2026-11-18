@@ -23,6 +23,8 @@ The original validation set contains 15 conservative groups. Each of its 17 case
 | Mucinous | 5 | 2 | 15/30 | 15/30 |
 | Papillary | 4 | 1 | 0/15 | 0/15 |
 
+Both lobular validation cases share one conservative identifier group. Papillary also has only one validation group. The repeated zoom answers carry much less independent information than the event counts suggest.
+
 The candidate made 24 routing errors and 38 subtype errors after correct routing on validation. The control made 26 and 36, respectively. For the control, supplying the true benign/malignant answer while keeping its actual subtype choices would yield only 196/255 correct (76.86%). Fixing the first decision alone cannot deliver 90% on these cases. Both models scored 13/17 with all four zooms present. The worst single subset accuracy was 64.71% for the control and 70.59% for the field-first model.
 
 The descriptive paired 95% interval for the field-first minus control difference in five-category accuracy spans −3.16 to +3.53 percentage points. This resamples the 15 validation groups with all their cases and masks together and conditions on the selected checkpoints. The sample and repeated use of these cases limit generalization. The candidate failed its improvement screen.
