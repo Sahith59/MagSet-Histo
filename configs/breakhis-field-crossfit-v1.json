@@ -1,0 +1,19 @@
+{
+  "study": "breakhis-field-crossfit-v1",
+  "primary_config_sha256": "5572ba96108d6729e8345375d9c8fe92424bab9542116ec1b6e0ff7bb451e681",
+  "audit_sha256": "cec9c0e13f2673046b41e6502154ceb9bed047f44086afbe04d57df562ef0812",
+  "folds": 42,
+  "shards": 6,
+  "updates": 10,
+  "seed": 812,
+  "arms": [
+    "control",
+    "field"
+  ],
+  "role": "train-only leave-one-conservative-group-out",
+  "case_views_sha256": "ff1046f22a993bccaea03975388714be77960056735c7c10780e0fcfd24cc992",
+  "scope": "49 original training cases; hold one conservative group out at a time; full original-view and all-15-subset output per held-out case; no model selection or validation/test predictions",
+  "normalization": "equal case mass for each zoom, using only fitting cases within the current fold",
+  "input_receipt": "source-bound TRAIN-only bundle receipt from primary packing stage before any primary training",
+  "decision": "descriptive check only; fixes selected architecture, threshold and update count before any new outcome; no change to primary comparison or promotion screen"
+}
