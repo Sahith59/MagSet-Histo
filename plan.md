@@ -1,5 +1,7 @@
 ## Current checkpoint and next action
 
+The [three-page Word report](outputs/capstone/BreakHis%20UNI2-h%20Capstone%20Report.docx) is ready to share. It includes the dataset and splits, the selected UNI2-h architecture, the matched model results and the rare-subtype findings. The [repository overview](README.md) includes the same architecture diagram and links to the evidence.
+
 The wider-image experiment is complete. Against the original center crop, it moved five-category validation accuracy from 75.69% to 76.86% and binary accuracy from 89.80% to 89.41%. All three additional correct answers were ductal. The same comparison improved five-category accuracy at zero of four training seeds. Keep the original model as the capstone reference. [Full diagnosis and experiment](docs/BREAKHIS_WIDER_FIELD.md). Next, obtain a blinded pathology review of the fixed development fields and their exact left, center and right crops. Record whether cues are visible at model resolution, then pursue independent rare-subtype examples.
 
 ## Earlier single-output checkpoint

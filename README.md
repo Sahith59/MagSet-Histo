@@ -1,12 +1,29 @@
 # MagSet-Histo
 
-Lead with the original case-first UNI2-h network for the single-model, dual-step task. On 16 BreakHis case folders evaluated under 15 zoom combinations each, it scored **199/240 (82.92%) five-category** and **231/240 (96.25%) benign/malignant**. The later single-output comparison scored **60.00% and 79.17%** on the same cases. The decision to return to the earlier architecture followed this retrospective comparison. Performance on new cases remains unknown.
+For Professor Dong’s master’s capstone, we asked whether one model could look at microscope photos from a breast tissue case and answer two questions. Is the tissue benign or malignant? If it is malignant, which of four cancer types does it show? We trained and evaluated our classifier on BreakHis.
 
-The wider-image experiment is complete. Against the original center crop, it moved five-category validation accuracy from 75.69% to 76.86% and binary accuracy from 89.80% to 89.41%. All three additional correct answers were ductal. The same comparison improved five-category accuracy at zero of four training seeds. Keep the original model as the capstone reference. [Full diagnosis and experiment](docs/BREAKHIS_WIDER_FIELD.md). [One-page capstone brief](output/pdf/BreakHis-five-category-brief.pdf).
+**[Download the three-page Word report](https://raw.githubusercontent.com/Sahith59/MagSet-Histo/main/outputs/capstone/BreakHis%20UNI2-h%20Capstone%20Report.docx)** · [Compare the models on the same cases](docs/BREAKHIS_MODEL_COMPARISON.md) · [Read the one-page brief](output/pdf/BreakHis-five-category-brief.pdf)
 
-BreakHis is our main dataset. We are building a breast histology classification project for Professor Dong's master's capstone, with a research paper as a later goal. TCGA follow-up is deferred.
+## How the selected model works
 
-The earlier shared-classifier comparison also used a single reader. A shared UNI2-h image reader describes the available 40×, 100×, 200× and 400× pictures. A single jointly trained classifier first decides benign or malignant. If malignant, that same classifier names the ductal, lobular, mucinous or papillary subtype. Its checked five-category validation accuracy is **75.69% (193/255)** and its benign/malignant accuracy is **89.80% (229/255)** on 17 cases under all 15 zoom combinations. The later frozen-checkpoint follow-up is reported above. Greater than 90% final-five accuracy remains the goal. [Plain-language result, comparison and error counts](docs/SINGLE_MODEL_DUAL_STEP.md).
+We kept the original UNI2-h model that combines the photos from a case before making its decision. UNI2-h had already learned to recognize patterns in microscope images. We kept that part fixed and trained one small classifier. It can use any combination of 40×, 100×, 200× and 400× photos. Its five possible answers are benign, ductal carcinoma, lobular carcinoma, mucinous carcinoma and papillary carcinoma.
+
+![Architecture diagram. A frozen UNI2-h reader describes each photo. We average the descriptions for each zoom, combine the available zooms and pass them to one classifier. A benign decision ends the process. A malignant decision selects one of the four cancer types.](outputs/capstone/uni2h-architecture.png)
+
+## What we measured
+
+BreakHis supplied 7,909 photos in 82 case folders. We used 49 folders for training, 17 for choosing the saved model, and 16 for an internal benchmark. All images from the same folder stayed together. Each case was scored under 15 combinations of zooms, so every row below contains repeated answers from the same cases.
+
+| Selected UNI2-h model | Exact five-category diagnosis | Benign or malignant |
+| --- | ---: | ---: |
+| Validation on 17 cases | 193/255 (75.69%) | 229/255 (89.80%) |
+| Internal benchmark on 16 cases | **199/240 (82.92%)** | **231/240 (96.25%)** |
+
+UNI2-h tied a two-reader system for the highest five-category result on the internal benchmark. The adapted Swin and CNN–Transformer models scored 59.17% and 56.67% on the same task. Earlier experiments had already used the 16 benchmark cases, and we revisited the architecture choice after seeing the comparison. Accuracy on new cases is still unknown. [Matched results and original notebook scores](docs/BREAKHIS_MODEL_COMPARISON.md)
+
+Naming the cancer type was harder than recognizing malignancy. Of the 41 wrong five-category answers, 32 correctly identified the tissue as malignant and then named the wrong type. A wider crop added three correct ductal answers on validation. Lobular and papillary results stayed the same. The next step is a blinded review of the tissue fields and an evaluation with more independent rare cases. [Wider-image experiment](docs/BREAKHIS_WIDER_FIELD.md)
+
+## Other UNI2-h experiments
 
 The follow-up tested whether recognizing patterns in each original field before averaging would help. On the same validation cases it also scored 75.69% five-category accuracy, with 90.59% binary accuracy and lower macro F1 (0.4738). In a separate check holding out each of the 42 training groups in turn, the original / field-first five-category accuracies were 65.85% / 68.84% and the binary accuracies were 91.56% / 93.88%. The original shared classifier provides the historical reference. The joint targets are **above 90% five-category accuracy and above 95% benign/malignant accuracy from one checkpoint**. [Comparison, rare-type results and next step](docs/FIELD_HIERARCHY.md).
 
