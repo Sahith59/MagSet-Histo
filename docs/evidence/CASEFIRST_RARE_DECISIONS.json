@@ -1,0 +1,302 @@
+{
+  "scientific_source": "9c3e10a122b2cc5ecc17c584d0f66ec34a14815c",
+  "audit_sha256": "cec9c0e13f2673046b41e6502154ceb9bed047f44086afbe04d57df562ef0812",
+  "case_views_sha256": "ff1046f22a993bccaea03975388714be77960056735c7c10780e0fcfd24cc992",
+  "fold_inventory_sha256": "e4b0b7ac4cdf5253afdd038d474a7ddea03b82f1e204cb074840151d738609e7",
+  "validation_archive_sha256": "c45eb1191dc61c6110f454427866eaec1862ed57cca6ec9795a25e73e491edb2",
+  "class_order": [
+    "benign",
+    "ductal",
+    "lobular",
+    "mucinous",
+    "papillary"
+  ],
+  "zoom_subsets": [
+    [
+      40
+    ],
+    [
+      100
+    ],
+    [
+      200
+    ],
+    [
+      400
+    ],
+    [
+      40,
+      100
+    ],
+    [
+      40,
+      200
+    ],
+    [
+      40,
+      400
+    ],
+    [
+      100,
+      200
+    ],
+    [
+      100,
+      400
+    ],
+    [
+      200,
+      400
+    ],
+    [
+      40,
+      100,
+      200
+    ],
+    [
+      40,
+      100,
+      400
+    ],
+    [
+      40,
+      200,
+      400
+    ],
+    [
+      100,
+      200,
+      400
+    ],
+    [
+      40,
+      100,
+      200,
+      400
+    ]
+  ],
+  "new_fits": 0,
+  "followup_cases_scored": 0,
+  "training_group_holdouts": {
+    "lobular": {
+      "cases": 2,
+      "groups": 2,
+      "answers": 30,
+      "all_five_category_counts": [
+        1,
+        11,
+        18,
+        0,
+        0
+      ],
+      "subtype_counts_with_true_malignant_route": [
+        0,
+        11,
+        19,
+        0,
+        0
+      ],
+      "correct_by_zoom_subset": [
+        2,
+        0,
+        1,
+        2,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1
+      ],
+      "sorted_counts_of_correct_answers_per_case": [
+        4,
+        14
+      ],
+      "sorted_counts_if_true_malignant_route_per_case": [
+        4,
+        15
+      ],
+      "full_zoom_predictions_by_category": [
+        0,
+        1,
+        1,
+        0,
+        0
+      ],
+      "geometry_comparator": "ductal",
+      "true_type_mean_cosine_higher": 30,
+      "geometry_ties": 0
+    },
+    "papillary": {
+      "cases": 4,
+      "groups": 4,
+      "answers": 60,
+      "all_five_category_counts": [
+        18,
+        14,
+        0,
+        27,
+        1
+      ],
+      "subtype_counts_with_true_malignant_route": [
+        0,
+        14,
+        0,
+        30,
+        16
+      ],
+      "correct_by_zoom_subset": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sorted_counts_of_correct_answers_per_case": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "sorted_counts_if_true_malignant_route_per_case": [
+        0,
+        0,
+        1,
+        15
+      ],
+      "full_zoom_predictions_by_category": [
+        1,
+        1,
+        0,
+        2,
+        0
+      ],
+      "geometry_comparator": "mucinous",
+      "true_type_mean_cosine_higher": 27,
+      "geometry_ties": 0
+    }
+  },
+  "validation": {
+    "lobular": {
+      "cases": 2,
+      "groups": 1,
+      "answers": 30,
+      "all_five_category_counts": [
+        0,
+        25,
+        5,
+        0,
+        0
+      ],
+      "subtype_counts_with_true_malignant_route": [
+        0,
+        25,
+        5,
+        0,
+        0
+      ],
+      "correct_by_zoom_subset": [
+        2,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sorted_counts_of_correct_answers_per_case": [
+        1,
+        4
+      ],
+      "sorted_counts_if_true_malignant_route_per_case": [
+        1,
+        4
+      ],
+      "full_zoom_predictions_by_category": [
+        0,
+        2,
+        0,
+        0,
+        0
+      ],
+      "geometry_comparator": "ductal",
+      "true_type_mean_cosine_higher": 30,
+      "geometry_ties": 0
+    },
+    "papillary": {
+      "cases": 1,
+      "groups": 1,
+      "answers": 15,
+      "all_five_category_counts": [
+        10,
+        0,
+        0,
+        5,
+        0
+      ],
+      "subtype_counts_with_true_malignant_route": [
+        0,
+        0,
+        0,
+        15,
+        0
+      ],
+      "correct_by_zoom_subset": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sorted_counts_of_correct_answers_per_case": [
+        0
+      ],
+      "sorted_counts_if_true_malignant_route_per_case": [
+        0
+      ],
+      "full_zoom_predictions_by_category": [
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "geometry_comparator": "mucinous",
+      "true_type_mean_cosine_higher": 0,
+      "geometry_ties": 0
+    }
+  }
+}
