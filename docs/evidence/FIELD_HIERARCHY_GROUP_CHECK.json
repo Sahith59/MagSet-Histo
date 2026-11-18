@@ -1,0 +1,173 @@
+{
+  "study": "breakhis-field-crossfit-v1",
+  "status": "accepted fixed TRAIN-only group cross-fit replay",
+  "role": "train-only leave-one-conservative-group-out",
+  "code_sha": "9c3e10a122b2cc5ecc17c584d0f66ec34a14815c",
+  "source_archive_sha256": "03097f9ed22c6aac0e4b0a431bed4e1c4036eaa8a375ba9c02cd0cd893d0b23e",
+  "train_fields_sha256": "9cfaa265e905d22fba40067931bc961d05047ea2e0f107c3b84dfafca36b0023",
+  "config_sha256": "5572ba96108d6729e8345375d9c8fe92424bab9542116ec1b6e0ff7bb451e681",
+  "audit_sha256": "cec9c0e13f2673046b41e6502154ceb9bed047f44086afbe04d57df562ef0812",
+  "case_views_sha256": "ff1046f22a993bccaea03975388714be77960056735c7c10780e0fcfd24cc992",
+  "plan_sha256": "76efce913675922fb9b86e6ac0ff051153013e60e1f9ae4220810426b053c8d1",
+  "input_receipt_sha256": "2667cded1f27e926a2e45c0e4a9124e3082752919ef2db5405794ca986f407c6",
+  "fold_inventory_sha256": "e4b0b7ac4cdf5253afdd038d474a7ddea03b82f1e204cb074840151d738609e7",
+  "folds": 42,
+  "training_cases": 49,
+  "training_groups": 42,
+  "fields": 4621,
+  "updates_per_fold": 10,
+  "arms": {
+    "control": {
+      "cases": 49,
+      "events": 735,
+      "folds": 42,
+      "class_counts": [
+        14,
+        24,
+        2,
+        5,
+        4
+      ],
+      "correct_final": 484,
+      "accuracy": 0.6585034013605442,
+      "correct_binary": 673,
+      "binary_accuracy": 0.9156462585034013,
+      "mean_subset_macro_f1": 0.44924807606133715,
+      "class_recall": [
+        0.9428571428571428,
+        0.6833333333333333,
+        0.6,
+        0.28,
+        0.016666666666666666
+      ],
+      "aggregate_confusion_true_rows": [
+        [
+          198,
+          12,
+          0,
+          0,
+          0
+        ],
+        [
+          15,
+          246,
+          41,
+          46,
+          12
+        ],
+        [
+          1,
+          11,
+          18,
+          0,
+          0
+        ],
+        [
+          16,
+          32,
+          0,
+          21,
+          6
+        ],
+        [
+          18,
+          14,
+          0,
+          27,
+          1
+        ]
+      ],
+      "routing_errors": 62,
+      "subtype_errors_after_correct_route": 189,
+      "all_four_correct": 31,
+      "all_four_accuracy": 0.6326530612244898,
+      "worst_subset_accuracy": 0.6326530612244898,
+      "worst_subset_macro_f1": 0.34868686868686866
+    },
+    "field": {
+      "cases": 49,
+      "events": 735,
+      "folds": 42,
+      "class_counts": [
+        14,
+        24,
+        2,
+        5,
+        4
+      ],
+      "correct_final": 506,
+      "accuracy": 0.6884353741496598,
+      "correct_binary": 690,
+      "binary_accuracy": 0.9387755102040817,
+      "mean_subset_macro_f1": 0.4719700981054827,
+      "class_recall": [
+        0.9761904761904762,
+        0.725,
+        0.6333333333333333,
+        0.28,
+        0.0
+      ],
+      "aggregate_confusion_true_rows": [
+        [
+          205,
+          5,
+          0,
+          0,
+          0
+        ],
+        [
+          11,
+          261,
+          31,
+          49,
+          8
+        ],
+        [
+          0,
+          11,
+          19,
+          0,
+          0
+        ],
+        [
+          14,
+          32,
+          0,
+          21,
+          8
+        ],
+        [
+          15,
+          15,
+          0,
+          30,
+          0
+        ]
+      ],
+      "routing_errors": 45,
+      "subtype_errors_after_correct_route": 184,
+      "all_four_correct": 34,
+      "all_four_accuracy": 0.6938775510204082,
+      "worst_subset_accuracy": 0.6530612244897959,
+      "worst_subset_macro_f1": 0.43437782076079945
+    }
+  },
+  "replay_max_absolute_logit_error": {
+    "control": 0.0,
+    "field": 0.0
+  },
+  "bit_exact_saved_weight_logits": {
+    "control": true,
+    "field": true
+  },
+  "saved_weight_logit_tolerance": 1e-05,
+  "all_saved_hard_labels_replayed": true,
+  "all_held_cases_covered_once": true,
+  "fold_normalizers_exclude_held_groups": true,
+  "validation_predictions": 0,
+  "test_predictions": 0,
+  "collector_fits": 0,
+  "new_encoder_forwards": 0,
+  "inference_scope": "saved-weight replay on held-out TRAIN cases only",
+  "interpretation": "descriptive cross-fit corroboration; no checkpoint, architecture or threshold selection; dependent zoom conditions; not fresh clinical confirmation"
+}

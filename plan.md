@@ -1,3 +1,9 @@
+## Current checkpoint and next action
+
+The field-pooling comparison and 42-group follow-up are complete. The original shared classifier remains the reference. Field-first tied at 75.69% five-category validation accuracy and improved binary accuracy to 90.59%, while recognizing fewer lobular answers. The targets are above 90% final and above 95% binary together.
+
+The next task is a blinded expert review of the 84 original fields and their 224-pixel center crops. Record whether a distinguishing feature is visible in the full image and at the model's input size. If cues are repeatedly cropped out, evaluate wider coverage with the same single reader under a protocol fixed before fitting. Seek additional independent rare cases for a separate confirmation cohort. [Numbers, evidence and review rationale](docs/FIELD_HIERARCHY.md).
+
 ## Current plan for the single-model capstone
 
 1. **Completed.** Fit one shared UNI2-h classifier for both decisions, compare all three eligible models on the same 17 validation cases and independently replay the selected result. Final-five accuracy is 75.69%, with 26 routing errors and 36 subtype errors over 255 case and zoom combinations.

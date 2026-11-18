@@ -1,0 +1,233 @@
+{
+  "status": "accepted independent validation-only field hierarchy replay",
+  "result_sha256": "0e9d5708ae323ce03c7657dca322baf9f68eeb5b52f87281917ed8888d76b3ef",
+  "config_sha256": "5572ba96108d6729e8345375d9c8fe92424bab9542116ec1b6e0ff7bb451e681",
+  "code_sha": "9c3e10a122b2cc5ecc17c584d0f66ec34a14815c",
+  "source_archive_sha256": "03097f9ed22c6aac0e4b0a431bed4e1c4036eaa8a375ba9c02cd0cd893d0b23e",
+  "input_audit_sha256": "cec9c0e13f2673046b41e6502154ceb9bed047f44086afbe04d57df562ef0812",
+  "case_views_sha256": "ff1046f22a993bccaea03975388714be77960056735c7c10780e0fcfd24cc992",
+  "validation_fields_sha256": "14c2c465841b46b3591f4e9ed6b85bb30dade8d2e19075eca52134afd63ed584",
+  "verified_role": "validation",
+  "verified_cases": 17,
+  "verified_conservative_groups": 15,
+  "verified_events": 255,
+  "test_predictions": 0,
+  "verified_original_field_counts": 1584,
+  "field_mean_max_abs_error": 0.0,
+  "exact_validation_field_identity_order_verified": true,
+  "exact_frozen_field_cache_check": {
+    "performed": true,
+    "vectors_checked": 1584,
+    "original_shards_verified": 4,
+    "all_packed_float32_vectors_identical": true
+  },
+  "available_immutable_source_checks": {
+    ".source-sha": true,
+    ".archive-sha256": true
+  },
+  "arms": {
+    "control": {
+      "result_sha256": "c7b62dd534e6db32217e1c13f21a56e047e6e706e9f26f6bf03d2d06a35d92b1",
+      "checkpoint_sha256": "3c73f48dd473b50a418862e3831bf2c055d46e54347e4906e9cf45fb7b0f9ac3",
+      "validation_sha256": "c45eb1191dc61c6110f454427866eaec1862ed57cca6ec9795a25e73e491edb2",
+      "verified_epochs": [
+        10,
+        20,
+        30,
+        40
+      ],
+      "selected_epoch": 10,
+      "selected": {
+        "cases": 17,
+        "events": 255,
+        "correct_final": 193,
+        "correct_binary": 229,
+        "accuracy": 0.7568627450980392,
+        "binary_accuracy": 0.8980392156862745,
+        "mean_subset_macro_f1": 0.498153957153957,
+        "all_four_correct": 13,
+        "all_four_accuracy": 0.7647058823529411,
+        "worst_subset_accuracy": 0.6470588235294118,
+        "worst_subset_macro_f1": 0.4246753246753247,
+        "class_recall": [
+          1.0,
+          0.9333333333333333,
+          0.16666666666666666,
+          0.5,
+          0.0
+        ],
+        "aggregate_confusion_true_rows": [
+          [
+            75,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            98,
+            6,
+            0,
+            0
+          ],
+          [
+            0,
+            25,
+            5,
+            0,
+            0
+          ],
+          [
+            15,
+            0,
+            0,
+            15,
+            0
+          ],
+          [
+            10,
+            0,
+            0,
+            5,
+            0
+          ]
+        ],
+        "routing_errors": 26,
+        "subtype_errors_after_correct_route": 36
+      },
+      "numpy_checkpoint_max_abs_logit_error": 2.102325192154808e-06,
+      "all_saved_decisions_match": true
+    },
+    "field": {
+      "result_sha256": "a541a829f2ad2e01003c77cd4cfef81ae47ab489b2e463f5a4579062ab256fbc",
+      "checkpoint_sha256": "2792f4f86b4761deec6a9b6baeb5cc3bc87050a26053be7421632ce17468c9ac",
+      "validation_sha256": "275805f1670ffee757f2e402ac5d82f1603e746ac541f9c63676a95d30f849b8",
+      "verified_epochs": [
+        10,
+        20,
+        30,
+        40
+      ],
+      "selected_epoch": 10,
+      "selected": {
+        "cases": 17,
+        "events": 255,
+        "correct_final": 193,
+        "correct_binary": 231,
+        "accuracy": 0.7568627450980392,
+        "binary_accuracy": 0.9058823529411765,
+        "mean_subset_macro_f1": 0.47381274281274266,
+        "all_four_correct": 13,
+        "all_four_accuracy": 0.7647058823529411,
+        "worst_subset_accuracy": 0.7058823529411765,
+        "worst_subset_macro_f1": 0.42666666666666664,
+        "class_recall": [
+          1.0,
+          0.9619047619047619,
+          0.06666666666666667,
+          0.5,
+          0.0
+        ],
+        "aggregate_confusion_true_rows": [
+          [
+            75,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            101,
+            3,
+            1,
+            0
+          ],
+          [
+            0,
+            28,
+            2,
+            0,
+            0
+          ],
+          [
+            15,
+            0,
+            0,
+            15,
+            0
+          ],
+          [
+            9,
+            0,
+            0,
+            6,
+            0
+          ]
+        ],
+        "routing_errors": 24,
+        "subtype_errors_after_correct_route": 38
+      },
+      "numpy_checkpoint_max_abs_logit_error": 1.3780508432148508e-06,
+      "all_saved_decisions_match": true
+    }
+  },
+  "independent_target_gates": {
+    "control": {
+      "final_five_over_90": false,
+      "binary_over_95": false,
+      "both_on_same_checkpoint": false
+    },
+    "field": {
+      "final_five_over_90": false,
+      "binary_over_95": false,
+      "both_on_same_checkpoint": false
+    }
+  },
+  "improvement_screen_passed": false,
+  "paired_intervals": {
+    "interpretation": "descriptive selection-conditional paired conservative-group bootstrap; not fresh confirmation",
+    "groups": 15,
+    "draws": 2000,
+    "seed": 20261117,
+    "unit": "conservative group, retaining every case and all 15 masks",
+    "macro_f1_labels": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "absent_class_f1": 0,
+    "field_minus_control": {
+      "accuracy": {
+        "estimate": 0.0,
+        "percentile_95_interval": [
+          -0.03157894736842104,
+          0.03529411764705892
+        ]
+      },
+      "binary_accuracy": {
+        "estimate": 0.007843137254901933,
+        "percentile_95_interval": [
+          0.0,
+          0.019607843137254943
+        ]
+      },
+      "mean_subset_macro_f1": {
+        "estimate": -0.024341214341214334,
+        "percentile_95_interval": [
+          -0.03705993265993273,
+          0.012017854946337905
+        ]
+      }
+    }
+  },
+  "limits": [
+    "All validation cases have prior development exposure; intervals condition on selected checkpoints.",
+    "Private field identities/order and pinned view means are checked; optional --field-cache verifies every vector against original pinned shards. Images are not re-encoded.",
+    "All four checkpoint metrics are recalculated from saved logits; NumPy weight inference replays the selected checkpoint only.",
+    "TRAIN confusion arithmetic is checked; original TRAIN predictions are not supplied for independent inference."
+  ]
+}

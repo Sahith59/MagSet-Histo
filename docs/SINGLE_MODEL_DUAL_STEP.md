@@ -4,6 +4,8 @@ The capstone uses one image reader across all four magnifications and one jointl
 
 Lang et al. describe a shared ResNet-50 feature extractor and two XGBoost classifiers, a binary first pass and a four-type second pass. Their direct five-way XGBoost classifier is the single-pass comparison. Table 6 gives 86.22% binary accuracy and 57.06% malignant-subtype recall for their dual-step method. They classify individual images. This experiment adopts the decision order and adds the requirement for one jointly fitted classifier per case. [Lang et al., methods and Table 6](https://doi.org/10.1117/12.2582299).
 
+The updated objective requires both **greater than 90% final-five accuracy and greater than 95% binary accuracy** for the same model. A parameter-matched field-first follow-up tied the original on five-category validation accuracy and reached 90.59% binary accuracy. The original remains the reference after the candidate missed its progression rule. [Follow-up results and group-held-out check](FIELD_HIERARCHY.md).
+
 ## What we can report to Professor Dong
 
 **The shared UNI2-h model correctly named the final category in 193 of 255 validation answers (75.69%).** Each of the 17 cases was scored under the same 15 zoom combinations. A provider case can contribute 15 similar answers. Five-category accuracy counts benign as correct when the case is benign. For malignant tissue, both the malignant decision and the specific subtype must be correct.
