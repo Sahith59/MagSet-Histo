@@ -1,5 +1,15 @@
 # Next BreakHis tasks
 
+## Current plan for the single-model capstone
+
+1. **Completed.** Fit one shared UNI2-h classifier for both decisions, compare all three eligible models on the same 17 validation cases and independently replay the selected result. Final-five accuracy is 75.69%, with 26 routing errors and 36 subtype errors over 255 case and zoom combinations.
+2. **Review.** Inspect fixed training and validation fields with a qualified reviewer. Record tissue coverage, readable zooms and which subtype features can be seen. Keep the first review blind to the model prediction. Learn why the two validation lobular cases resemble ductal to the model.
+3. **Confirm.** Seek additional independently grouped lobular and papillary cases. Before evaluating a new method on fresh cases, fix the reader, model weights, decision rule and metric. Report five-category accuracy, class recalls and binary accuracy separately.
+
+[Single-model evidence and scorecard](SINGLE_MODEL_DUAL_STEP.md). The greater-than-90% final-five target remains open.
+
+## Earlier plans and checkpoints
+
 November 17 complete deep diagnosis: the original three scores reproduce from raw images. The fixed-router UNI2-h specialist gives 82.92% on the already-viewed follow-up but fails its validation improvement screen. The final bounded case-SVC comparison is also complete and independently accepted: linear 74.58% / .513007 final-five accuracy/F1; RBF 69.17% / .380729; both binary 92.08%. RBF’s validation macro-F1 gain is .009833, below the fixed .02 screen. Its 99.22% validation binary accuracy is not follow-up performance. [Proof and diagnosis](DEEP_DIAGNOSIS_AND_PROOF.md) · [complete SVC result](BREAKHIS_UNI_CASE_SVM_RESULTS.md).
 
 Both requested follow-up targets, over 90% final-five and over 97% binary, remain unmet. All proof, specialist, router and case-SVC jobs completed; no project jobs remain active. Both bounded intervention families are closed without a confirmed replacement. Preserve every outcome and finish the capstone evidence/presentation, using the fixed TRAIN/validation field index for appropriate expert review. Do not add C/gamma/threshold/model/seed/split searches on the already-viewed follow-up. Suitable additional independent cases are needed for fresh confirmation. TCGA and novelty expansion remain deferred. The dated checkpoints below are historical.

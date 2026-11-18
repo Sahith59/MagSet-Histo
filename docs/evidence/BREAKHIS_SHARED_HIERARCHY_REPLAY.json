@@ -1,0 +1,16 @@
+{
+  "result_sha256": "e186e62e3088f6ec1a783fed1cb6819b44ee1b93c825aac4e204b476258edb96",
+  "verified_role": "validation",
+  "verified_epochs": [
+    10,
+    20,
+    30,
+    40
+  ],
+  "selected_epoch": 10,
+  "verified_cases": 17,
+  "verified_final_correct": 193,
+  "verified_binary_correct": 229,
+  "all_saved_decisions_match": true,
+  "numpy_checkpoint_max_abs_logit_error": 1.9751164241910146e-06
+}

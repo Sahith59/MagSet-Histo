@@ -1,5 +1,7 @@
 # BreakHis: confirmed two-step, five-category target
 
+The current capstone requires **one jointly fitted classifier** to make both decisions and one shared image reader for every zoom. A malignant answer from the first decision activates the four-way choice within the same network. The final-five accuracy target is greater than 90%, with 95% as a stretch objective. [Implemented architecture, scoring and validation result](SINGLE_MODEL_DUAL_STEP.md).
+
 November 15, 2026. **Latest user correction supersedes the earlier eight-type hierarchy choice:** the final labels are one pooled benign category and four malignant subtypes. Step1 predicts benign/malignant; benign stops, malignant proceeds to Step2. There is no benign subtype classifier.
 
 Only BreakHis supplies fitting/evaluation images and labels for this capstone. Earlier TCGA experiments remain separate and deferred. Pretrained weights learned on other data are transfer learning; this does not mix those images into current BreakHis fitting or validation.

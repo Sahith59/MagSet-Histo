@@ -1,5 +1,9 @@
 # Capstone presentation outline
 
+**Current opening for Professor Dong.** One model reads all available BreakHis zooms and makes both decisions. Its selected five-category validation accuracy is 193/255 (75.69%) across 17 cases, and its binary accuracy is 229/255 (89.80%). Bring the class counts and comparison on those same cases. [Current presentation table and evidence](../docs/SINGLE_MODEL_DUAL_STEP.md).
+
+## Historical outline
+
 Draft story and speaking prompts, November14,2026. This is an outline, not a finished PowerPoint. Target a reviewable deck/report by November17, revisions on November18 and a presentation around November20. Exact presentation date and rubric are not supplied.
 
 ## 1. Breast histology classification across magnifications

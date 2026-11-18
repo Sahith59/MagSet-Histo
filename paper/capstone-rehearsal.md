@@ -1,5 +1,15 @@
 # Capstone: short explanation and questions
 
+## Current single-model explanation for Professor Dong
+
+“We use photos of the same tissue taken at different microscope zooms. One model answers two questions. Is the tissue benign or malignant? If it is malignant, which of four types is it? We count a point only for getting the final name right.
+
+“We trained the classifier on 49 cases. On 17 validation cases, each shown under 15 combinations of zooms, it got 193 of 255 final answers right. That is 75.69%. It recognized benign versus malignant in 89.80% of answers. Our target for the full five-category question is above 90%.
+
+“The most common specific mistake was calling lobular tissue ductal. We had only two lobular cases to learn from. We have prepared the original pictures for review and need more independent examples to test how well the model generalizes.” [Scorecard and error figure](../docs/SINGLE_MODEL_DUAL_STEP.md).
+
+## Earlier eight-category rehearsal
+
 ## A 90-second explanation
 
 “We are teaching a computer to recognize eight types of breast tumors from microscope pictures. BreakHis is our main dataset:7,909 pictures at four zoom levels. There are many pictures of the same provider case, so we keep related pictures together when dividing the data.

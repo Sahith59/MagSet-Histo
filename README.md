@@ -2,7 +2,9 @@
 
 BreakHis is our main dataset. We are building a breast histology classification project for Professor Dong's master's capstone, with a research paper as a later goal. TCGA follow-up is deferred.
 
-The system first decides **benign or malignant**. Benign is the final answer; malignant images proceed to a specialist that chooses ductal, lobular, mucinous or papillary carcinoma. We use the available 40×/100×/200×/400× images of each provider case and evaluate all 15 nonempty zoom combinations. [Task and architecture](docs/DUAL_STEP_SCOPE.md) · [Plain-language training guide](docs/TRAINING_STRATEGY.md).
+The capstone now requires **one model for both decisions**. A shared UNI2-h image reader describes the available 40×, 100×, 200× and 400× pictures. A single jointly trained classifier first decides benign or malignant. If malignant, that same classifier names the ductal, lobular, mucinous or papillary subtype. Its checked five-category validation accuracy is **75.69% (193/255)** and its benign/malignant accuracy is **89.80% (229/255)** on 17 cases under all 15 zoom combinations. The experiment produced no new test score. Greater than 90% final-five accuracy remains the goal. [Plain-language result, comparison and error counts](docs/SINGLE_MODEL_DUAL_STEP.md).
+
+## Earlier comparison studies
 
 The **matched three-way comparison is complete and independently checked**. On the same 16 test cases and all 15 zoom subsets, final-five accuracy / macro F1 is **67.50% / .375675 for Midnight P**, **56.67% / .348180 for CNN–Transformer**, and **59.17% / .304947 for Swin**. P’s separate benign/malignant accuracy is **94.58%**; that is not final-five accuracy. P leads the primary point estimates, while other endpoints differ and all paired intervals include zero. This is a small reused-development test, with no established clinical superiority or 95% final result. [Complete matched results](docs/MATCHED_THREE_WAY_RESULTS.md) · [Execution and preserved failures](docs/MATCHED_THREE_WAY_STATUS.md) · [Independent review](docs/reviews/MATCHED_THREE_WAY_RESULTS_REVIEW.md). Earlier scores below describe different experiments.
 

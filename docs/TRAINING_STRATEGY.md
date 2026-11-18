@@ -1,5 +1,9 @@
 # How the current BreakHis system learns
 
+The current single-model pilot uses one frozen UNI2-h image reader and a shared 32-unit neural classifier. The two decisions learn together from 49 training cases. On 17 validation cases the selected model gives 75.69% final-five accuracy. [Single-model training and results](SINGLE_MODEL_DUAL_STEP.md).
+
+## Earlier training strategies
+
 Updated November 17, 2026. The system first asks whether tissue is benign or malignant. A benign answer stops there; a malignant answer proceeds to ductal, lobular, mucinous or papillary carcinoma. These are **five final categories**, with no benign subtype expert. Only BreakHis supplies current fitting and evaluation images and labels; external pretrained reader weights are transfer learning. TCGA work remains deferred.
 
 ## Images, cases and available zooms
