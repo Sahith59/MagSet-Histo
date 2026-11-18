@@ -11,7 +11,7 @@ One frozen UNI2-h image reader and one five-category linear classifier made ever
 | Earlier reference, 49 cases with their groups held out | 484/735 (65.85%) | 673/735 (91.56%) | 0.4492 |
 | One output, same 49 cases with their groups held out | 469/735 (63.81%) | 657/735 (89.39%) | 0.5107 |
 
-The selected checkpoint was update 10. With all four zooms available it got 14/17 final diagnoses right. Each of the 17 cases contributes 15 answers to the main score. The two lobular cases belong to one conservative group and the papillary answers come from one case. In the group check, 42 independently fitted classifiers each predicted only the group omitted from their fit. Their predictions were never combined for a case. All training and validation images came from BreakHis. The 16 previously used follow-up cases produced zero new predictions.
+The selected checkpoint was update 10. With all four zooms available it got 14/17 final diagnoses right. Each of the 17 cases contributes 15 answers to the main score. The two lobular cases belong to one conservative group and the papillary answers come from one case. In the group check, 42 independently fitted classifiers each predicted only the group omitted from their fit. Their predictions were never combined for a case. All training and validation images came from BreakHis. This initial study excluded the 16 follow-up cases. A later frozen benchmark scored them separately. [Follow-up results](BREAKHIS_CAPSTONE_BENCHMARK.md).
 
 | True label | Original correct on validation | One output correct on validation | One output correct with training groups held out |
 | --- | ---: | ---: | ---: |

@@ -1,5 +1,7 @@
 ## Current checkpoint and next action
 
+The frozen single-output UNI2-h model scored **60.00% five-category and 79.17% binary** on the separate 16-case retrospective benchmark. The 17-case checkpoint-selection figures were 80.39% and 99.22%. All 240 follow-up decisions reproduced from 1,704 cached field descriptors. The combined >90% / >95% target remains open. [Benchmark, comparison and next step](docs/BREAKHIS_CAPSTONE_BENCHMARK.md).
+
 One frozen UNI2-h reader now gives five class scores through a single fitted output layer. The same scores answer both questions. On 17 validation cases it reached **80.39% five-category and 99.22% binary** (205 and 253 of 255 answers). On the separate 42-group training check it reached **63.81% and 89.39%** (469 and 657 of 735). Each case supplies 15 zoom conditions. These are development results. The combined target remains open. All 84 center crops and GPU descriptors reproduced. Obtain blinded expert observations on the full-field/crop pairs, then decide whether to test wider coverage or prioritize additional independent rare cases. [Verified experiment and next decision](docs/SINGLE_OUTPUT_CENTER.md).
 
 ## Earlier field-pooling checkpoint

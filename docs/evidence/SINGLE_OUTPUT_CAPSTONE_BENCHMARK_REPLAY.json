@@ -1,0 +1,12 @@
+{
+  "accepted": true,
+  "fields": 1704,
+  "distinct_case_zoom_descriptors": 64,
+  "case_view_max_absolute_error": 0.0,
+  "max_logit_error": 1.575307726486841e-06,
+  "reproduced_answers": 240,
+  "correct_final": 144,
+  "correct_binary": 190,
+  "audit_script_sha256": "6afd9060c8890625ed8852566b5bebc8400b93a558d6f3ad8f3d8e614836ed57",
+  "benchmark_sha256": "14c952d740ce585f053fa6c49b50c876988b7efa8d174836d743fcfb2c9f2869"
+}

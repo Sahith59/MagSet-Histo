@@ -1,0 +1,461 @@
+{
+  "study": "breakhis-single-output-retrospective-v1",
+  "job": "4989151",
+  "source": "6c2b62a4738cbf41789ab306b5d6d2bb9a1776e9",
+  "archive_sha256": "a09ba8d2fda3d1bda81b1f93d3f75224db34e86cb9664c1db41e6094649047d8",
+  "plan_sha256": "799b069f893a1e8e31935f36fb589e0a1bc3eac0e5fb58365214aea6e1f862e6",
+  "checkpoint_sha256": "ddc648d1baf210282e4466c7c837d72b7b627b5282c252163b0f944f22c25144",
+  "evidence_sha256": "766ac084ea1cd86945a85b099cf1d26e5bd215186b304a515ab3396a7f074526",
+  "case_views_sha256": "ff1046f22a993bccaea03975388714be77960056735c7c10780e0fcfd24cc992",
+  "audit_sha256": "cec9c0e13f2673046b41e6502154ceb9bed047f44086afbe04d57df562ef0812",
+  "labels": [
+    "benign",
+    "ductal",
+    "lobular",
+    "mucinous",
+    "papillary"
+  ],
+  "new_fits": 0,
+  "roles": {
+    "train": {
+      "cases": 49,
+      "groups": 42,
+      "class_cases": [
+        14,
+        24,
+        2,
+        5,
+        4
+      ],
+      "fields": 4621
+    },
+    "validation": {
+      "cases": 17,
+      "groups": 15,
+      "class_cases": [
+        5,
+        7,
+        2,
+        2,
+        1
+      ],
+      "fields": 1584
+    },
+    "test": {
+      "cases": 16,
+      "groups": 13,
+      "class_cases": [
+        5,
+        7,
+        1,
+        2,
+        1
+      ],
+      "fields": 1704
+    }
+  },
+  "validation": {
+    "cases": 17,
+    "events": 255,
+    "correct_final": 205,
+    "correct_binary": 253,
+    "accuracy": 0.803921568627451,
+    "binary_accuracy": 0.9921568627450981,
+    "mean_subset_macro_f1": 0.6336945276945277,
+    "all_four_correct": 14,
+    "all_four_accuracy": 0.8235294117647058,
+    "worst_subset_accuracy": 0.6470588235294118,
+    "worst_subset_macro_f1": 0.47619047619047616,
+    "class_recall": [
+      0.9733333333333334,
+      0.8,
+      0.5666666666666667,
+      1.0,
+      0.06666666666666667
+    ],
+    "aggregate_confusion_true_rows": [
+      [
+        73,
+        0,
+        0,
+        0,
+        2
+      ],
+      [
+        0,
+        84,
+        15,
+        6,
+        0
+      ],
+      [
+        0,
+        13,
+        17,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        30,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        14,
+        1
+      ]
+    ],
+    "routing_errors": 2,
+    "subtype_errors_after_correct_route": 48
+  },
+  "group_check": {
+    "cases": 49,
+    "events": 735,
+    "correct_final": 469,
+    "correct_binary": 657,
+    "accuracy": 0.638095238095238,
+    "binary_accuracy": 0.8938775510204081,
+    "mean_subset_macro_f1": 0.5106806055574866,
+    "all_four_correct": 32,
+    "all_four_accuracy": 0.6530612244897959,
+    "worst_subset_accuracy": 0.5918367346938775,
+    "worst_subset_macro_f1": 0.4369082125603865,
+    "class_recall": [
+      0.6666666666666666,
+      0.6666666666666666,
+      0.8,
+      0.7333333333333333,
+      0.16666666666666666
+    ],
+    "aggregate_confusion_true_rows": [
+      [
+        140,
+        16,
+        13,
+        7,
+        34
+      ],
+      [
+        0,
+        240,
+        51,
+        61,
+        8
+      ],
+      [
+        0,
+        6,
+        24,
+        0,
+        0
+      ],
+      [
+        0,
+        14,
+        1,
+        55,
+        5
+      ],
+      [
+        8,
+        14,
+        0,
+        28,
+        10
+      ]
+    ],
+    "routing_errors": 78,
+    "subtype_errors_after_correct_route": 188
+  },
+  "matched_follow_up": {
+    "single_output": {
+      "cases": 16,
+      "events": 240,
+      "correct_final": 144,
+      "correct_binary": 190,
+      "accuracy": 0.6,
+      "binary_accuracy": 0.7916666666666666,
+      "mean_subset_macro_f1": 0.4731265771265771,
+      "all_four_correct": 10,
+      "all_four_accuracy": 0.625,
+      "worst_subset_accuracy": 0.4375,
+      "worst_subset_macro_f1": 0.27301587301587305,
+      "class_recall": [
+        0.3333333333333333,
+        0.8476190476190476,
+        0.2,
+        0.43333333333333335,
+        0.9333333333333333
+      ],
+      "aggregate_confusion_true_rows": [
+        [
+          25,
+          0,
+          0,
+          36,
+          14
+        ],
+        [
+          0,
+          89,
+          0,
+          16,
+          0
+        ],
+        [
+          0,
+          12,
+          3,
+          0,
+          0
+        ],
+        [
+          0,
+          17,
+          0,
+          13,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0,
+          14
+        ]
+      ],
+      "routing_errors": 50,
+      "subtype_errors_after_correct_route": 46
+    },
+    "midnight_p": {
+      "cases": 16,
+      "events": 240,
+      "correct_final": 162,
+      "correct_binary": 227,
+      "accuracy": 0.675,
+      "binary_accuracy": 0.9458333333333333,
+      "mean_subset_macro_f1": 0.375675154910449,
+      "all_four_correct": 11,
+      "all_four_accuracy": 0.6875,
+      "worst_subset_accuracy": 0.375,
+      "worst_subset_macro_f1": 0.22857142857142856,
+      "class_recall": [
+        0.8933333333333333,
+        0.8476190476190476,
+        0.0,
+        0.2,
+        0.0
+      ],
+      "aggregate_confusion_true_rows": [
+        [
+          67,
+          0,
+          0,
+          8,
+          0
+        ],
+        [
+          0,
+          89,
+          0,
+          9,
+          7
+        ],
+        [
+          0,
+          15,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          21,
+          0,
+          6,
+          0
+        ],
+        [
+          2,
+          12,
+          0,
+          1,
+          0
+        ]
+      ],
+      "routing_errors": 13,
+      "subtype_errors_after_correct_route": 65
+    },
+    "cnn": {
+      "cases": 16,
+      "events": 240,
+      "correct_final": 136,
+      "correct_binary": 207,
+      "accuracy": 0.5666666666666667,
+      "binary_accuracy": 0.8625,
+      "mean_subset_macro_f1": 0.3481798941798942,
+      "all_four_correct": 9,
+      "all_four_accuracy": 0.5625,
+      "worst_subset_accuracy": 0.5,
+      "worst_subset_macro_f1": 0.24500000000000002,
+      "class_recall": [
+        0.6266666666666667,
+        0.7523809523809524,
+        0.0,
+        0.3333333333333333,
+        0.0
+      ],
+      "aggregate_confusion_true_rows": [
+        [
+          47,
+          3,
+          0,
+          25,
+          0
+        ],
+        [
+          1,
+          79,
+          16,
+          0,
+          9
+        ],
+        [
+          0,
+          14,
+          0,
+          1,
+          0
+        ],
+        [
+          4,
+          6,
+          0,
+          10,
+          10
+        ],
+        [
+          0,
+          15,
+          0,
+          0,
+          0
+        ]
+      ],
+      "routing_errors": 33,
+      "subtype_errors_after_correct_route": 71
+    },
+    "swin": {
+      "cases": 16,
+      "events": 240,
+      "correct_final": 142,
+      "correct_binary": 198,
+      "accuracy": 0.5916666666666667,
+      "binary_accuracy": 0.825,
+      "mean_subset_macro_f1": 0.30494677871148457,
+      "all_four_correct": 9,
+      "all_four_accuracy": 0.5625,
+      "worst_subset_accuracy": 0.5625,
+      "worst_subset_macro_f1": 0.27899159663865547,
+      "class_recall": [
+        0.4533333333333333,
+        1.0,
+        0.0,
+        0.1,
+        0.0
+      ],
+      "aggregate_confusion_true_rows": [
+        [
+          34,
+          1,
+          0,
+          40,
+          0
+        ],
+        [
+          0,
+          105,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          15,
+          0
+        ],
+        [
+          1,
+          23,
+          0,
+          3,
+          3
+        ],
+        [
+          0,
+          15,
+          0,
+          0,
+          0
+        ]
+      ],
+      "routing_errors": 42,
+      "subtype_errors_after_correct_route": 56
+    }
+  },
+  "group_bootstrap": {
+    "groups": 13,
+    "draws": 10000,
+    "seed": 20261117,
+    "final_accuracy_interval": [
+      0.40784313725490196,
+      0.8333333333333334
+    ],
+    "binary_accuracy_interval": [
+      0.55,
+      1.0
+    ],
+    "paired_difference_single_output_minus": {
+      "midnight_p": {
+        "final": [
+          -0.34509803921568627,
+          0.2292067307692302
+        ],
+        "binary": [
+          -0.36,
+          0.03749999999999998
+        ]
+      },
+      "cnn": {
+        "final": [
+          -0.2102564102564103,
+          0.30770833333333314
+        ],
+        "binary": [
+          -0.22745098039215683,
+          0.040000000000000036
+        ]
+      },
+      "swin": {
+        "final": [
+          -0.22671428571428567,
+          0.20667543859649115
+        ],
+        "binary": [
+          -0.20952380952380956,
+          0.06315789473684208
+        ]
+      }
+    }
+  },
+  "numpy_replay_max_abs": 1.5753077269309301e-06,
+  "four_zoom_binary_correct": 13,
+  "both_targets_met": false
+}

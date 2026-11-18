@@ -1,5 +1,7 @@
 ## Current single-model capstone requirement
 
+The frozen single-output UNI2-h model scored **60.00% five-category and 79.17% binary** on the separate 16-case retrospective benchmark. The 17-case checkpoint-selection figures were 80.39% and 99.22%. All 240 follow-up decisions reproduced from 1,704 cached field descriptors. The combined >90% / >95% target remains open. [Benchmark, comparison and next step](docs/BREAKHIS_CAPSTONE_BENCHMARK.md).
+
 Use one frozen UNI2-h reader with one five-category trainable output for the current user requirement. The same five scores determine both decisions. Completed validation and training-group scores are 80.39% / 99.22% and 63.81% / 89.39% respectively (five-category / binary). Qualified expert review of the blinded fields is pending. Keep the prior architectures as historical controls. [Current experiment and next step](docs/SINGLE_OUTPUT_CENTER.md).
 
 ## Earlier shared-classifier requirement
