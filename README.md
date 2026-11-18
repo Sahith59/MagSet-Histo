@@ -91,18 +91,20 @@ The completed [case-error audit](docs/BREAKHIS_SPECIALIST_ERROR_AUDIT.md) traces
 
 ## Immediate deliverable
 
-Finish the five-category capstone report, presentation and demonstration using the complete accepted scorecard and representative errors. The working materials target is November 17–18, with presentation around November 20; the exact date remains unconfirmed. Preserve every negative comparison and state what the model can and cannot answer. [Next tasks](docs/NEXT_STEPS.md) · [Project report](paper/breakhis-five-class-report.md).
+The three-page report is ready for the capstone presentation. The detailed project record includes earlier experiments and representative errors. [Next tasks](docs/NEXT_STEPS.md) · [Detailed project report](paper/breakhis-five-class-report.md)
 
 The original six supplied references remain unchanged and excluded from public source. Raw data, weights, provider identifiers, private cluster operations and conversation memory are also excluded. Source/configuration revisions, audits and complete aggregate evidence are recorded for reproducibility.
 
 ## Run checks
 
+Use a Python 3.11 virtual environment to match the versions used by GitHub Actions.
+
 ```bash
-python3 -m pip install numpy==1.26.4 scipy==1.15.2 scikit-learn==1.6.1 Pillow==11.1.0
+python3 -m pip install numpy==1.26.4 scipy==1.15.2 scikit-learn==1.6.1 Pillow==11.1.0 pandas==2.2.3 nbformat==5.10.4
 python3 -m unittest discover -s tests -v
 ```
 
-The full neural checks additionally need torch==2.6.0 and torchvision==0.21.0. The latest linear source passed all 415 full pinned neural tests, including the metric and readout checks. The real raw-image replay uses the existing pinned GPU environment, original dataset, pretrained encoder and saved baseline head; these artifacts are not bundled in Git. Submit heavy work through SLURM using [the cluster guide](docs/CLUSTER_SETUP.md). The replay entry point is `python -m magset.breakhis_predict --help`; its validation-only guard excludes fitting and outer-role inputs.
+The full neural checks also use torch==2.6.0, torchvision==0.21.0 and safetensors==0.5.3. Replaying an experiment from raw images requires the original dataset, the appropriate pretrained encoder and the saved classifier weights. The historical baseline replay command is `python -m magset.breakhis_predict --help`. [Cluster setup](docs/CLUSTER_SETUP.md) · [Selected UNI2-h training and verification](docs/SINGLE_MODEL_DUAL_STEP.md)
 
 ## Evidence and research record
 
