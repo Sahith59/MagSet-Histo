@@ -2,11 +2,11 @@
 
 ## Numbers for the capstone
 
-The full matched comparison now includes follow-up scores for all nine models. On the same 16 case folders, the original hierarchical UNI2-h network reached **82.92% five-category / 96.25% binary** and the single five-probability output scored **60.00% / 79.17%**. Changing only the single-output training weights improved the training-group check slightly but lowered validation five-category accuracy to 77.25%. The candidate was kept out of the 16-case comparison. [All models and original notebooks side by side](BREAKHIS_MODEL_COMPARISON.md).
+Lead with the original case-first UNI2-h network for the single-model, dual-step task. On 16 BreakHis case folders evaluated under 15 zoom combinations each, it scored **199/240 (82.92%) five-category** and **231/240 (96.25%) benign/malignant**. The later single-output comparison scored **60.00% and 79.17%** on the same cases. The decision to return to the earlier architecture followed this retrospective comparison. Performance on new cases remains unknown. [All matched comparisons](BREAKHIS_MODEL_COMPARISON.md).
 
-**The frozen single model reached 60.00% five-category accuracy and 79.17% benign/malignant accuracy on the retrospective 16-case benchmark.** All 240 decisions were reproduced. The validation result used to select this checkpoint was 80.39% and 99.22%. The 16-case result is the figure to use for the separate follow-up. A fresh-cohort final accuracy is still unknown.
+**The single five-probability output model reached 60.00% five-category accuracy and 79.17% benign/malignant accuracy on the retrospective 16-case benchmark.** All 240 decisions were reproduced. The validation result used to select this checkpoint was 80.39% and 99.22%. The 16-case result is the figure to use for the separate follow-up. A fresh-cohort final accuracy is still unknown.
 
-| Evaluation of UNI2-h | What was kept out of fitting? | Correct five-category answers | Correct binary answers | Macro F1 |
+| Evaluation of the single five-probability output model | What was kept out of fitting? | Correct five-category answers | Correct binary answers | Macro F1 |
 | --- | --- | ---: | ---: | ---: |
 | Validation during model development | 17 cases used to choose checkpoint 10 | 205/255 (80.39%) | 253/255 (99.22%) | 0.6337 |
 | Group check within training | Each of 42 groups left out once, covering 49 cases | 469/735 (63.81%) | 657/735 (89.39%) | 0.5107 |

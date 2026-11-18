@@ -1,6 +1,6 @@
 # Capstone presentation outline
 
-**Current opening for Professor Dong.** One model reads all available BreakHis zooms and makes both decisions. Its selected five-category validation accuracy is 193/255 (75.69%) across 17 cases, and its binary accuracy is 229/255 (89.80%). Bring the class counts and comparison on those same cases. [Current presentation table and evidence](../docs/SINGLE_MODEL_DUAL_STEP.md).
+**Opening for Professor Dong.** “One UNI2-h network first decides whether the tissue is benign or malignant. If it is malignant, the same network names the cancer type. On our 16-case internal benchmark, it got the exact diagnosis right in 82.92% of zoom conditions and the benign/malignant decision right in 96.25%. Each case was read 15 ways. We are now testing how to recognize the less common cancers more reliably.” [Matched results](../docs/BREAKHIS_MODEL_COMPARISON.md).
 
 ## Historical outline
 

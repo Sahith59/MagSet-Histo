@@ -1,8 +1,6 @@
 # BreakHis: confirmed two-step, five-category target
 
-The current capstone uses one reader and one fitted five-category output. Add the four malignant scores after converting them to fractions to decide benign or malignant, then choose the leading malignant type when appropriate. Both accuracy targets are measured at the same checkpoint. [One-output contract and verified result](SINGLE_OUTPUT_CENTER.md).
-
-The earlier shared-output comparison required **one jointly fitted classifier** to make both decisions and one shared image reader for every zoom. A malignant answer from the first decision activates the four-way choice within the same network. The final-five accuracy target is greater than 90%, with 95% as a stretch objective. [Implemented architecture, scoring and validation result](SINGLE_MODEL_DUAL_STEP.md).
+The capstone focus has returned to the earlier case-first UNI2-h model at the user's request. It uses one frozen reader and one jointly trained classifier. First it predicts benign or malignant. If it predicts malignant, four scores in the same network identify the cancer type. The goals are above 90% five-category and above 95% binary accuracy at the same checkpoint. The single five-probability output remains a completed architecture comparison. [Matched scorecard](BREAKHIS_MODEL_COMPARISON.md).
 
 November 15, 2026. **Latest user correction supersedes the earlier eight-type hierarchy choice:** the final labels are one pooled benign category and four malignant subtypes. Step1 predicts benign/malignant; benign stops, malignant proceeds to Step2. There is no benign subtype classifier.
 

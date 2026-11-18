@@ -2,7 +2,7 @@
 
 ## What to report
 
-On the same 16-case benchmark, **the requested one-output model scored 60.00% five-category and 79.17% binary**. The earlier case-first UNI2-h model reached **82.92% five-category and 96.25% binary**. That earlier system uses one reader and one neural network with a dedicated binary score and four conditional subtype scores. The current single-output system instead produces one five-class probability distribution and derives the binary answer by adding its four malignant probabilities. The scores belong to different checkpoints with different decision rules. Both complete the same task.
+For the one-network, dual-step capstone, lead with the earlier case-first UNI2-h result of **82.92% five-category and 96.25% binary** (199 and 231 correct out of 240 answers). On the same 16-case retrospective benchmark, the later single five-probability output scored **60.00% and 79.17%**. It derives binary by summing four cancer probabilities. The earlier architecture learns the binary and subtype decisions together inside one network. The change in project priority came after these results were known. Both checkpoints and their original validation scores remain in the comparison. [Development of the earlier model](BREAKHIS_SUBTYPE_INITIALIZATION.md).
 
 ## What the two sets of cases mean
 
@@ -12,7 +12,7 @@ All rows below receive the original pictures for the same case under the same av
 
 | Case model | 17-case validation: five | 17-case validation: binary | 16-case follow-up: five | 16-case follow-up: binary |
 | --- | ---: | ---: | ---: | ---: |
-| Current UNI2-h, one five-category output | 205/255 (80.39%) | 253/255 (99.22%) | 144/240 (60.00%) | 190/240 (79.17%) |
+| Later UNI2-h, one five-category output | 205/255 (80.39%) | 253/255 (99.22%) | 144/240 (60.00%) | 190/240 (79.17%) |
 | Earlier UNI2-h, case features then classifier | 193/255 (75.69%) | 229/255 (89.80%) | 199/240 (82.92%) | 231/240 (96.25%) |
 | Earlier UNI2-h, classifier on each field first | 193/255 (75.69%) | 231/255 (90.59%) | 196/240 (81.67%) | 232/240 (96.67%) |
 | CNN–Transformer, case adaptation | 151/255 (59.22%) | 198/255 (77.65%) | 136/240 (56.67%) | 207/240 (86.25%) |
@@ -22,13 +22,13 @@ All rows below receive the original pictures for the same case under the same av
 | UNI2-h, two linear SVC classifiers | 195/255 (76.47%) | 247/255 (96.86%) | 179/240 (74.58%) | 221/240 (92.08%) |
 | UNI2-h, two nonlinear SVC classifiers | 195/255 (76.47%) | 253/255 (99.22%) | 166/240 (69.17%) | 221/240 (92.08%) |
 
-The two historically highest five-category point estimates are tied at 199/240. One belongs to the earlier single-network case-first classifier, the other to a two-reader system with a different binary score. No matched row clears both requested thresholds. At this denominator that would require at least 217/240 final and 229/240 binary answers correct from the same model. For the current single-output system, all four zooms together gave one prediction per folder: 10/16 exact diagnoses and 13/16 correct binary decisions.
+The two historically highest five-category point estimates are tied at 199/240. One belongs to the earlier single-network case-first classifier, the other to a two-reader system with a different binary score. No matched row clears both requested thresholds. At this denominator that would require at least 217/240 final and 229/240 binary answers correct from the same model. For the single-output comparison, all four zooms together gave one prediction per folder: 10/16 exact diagnoses and 13/16 correct binary decisions.
 
 ### Which parts of the models differ?
 
 | Case model | Reader and input handling | How it gives the two answers |
 | --- | --- | --- |
-| Current UNI2-h | Frozen pathology reader; center crop per image; average within each zoom, then combine available zooms | One linear layer yields five probabilities. Add the four malignant probabilities to decide binary, then choose the highest malignant type when appropriate. |
+| Single-output UNI2-h comparison | Frozen pathology reader; center crop per image; average within each zoom, then combine available zooms | One linear layer yields five probabilities. Add the four malignant probabilities to decide binary, then choose the highest malignant type when appropriate. |
 | Earlier UNI2-h pair | Same frozen center features. One model applies a learned nonlinear layer after pooling case features; the field-first model applies it before pooling field evidence. | One jointly fitted network has a learned binary decision and four conditional subtype scores. Both versions use the same number of parameters. |
 | CNN–Transformer and Swin-Tiny adaptations | CNN uses EfficientNetV2-B0 plus four Transformer blocks. Swin uses shifted-window attention. Both use three crops per original field; training uses the same case split. | Both were fitted for a binary and a four-malignant-type decision. Field-level joint probabilities are averaged within zooms, then across the available zooms, for one case answer. |
 | Midnight P, hybrid and SVC controls | P uses three-crop Midnight features and similarity rules. The hybrid adds a UNI2-h reader for subtype. The two SVC alternatives use a UNI2-h reader and separate linear or nonlinear fitted classifiers. | Each ultimately chooses benign or one of four malignancies. These are useful controls for the same prediction task with different decision designs. |

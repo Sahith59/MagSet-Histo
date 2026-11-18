@@ -1,6 +1,8 @@
 # MAGSET-Histo: current BreakHis project brief
 
-Updated November 16, 2026. The immediate deliverable is the BreakHis capstone for Professor Dong. **94–95% final accuracy is a goal, not an achieved result.** TCGA follow-up and novel-paper work remain deferred.
+For the current BreakHis dual-step capstone, the original case-first UNI2-h model scored 82.92% five-category and 96.25% binary on the 16-case internal benchmark. The newer subtype-initialization experiment improved one validation comparison but lost five-category accuracy at all three additional training seeds. [Professor brief and matched comparison](evidence/PROFESSOR_BRIEF.md).
+
+## November 16 project checkpoint
 
 | Question | Current answer |
 | --- | --- |

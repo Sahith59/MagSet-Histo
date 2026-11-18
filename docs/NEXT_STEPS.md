@@ -2,7 +2,9 @@
 
 ## Current checkpoint and next action
 
-The two missing historical benchmark rows and the single-output training-weight test are complete. Keep the frozen benchmarks, arrange blinded review of benign and subtype errors on the development cases, and use independent cases for eventual confirmation. [Results and next experiment](BREAKHIS_MODEL_COMPARISON.md).
+The revised starting weights improved five-category accuracy on the same 17 validation cases from **193/255 (75.69%) to 202/255 (79.22%)**. Binary accuracy rose from **229/255 (89.80%) to 232/255 (90.98%)**. With three more random starting seeds, the revision lost five-category accuracy on the training-group check each time. Retain the original dual-step checkpoint. The revision has no 16-case follow-up score. Use the prepared blinded field review for the papillary and lobular cases and seek independently grouped examples for confirmation. [Experiment and results](BREAKHIS_SUBTYPE_INITIALIZATION.md).
+
+## Earlier single-output checkpoint
 
 The frozen single-output UNI2-h model scored **60.00% five-category and 79.17% binary** on the separate 16-case retrospective benchmark. The 17-case checkpoint-selection figures were 80.39% and 99.22%. All 240 follow-up decisions reproduced from 1,704 cached field descriptors. The combined >90% / >95% target remains open. [Benchmark, comparison and next step](BREAKHIS_CAPSTONE_BENCHMARK.md).
 

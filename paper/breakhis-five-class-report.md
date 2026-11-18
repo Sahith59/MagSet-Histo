@@ -2,11 +2,9 @@
 
 ## Current single-model experiment
 
-The full matched comparison now includes follow-up scores for all nine models. On the same 16 case folders, the original hierarchical UNI2-h network reached **82.92% five-category / 96.25% binary** and the single five-probability output scored **60.00% / 79.17%**. Changing only the single-output training weights improved the training-group check slightly but lowered validation five-category accuracy to 77.25%. The candidate was kept out of the 16-case comparison. [All models and original notebooks side by side](../docs/BREAKHIS_MODEL_COMPARISON.md).
+Lead with the original case-first UNI2-h network for the single-model, dual-step task. On 16 BreakHis case folders evaluated under 15 zoom combinations each, it scored **199/240 (82.92%) five-category** and **231/240 (96.25%) benign/malignant**. The later single-output comparison scored **60.00% and 79.17%** on the same cases. The decision to return to the earlier architecture followed this retrospective comparison. Performance on new cases remains unknown.
 
-The frozen single-output UNI2-h model scored **60.00% five-category and 79.17% binary** on the separate 16-case retrospective benchmark. The 17-case checkpoint-selection figures were 80.39% and 99.22%. All 240 follow-up decisions reproduced from 1,704 cached field descriptors. The combined >90% / >95% target remains open. [Benchmark, comparison and next step](../docs/BREAKHIS_CAPSTONE_BENCHMARK.md).
-
-One frozen UNI2-h reader now gives five class scores through a single fitted output layer. The same scores answer both questions. On 17 validation cases it reached **80.39% five-category and 99.22% binary** (205 and 253 of 255 answers). On the separate 42-group training check it reached **63.81% and 89.39%** (469 and 657 of 735). Each case supplies 15 zoom conditions. These are development results. The combined target remains open. [Detailed method, subtype counts and evidence](../docs/SINGLE_OUTPUT_CENTER.md).
+The revised starting weights improved five-category accuracy on the same 17 validation cases from **193/255 (75.69%) to 202/255 (79.22%)**. Binary accuracy rose from **229/255 (89.80%) to 232/255 (90.98%)**. With three more random starting seeds, the revision lost five-category accuracy on the training-group check each time. Retain the original dual-step checkpoint. The revision has no 16-case follow-up score. [Paired results and protocol](../docs/BREAKHIS_SUBTYPE_INITIALIZATION.md).
 
 ## Earlier single-reader comparisons
 
