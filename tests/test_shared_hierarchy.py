@@ -1,4 +1,8 @@
 import unittest
+from importlib.util import find_spec
+
+if find_spec("torch") is None:
+    raise unittest.SkipTest("These tests require PyTorch")
 
 import torch
 

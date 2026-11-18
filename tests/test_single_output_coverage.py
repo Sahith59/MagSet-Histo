@@ -1,6 +1,10 @@
 import unittest
+from importlib.util import find_spec
 
 import numpy as np
+if find_spec("torch") is None:
+    raise unittest.SkipTest("These tests require PyTorch")
+
 import torch
 
 from magset.shared_hierarchy import zoom_masks
