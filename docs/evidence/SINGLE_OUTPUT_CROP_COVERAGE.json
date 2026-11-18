@@ -1,0 +1,19 @@
+{
+  "fields": 84,
+  "boxes": 21,
+  "exact_center_pixel_matches": 84,
+  "image_coordinates": "Bilinear short-side 224 resize, round-to-even center offset",
+  "proxy": "8-bit RGB max minus min >= 20 and min <= 220 on the resized full field",
+  "outside_area_fraction_range": [
+    0.3411764705882353,
+    0.3469387755102041
+  ],
+  "outside_proxy_fraction_per_field": {
+    "min": 0.19788510663577497,
+    "q1": 0.31006446369054746,
+    "median": 0.34031814776178326,
+    "q3": 0.34932837563427044,
+    "max": 0.7624245239201115
+  },
+  "interpretation": "Color can reflect tissue or artifacts. These measurements cannot identify lost diagnostic cues."
+}
