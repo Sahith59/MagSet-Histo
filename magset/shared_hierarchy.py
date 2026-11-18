@@ -28,7 +28,7 @@ class SharedHierarchy(nn.Module):
             nn.Linear(hidden, 5),
         )
 
-    def forward(self, case_views, masks):
+    def classifier_inputs(self, case_views, masks):
         if case_views.ndim != 3 or case_views.shape[1:] != self.mean.shape:
             raise ValueError("Case descriptors must match the four canonical zooms")
         if masks.dtype != torch.bool or masks.ndim != 2 or masks.shape[1] != 4 or not masks.any(dim=1).all() or len(masks) == 0:
@@ -40,7 +40,10 @@ class SharedHierarchy(nn.Module):
             raise ValueError("A selected view has nonfinite features")
         pooled = F.normalize(pooled, dim=-1) * math.sqrt(self.mean.shape[-1])
         flags = masks.to(pooled.dtype).expand(len(case_views), -1, -1)
-        return self.classifier(torch.cat((pooled, flags), dim=-1))
+        return torch.cat((pooled, flags), dim=-1)
+
+    def forward(self, case_views, masks):
+        return self.classifier(self.classifier_inputs(case_views, masks))
 
 
 def final_labels(scores):
