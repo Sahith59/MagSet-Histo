@@ -1,0 +1,154 @@
+{
+  "reader_revision": "d517a8dd47902dd7c308b3c36f63bce47e7b9a43",
+  "weights_sha256": "6e077eda234bebc595868d918d3458d9dd32a050199b0ff04443b2f46a0a3b1e",
+  "audit_sha256": "cec9c0e13f2673046b41e6502154ceb9bed047f44086afbe04d57df562ef0812",
+  "manifest_sha256": "958893f923a745220fac66f19656bcdbfb38996f70ef8044e1349619f4102e31",
+  "case_views_sha256": "ff1046f22a993bccaea03975388714be77960056735c7c10780e0fcfd24cc992",
+  "code_sha": "553f8648de20b20b2e7af74b0441e85c0bbd0798",
+  "source_archive_sha256": "94ac96a03b1633e78a73c87d23df6f82a3f238f30b3303bcc5792bdc2bb82991",
+  "development_views_sha256": "af3597016c0987d42d9853ee30e5a4ea0a78dae84f1d6294f1df83caee64b91e",
+  "followup_fields": 0,
+  "fields": 6205,
+  "image_forwards": 18615,
+  "train_cases": 49,
+  "validation_cases": 17,
+  "center_max_abs_error": 0.0,
+  "slurm_job": "4991037",
+  "shards": {
+    "40": {
+      "zoom": 40,
+      "fields": 1613,
+      "image_forwards": 4839,
+      "center_max_abs_error": 0.0,
+      "array_sha256": "ac6540bd6af7a62adb99d56eaf038734032b9e7edbc09af394aa191a1b02300d",
+      "center_source": {
+        "npz_sha256": "f446558b3e3da679d827e6064d60029cd99e008fcb4eafd4a7142a7e7493e105",
+        "json_sha256": "db9beeb50b2ecdd173d22d9113a9406adbf08269c066a568fbf9cff7e46b2108",
+        "images": 1995
+      },
+      "slurm_job": "4991034",
+      "gpu": "NVIDIA A40",
+      "versions": {
+        "torch": "2.6.0+cu124",
+        "torchvision": "0.21.0+cu124",
+        "timm": "1.0.15",
+        "Pillow": "11.1.0",
+        "safetensors": "0.5.3"
+      },
+      "reader_revision": "d517a8dd47902dd7c308b3c36f63bce47e7b9a43",
+      "weights_sha256": "6e077eda234bebc595868d918d3458d9dd32a050199b0ff04443b2f46a0a3b1e",
+      "encoder_config_sha256": "6595d4d0460d076d0c2bc782818304bc4f47865441af813abf6469f7ca3da74a",
+      "code_sha": "553f8648de20b20b2e7af74b0441e85c0bbd0798",
+      "source_archive_sha256": "94ac96a03b1633e78a73c87d23df6f82a3f238f30b3303bcc5792bdc2bb82991",
+      "receipt_sha256": "c15eb8cac85e40e36e037f588e72494bbcf19d81f6d97d2d6435f5b2ce97181b"
+    },
+    "100": {
+      "zoom": 100,
+      "fields": 1628,
+      "image_forwards": 4884,
+      "center_max_abs_error": 0.0,
+      "array_sha256": "fc453c25ddfd196ed600eff4db5e8fbf21e4daffd7e34ae7a1ebdd98898dc585",
+      "center_source": {
+        "npz_sha256": "61c12947e90d7856a17ee017d20df92b25f20744799dac69e2bffd807a63169e",
+        "json_sha256": "d664732a4973c75e9e4b225393a361badce1d68efe59e50392ad984e4473dabb",
+        "images": 2081
+      },
+      "slurm_job": "4991035",
+      "gpu": "NVIDIA A40",
+      "versions": {
+        "torch": "2.6.0+cu124",
+        "torchvision": "0.21.0+cu124",
+        "timm": "1.0.15",
+        "Pillow": "11.1.0",
+        "safetensors": "0.5.3"
+      },
+      "reader_revision": "d517a8dd47902dd7c308b3c36f63bce47e7b9a43",
+      "weights_sha256": "6e077eda234bebc595868d918d3458d9dd32a050199b0ff04443b2f46a0a3b1e",
+      "encoder_config_sha256": "6595d4d0460d076d0c2bc782818304bc4f47865441af813abf6469f7ca3da74a",
+      "code_sha": "553f8648de20b20b2e7af74b0441e85c0bbd0798",
+      "source_archive_sha256": "94ac96a03b1633e78a73c87d23df6f82a3f238f30b3303bcc5792bdc2bb82991",
+      "receipt_sha256": "ab627f17200c65747dadac1a76fb9f860a9efab6a6f0c3d7fa6e89e1eb3a23c4"
+    },
+    "200": {
+      "zoom": 200,
+      "fields": 1555,
+      "image_forwards": 4665,
+      "center_max_abs_error": 0.0,
+      "array_sha256": "3ca3adeccf72be263e45096e6f91f37c26cdfc2aaef18d576a6f272298be3ada",
+      "center_source": {
+        "npz_sha256": "514c1e8aa497a44d8d0413a2ccfa308895d56439208a45ff2a09b9b5405839ee",
+        "json_sha256": "ca1421f44fbea77be5e8ddea640e140d743dbde350a417c9b4bd6ac622706b19",
+        "images": 2013
+      },
+      "slurm_job": "4991036",
+      "gpu": "NVIDIA A40",
+      "versions": {
+        "torch": "2.6.0+cu124",
+        "torchvision": "0.21.0+cu124",
+        "timm": "1.0.15",
+        "Pillow": "11.1.0",
+        "safetensors": "0.5.3"
+      },
+      "reader_revision": "d517a8dd47902dd7c308b3c36f63bce47e7b9a43",
+      "weights_sha256": "6e077eda234bebc595868d918d3458d9dd32a050199b0ff04443b2f46a0a3b1e",
+      "encoder_config_sha256": "6595d4d0460d076d0c2bc782818304bc4f47865441af813abf6469f7ca3da74a",
+      "code_sha": "553f8648de20b20b2e7af74b0441e85c0bbd0798",
+      "source_archive_sha256": "94ac96a03b1633e78a73c87d23df6f82a3f238f30b3303bcc5792bdc2bb82991",
+      "receipt_sha256": "1cb20f4293786b9c7e75df19cbfa111966196adb82d3f2ddb13f7377d28243f0"
+    },
+    "400": {
+      "zoom": 400,
+      "fields": 1409,
+      "image_forwards": 4227,
+      "center_max_abs_error": 0.0,
+      "array_sha256": "41224a05084302896a15f605f7cf792808a082659c281ea590312723801d544a",
+      "center_source": {
+        "npz_sha256": "c1f7e6503b376b3fe8546dc1d26fb2ac1e9c263f6703c84dd85a6f03e37a574d",
+        "json_sha256": "b652d3fde5832d2b2f9ed66f27b0ade1316661de8ab262772614c16a9119a41c",
+        "images": 1820
+      },
+      "slurm_job": "4991033",
+      "gpu": "NVIDIA A40",
+      "versions": {
+        "torch": "2.6.0+cu124",
+        "torchvision": "0.21.0+cu124",
+        "timm": "1.0.15",
+        "Pillow": "11.1.0",
+        "safetensors": "0.5.3"
+      },
+      "reader_revision": "d517a8dd47902dd7c308b3c36f63bce47e7b9a43",
+      "weights_sha256": "6e077eda234bebc595868d918d3458d9dd32a050199b0ff04443b2f46a0a3b1e",
+      "encoder_config_sha256": "6595d4d0460d076d0c2bc782818304bc4f47865441af813abf6469f7ca3da74a",
+      "code_sha": "553f8648de20b20b2e7af74b0441e85c0bbd0798",
+      "source_archive_sha256": "94ac96a03b1633e78a73c87d23df6f82a3f238f30b3303bcc5792bdc2bb82991",
+      "receipt_sha256": "ca74e8dd62882c81fac9d9082fdb8135affc1a1a004de5f61911e33a5bf32674"
+    }
+  },
+  "independent_replay": {
+    "verified_fields": 6205,
+    "verified_center_case_views": 264,
+    "verified_wide_case_views": 264,
+    "followup_fields": 0,
+    "stages": {
+      "40": {
+        "verified_fields": 1613,
+        "case_view_pairs": 66
+      },
+      "100": {
+        "verified_fields": 1628,
+        "case_view_pairs": 66
+      },
+      "200": {
+        "verified_fields": 1555,
+        "case_view_pairs": 66
+      },
+      "400": {
+        "verified_fields": 1409,
+        "case_view_pairs": 66
+      }
+    },
+    "feature_receipt_sha256": "8cf36605662c7674103744a1c4413c6e94bef6cfbf2a0d5c70fa4766468959e7",
+    "verification_source_sha256": "6efc883172bd98feb32404276e7211faf0c60757925f642a4cd7573045721dfa",
+    "role_sha256": "cec9c0e13f2673046b41e6502154ceb9bed047f44086afbe04d57df562ef0812"
+  }
+}
