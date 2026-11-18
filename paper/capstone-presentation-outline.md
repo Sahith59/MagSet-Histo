@@ -2,6 +2,8 @@
 
 **Opening for Professor Dong.** “One UNI2-h network first decides whether the tissue is benign or malignant. If it is malignant, the same network names the cancer type. On our 16-case internal benchmark, it got the exact diagnosis right in 82.92% of zoom conditions and the benign/malignant decision right in 96.25%. Each case was read 15 ways. We are now testing how to recognize the less common cancers more reliably.” [Matched results](../docs/BREAKHIS_MODEL_COMPARISON.md).
 
+The accompanying [one-page handout](../output/pdf/BreakHis-five-category-brief.pdf) gives the 16-case benchmark, the rare-type diagnosis and the matched wider-image experiment.
+
 ## Historical outline
 
 Draft story and speaking prompts, November14,2026. This is an outline, not a finished PowerPoint. Target a reviewable deck/report by November17, revisions on November18 and a presentation around November20. Exact presentation date and rubric are not supplied.

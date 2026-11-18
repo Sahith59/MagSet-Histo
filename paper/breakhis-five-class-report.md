@@ -4,7 +4,7 @@
 
 Lead with the original case-first UNI2-h network for the single-model, dual-step task. On 16 BreakHis case folders evaluated under 15 zoom combinations each, it scored **199/240 (82.92%) five-category** and **231/240 (96.25%) benign/malignant**. The later single-output comparison scored **60.00% and 79.17%** on the same cases. The decision to return to the earlier architecture followed this retrospective comparison. Performance on new cases remains unknown.
 
-The revised starting weights improved five-category accuracy on the same 17 validation cases from **193/255 (75.69%) to 202/255 (79.22%)**. Binary accuracy rose from **229/255 (89.80%) to 232/255 (90.98%)**. With three more random starting seeds, the revision lost five-category accuracy on the training-group check each time. Retain the original dual-step checkpoint. The revision has no 16-case follow-up score. [Paired results and protocol](../docs/BREAKHIS_SUBTYPE_INITIALIZATION.md).
+The wider-image experiment is complete. Against the original center crop, it moved five-category validation accuracy from 75.69% to 76.86% and binary accuracy from 89.80% to 89.41%. All three additional correct answers were ductal. The same comparison improved five-category accuracy at zero of four training seeds. Keep the original model as the capstone reference. [Full diagnosis and experiment](../docs/BREAKHIS_WIDER_FIELD.md). [One-page capstone brief](../output/pdf/BreakHis-five-category-brief.pdf).
 
 ## Earlier single-reader comparisons
 

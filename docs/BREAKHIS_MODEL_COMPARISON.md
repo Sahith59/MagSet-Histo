@@ -4,6 +4,8 @@
 
 For the one-network, dual-step capstone, lead with the earlier case-first UNI2-h result of **82.92% five-category and 96.25% binary** (199 and 231 correct out of 240 answers). On the same 16-case retrospective benchmark, the later single five-probability output scored **60.00% and 79.17%**. It derives binary by summing four cancer probabilities. The earlier architecture learns the binary and subtype decisions together inside one network. The change in project priority came after these results were known. Both checkpoints and their original validation scores remain in the comparison. [Development of the earlier model](BREAKHIS_SUBTYPE_INITIALIZATION.md).
 
+The wider-image candidate scored 76.86% five-category and 89.41% binary on the 17 validation cases. It gained three ductal answers and missed the same rare-type cases. It did not advance to a 16-case evaluation. [Wider-image comparison](BREAKHIS_WIDER_FIELD.md).
+
 ## What the two sets of cases mean
 
 There are 82 BreakHis case folders in this split. The 49 fitting folders (4,621 images) teach the model. The 17 validation folders (1,584 images, 15 conservative identifier groups) help choose a saved version. The remaining 16 folders (1,704 images, 13 groups) were excluded from fitting and checkpoint selection for the matched methods. We later applied frozen versions to those 16 folders. Earlier project work had used those cases, which makes this a retrospective internal benchmark rather than independent external confirmation. Case folders are grouped using dataset identifiers; clinical patient identity has not been independently verified.

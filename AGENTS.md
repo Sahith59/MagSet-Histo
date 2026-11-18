@@ -1,6 +1,6 @@
 ## Current capstone focus
 
-Resume development of the earlier case-first UNI2-h network under the user's November 18 direction. This one network learns both decisions together. Report its original 82.92% five-category and 96.25% binary scores as an observed result on the reused 16-case benchmark. Preserve the later single-output result and its originally selected checkpoint. Use training and validation to develop any improvement. [Current experiment](docs/BREAKHIS_SUBTYPE_INITIALIZATION.md).
+Resume development of the earlier case-first UNI2-h network under the user's November 18 direction. This one network learns both decisions together. Report its original 82.92% five-category and 96.25% binary scores as an observed result on the reused 16-case benchmark. Preserve the later single-output result and its originally selected checkpoint. Use training and validation to develop any improvement. The three-crop trial gave 196/255 exact and 228/255 binary on validation and no five-category gains in four training seeds. Keep the original reference. [Current evidence](docs/BREAKHIS_WIDER_FIELD.md).
 
 ## Previous single-output experiment
 
