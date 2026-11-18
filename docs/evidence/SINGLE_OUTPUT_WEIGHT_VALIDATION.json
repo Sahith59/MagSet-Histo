@@ -1,0 +1,76 @@
+{
+  "study": "branch-balanced-single-output-validation",
+  "source": "c69fa806db95b2b8977093850a868fc69af12dc1",
+  "job": "4989309",
+  "archive_sha256": "9f1bc689c7e9dcfb8c213085fd5038e1518819f0b2b4631d634b0242ece115dd",
+  "progression_sha256": "45c66942f07f9331c25cbbffd654a4567d4fb86f67330ff5378f0de222a88e50",
+  "plan_sha256": "10945453e6c20e280bc6a5506019827fcf8dd5ba78f9fcf4fde6f3d7ae4cb1a9",
+  "single_config_sha256": "2aa6cb7dbc234353a252b5fda88c421ca5a18b36fdfdabdcb32e8d279c46d930",
+  "audit_sha256": "cec9c0e13f2673046b41e6502154ceb9bed047f44086afbe04d57df562ef0812",
+  "views_sha256": "ff1046f22a993bccaea03975388714be77960056735c7c10780e0fcfd24cc992",
+  "fixed_updates": 10,
+  "training_cases": 49,
+  "test_predictions": 0,
+  "validation": {
+    "cases": 17,
+    "events": 255,
+    "correct_final": 197,
+    "correct_binary": 253,
+    "accuracy": 0.7725490196078432,
+    "binary_accuracy": 0.9921568627450981,
+    "mean_subset_macro_f1": 0.6140679320679321,
+    "all_four_correct": 13,
+    "all_four_accuracy": 0.7647058823529411,
+    "worst_subset_accuracy": 0.6470588235294118,
+    "worst_subset_macro_f1": 0.47619047619047616,
+    "class_recall": [
+      0.9733333333333334,
+      0.7047619047619048,
+      0.6333333333333333,
+      1.0,
+      0.06666666666666667
+    ],
+    "aggregate_confusion_true_rows": [
+      [
+        73,
+        0,
+        0,
+        0,
+        2
+      ],
+      [
+        0,
+        74,
+        22,
+        9,
+        0
+      ],
+      [
+        0,
+        11,
+        19,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        30,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        14,
+        1
+      ]
+    ],
+    "routing_errors": 2,
+    "subtype_errors_after_correct_route": 56
+  },
+  "max_replay_logit_error": 2.7705001226507875e-06,
+  "weights_sha256": "385e27f30d727fcc8af020cbb856f2619eeed464c55fee6dc0942b07f17a9c2e",
+  "prediction_sha256": "cc5e3deb4bbe5c2204801f89ec919caa08aef1234d405b1fd7155529cbdb6013"
+}

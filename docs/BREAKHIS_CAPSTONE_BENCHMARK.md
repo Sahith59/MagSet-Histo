@@ -2,6 +2,8 @@
 
 ## Numbers for the capstone
 
+The full matched comparison now includes follow-up scores for all nine models. On the same 16 case folders, the original hierarchical UNI2-h network reached **82.92% five-category / 96.25% binary** and the single five-probability output scored **60.00% / 79.17%**. Changing only the single-output training weights improved the training-group check slightly but lowered validation five-category accuracy to 77.25%. The candidate was kept out of the 16-case comparison. [All models and original notebooks side by side](BREAKHIS_MODEL_COMPARISON.md).
+
 **The frozen single model reached 60.00% five-category accuracy and 79.17% benign/malignant accuracy on the retrospective 16-case benchmark.** All 240 decisions were reproduced. The validation result used to select this checkpoint was 80.39% and 99.22%. The 16-case result is the figure to use for the separate follow-up. A fresh-cohort final accuracy is still unknown.
 
 | Evaluation of UNI2-h | What was kept out of fitting? | Correct five-category answers | Correct binary answers | Macro F1 |

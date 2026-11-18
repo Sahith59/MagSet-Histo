@@ -1,5 +1,7 @@
 # Supplied CNN–Transformer and Swin notebooks
 
+The later case-matched comparison and post-hoc five-label scoring of the originally saved image predictions are available in the [consolidated model comparison](BREAKHIS_MODEL_COMPARISON.md). The original notebook results and training protocols below are preserved.
+
 November 17, 2026. **Both supplied-notebook experiments are complete and independently accepted**, including both registered CNN input variants. Swin reaches **93.38% binary accuracy and 64.37% final five-category image accuracy**. The existing multi-view capstone remains parked; its completed results remain preserved and are compared separately below.
 
 ## Three approaches at a glance

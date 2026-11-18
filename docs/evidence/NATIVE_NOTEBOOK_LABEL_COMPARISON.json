@@ -1,0 +1,59 @@
+{
+  "unit": "single image on each original evaluation split",
+  "eight_class_order": [
+    "adenosis",
+    "ductal_carcinoma",
+    "fibroadenoma",
+    "lobular_carcinoma",
+    "mucinous_carcinoma",
+    "papillary_carcinoma",
+    "phyllodes_tumor",
+    "tubular_adenoma"
+  ],
+  "mapped_five_index": [
+    0,
+    1,
+    0,
+    2,
+    3,
+    4,
+    0,
+    0
+  ],
+  "historical_40x_notebooks": {
+    "non-localattention-breakhis.ipynb": {
+      "images": 399,
+      "correct_eight": 374,
+      "correct_five_derived": 377,
+      "correct_binary_derived": 399,
+      "source_sha256": "8321e316e03364883b8138901df2630849d3888ee758c694bb3180b3139045bc"
+    },
+    "spatialsequenceattention-breakhis.ipynb": {
+      "images": 399,
+      "correct_eight": 379,
+      "correct_five_derived": 381,
+      "correct_binary_derived": 398,
+      "source_sha256": "b3e2c0f1d1c076519e88df0ab84863171486b8129046cb12c73487ccf908aa58"
+    }
+  },
+  "supplied_cnn": {
+    "faithful": {
+      "images": 1582,
+      "correct_eight": 690,
+      "correct_binary": 1085,
+      "correct_five_derived": 690,
+      "source_sha256": "11e827b408dfa8e1a83321be51152ef40975eb49576595ea9ec52ff1d276fd09"
+    },
+    "input_fixed": {
+      "images": 1582,
+      "correct_eight": 1367,
+      "correct_binary": 1536,
+      "correct_five_derived": 1410,
+      "source_sha256": "18af4c9424cb4eef0baf737e6416f01edeae13effe550d75746f49905f4cdd3f"
+    }
+  },
+  "cnn_decoding": "Use the saved binary argmax. If malignant, choose the highest of the four malignant subtype scores.",
+  "historical_decoding": "Map each saved eight-class hard decision and true label to the corresponding five or two labels.",
+  "new_fits": 0,
+  "new_encoder_calls": 0
+}

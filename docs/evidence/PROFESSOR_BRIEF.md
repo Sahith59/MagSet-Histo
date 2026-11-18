@@ -2,6 +2,8 @@
 
 ## Current capstone result
 
+The full matched comparison now includes follow-up scores for all nine models. On the same 16 case folders, the original hierarchical UNI2-h network reached **82.92% five-category / 96.25% binary** and the single five-probability output scored **60.00% / 79.17%**. Changing only the single-output training weights improved the training-group check slightly but lowered validation five-category accuracy to 77.25%. The candidate was kept out of the 16-case comparison. [All models and original notebooks side by side](../BREAKHIS_MODEL_COMPARISON.md).
+
 The frozen single-output UNI2-h model scored **60.00% five-category and 79.17% binary** on the separate 16-case retrospective benchmark. The 17-case checkpoint-selection figures were 80.39% and 99.22%. All 240 follow-up decisions reproduced from 1,704 cached field descriptors. The combined >90% / >95% target remains open. [Benchmark, comparison and next step](../BREAKHIS_CAPSTONE_BENCHMARK.md).
 
 One frozen UNI2-h reader now gives five class scores through a single fitted output layer. The same scores answer both questions. On 17 validation cases it reached **80.39% five-category and 99.22% binary** (205 and 253 of 255 answers). On the separate 42-group training check it reached **63.81% and 89.39%** (469 and 657 of 735). Each case supplies 15 zoom conditions. These are development results. The combined target remains open. The main remaining confusion is papillary versus mucinous. [Verified results](../SINGLE_OUTPUT_CENTER.md).
