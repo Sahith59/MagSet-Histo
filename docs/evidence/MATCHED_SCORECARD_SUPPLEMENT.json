@@ -1,0 +1,385 @@
+{
+  "study": "matched-scorecard-v1",
+  "code_sha": "133242f8ce56b64e6ba716922e204829172d6fbe",
+  "slurm_job": "4989300",
+  "archive_sha256": "3e91aa23e4f2d5e0d9a2bc92e10e14095a69ea7eda1a015f826de8ebc0291fc7",
+  "protocol_sha256": "10945453e6c20e280bc6a5506019827fcf8dd5ba78f9fcf4fde6f3d7ae4cb1a9",
+  "training_group_loss_comparison": {
+    "baseline": {
+      "cases": 49,
+      "events": 735,
+      "correct_final": 469,
+      "correct_binary": 657,
+      "accuracy": 0.638095238095238,
+      "binary_accuracy": 0.8938775510204081,
+      "mean_subset_macro_f1": 0.5106806055574866,
+      "all_four_correct": 32,
+      "all_four_accuracy": 0.6530612244897959,
+      "worst_subset_accuracy": 0.5918367346938775,
+      "worst_subset_macro_f1": 0.4369082125603865,
+      "class_recall": [
+        0.6666666666666666,
+        0.6666666666666666,
+        0.8,
+        0.7333333333333333,
+        0.16666666666666666
+      ],
+      "aggregate_confusion_true_rows": [
+        [
+          140,
+          16,
+          13,
+          7,
+          34
+        ],
+        [
+          0,
+          240,
+          51,
+          61,
+          8
+        ],
+        [
+          0,
+          6,
+          24,
+          0,
+          0
+        ],
+        [
+          0,
+          14,
+          1,
+          55,
+          5
+        ],
+        [
+          8,
+          14,
+          0,
+          28,
+          10
+        ]
+      ],
+      "routing_errors": 78,
+      "subtype_errors_after_correct_route": 188
+    },
+    "candidate": {
+      "cases": 49,
+      "events": 735,
+      "correct_final": 478,
+      "correct_binary": 660,
+      "accuracy": 0.6503401360544218,
+      "binary_accuracy": 0.8979591836734694,
+      "mean_subset_macro_f1": 0.5166607756765744,
+      "all_four_correct": 33,
+      "all_four_accuracy": 0.673469387755102,
+      "worst_subset_accuracy": 0.6122448979591837,
+      "worst_subset_macro_f1": 0.4705042016806723,
+      "class_recall": [
+        0.7095238095238096,
+        0.65,
+        0.8666666666666667,
+        0.8533333333333334,
+        0.08333333333333333
+      ],
+      "aggregate_confusion_true_rows": [
+        [
+          149,
+          14,
+          15,
+          2,
+          30
+        ],
+        [
+          0,
+          234,
+          54,
+          62,
+          10
+        ],
+        [
+          0,
+          4,
+          26,
+          0,
+          0
+        ],
+        [
+          0,
+          4,
+          1,
+          64,
+          6
+        ],
+        [
+          14,
+          14,
+          1,
+          26,
+          5
+        ]
+      ],
+      "routing_errors": 75,
+      "subtype_errors_after_correct_route": 182
+    },
+    "progression_passed": true,
+    "weights_sha256": "f55d9daa32001acbf2c5bf11610cdc19bcab083a12d927055a78ab28e699fbf7",
+    "predictions_sha256": "8d772cde514e05afe9eaeaf512b0f9189f9ddecfda00615211752eeebb2ef018",
+    "folds": 42,
+    "validation_predictions": 0,
+    "follow_up_predictions": 0
+  },
+  "historical_frozen_comparators": {
+    "control": {
+      "checkpoint_sha256": "3c73f48dd473b50a418862e3831bf2c055d46e54347e4906e9cf45fb7b0f9ac3",
+      "validation": {
+        "cases": 17,
+        "events": 255,
+        "correct_final": 193,
+        "correct_binary": 229,
+        "accuracy": 0.7568627450980392,
+        "binary_accuracy": 0.8980392156862745,
+        "mean_subset_macro_f1": 0.498153957153957,
+        "all_four_correct": 13,
+        "all_four_accuracy": 0.7647058823529411,
+        "worst_subset_accuracy": 0.6470588235294118,
+        "worst_subset_macro_f1": 0.4246753246753247,
+        "class_recall": [
+          1.0,
+          0.9333333333333333,
+          0.16666666666666666,
+          0.5,
+          0.0
+        ],
+        "aggregate_confusion_true_rows": [
+          [
+            75,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            98,
+            6,
+            0,
+            0
+          ],
+          [
+            0,
+            25,
+            5,
+            0,
+            0
+          ],
+          [
+            15,
+            0,
+            0,
+            15,
+            0
+          ],
+          [
+            10,
+            0,
+            0,
+            5,
+            0
+          ]
+        ],
+        "routing_errors": 26,
+        "subtype_errors_after_correct_route": 36,
+        "numpy_replay_max_error": 1.6408439620363424e-06,
+        "predictions_sha256": "5bba43f44be07dc9bffa3c12fe56aafa49feba898b3ea4ec1ae37dec5e5a290d"
+      },
+      "follow_up": {
+        "cases": 16,
+        "events": 240,
+        "correct_final": 199,
+        "correct_binary": 231,
+        "accuracy": 0.8291666666666667,
+        "binary_accuracy": 0.9625,
+        "mean_subset_macro_f1": 0.5903458110516934,
+        "all_four_correct": 13,
+        "all_four_accuracy": 0.8125,
+        "worst_subset_accuracy": 0.75,
+        "worst_subset_macro_f1": 0.3568181818181818,
+        "class_recall": [
+          1.0,
+          1.0,
+          0.0,
+          0.16666666666666666,
+          0.9333333333333333
+        ],
+        "aggregate_confusion_true_rows": [
+          [
+            75,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            105,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            15,
+            0,
+            0,
+            0
+          ],
+          [
+            8,
+            16,
+            1,
+            5,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            14
+          ]
+        ],
+        "routing_errors": 9,
+        "subtype_errors_after_correct_route": 32,
+        "numpy_replay_max_error": 1.2655593595312098e-06,
+        "predictions_sha256": "db20545b132fed6acbb8c8903e09585816bda239fa6d26fe4025e693d9bc671e"
+      }
+    },
+    "field": {
+      "checkpoint_sha256": "2792f4f86b4761deec6a9b6baeb5cc3bc87050a26053be7421632ce17468c9ac",
+      "validation": {
+        "cases": 17,
+        "events": 255,
+        "correct_final": 193,
+        "correct_binary": 231,
+        "accuracy": 0.7568627450980392,
+        "binary_accuracy": 0.9058823529411765,
+        "mean_subset_macro_f1": 0.47381274281274266,
+        "all_four_correct": 13,
+        "all_four_accuracy": 0.7647058823529411,
+        "worst_subset_accuracy": 0.7058823529411765,
+        "worst_subset_macro_f1": 0.42666666666666664,
+        "class_recall": [
+          1.0,
+          0.9619047619047619,
+          0.06666666666666667,
+          0.5,
+          0.0
+        ],
+        "aggregate_confusion_true_rows": [
+          [
+            75,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            101,
+            3,
+            1,
+            0
+          ],
+          [
+            0,
+            28,
+            2,
+            0,
+            0
+          ],
+          [
+            15,
+            0,
+            0,
+            15,
+            0
+          ],
+          [
+            9,
+            0,
+            0,
+            6,
+            0
+          ]
+        ],
+        "routing_errors": 24,
+        "subtype_errors_after_correct_route": 38,
+        "numpy_replay_max_error": 1.3780508441030292e-06,
+        "predictions_sha256": "62fcad898d48eff257263c54298c7c1377acb7d8954a00c07ecc73ac06a0e137"
+      },
+      "follow_up": {
+        "cases": 16,
+        "events": 240,
+        "correct_final": 196,
+        "correct_binary": 232,
+        "accuracy": 0.8166666666666667,
+        "binary_accuracy": 0.9666666666666667,
+        "mean_subset_macro_f1": 0.5658128342245988,
+        "all_four_correct": 13,
+        "all_four_accuracy": 0.8125,
+        "worst_subset_accuracy": 0.75,
+        "worst_subset_macro_f1": 0.34652406417112297,
+        "class_recall": [
+          1.0,
+          1.0,
+          0.0,
+          0.06666666666666667,
+          0.9333333333333333
+        ],
+        "aggregate_confusion_true_rows": [
+          [
+            75,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            105,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            15,
+            0,
+            0,
+            0
+          ],
+          [
+            7,
+            21,
+            0,
+            2,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            14
+          ]
+        ],
+        "routing_errors": 8,
+        "subtype_errors_after_correct_route": 36,
+        "numpy_replay_max_error": 1.153339006521037e-06,
+        "predictions_sha256": "85529ee7f07ac9294c7b5316696edaf9765d1ec7817445362ff418e4f39c17bf"
+      }
+    }
+  }
+}
