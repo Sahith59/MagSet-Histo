@@ -11,3 +11,7 @@ Use seed 812, AdamW, learning rate 0.001, weight decay 0.01 and 40 full-batch up
 ## Field review
 
 Use the fixed anonymous packet of 84 fields from 21 training and validation cases. Compare the original field with the exact crop that reached UNI2-h. Record geometry and a simple color proxy separately from the qualified reader's observations. A supplemental feature check will run the same frozen reader on left, center and right windows at the same pixel scale and measure how similar their outputs are. This check uses no tumor labels or classifier fitting. An expert's observations are needed to tell whether excluded tissue carries cues that distinguish malignant subtypes. The next decision about wider coverage depends on those observations.
+
+## Supplemental group check
+
+After the primary fit produced a validation result, register a separate check before computing its outputs. Use only the 49 original training cases. Leave out each of their 42 conservative groups in turn, train on all remaining groups, then predict the omitted cases at all 15 zoom conditions. Recompute class weights and normalization in every fold. Fix ten updates for every fold, matching the earlier group study, with one seed and no model selection. Save fold weights and predictions. Independently replay all 735 answers. Compare with the two previously completed group checks under the same case assignments. This is a robustness check within a reused development cohort.

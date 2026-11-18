@@ -14,4 +14,4 @@ inputs=(--config configs/breakhis-single-output-center-v1.json
         --audit "$MAGSET_ROOT/runs/breakhis-matched-three-way-v1/input-audit/private.json"
         --views "$MAGSET_ROOT/runs/breakhis-uni-case-svm-v1/preprocessing.npz")
 "$python_bin" -m scripts.train_single_output_coverage "${inputs[@]}" --output "$run_dir" --code-sha "$MAGSET_CODE_SHA"
-"$python_bin" scripts/verify_single_output_coverage.py "${inputs[@]}" --run "$run_dir" --output "$run_dir/replay.json"
+"$python_bin" -m scripts.verify_single_output_coverage "${inputs[@]}" --run "$run_dir" --output "$run_dir/replay.json"

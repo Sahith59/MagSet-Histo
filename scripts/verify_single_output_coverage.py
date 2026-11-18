@@ -7,7 +7,7 @@ from pathlib import Path
 import numpy as np
 import torch
 
-from check_field_hierarchy import compare_metrics, digest, fixed_roles, metrics, require, zoom_masks
+from scripts.check_field_hierarchy import compare_metrics, digest, fixed_roles, metrics, require, zoom_masks
 
 
 def decide(scores):
@@ -18,14 +18,16 @@ def decide(scores):
 
 
 def reconstruct(views, mean, scale, masks, weights, bias):
-    features = (views.astype(np.float64) - mean) / scale
+    # The training entry point casts each input to float32 before subtraction.
+    features = ((views.astype(np.float32) - mean) / scale).astype(np.float64)
     scores = []
     for mask in masks:
         pooled = features[:, mask].mean(axis=1)
         norm = np.maximum(np.linalg.norm(pooled, axis=1, keepdims=True), 1.e-12)
         pooled = pooled / norm * np.sqrt(mean.shape[-1])
         flags = np.broadcast_to(mask, (len(views), 4))
-        scores.append(np.column_stack((pooled, flags)) @ weights.T + bias)
+        inputs = np.column_stack((pooled, flags))
+        scores.append(np.einsum("cd,kd->ck", inputs, weights) + bias)
     return np.stack(scores, axis=1)
 
 
@@ -55,9 +57,11 @@ def verify(args):
         scale = np.where(std < 1.e-6, 1., std)
         require(np.array_equal(mean, saved["mean"]) and np.array_equal(scale, saved["scale"]),
                 "Frozen normalizers differ from TRAIN statistics")
+    mean, scale = mean.astype(np.float32), scale.astype(np.float32)
     selected = torch.load(checkpoint, weights_only=True, map_location="cpu")
     state = {key: value.numpy() for key, value in selected["model"].items()}
     require(set(state) == {"classifier.weight", "classifier.bias", "mean", "scale"} and
+            all(value.dtype == np.float32 for value in state.values()) and
             np.array_equal(state["mean"], mean) and np.array_equal(state["scale"], scale) and
             selected["config"] == config, "Unexpected model state")
     weights, bias = state["classifier.weight"], state["classifier.bias"]
